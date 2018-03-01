@@ -1,3 +1,4 @@
+
 class PlayerStat:
     def __init__(self, key, val):
         self.key = key
@@ -21,3 +22,13 @@ class Build:
 
     def __repr__(self) -> str:
         return "{}".format(self.__dict__)
+
+    def to_string(self):
+        ret = ""
+        for item in self.__dict__:
+            val = self.__dict__[item]
+            if isinstance(val, list):
+                pass
+            else:
+                ret += item + ": " + val + "\n"
+        return ret

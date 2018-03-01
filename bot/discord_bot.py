@@ -1,3 +1,5 @@
+import logging
+
 import discord
 from discord import Embed
 
@@ -9,10 +11,8 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+    logging.info('Logged in: uname={}, id={}'.format(client.user.name, client.user.id))
+
 
 
 @client.event
@@ -30,11 +30,8 @@ async def on_message(message):
 
         if paste_key:
             xml= pastebin.get_as_xml(paste_key)
-            # data=generate_output(xml)
-            embed = Embed(title='PoB Discord', color=0x0433ff)
-            embed.set_thumbnail(url='https: // docs.python.org / 2 / _static / py.png')
-            embed.add_field(name='test', value='https: // docs.python.org / 2 / _static / py.png', inline = False)
-            embed.add_field(name='test2', value='```dd```')
+            embed=generate_output(xml)
+
             await client.edit_message(tmp,embed=embed)
 
 
