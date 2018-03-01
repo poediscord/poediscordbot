@@ -1,4 +1,5 @@
 import discord
+from discord import Embed
 
 from bot.pob_output import generate_output
 from util import pastebin
@@ -29,7 +30,11 @@ async def on_message(message):
 
         if paste_key:
             xml= pastebin.get_as_xml(paste_key)
-            generate_output(xml)
-        await client.edit_message(tmp, 'Got Data.')
+            # data=generate_output(xml)
+            embed = Embed(title='PoB Discord', color=0x0433ff)
+            embed.set_thumbnail(url='https: // docs.python.org / 2 / _static / py.png')
+            embed.add_field(name='test', value='https: // docs.python.org / 2 / _static / py.png', inline = False)
+            embed.add_field(name='test2', value='```dd```')
+            await client.edit_message(tmp,embed=embed)
 
 

@@ -11,7 +11,6 @@ def decode_build(build):
     :param build:
     :return:
     """
-    print(build.find('level'))
     build_info = Build(build.attrib['level'], build.attrib['targetVersion'], build.attrib['bandit'], build.attrib['className'],
                   build.attrib['ascendClassName'])
     for player_stat in build:
@@ -19,9 +18,11 @@ def decode_build(build):
     return build_info
 
 def embed_message(obj):
-    embed = Embed()
-    
-    return "".format(obj)
+    embed = Embed(title='PoB Discord', color=0x0433ff)
+    embed.set_thumbnail(url='https: // docs.python.org / 2 / _static / py.png')
+    embed.add_field(name='test', value='https: // docs.python.org / 2 / _static / py.png, inline = False')
+    embed.add_field(name='test2', value='```dd```')
+    return embed
 
 def generate_output(pob_xml: ElementTree):
     build = pob_xml.find('Build')

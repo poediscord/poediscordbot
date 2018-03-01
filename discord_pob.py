@@ -1,5 +1,6 @@
 import logging
 
+import config
 from bot.discord_bot import client
 
 
@@ -22,9 +23,9 @@ def initialize_logging():
 
 
 if __name__ == '__main__':
-    token = "NDE4Nzc3Mjk1NzEzNzMwNTcw.DXmgaQ.E-oww8jXRxcKdEemh-ZWGvabliU"  # todo: load token
-    server = "12023"
-    initialize_logging()
-    logging.info("Starting pob discord bot on server={}".format(server))
-    client.run(token)
+    token = config.token # create config.py file and enter a new string!
+    if token:
+        initialize_logging()
+        logging.info("Starting pob discord bot...")
+        client.run(token)
 
