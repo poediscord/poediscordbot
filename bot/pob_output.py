@@ -1,6 +1,5 @@
 from defusedxml import ElementTree
 from discord import Embed
-from marshmallow import Schema, fields, pprint
 
 from models import Build, PlayerStat
 
@@ -19,7 +18,7 @@ def decode_build(build):
     return build_info
 
 
-def embed_message(build=None):
+def embed_message(build=None, author=None):
     embed = Embed(title='PoB Discord', color=0x0433ff)
     print(type(build))
     if build and isinstance(build, Build):
@@ -27,23 +26,17 @@ def embed_message(build=None):
         if build.ascendencyName and build.ascendencyName != "":
             embed.set_thumbnail(
                 url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + build.ascendencyName + '.png')
-        
-    embed.title="Random" #todo: set this to version + class|asc + skill
+
+    embed.title = "Random"  # todo: set this to version + class|asc + skill
+    if author:
+        embed.title += " - by " + author.name
     return embed
 
 
-def generate_output(pob_xml: ElementTree):
+def generate_output(author, pob_xml: ElementTree):
+    print(author)
     build = pob_xml.find('Build')
 
     build = decode_build(build)
-    ret = embed_message(build)
-    # calcs=pob_xml.find('Calcs')
-    # skills=pob_xml.find('Skills')
-    # for item in pob_xml:
-    #     print('{}'.format(item.attrib))
-    #     for i in item:
-    #         print('>> {}'.format(i.attrib))
-    #         for j in i:
-    #             print('>> >> {}'.format(j.attrib))
-
+    ret = embed_message(author=author, build=build)
     return ret
