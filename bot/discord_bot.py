@@ -1,8 +1,7 @@
 import discord
-import asyncio
 
-import pastebin
-from pob_output import generate_output
+from bot.pob_output import generate_output
+from util import pastebin
 
 client = discord.Client()
 
@@ -29,7 +28,7 @@ async def on_message(message):
         await client.edit_message(tmp, 'POB PasteKey: {}'.format(paste_key))
 
         if paste_key:
-            xml=pastebin.get_as_xml(paste_key)
+            xml= pastebin.get_as_xml(paste_key)
             print(xml)
             generate_output(xml)
         await client.edit_message(tmp, 'Got Data.')

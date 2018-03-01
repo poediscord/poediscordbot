@@ -1,5 +1,6 @@
 import logging
-from pob_bot import client
+
+from bot.discord_bot import client
 
 
 def initialize_logging():
