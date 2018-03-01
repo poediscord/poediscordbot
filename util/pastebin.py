@@ -1,3 +1,4 @@
+import logging
 import re
 import base64
 import zlib
@@ -26,7 +27,6 @@ def strip_url_to_key(url):
 
 
 def decode_to_xml(enc):
-    print(type(enc))
     enc = enc.replace("-", "+").replace("_", "/")
     xml_str = decode_base64_and_inflate(enc)
     xml = ET.fromstring(xml_str)
@@ -35,7 +35,7 @@ def decode_to_xml(enc):
 
 def urllib_error_retry(attempt_number, ms_since_first_attempt):
     delay = 1 * (2 ** (attempt_number - 1))
-    print("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
+    logging.info("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
     return delay * 1000
 
 
@@ -44,13 +44,11 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
        wait_func=urllib_error_retry)
 def get_raw_data(url):
     url = urllib.request.urlopen(url)
-    print(url)
     return url.read().decode('utf-8')  # read and encode as utf-8
 
 
 def get_as_xml(paste_key):
     raw_url = 'https://pastebin.com/raw/' + paste_key
-    print(raw_url)
+    logging.info("Retrieved from raw_url={}".format(raw_url))
     data = get_raw_data(raw_url)
-    print(data)
     return decode_to_xml(data)
