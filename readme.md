@@ -11,5 +11,12 @@ Utilized libraries & Inspiration:
   ```bash
   cp config.example.py config.py
   ```
-- Edit the new `config.py`,  add your developer token for discord
+- Edit the new `config.py`
+    - replace token
+    - add channels the bots should react to
 - Run `discord_pob.py`
+
+### Usage
+- Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server.
+### Showcase
+![](https://cdn.discordapp.com/attachments/418758449954947076/419161884139454477/unknown.png)

@@ -27,5 +27,4 @@ if __name__ == '__main__':
     if token:
         initialize_logging()
         logging.info("Starting pob discord bot...")
-        stats = config.parsed_stats
         client.run(token)

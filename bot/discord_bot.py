@@ -4,6 +4,7 @@ import discord
 
 from bot.parser import Parser
 from bot.pob_output import generate_output
+from config import channels
 from util import pastebin
 
 client = discord.Client()
@@ -21,17 +22,16 @@ async def on_message(message):
     :param message:
     :return: None
     """
-    print(message)
     if '!pob' in message.content and 'pastebin.com/' in message.content:
         # tmp = await client.send_message(message.channel, "Retrieving POB")
         paste_key = message.content.split('.com/')[1]
         # await client.edit_message(tmp, 'POB PasteKey: {}'.format(paste_key))
+        if message.channel.name in channels:
+            if paste_key:
+                xml = pastebin.get_as_xml(paste_key)
+                parser = Parser()
+                build = parser.parse_build(xml)
+                embed = generate_output(message.author, build)
 
-        if paste_key:
-            xml = pastebin.get_as_xml(paste_key)
-            parser = Parser()
-            build = parser.parse_build(xml)
-            embed = generate_output(message.author, build)
-
-            await client.send_message(message.channel, embed=embed)
-            # await client.send_message(message.channel, embed=embed)
+                await client.send_message(message.channel, embed=embed)
+                # await client.send_message(message.channel, embed=embed)
