@@ -9,8 +9,6 @@ from util import pastebin
 client = discord.Client()
 
 
-
-
 @client.event
 async def on_ready():
     logging.info('Logged in: uname={}, id={}'.format(client.user.name, client.user.id))
@@ -31,8 +29,8 @@ async def on_message(message):
 
         if paste_key:
             xml = pastebin.get_as_xml(paste_key)
-            parser=Parser()
-            build=parser.parse_build(xml)
+            parser = Parser()
+            build = parser.parse_build(xml)
             embed = generate_output(message.author, build)
 
             await client.send_message(message.channel, embed=embed)

@@ -1,9 +1,10 @@
 class Gem:
-    def __init__(self, name, level, quality, skill_part, enabled=''):
+    def __init__(self, id, name, level, quality, skill_part, enabled=''):
         self.name = name
         self.level = level
         self.quality = quality
-        self.skill_part = skill_part
+        self.id = id
+        self.skill_part = int(skill_part) if skill_part else None
         self.enabled = True if enabled == 'true' else False
 
     def __repr__(self) -> str:
@@ -11,13 +12,24 @@ class Gem:
 
 
 class Skill:
-    def __init__(self, slot, gems):
+    def __init__(self, gems, main_active_skill, slot="not specified"):
         self.slot = slot
         self.gems = gems
+        self.main_active_skill = int(main_active_skill)
         self.links = len(gems)
 
     def __repr__(self) -> str:
-        return "Skill [slot={}; gems={} links={}]".format(self.slot, self.gems, self.links)
+        return "Skill [slot={}; gems={}; links={}; selected={}]".format(self.slot, self.gems, self.links,
+                                                                        self.main_active_skill)
+
+    def get_selected(self):
+        active_skills=[gem for gem in self.gems if "support" not in gem.id.lower()]
+        # print(active_skills)
+        return active_skills[self.main_active_skill-1]
+
+    def get_links(self):
+        #todo: implement
+        pass
 
 
 class Item:
@@ -26,7 +38,7 @@ class Item:
         self.raw_content = raw_content.strip()
 
     def __repr__(self) -> str:
-        return "Item [id={}; raw={}]".format(self.id, self.raw_content[:50])
+        return "Item [id={}; raw={}]".format(self.id, self.raw_content[:50].replace('\n', ' '))
 
 
 class Build:
@@ -37,13 +49,16 @@ class Build:
         self.class_name = class_name
         self.ascendency_name = ascendency_name
         self.stats = {}
+        self.config = {}
         self.tree = tree
         self.skills = skills
-        self.activeSkill = activeSkill
+        self.activeSkill = int(activeSkill)
         self.items = items
 
     def appendStat(self, key, val):
-        self.stats[key] = val
+        self.stats[key] = float(val)
+    def appendConfig(self, key, val):
+        self.config[key] = val
 
     def __repr__(self) -> str:
         return "{}".format(self.__dict__)
@@ -68,5 +83,4 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        return self.skills[int(self.activeSkill)-1]
-
+        return self.skills[self.activeSkill-1].get_selected()
