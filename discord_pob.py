@@ -23,9 +23,9 @@ def initialize_logging():
 
 
 if __name__ == '__main__':
-    token = config.token # create config.py file and enter a new string!
+    token = config.token  # create config.py file and enter a new string!
     if token:
         initialize_logging()
         logging.info("Starting pob discord bot...")
+        stats = config.parsed_stats
         client.run(token)
-

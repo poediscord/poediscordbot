@@ -1,42 +1,45 @@
+import logging
+
 from defusedxml import ElementTree
 from discord import Embed
 
-from models import Build, PlayerStat
+import config
+from models import Build
+from util.poeurl import shrink_tree_url
+from bot.parser import Parser
 
 
-def decode_build(build):
-    """
-    Decodes all build information and playerstats into the specific model we expect.
-    :param build:
-    :return:
-    """
-    build_info = Build(build.attrib['level'], build.attrib['targetVersion'], build.attrib['bandit'],
-                       build.attrib['className'],
-                       build.attrib['ascendClassName'])
-    for player_stat in build:
-        build_info.appendStat(PlayerStat(player_stat.attrib['stat'], player_stat.attrib['value']))
-    return build_info
+def get_md_codeblock(string):
+    return '```css\n' + string + '```'
 
 
-def embed_message(build=None, author=None):
-    embed = Embed(title='PoB Discord', color=0x0433ff)
-    print(type(build))
-    if build and isinstance(build, Build):
-        embed.add_field(name='Build', value='```css\n' + build.to_string() + '```')
-        if build.ascendencyName and build.ascendencyName != "":
-            embed.set_thumbnail(
-                url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + build.ascendencyName + '.png')
+def create_embed(author, tree, level, ascendency_name, class_name, main_skill="UNDEFINED"):
+    embed = Embed(title='tmp', color=config.color)
 
-    embed.title = "Random"  # todo: set this to version + class|asc + skill
+    if ascendency_name and ascendency_name != "":
+        embed.set_thumbnail(
+            url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
+
+    embed.title = "{gem} - {char} (Lvl: {level})".format(
+        char=class_name if ascendency_name.lower() == 'none' else ascendency_name,
+        gem=main_skill,
+        level=level)
     if author:
-        embed.title += " - by " + author.name
+        embed.title += " by " + author.name
     return embed
 
 
-def generate_output(author, pob_xml: ElementTree):
-    print(author)
-    build = pob_xml.find('Build')
+def generate_block(embed, data_dict):
+    for val in data_dict:
+        pass
 
-    build = decode_build(build)
-    ret = embed_message(author=author, build=build)
-    return ret
+
+def generate_output(author, build: Build):
+    print(author)
+
+    embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name, build.get_active_skill())
+    # add stuff
+
+    # output
+    embed.add_field(name='Tree:', value=build.tree, inline=False)
+    return embed
