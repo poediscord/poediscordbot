@@ -17,7 +17,8 @@
 - Refine Offense output
 - Customizable Layout (maybe)
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
-
+- Build.slots => Itemslot.item => Item
+                    |<=> Skill
 ### How To Run
 - Copy and rename `config.example.py`
   ```bash
