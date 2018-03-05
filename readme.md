@@ -26,3 +26,4 @@ Utilized libraries & Inspiration:
 - Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server.
 ### Showcase
 ![](https://cdn.discordapp.com/attachments/418758449954947076/419161884139454477/unknown.png)
+

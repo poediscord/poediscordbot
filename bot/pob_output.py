@@ -12,9 +12,10 @@ def wrap_codeblock(string, lang='css'):
 def create_embed(author, tree, level, ascendency_name, class_name, main_skill: Gem):
     embed = Embed(title='tmp', color=config.color)
 
-    if ascendency_name and ascendency_name != "":
-        embed.set_thumbnail(
-            url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
+    if ascendency_name or class_name:
+        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_doc/' + (ascendency_name if ascendency_name != "" else class_name) + '.png'
+        embed.set_thumbnail(url=url)
+        # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
 
     embed.title = "{gem} - {char} (Lvl: {level})".format(
         char=class_name if ascendency_name.lower() == 'none' else ascendency_name,
