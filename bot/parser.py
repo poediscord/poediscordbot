@@ -18,10 +18,11 @@ class Parser:
     @staticmethod
     def parse_build(xml_root):
         xml_build = xml_root.find('Build')
-        xml_skills = xml_root.find('Skills')
-        xml_items = xml_root.find('Items')
+
+        # Parse trees
         tree = xml_root.find('Tree')
         selected_tree = Parser.get_attrib_if_exists(tree, 'activeSpec')
+        # when a tree was selected, get the corresponding url
         if selected_tree:
             n = int(selected_tree) - 1
             print("Getting tree ... n={}".format(n))
@@ -30,8 +31,12 @@ class Parser:
                 selected_tree = shrink_tree_url(selected_tree)
             except ValueError as err:
                 logging.error(err)
+        else:
+            selected_tree = None
 
         skills = []
+        xml_skills = xml_root.find('Skills')
+
         active_skill = xml_build.attrib['mainSocketGroup']
 
         # parse skills and the supported gems
@@ -48,6 +53,7 @@ class Parser:
         items = []
 
         # parse items
+        xml_items = xml_root.find('Items')
         for item in xml_items:
             if item.tag == "Item":
                 items.append(Item(item.attrib['id'], item.text))
@@ -59,6 +65,7 @@ class Parser:
         for player_stat in xml_build:
             build.appendStat(player_stat.attrib['stat'], player_stat.attrib['value'])
 
+        # parse config
         for input in xml_root.find('Config'):
             if input.tag == "Input":
                 extracted = [val for (key, val) in input.attrib.items()]
