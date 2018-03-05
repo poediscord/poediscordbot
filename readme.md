@@ -6,6 +6,12 @@ Utilized libraries & Inspiration:
 - [PoBPreviewBott](https://github.com/aggixx/PoBPreviewBot)
 - [LiftDiscord Bot](https://github.com/andreandersen/LiftDiscord/)
 
+### Future Work
+- Add support to adequately title the pob's (e.g. totem <main skill>, mine <main skill>)
+- Add support for parsing unique items to add them into the gem links (e.g. soul mantle => main link + Spell Totem Lvl 20)
+- Refine Offense output
+- Customizable Layout (maybe)
+
 ### How To Run
 - Copy and rename `config.example.py`
   ```bash
