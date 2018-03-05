@@ -13,7 +13,7 @@ def initialize_logging():
                         filemode='w')
     # define a Handler which writes INFO messages or higher to the sys.stderr
     console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
+    console.setLevel(config.debug_level)
     # set a format which is simpler for console use
     formatter = logging.Formatter('%(asctime)s | %(name)-5s: %(levelname)-8s %(message)s')
     # tell the handler to use this format

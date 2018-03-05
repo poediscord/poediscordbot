@@ -20,11 +20,16 @@ class Parser:
         xml_build = xml_root.find('Build')
         xml_skills = xml_root.find('Skills')
         xml_items = xml_root.find('Items')
-        tree = xml_root.find('Tree').find('Spec').find('URL').text
-        try:
-            tree = shrink_tree_url(tree)
-        except ValueError as err:
-            logging.error(err)
+        tree = xml_root.find('Tree')
+        selected_tree = Parser.get_attrib_if_exists(tree, 'activeSpec')
+        if selected_tree:
+            n = int(selected_tree) - 1
+            print("Getting tree ... n={}".format(n))
+            selected_tree = tree[n].find('URL').text
+            try:
+                selected_tree = shrink_tree_url(selected_tree)
+            except ValueError as err:
+                logging.error(err)
 
         skills = []
         active_skill = xml_build.attrib['mainSocketGroup']
@@ -50,7 +55,7 @@ class Parser:
         build = Build(xml_build.attrib['level'], xml_build.attrib['targetVersion'],
                       Parser.get_attrib_if_exists(xml_build, 'bandit'),
                       xml_build.attrib['className'],
-                      xml_build.attrib['ascendClassName'], tree, skills, active_skill, items)
+                      xml_build.attrib['ascendClassName'], selected_tree, skills, active_skill, items)
         for player_stat in xml_build:
             build.appendStat(player_stat.attrib['stat'], player_stat.attrib['value'])
 

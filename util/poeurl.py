@@ -2,6 +2,8 @@
 import json
 import urllib.request
 
+import logging
+
 
 def shrink_tree_url(tree):
     """
@@ -11,11 +13,15 @@ def shrink_tree_url(tree):
     """
     # sanitize
     tree = tree.strip()
+
     # build requesturl
     param = '{"url":"' + tree + '"}'
     url = 'http://poeurl.com/api/?shrink=' + param
+    logging.debug("Poeurl payload={}".format(url))
+
     contents = urllib.request.urlopen(url).read()
     contents = json.loads(contents)
+    logging.debug("Got json content ... {}".format(contents))
     if contents['url']:
         return 'http://poeurl.com/' + contents['url']
     else:
