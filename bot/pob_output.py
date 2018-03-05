@@ -13,7 +13,7 @@ def create_embed(author, tree, level, ascendency_name, class_name, main_skill: G
     embed = Embed(title='tmp', color=config.color)
 
     if ascendency_name or class_name:
-        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_doc/' + (ascendency_name if ascendency_name != "" else class_name) + '.png'
+        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
         # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
 
