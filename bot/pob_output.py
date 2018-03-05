@@ -2,6 +2,7 @@ from discord import Embed
 
 import config
 from models import Build, Gem
+from util.translate_pob_conf import pob_conf
 
 
 def wrap_codeblock(string, lang='css'):
@@ -78,7 +79,7 @@ def get_offense(build):
         dps=round(max([build.stats['TotalDPS'], build.stats['WithPoisonDPS']]), 2),
         speed=round(build.stats['Speed'], 2))
     output += "**Crit**: Chance {crit_ch:,.2f}% | Damage: {crit_dam:,.0f}%\n".format(
-        crit_ch=build.stats['CritChance'] * 10,
+        crit_ch=build.stats['CritChance'],
         crit_dam=build.stats['CritMultiplier'] * 100)
     output += "**Hit Chance**: {:.2f}%".format(build.stats['HitChance'])
     # todo: make a toggle for dot/hits
@@ -87,26 +88,40 @@ def get_offense(build):
 
 def get_config(config):
     output = ""
+    if len(config) < 1:
+        return
     for key, val in config.items():
-        if val == 'true':
-            output += "{}\t".format(key)
-        else:
-            output += "{}: {}\t".format(key, val)
-
-    output += "\n"
+        key = pob_conf.pob_find_entry(key)['label']
+        output += "{} - {};\t".format(key, val.capitalize())
     return output
 
 
-def generate_output(author, build: Build):
+def get_main_skill(build):
+    output = build.get_active_skill().get_links()
+    if output == "":
+        output = "None"
+    return output
+
+
+def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
-                         build.get_active_skill())
+                         build.get_active_skill().get_selected())
     # print(build.stats)
     # print(build.config)
 
     # add new fields
-    embed.add_field(name="Defense", value=get_defense(build), inline=True)
-    embed.add_field(name="Offense", value=get_offense(build), inline=True)
-    embed.add_field(name="Config", value=get_config(build.config), inline=True)
+    defense = get_defense(build)
+    if defense:
+        embed.add_field(name="Defense", value=defense, inline=inline)
+    offense = get_offense(build)
+    if offense:
+        embed.add_field(name="Offense", value=offense, inline=inline)
+    skill = get_main_skill(build)
+    if skill:
+        embed.add_field(name="Main Skill", value=skill, inline=inline)
+    config = get_config(build.config)
+    if config:
+        embed.add_field(name="Config", value=config, inline=inline)
 
     # output
     embed.add_field(name='Tree:', value=build.tree)

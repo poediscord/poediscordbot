@@ -1,4 +1,5 @@
 import logging
+from asyncio import sleep
 
 import discord
 
@@ -8,7 +9,6 @@ from config import channels
 from util import pastebin
 
 client = discord.Client()
-
 
 @client.event
 async def on_ready():
@@ -32,6 +32,11 @@ async def on_message(message):
                 parser = Parser()
                 build = parser.parse_build(xml)
                 embed = generate_output(message.author, build)
+                logging.info("sending reply to channel: {}".format(message.channel))
+                logging.info("embed={}; length={}".format(embed,embed.__sizeof__()))
+                try:
+                    await client.send_message(message.channel, embed=embed)
+                except discord.HTTPException as exception:
+                    logging.error("HTTP Exception: {}".format(exception.response.text))
 
-                await client.send_message(message.channel, embed=embed)
                 # await client.send_message(message.channel, embed=embed)

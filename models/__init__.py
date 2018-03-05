@@ -1,3 +1,6 @@
+import logging
+
+
 class Gem:
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
         self.name = name
@@ -15,7 +18,10 @@ class Skill:
     def __init__(self, gems, main_active_skill, slot="not specified"):
         self.slot = slot
         self.gems = gems
-        self.main_active_skill = int(main_active_skill)
+        try:
+            self.main_active_skill = int(main_active_skill)
+        except:
+            self.main_active_skill = None
         self.links = len(gems)
 
     def __repr__(self) -> str:
@@ -23,13 +29,17 @@ class Skill:
                                                                         self.main_active_skill)
 
     def get_selected(self):
-        active_skills=[gem for gem in self.gems if "support" not in gem.id.lower()]
-        # print(active_skills)
-        return active_skills[self.main_active_skill-1]
+        if self.main_active_skill:
+            active_skills = [gem for gem in self.gems if "support" not in gem.id.lower()]
+            # print(active_skills)
+            return active_skills[self.main_active_skill - 1]
+        return None
 
-    def get_links(self):
-        #todo: implement
-        pass
+    def get_links(self,join_str=" + "):
+        ret = join_str.join([gem.name for gem in self.gems])
+        if ret == "":
+            ret = None
+        return ret
 
 
 class Item:
@@ -57,6 +67,7 @@ class Build:
 
     def appendStat(self, key, val):
         self.stats[key] = float(val)
+
     def appendConfig(self, key, val):
         self.config[key] = val
 
@@ -83,4 +94,4 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        return self.skills[self.activeSkill-1].get_selected()
+        return self.skills[self.activeSkill - 1]
