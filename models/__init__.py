@@ -35,8 +35,9 @@ class Skill:
             return active_skills[self.main_active_skill - 1]
         return None
 
-    def get_links(self,join_str=" + "):
-        ret = join_str.join([gem.name for gem in self.gems])
+    def get_links(self, join_str=" + "):
+        # Join the gem names, if they are in the slected skill group and if they are enabled
+        ret = join_str.join([gem.name for gem in self.gems if gem.enabled == True])
         if ret == "":
             ret = None
         return ret

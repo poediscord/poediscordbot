@@ -1,7 +1,12 @@
 # PoB Parsing Bot for Discord
 *Written in Python 3.6*
 
-Utilized libraries & Inspiration:
+### Used Libraries
+- zlib
+- retry
+- discord.py
+
+### Utilized libraries & Inspiration:
 - [discord.py](https://github.com/Rapptz/discord.py)
 - [PoBPreviewBott](https://github.com/aggixx/PoBPreviewBot)
 - [LiftDiscord Bot](https://github.com/andreandersen/LiftDiscord/)
@@ -11,6 +16,7 @@ Utilized libraries & Inspiration:
 - Add support for parsing unique items to add them into the gem links (e.g. soul mantle => main link + Spell Totem Lvl 20)
 - Refine Offense output
 - Customizable Layout (maybe)
+- Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
 
 ### How To Run
 - Copy and rename `config.example.py`
