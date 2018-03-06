@@ -1,7 +1,7 @@
 from discord import Embed
 
 import config
-from models import Build, Gem
+from models import Build, Gem, Skill
 from util.translate_pob_conf import pob_conf
 
 
@@ -9,17 +9,23 @@ def wrap_codeblock(string, lang='css'):
     return '```' + lang + '\n' + string + '```'
 
 
-def create_embed(author, tree, level, ascendency_name, class_name, main_skill: Gem):
+def create_embed(author, tree, level, ascendency_name, class_name, main_skill: Skill):
     embed = Embed(title='tmp', color=config.color)
+    gem_name = "Undefined"
+    if main_skill:
+        main_gem = main_skill.get_selected()
+        if isinstance(main_gem, Gem):
+            gem_name = main_gem.name
 
     if ascendency_name or class_name:
-        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (ascendency_name if ascendency_name != "None" else class_name) + '.png'
+        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
+        ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
         # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
 
     embed.title = "{gem} - {char} (Lvl: {level})".format(
         char=class_name if ascendency_name.lower() == 'none' else ascendency_name,
-        gem=main_skill.name if main_skill.name else 'Undefined',
+        gem=gem_name,
         level=level)
     if author:
         embed.title += " by " + author.name
@@ -98,15 +104,17 @@ def get_config(config):
 
 
 def get_main_skill(build):
-    output = build.get_active_skill().get_links()
-    if output == "":
-        output = "None"
-    return output
+    active_skill = build.get_active_skill()
+    if active_skill:
+        output = active_skill.get_links()
+        return output
+    else:
+        return "None selected"
 
 
 def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
-                         build.get_active_skill().get_selected())
+                         build.get_active_skill())
     # print(build.stats)
     # print(build.config)
 

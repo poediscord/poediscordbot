@@ -1,5 +1,7 @@
 import logging
 
+import re
+
 
 class Gem:
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
@@ -43,17 +45,52 @@ class Skill:
         return ret
 
 
-class Item:
-    def __init__(self, id, raw_content):
-        self.id = id
-        self.raw_content = raw_content.strip()
+class ItemSlot:
+    def __init__(self, name, item_id, item):
+        self.name = name
+        self.item_id = item_id
+        self.item = item
 
     def __repr__(self) -> str:
-        return "Item [id={}; raw={}]".format(self.id, self.raw_content[:50].replace('\n', ' '))
+        return "ItemSlot [name={}; item_id={}; item={}]".format(self.name, self.item_id, self.item)
+
+
+class Item:
+    def __init__(self, id, raw_content, variant=None):
+        self.id = id
+        self.raw_content = raw_content.strip()
+        self.variant = variant
+        self.add_supports = self.parse_item_for_support()
+        self.name = self.parse_item_name()
+        print(self)
+
+    def __repr__(self) -> str:
+        return "Item [id={}; name={}; Supports={}]".format(self.id, self.name, self.add_supports)
+
+    def parse_item_name(self):
+        # see here for regex: https://regex101.com/r/MivGPM/1
+        regex = r"\s*Rarity:.*\n\s*(.*)\n"
+        matches = re.findall(regex, self.raw_content, re.IGNORECASE)
+        return matches[0]
+
+    def parse_item_for_support(self):
+        # Socketed Gems are Supported by level 20 Elemental Proliferation
+        add_supports = []
+        # see here for regex: https://regex101.com/r/CcxRuz/1
+        regex = r"({variant:([0-9,]*)}|)Socketed Gems are Supported by level ([0-9]*) ([a-zA-Z ]*)"
+        try:
+            supports = re.findall(regex, self.raw_content, re.IGNORECASE)
+            for support in supports:
+                # if either no variant exists, or our variant matches the current supports variant
+                if 'variant' not in support[0] or self.variant in support[0]:
+                    add_supports.append({"name": support[3], "level": support[2]})
+        except AttributeError as err:
+            return
+        return add_supports
 
 
 class Build:
-    def __init__(self, level, version, bandit, class_name, ascendency_name, tree, skills, activeSkill, items):
+    def __init__(self, level, version, bandit, class_name, ascendency_name, tree, skills, activeSkill, item_slots):
         self.level = level
         self.version = version
         self.bandit = bandit
@@ -64,7 +101,7 @@ class Build:
         self.tree = tree
         self.skills = skills
         self.activeSkill = int(activeSkill)
-        self.items = items
+        self.item_slots = item_slots
 
     def appendStat(self, key, val):
         self.stats[key] = float(val)
@@ -95,4 +132,6 @@ class Build:
         return ret
 
     def get_active_skill(self):
+        if self.activeSkill <= 1:
+            return None
         return self.skills[self.activeSkill - 1]
