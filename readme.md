@@ -19,6 +19,7 @@
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
 - Build.slots => Itemslot.item => Item
                     |<=> Skill
+- Add supports for Active Skills from items (Ice Storm)
 ### How To Run
 - Copy and rename `config.example.py`
   ```bash

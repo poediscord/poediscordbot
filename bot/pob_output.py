@@ -19,7 +19,7 @@ def create_embed(author, tree, level, ascendency_name, class_name, main_skill: S
 
     if ascendency_name or class_name:
         url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
-        ascendency_name if ascendency_name != "None" else class_name) + '.png'
+            ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
         # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
 
@@ -105,8 +105,8 @@ def get_config(config):
 
 def get_main_skill(build):
     active_skill = build.get_active_skill()
-    if active_skill:
-        output = active_skill.get_links()
+    if active_skill and isinstance(active_skill, Skill):
+        output = active_skill.get_links(item=build.get_item(active_skill.slot))
         return output
     else:
         return "None selected"
