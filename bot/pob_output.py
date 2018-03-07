@@ -112,6 +112,21 @@ def get_main_skill(build):
         return "None selected"
 
 
+def generate_minified_output(author, build: Build, inline=True):
+    embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
+                         build.get_active_skill())
+    # add new fields
+    defense = get_defense(build)
+    if defense:
+        embed.add_field(name="Defense", value=defense, inline=inline)
+    offense = get_offense(build)
+    if offense:
+        embed.add_field(name="Offense", value=offense, inline=inline)
+    # output
+    embed.add_field(name='Tree:', value=build.tree)
+    return embed
+
+
 def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())

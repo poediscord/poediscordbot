@@ -10,7 +10,15 @@ from retrying import retry
 Original from: https://github.com/aggixx/PoBPreviewBot/blob/master/util.py 
             && https://github.com/aggixx/PoBPreviewBot/blob/master/pastebin.py
 '''
-
+def fetch_paste_key(content):
+    """
+    Fetches the last paste key in a message.
+    :param content: message.content
+    :return: paste key to retrieve pastebin content
+    """
+    regex = r".*pastebin.com\/(\S*)"
+    results = re.findall(regex, content)
+    return results[0]
 
 def decode_base64_and_inflate(b64string):
     decoded_data = base64.b64decode(b64string)
@@ -18,13 +26,6 @@ def decode_base64_and_inflate(b64string):
         return zlib.decompress(decoded_data)
     except zlib.error:
         pass
-
-
-def strip_url_to_key(url):
-    match = re.search('\w+$', url)
-    paste_key = match.group(0)
-    return paste_key
-
 
 def decode_to_xml(enc):
     enc = enc.replace("-", "+").replace("_", "/")
@@ -45,7 +46,7 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
 
 
 @retry(wait_exponential_multiplier=1000,
-       stop_max_attempt_number=8,
+       stop_max_attempt_number=1,
        wait_func=urllib_error_retry)
 def get_raw_data(url):
     url = urllib.request.urlopen(url)
