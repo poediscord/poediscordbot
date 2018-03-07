@@ -11,15 +11,24 @@
 - [PoBPreviewBott](https://github.com/aggixx/PoBPreviewBot)
 - [LiftDiscord Bot](https://github.com/andreandersen/LiftDiscord/)
 
+### Finished
+- Support for having active channels where the bot fetches all pastebin links and tries to past
+- Support for having passive channels where the bot only triggers when using the command
+- Parsing most of the information from the XML into classes to facilitate extensive custom output
+- Various config options in `config.py`
 ### Future Work
-- Add support to adequately title the pob's (e.g. totem <main skill>, mine <main skill>)
-- Add support for parsing unique items to add them into the gem links (e.g. soul mantle => main link + Spell Totem Lvl 20)
 - Refine Offense output
+    - Poison/Ignite and Dots in general are crude
+    - Only show crit stats when they are above threshholds
+    - Maybe: 
+        - Number of totems
+        - Balls
+        - Arrows 
 - Customizable Layout (maybe)
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
-- Build.slots => Itemslot.item => Item
-                    |<=> Skill
 - Add supports for Active Skills from items (Ice Storm)
+
+
 ### How To Run
 - Copy and rename `config.example.py`
   ```bash
@@ -27,8 +36,9 @@
   ```
 - Edit the new `config.py`
     - replace token
-    - add channels the bots should react to
+    - add channels the bots should react to and define keyword(s)
 - Run `discord_pob.py`
+- Bot logs into `discord_pob.log`
 
 ### Usage
 - Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server.
