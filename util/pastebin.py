@@ -29,7 +29,12 @@ def strip_url_to_key(url):
 def decode_to_xml(enc):
     enc = enc.replace("-", "+").replace("_", "/")
     xml_str = decode_base64_and_inflate(enc)
-    xml = ET.fromstring(xml_str)
+    xml = None
+    try:
+        xml = ET.fromstring(xml_str)
+    except TypeError as err:
+        logging.info("Could not parse the pastebin as xml msg={}".format(err))
+
     return xml
 
 
