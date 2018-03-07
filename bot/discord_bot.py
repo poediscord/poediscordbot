@@ -1,10 +1,7 @@
-import asyncio
 import logging
-from asyncio import sleep
 from urllib.error import HTTPError
 
 import discord
-import re
 
 import config
 from bot.parser import Parser
