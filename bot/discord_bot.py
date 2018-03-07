@@ -34,7 +34,8 @@ async def on_message(message):
     if message.channel.name in config.passive_channels:
         logging.info("A| {}: {} [keywords={}]".format(message.channel, message.content,
                                                       config.keywords))
-        if any(keyword in message.content for keyword in config.keywords):
+        # If the command should be anywhere in the message => keyword in message.content
+        if any(message.content.startswith(keyword) for keyword in config.keywords):
             embed = parse_pob(message)
             if embed:
                 await client.send_message(message.channel, embed=embed)
