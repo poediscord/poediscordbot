@@ -39,11 +39,12 @@ class Skill:
 
     def get_links(self, item=None, join_str=" + "):
         # Join the gem names, if they are in the slected skill group and if they are enabled
-        ret = join_str.join([gem.name+" [L"+gem.level+"|Q"+gem.quality+"]" for gem in self.gems if gem.enabled == True])
+        ret = join_str.join(
+            [gem.name + " [L" + gem.level + "|Q" + gem.quality + "]" for gem in self.gems if gem.enabled == True])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
-                ret += "\n(+ " + join_str.join([gem['name']+" [L"+gem['level']+"|Q0]" for gem in supports])
+                ret += "\n(+ " + join_str.join([gem['name'] + " [L" + gem['level'] + "|Q0]" for gem in supports])
                 ret += "; From: {})".format(item.name)
         return ret
 
@@ -105,8 +106,13 @@ class Build:
         self.activeSkill = int(activeSkill)
         self.item_slots = item_slots
 
-    def appendStat(self, key, val):
-        self.stats[key] = float(val)
+    def appendStat(self, key, val, stat_owner):
+        # remove "Stat" from the string
+        stat_owner = stat_owner[:-4]
+        if not stat_owner in self.stats:
+            self.stats[stat_owner] = {}
+        self.stats[stat_owner][key] = float(val)
+        print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def appendConfig(self, key, val):
         self.config[key] = val

@@ -33,7 +33,7 @@ class Parser:
                       xml_build.attrib['className'],
                       xml_build.attrib['ascendClassName'], selected_tree, skills, active_skill, item_slots)
         for player_stat in xml_build:
-            build.appendStat(player_stat.attrib['stat'], player_stat.attrib['value'])
+            build.appendStat(player_stat.attrib['stat'], player_stat.attrib['value'], player_stat.tag)
 
         # parse config
         for input in xml_root.find('Config'):

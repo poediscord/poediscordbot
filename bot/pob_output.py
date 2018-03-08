@@ -37,44 +37,44 @@ def get_defense(build: Build):
     output = ""
     # Basics
     output += "**Life**: {life:.0f} ({life_inc:.0f}%) | **Regen**: {life_regen:.1f}/s\n".format(
-        life=build.stats['Life'],
-        life_inc=build.stats[
+        life=build.stats['Player']['Life'],
+        life_inc=build.stats['Player'][
             'Spec:LifeInc'],
-        life_regen=build.stats['LifeRegen'])
+        life_regen=build.stats['Player']['LifeRegen'])
 
     output += "**Energy Shield**: {es:.0f} ({es_inc:.0f}%) | **Regen**: {es_regen:.1f}/s\n".format(
-        es=build.stats['EnergyShield'],
-        es_inc=build.stats[
+        es=build.stats['Player']['EnergyShield'],
+        es_inc=build.stats['Player'][
             'Spec:EnergyShieldInc'],
-        es_regen=build.stats[
+        es_regen=build.stats['Player'][
             'EnergyShieldRegen'])
 
-    output += "**Mana**: {mana:.0f} ({mana_inc:.0f}%)| **Regen**: {mana_regen:.1f}/s\n".format(mana=build.stats['Mana'],
-                                                                                               mana_inc=build.stats[
+    output += "**Mana**: {mana:.0f} ({mana_inc:.0f}%)| **Regen**: {mana_regen:.1f}/s\n".format(mana=build.stats['Player']['Mana'],
+                                                                                               mana_inc=build.stats['Player'][
                                                                                                    'Spec:ManaInc'],
-                                                                                               mana_regen=build.stats[
+                                                                                               mana_regen=build.stats['Player'][
                                                                                                    'ManaRegen'])
     # Res
-    output += ":fire: {:.0f}".format(build.stats['FireResist'])
-    if int(build.stats['FireResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['FireResistOverCap'])
+    output += ":fire: {:.0f}".format(build.stats['Player']['FireResist'])
+    if int(build.stats['Player']['FireResistOverCap']) > 0:
+        output += "(+{:.0f}) ".format(build.stats['Player']['FireResistOverCap'])
     output += " | "
 
-    output += ":snowflake: {:.0f}".format(build.stats['ColdResist'])
-    if int(build.stats['ColdResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['ColdResistOverCap'])
+    output += ":snowflake: {:.0f}".format(build.stats['Player']['ColdResist'])
+    if int(build.stats['Player']['ColdResistOverCap']) > 0:
+        output += "(+{:.0f}) ".format(build.stats['Player']['ColdResistOverCap'])
     output += " | "
 
-    output += ":zap: {:.0f}".format(build.stats['LightningResist'])
-    if int(build.stats['ColdResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['LightningResistOverCap'])
+    output += ":zap: {:.0f}".format(build.stats['Player']['LightningResist'])
+    if int(build.stats['Player']['ColdResistOverCap']) > 0:
+        output += "(+{:.0f}) ".format(build.stats['Player']['LightningResistOverCap'])
     output += " | "
 
-    output += ":skull: {:.0f}".format(build.stats['ChaosResist'])
-    if int(build.stats['ChaosResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['ChaosResistOverCap'])
+    output += ":skull: {:.0f}".format(build.stats['Player']['ChaosResist'])
+    if int(build.stats['Player']['ChaosResistOverCap']) > 0:
+        output += "(+{:.0f}) ".format(build.stats['Player']['ChaosResistOverCap'])
     output += "\n"
-    # add_line({'es': build.stats['EnergyShield'], 'life': build.stats['Life']})
+    # add_line({'es': build.stats['Player']['EnergyShield'], 'life': build.stats['Player']['Life']})
     return output
 
 
@@ -83,12 +83,13 @@ def get_offense(build):
     output = ""
     # Basics
     output += "**DPS**: {dps:,} @ {speed}/s\n".format(
-        dps=round(max([build.stats['TotalDPS'], build.stats['WithPoisonDPS']]), 2),
-        speed=round(build.stats['Speed'], 2))
+        dps=round(max([build.stats['Player']['TotalDPS'], build.stats['Player']['WithPoisonDPS'],
+                      build.stats['Minion']['TotalDPS'], build.stats['Minion']['WithPoisonDPS']]), 2),
+        speed=round(build.stats['Player']['Speed'], 2))
     output += "**Crit**: Chance {crit_ch:,.2f}% | Damage: {crit_dam:,.0f}%\n".format(
-        crit_ch=build.stats['CritChance'],
-        crit_dam=build.stats['CritMultiplier'] * 100)
-    output += "**Hit Chance**: {:.2f}%".format(build.stats['HitChance'])
+        crit_ch=build.stats['Player']['CritChance'],
+        crit_dam=build.stats['Player']['CritMultiplier'] * 100)
+    output += "**Hit Chance**: {:.2f}%".format(build.stats['Player']['HitChance'])
     # todo: make a toggle for dot/hits
     return output
 
