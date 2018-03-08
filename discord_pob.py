@@ -6,7 +6,7 @@ from bot.discord_bot import client
 
 def initialize_logging():
     # set up logging to file - see previous section for more details
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=config.debug_level,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
                         filename='discord_pob.log',
