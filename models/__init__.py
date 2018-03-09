@@ -106,7 +106,7 @@ class Build:
         self.activeSkill = int(activeSkill)
         self.item_slots = item_slots
 
-    def appendStat(self, key, val, stat_owner):
+    def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
         stat_owner = stat_owner[:-4]
         if not stat_owner in self.stats:
@@ -114,7 +114,7 @@ class Build:
         self.stats[stat_owner][key] = float(val)
         print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
-    def appendConfig(self, key, val):
+    def append_conf(self, key, val):
         self.config[key] = val
 
     def __repr__(self) -> str:
@@ -123,9 +123,9 @@ class Build:
     def get_item(self, slot):
         return self.item_slots[slot].item
 
-    def get_stat(self, key):
-        if key in self.stats:
-            return self.stats[key]
+    def get_stat(self, owner, key):
+        if owner in self.stats and key in self.stats[owner]:
+            return self.stats[owner][key]
         else:
             return None
 

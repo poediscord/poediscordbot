@@ -49,11 +49,12 @@ def get_defense(build: Build):
         es_regen=build.stats['Player'][
             'EnergyShieldRegen'])
 
-    output += "**Mana**: {mana:.0f} ({mana_inc:.0f}%)| **Regen**: {mana_regen:.1f}/s\n".format(mana=build.stats['Player']['Mana'],
-                                                                                               mana_inc=build.stats['Player'][
-                                                                                                   'Spec:ManaInc'],
-                                                                                               mana_regen=build.stats['Player'][
-                                                                                                   'ManaRegen'])
+    output += "**Mana**: {mana:.0f} ({mana_inc:.0f}%)| **Regen**: {mana_regen:.1f}/s\n".format(
+        mana=build.stats['Player']['Mana'],
+        mana_inc=build.stats['Player'][
+            'Spec:ManaInc'],
+        mana_regen=build.stats['Player'][
+            'ManaRegen'])
     # Res
     output += ":fire: {:.0f}".format(build.stats['Player']['FireResist'])
     if int(build.stats['Player']['FireResistOverCap']) > 0:
@@ -78,13 +79,24 @@ def get_defense(build: Build):
     return output
 
 
+def calc_dps(comparison_dps):
+    max = 0
+    for dps in comparison_dps:
+        if dps and dps > max:
+            max = dps
+    return round(max, 2)
+
+
 def get_offense(build):
     # LET THERE BE DIRTY GUIS
     output = ""
     # Basics
+    comparison_dps = [build.get_stat('Player', 'TotalDPS'), build.get_stat('Player', 'WithPoisonDPS'),
+                      build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
+
+    dps = calc_dps(comparison_dps)
     output += "**DPS**: {dps:,} @ {speed}/s\n".format(
-        dps=round(max([build.stats['Player']['TotalDPS'], build.stats['Player']['WithPoisonDPS'],
-                      build.stats['Minion']['TotalDPS'], build.stats['Minion']['WithPoisonDPS']]), 2),
+        dps=dps,
         speed=round(build.stats['Player']['Speed'], 2))
     output += "**Crit**: Chance {crit_ch:,.2f}% | Damage: {crit_dam:,.0f}%\n".format(
         crit_ch=build.stats['Player']['CritChance'],
