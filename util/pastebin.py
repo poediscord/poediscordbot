@@ -30,7 +30,7 @@ def decode_base64_and_inflate(b64string):
 def decode_to_xml(enc):
     enc = enc.replace("-", "+").replace("_", "/")
     xml_str = decode_base64_and_inflate(enc)
-    print(xml_str)
+    # print(xml_str)
     xml = None
     try:
         xml = ET.fromstring(xml_str)

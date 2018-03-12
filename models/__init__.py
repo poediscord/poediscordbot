@@ -112,7 +112,7 @@ class Build:
         if not stat_owner in self.stats:
             self.stats[stat_owner] = {}
         self.stats[stat_owner][key] = float(val)
-        print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
+        # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
         self.config[key] = val

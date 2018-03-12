@@ -60,7 +60,7 @@ def parse_pob(message, minify=False):
         if xml:
             parser = Parser()
             build = parser.parse_build(xml)
-            print(build)
+            # print(build)
 
             embed = pob_output.generate_output(message.author, build) if not minify \
                 else pob_output.generate_minified_output(message.author,build)

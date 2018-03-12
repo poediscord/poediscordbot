@@ -76,7 +76,7 @@ class Parser:
                 item_id = Parser.get_attrib_if_exists(entry, 'itemId')
                 item = None
                 if item_id:
-                    print(item_id)
+                    # print(item_id)
                     #go through all items by their id, if the id matches return the first match of the comprehension.
                     item = [item for item in  items if item.id == item_id][0]
                 slots[entry.attrib['name']] = ItemSlot(entry.attrib['name'], item_id, item)
