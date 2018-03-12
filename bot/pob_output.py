@@ -111,8 +111,10 @@ def get_config(config):
     if len(config) < 1:
         return
     for key, val in config.items():
-        key = pob_conf.pob_find_entry(key)['label']
-        output += "{} - {};\t".format(key, val.capitalize())
+        pob_entry = pob_conf.pob_find_entry(key)
+        if pob_entry and pob_entry['label']:
+            key = pob_entry['label']
+            output += "{} - {};\t".format(key, val.capitalize())
     return output
 
 
