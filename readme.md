@@ -2,9 +2,7 @@
 *Written in Python 3.6*
 
 ### Used Libraries
-- zlib
-- retry
-- discord.py
+- refer to the [requirements.txt](/requirements.txt)
 
 ### Utilized libraries & Inspiration:
 - [discord.py](https://github.com/Rapptz/discord.py)
@@ -16,6 +14,7 @@
 - Support for having passive channels where the bot only triggers when using the command
 - Parsing most of the information from the XML into classes to facilitate extensive custom output
 - Various config options in `config.py`
+
 ### Future Work
 - Refine Offense output
     - Poison/Ignite and Dots in general are crude
