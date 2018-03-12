@@ -121,7 +121,8 @@ class Build:
         return "{}".format(self.__dict__)
 
     def get_item(self, slot):
-        return self.item_slots[slot].item
+        if slot:
+            return self.item_slots[slot].item
 
     def get_stat(self, owner, key):
         if owner in self.stats and key in self.stats[owner]:
@@ -140,6 +141,6 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        if self.activeSkill < 1:
+        if len(self.skills)<1 or self.activeSkill < 1:
             return None
         return self.skills[self.activeSkill - 1]
