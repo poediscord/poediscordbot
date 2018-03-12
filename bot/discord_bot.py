@@ -4,6 +4,7 @@ from urllib.error import HTTPError
 import discord
 
 import config
+import util
 from bot.parser import Parser
 from bot import pob_output
 from util import pastebin
@@ -26,16 +27,16 @@ async def on_message(message):
     if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
         # check if valid xml
         # send message
-        logging.info("P| {}: {}".format(message.channel, message.content))
+        logging.debug("P| {}: {}".format(message.channel, message.content))
         embed = parse_pob(message,minify=True)
         if embed:
             await client.send_message(message.channel, embed=embed)
 
     if message.channel.name in config.passive_channels:
-        logging.info("A| {}: {} [keywords={}]".format(message.channel, message.content,
+        logging.debug("A| {}: {} [keywords={}]".format(message.channel, message.content,
                                                       config.keywords))
         # If the command should be anywhere in the message => keyword in message.content
-        if any(message.content.startswith(keyword) for keyword in config.keywords):
+        if any(util.startsWith(keyword,message.content) for keyword in config.keywords):
             embed = parse_pob(message)
             if embed:
                 await client.send_message(message.channel, embed=embed)
@@ -53,10 +54,12 @@ def parse_pob(message, minify=False):
     paste_key = pastebin.fetch_paste_key(message.content)
     if paste_key:
         xml = None
+        logging.info("Parsing pastebin with key={}".format(paste_key))
+
         try:
             xml = pastebin.get_as_xml(paste_key)
         except HTTPError as err:
-            logging.info("Invalid url msg={}".format(err))
+            logging.error("Invalid url msg={}".format(err))
         if xml:
             parser = Parser()
             build = parser.parse_build(xml)
@@ -64,6 +67,6 @@ def parse_pob(message, minify=False):
 
             embed = pob_output.generate_output(message.author, build) if not minify \
                 else pob_output.generate_minified_output(message.author,build)
-            logging.info("sending reply to channel: {}".format(message.channel))
-            logging.info("embed={}; length={}".format(embed, embed.__sizeof__()))
+            logging.debug("sending reply to channel: {}".format(message.channel))
+            logging.debug("embed={}; length={}".format(embed, embed.__sizeof__()))
             return embed

@@ -35,14 +35,14 @@ def decode_to_xml(enc):
     try:
         xml = ET.fromstring(xml_str)
     except TypeError as err:
-        logging.info("Could not parse the pastebin as xml msg={}".format(err))
+        logging.debug("Could not parse the pastebin as xml msg={}".format(err))
 
     return xml
 
 
 def urllib_error_retry(attempt_number, ms_since_first_attempt):
     delay = 1 * (2 ** (attempt_number - 1))
-    logging.info("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
+    logging.error("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
     return delay * 1000
 
 
@@ -56,6 +56,6 @@ def get_raw_data(url):
 
 def get_as_xml(paste_key):
     raw_url = 'https://pastebin.com/raw/' + paste_key
-    logging.info("Retrieved from raw_url={}".format(raw_url))
+    logging.debug("Retrieved from raw_url={}".format(raw_url))
     data = get_raw_data(raw_url)
     return decode_to_xml(data)
