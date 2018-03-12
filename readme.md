@@ -16,6 +16,9 @@
 - Various config options in `config.py`
 
 ### Future Work
+- Configuration rework
+    - From "Key":"True" to "Key" only
+    - Py3.5: not all configs are returned although they are available
 - Refine Offense output
     - Poison/Ignite and Dots in general are crude
     - Only show crit stats when they are above threshholds
@@ -40,7 +43,8 @@
 - Bot logs into `discord_pob.log`
 
 ### Usage
-- Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server.
+- Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server or to pastebin links it can parse in general.
+
 ### Showcase
 ![](https://cdn.discordapp.com/attachments/418758449954947076/419161884139454477/unknown.png)
 

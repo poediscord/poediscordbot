@@ -40,11 +40,11 @@ class Skill:
     def get_links(self, item=None, join_str=" + "):
         # Join the gem names, if they are in the slected skill group and if they are enabled
         ret = join_str.join(
-            [gem.name + " [L" + gem.level + "|Q" + gem.quality + "]" for gem in self.gems if gem.enabled == True])
+            [gem.name + " (" + gem.level + "/" + gem.quality + ")" for gem in self.gems if gem.enabled == True])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
-                ret += "\n(+ " + join_str.join([gem['name'] + " [L" + gem['level'] + "|Q0]" for gem in supports])
+                ret += "\n(+ " + join_str.join([gem['name'] + " (" + gem['level'] + "/0)" for gem in supports])
                 ret += "; From: {})".format(item.name)
         return ret
 

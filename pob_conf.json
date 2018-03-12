@@ -212,9 +212,6 @@
       "tooltip": "'Resistant'"
     },
     {
-      "label": "Map Suffix Modifiers:"
-    },
-    {
       "var": "playerHasElementalEquilibrium",
       "type": "check",
       "label": "Player has Elemental Equilibrium?",
@@ -360,10 +357,6 @@
       "type": "number",
       "label": "Warlord's Mark:",
       "tooltip": "Sets the level of Warlord's Mark to apply to the player."
-    },
-    {
-      "section": "When In Combat",
-      "col": 1
     },
     {
       "var": "usePowerCharges",
@@ -804,10 +797,6 @@
       "ifVer": "3_0",
       "label": "Blocked hit from a Unique in the past 10s?",
       "ifNode": 63490
-    },
-    {
-      "section": "For Effective DPS",
-      "col": 1
     },
     {
       "var": "critChanceLucky",
