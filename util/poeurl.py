@@ -21,7 +21,7 @@ def shrink_tree_url(tree):
 
     contents = urllib.request.urlopen(url).read()
     contents = json.loads(contents)
-    logging.info("Got json content ... {}".format(contents))
+    logging.info("Got json content from poeurl ... {}".format(contents))
     if contents['url']:
         return 'http://poeurl.com/' + contents['url']
     else:
