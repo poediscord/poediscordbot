@@ -36,7 +36,7 @@ async def on_message(message):
         log.debug("A| {}: {} [keywords={}]".format(message.channel, message.content,
                                                       config.keywords))
         # If the command should be anywhere in the message => keyword in message.content
-        if any(util.startsWith(keyword,message.content) for keyword in config.keywords):
+        if any(util.starts_with(keyword, message.content) for keyword in config.keywords):
             embed = parse_pob(message)
             if embed:
                 await client.send_message(message.channel, embed=embed)

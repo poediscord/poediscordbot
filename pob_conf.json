@@ -1,1015 +1,552 @@
 {
-  "conf": [
-    {
-      "var": "resistancePenalty",
-      "type": "list",
-      "label": "Resistance penalty:",
-      "ifVer": "3_0"
-    },
-    {
-      "var": "enemyLevel",
-      "type": "number",
-      "label": "Enemy Level:",
-      "tooltip": "This overrides the default enemy level used to estimate your hit and evade chances.\nThe default level is your character level, capped at 84, which is the same value\nused in-game to calculate the stats on the character sheet."
-    },
-    {
-      "var": "enemyPhysicalHit",
-      "type": "number",
-      "label": "Enemy Physical Hit Damage:",
-      "tooltip": "This overrides the default damage amount used to estimate your physical damage reduction from armour.\nThe default is 1.5 times the enemy's base damage, which is the same value\nused in-game to calculate the estimate shown on the character sheet."
-    },
-    {
-      "var": "detonateDeadCorpseLife",
-      "type": "number",
-      "label": "Enemy Corpse Life:"
-    },
-    {
+  "utc-date": "2018-03-13T16:44:49.630787",
+  "conf": {
+    "conditionStationary": {
       "var": "conditionStationary",
-      "type": "check",
       "label": "Are you always stationary?",
-      "ifCond": "Stationary"
+      "abbreviation": "Stationary"
     },
-    {
+    "conditionMoving": {
       "var": "conditionMoving",
-      "type": "check",
       "label": "Are you always moving?",
-      "ifCond": "Moving"
+      "abbreviation": "Moving"
     },
-    {
+    "conditionFullLife": {
       "var": "conditionFullLife",
-      "type": "check",
       "label": "Are you always on Full Life?",
-      "tooltip": "You will automatically be considered to be on Full Life if you have Chaos Innoculation,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Full Life"
     },
-    {
+    "conditionLowLife": {
       "var": "conditionLowLife",
-      "type": "check",
       "label": "Are you always on Low Life?",
-      "ifCond": "LowLife",
-      "tooltip": "You will automatically be considered to be on Low Life if you have at least 65% life reserved,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Low Life"
     },
-    {
+    "conditionFullEnergyShield": {
       "var": "conditionFullEnergyShield",
-      "type": "check",
       "label": "Are you always on Full Energy Shield?",
-      "ifCond": "FullEnergyShield"
+      "abbreviation": "Full ES"
     },
-    {
+    "conditionHaveEnergyShield": {
       "var": "conditionHaveEnergyShield",
-      "type": "check",
       "label": "Do you always have Energy Shield?",
-      "ifCond": "HaveEnergyShield"
+      "abbreviation": "Has ES"
     },
-    {
+    "minionsConditionFullLife": {
       "var": "minionsConditionFullLife",
-      "type": "check",
       "label": "Are your minions always on Full Life?",
-      "ifMinionCond": "FullLife"
+      "abbreviation": "Minons Full Life"
     },
-    {
-      "var": "igniteMode",
-      "type": "list",
-      "label": "Ignite calculation mode:",
-      "tooltip": "Controls how the base damage for ignite is calculated:\nAverage Damage: Ignite is based on the average damage dealt, factoring in crits and non-crits.\nCrit Damage: Ignite is based on crit damage only."
-    },
-    {
-      "val": "AVERAGE",
-      "label": "Average Damage"
-    },
-    {
-      "val": "CRIT",
-      "label": "Crit Damage"
-    },
-    {
-      "section": "Skill Options",
-      "col": 2
-    },
-    {
-      "label": "Charged Dash:",
-      "ifSkill": "Charged Dash"
-    },
-    {
-      "var": "chargedDashTravelDistance",
-      "type": "number",
-      "label": "Travel distance:",
-      "ifSkill": "Charged Dash",
-      "tooltip": "Sets the travel distance used to calculate the distance damage bonus.\nThe maximum distance is 60 units."
-    },
-    {
-      "label": "Dark Pact:",
-      "ifSkill": "Dark Pact"
-    },
-    {
-      "var": "darkPactSkeletonLife",
-      "type": "number",
-      "label": "Skeleton Life:",
-      "ifSkill": "Dark Pact",
-      "tooltip": "Sets the maximum life of the skeleton that is being targeted."
-    },
-    {
-      "label": "Ice Nova:",
-      "ifSkill": "Ice Nova"
-    },
-    {
+    "iceNovaCastOnFrostbolt": {
       "var": "iceNovaCastOnFrostbolt",
-      "type": "check",
       "label": "Cast on Frostbolt?",
-      "ifSkill": "Ice Nova"
+      "abbreviation": "Cast on Frostbolt"
     },
-    {
-      "label": "Innervate",
-      "ifSkill": "Innervate"
-    },
-    {
+    "innervateInnervation": {
       "var": "innervateInnervation",
-      "type": "check",
       "label": "Is Innervation active?",
-      "ifSkill": "Innervate"
+      "abbreviation": "Innverate Active"
     },
-    {
-      "label": "Raise Spectre:",
-      "ifSkill": "Raise Spectre"
-    },
-    {
-      "var": "raiseSpectreSpectreLevel",
-      "type": "number",
-      "label": "Spectre Level:",
-      "ifSkill": "Raise Spectre",
-      "tooltip": "Sets the level of the raised spectre.\nThe default level is the level requirement of the Raise Spectre skill."
-    },
-    {
-      "var": "raiseSpectreEnableCurses",
-      "type": "check",
-      "label": "Enable curses:",
-      "ifSkill": "Raise Spectre",
-      "tooltip": "Enable any curse skills that your spectres have."
-    },
-    {
-      "var": "raiseSpectreBladeVortexBladeCount",
-      "type": "number",
-      "label": "Blade Vortex blade count:",
-      "ifSkillList": [
-        "DemonModularBladeVortexSpectre",
-        "GhostPirateBladeVortexSpectre"
-      ],
-      "tooltip": "Sets the blade count for Blade Vortex skills used by spectres.\nDefault is 1; maximum is 5."
-    },
-    {
-      "label": "Summon Lightning Golem:",
-      "ifSkill": "Summon Lightning Golem"
-    },
-    {
-      "var": "summonLightningGolemEnableWrath",
-      "type": "check",
-      "label": "Enable Wrath Aura:",
-      "ifSkill": "Summon Lightning Golem"
-    },
-    {
-      "label": "Vortex:",
-      "ifSkill": "Vortex"
-    },
-    {
+    "vortexCastOnFrostbolt": {
       "var": "vortexCastOnFrostbolt",
-      "type": "check",
       "label": "Cast on Frostbolt?",
-      "ifSkill": "Vortex"
+      "abbreviation": "Cast on Frostbolt"
     },
-    {
-      "section": "Map Modifiers and Player Debuffs",
-      "col": 2
-    },
-    {
-      "label": "Map Prefix Modifiers:"
-    },
-    {
-      "var": "enemyHasPhysicalReduction",
-      "type": "list",
-      "label": "Enemy Physical Damage reduction:",
-      "tooltip": "'Armoured'"
-    },
-    {
-      "var": "enemyIsHexproof",
-      "type": "check",
-      "label": "Enemy is Hexproof?",
-      "tooltip": "'Hexproof'"
-    },
-    {
-      "var": "enemyHasLessCurseEffectOnSelf",
-      "type": "list",
-      "label": "Less effect of Curses on Enemy:",
-      "tooltip": "'Hexwarded'"
-    },
-    {
-      "var": "enemyCanAvoidPoisonBlindBleed",
-      "type": "list",
-      "label": "Enemy avoid Poison/Blind/Bleed:",
-      "tooltip": "'Impervious'"
-    },
-    {
-      "var": "enemyHasResistances",
-      "type": "list",
-      "label": "Enemy has Elemental/Chaos Resist:",
-      "tooltip": "'Resistant'"
-    },
-    {
-      "var": "playerHasElementalEquilibrium",
-      "type": "check",
-      "label": "Player has Elemental Equilibrium?",
-      "tooltip": "'of Balance'"
-    },
-    {
-      "var": "playerCannotLeech",
-      "type": "check",
-      "label": "Cannot Leech Life/Mana?",
-      "tooltip": "'of Congealment'"
-    },
-    {
-      "var": "playerGainsReducedFlaskCharges",
-      "type": "list",
-      "label": "Gains reduced Flask Charges:",
-      "tooltip": "'of Drought'"
-    },
-    {
-      "var": "playerHasMinusMaxResist",
-      "type": "number",
-      "label": "-X% maximum Resistances:",
-      "tooltip": "'of Exposure'\nMid tier: 5-8%\nHigh tier: 9-12%"
-    },
-    {
-      "var": "playerHasLessAreaOfEffect",
-      "type": "list",
-      "label": "Less Area of Effect:",
-      "tooltip": "'of Impotence'"
-    },
-    {
-      "var": "enemyCanAvoidStatusAilment",
-      "type": "list",
-      "label": "Enemy avoid Elem. Status Ailments:",
-      "tooltip": "'of Insulation'"
-    },
-    {
-      "var": "enemyHasIncreasedAccuracy",
-      "type": "list",
-      "label": "Unlucky Dodge/Enemy has inc. Accuracy:",
-      "tooltip": "'of Miring'"
-    },
-    {
-      "var": "playerHasLessArmourandBlock",
-      "type": "list",
-      "label": "Reduced Block Chance/less Armour:",
-      "tooltip": "'of Rust'"
-    },
-    {
-      "var": "playerHasPointBlank",
-      "type": "check",
-      "label": "Player has Point Blank?",
-      "tooltip": "'of Skirmishing'"
-    },
-    {
-      "var": "playerHasLessLifeESRecovery",
-      "type": "list",
-      "label": "Less Recovery of Life and Energy Shield:",
-      "tooltip": "'of Smothering'"
-    },
-    {
-      "var": "playerCannotRegenLifeManaEnergyShield",
-      "type": "check",
-      "label": "Cannot Regen Life, Mana or ES?",
-      "tooltip": "'of Stasis'"
-    },
-    {
-      "var": "enemyTakesReducedExtraCritDamage",
-      "type": "number",
-      "label": "Enemy takes red. Extra Crit Damage:",
-      "tooltip": "'of Toughness'\nLow tier: 25-30%\nMid tier: 31-35%\nHigh tier: 36-40%"
-    },
-    {
-      "label": "Player is cursed by:"
-    },
-    {
-      "var": "playerCursedWithAssassinsMark",
-      "type": "number",
-      "label": "Assassin's Mark:",
-      "tooltip": "Sets the level of Assassin's Mark to apply to the player."
-    },
-    {
-      "var": "playerCursedWithConductivity",
-      "type": "number",
-      "label": "Conductivity:",
-      "tooltip": "Sets the level of Conductivity to apply to the player."
-    },
-    {
-      "var": "playerCursedWithElementalWeakness",
-      "type": "number",
-      "label": "Elemental Weakness:",
-      "tooltip": "Sets the level of Elemental Weakness to apply to the player.\nIn mid tier maps, 'of Elemental Weakness' applies level 10.\nIn high tier maps, 'of Elemental Weakness' applies level 15."
-    },
-    {
-      "var": "playerCursedWithEnfeeble",
-      "type": "number",
-      "label": "Enfeeble:",
-      "tooltip": "Sets the level of Enfeeble to apply to the player.\nIn mid tier maps, 'of Enfeeblement' applies level 10.\nIn high tier maps, 'of Enfeeblement' applies level 15."
-    },
-    {
-      "var": "playerCursedWithFlammability",
-      "type": "number",
-      "label": "Flammability:",
-      "tooltip": "Sets the level of Flammability to apply to the player."
-    },
-    {
-      "var": "playerCursedWithFrostbite",
-      "type": "number",
-      "label": "Frostbite:",
-      "tooltip": "Sets the level of Frostbite to apply to the player."
-    },
-    {
-      "var": "playerCursedWithPoachersMark",
-      "type": "number",
-      "label": "Poacher's Mark:",
-      "tooltip": "Sets the level of Poacher's Mark to apply to the player."
-    },
-    {
-      "var": "playerCursedWithProjectileWeakness",
-      "type": "number",
-      "label": "Projectile Weakness:",
-      "tooltip": "Sets the level of Projectile Weakness to apply to the player."
-    },
-    {
-      "var": "playerCursedWithPunishment",
-      "type": "number",
-      "label": "Punishment:",
-      "tooltip": "Sets the level of Punishment to apply to the player."
-    },
-    {
-      "var": "playerCursedWithTemporalChains",
-      "type": "number",
-      "label": "Temporal Chains:",
-      "tooltip": "Sets the level of Temporal Chains to apply to the player.\nIn mid tier maps, 'of Temporal Chains' applies level 10.\nIn high tier maps, 'of Temporal Chains' applies level 15."
-    },
-    {
-      "var": "playerCursedWithVulnerability",
-      "type": "number",
-      "label": "Vulnerability:",
-      "tooltip": "Sets the level of Vulnerability to apply to the player.\nIn mid tier maps, 'of Vulnerability' applies level 10.\nIn high tier maps, 'of Vulnerability' applies level 15."
-    },
-    {
-      "var": "playerCursedWithWarlordsMark",
-      "type": "number",
-      "label": "Warlord's Mark:",
-      "tooltip": "Sets the level of Warlord's Mark to apply to the player."
-    },
-    {
+    "usePowerCharges": {
       "var": "usePowerCharges",
-      "type": "check",
-      "label": "Do you use Power Charges?"
+      "label": "Do you use Power Charges?",
+      "abbreviation": "Power Charges"
     },
-    {
+    "useFrenzyCharges": {
       "var": "useFrenzyCharges",
-      "type": "check",
-      "label": "Do you use Frenzy Charges?"
+      "label": "Do you use Frenzy Charges?",
+      "abbreviation": "Frenzy Charges"
     },
-    {
+    "useEnduranceCharges": {
       "var": "useEnduranceCharges",
-      "type": "check",
-      "label": "Do you use Endurance Charges?"
+      "label": "Do you use Endurance Charges?",
+      "abbreviation": "Endurance Charges"
     },
-    {
+    "useSiphoningCharges": {
       "var": "useSiphoningCharges",
-      "type": "check",
       "label": "Do you use Siphoning Charges?",
-      "ifMult": "SiphoningCharge"
+      "abbreviation": "Siphoning Charges"
     },
-    {
+    "minionsUsePowerCharges": {
       "var": "minionsUsePowerCharges",
-      "type": "check",
       "label": "Do your minions use Power Charges?",
-      "ifFlag": "haveMinion"
+      "abbreviation": "Minion Power Charges"
     },
-    {
+    "minionsUseFrenzyCharges": {
       "var": "minionsUseFrenzyCharges",
-      "type": "check",
       "label": "Do your minions use Frenzy Charges?",
-      "ifFlag": "haveMinion"
+      "abbreviation": "Minion Frenzy Charges"
     },
-    {
+    "minionsUseEnduranceCharges": {
       "var": "minionsUseEnduranceCharges",
-      "type": "check",
       "label": "Do your minions use Endur. Charges?",
-      "ifFlag": "haveMinion"
+      "abbreviation": "Minion Endur. Charges"
     },
-    {
+    "buffOnslaught": {
       "var": "buffOnslaught",
-      "type": "check",
       "label": "Do you have Onslaught?",
-      "tooltip": "In addition to allowing any 'while you have Onslaught' modifiers to apply,\nthis will enable the Onslaught buff itself. (20% increased Attack/Cast/Movement Speed)"
+      "abbreviation": "Onslaught"
     },
-    {
+    "buffUnholyMight": {
       "var": "buffUnholyMight",
-      "type": "check",
       "label": "Do you have Unholy Might?",
-      "tooltip": "This will enable the Unholy Might buff. (Gain 30% of Physical Damage as Extra Chaos Damage)"
+      "abbreviation": "Unholy Might"
     },
-    {
+    "buffPhasing": {
       "var": "buffPhasing",
-      "type": "check",
       "label": "Do you have Phasing?",
-      "ifCond": "Phasing"
+      "abbreviation": "Phasing"
     },
-    {
+    "buffFortify": {
       "var": "buffFortify",
-      "type": "check",
       "label": "Do you have Fortify?",
-      "ifCond": "Fortify"
+      "abbreviation": "Fortify"
     },
-    {
+    "buffTailwind": {
       "var": "buffTailwind",
-      "type": "check",
       "label": "Do you have Tailwind?",
-      "tooltip": "In addition to allowing any 'while you have Tailwind' modifiers to apply,\nthis will enable the Tailwind buff itself. (You are 10% faster)"
+      "abbreviation": "Tailwind"
     },
-    {
+    "buffAdrenaline": {
       "var": "buffAdrenaline",
-      "type": "check",
       "label": "Do you have Adrenaline?",
-      "ifNode": 27604,
-      "tooltip": "This will enable the Adrenaline buff:\n100% increased Damage\n25% increased Attack, Cast and Movement Speed\n10% additional Physical Damage Reduction"
+      "abbreviation": "Adrenaline"
     },
-    {
+    "multiplierRage": {
       "var": "multiplierRage",
-      "type": "number",
       "label": "Rage:",
-      "ifCond": "CanGainRage"
+      "abbreviation": "Rage"
     },
-    {
+    "conditionLeeching": {
       "var": "conditionLeeching",
-      "type": "check",
       "label": "Are you Leeching?",
-      "ifCond": "Leeching"
+      "abbreviation": "Leeching"
     },
-    {
+    "conditionUsingFlask": {
       "var": "conditionUsingFlask",
-      "type": "check",
       "label": "Do you have a Flask active?",
-      "ifCond": "UsingFlask",
-      "tooltip": "This is automatically enabled if you have a flask active,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Flask Active"
     },
-    {
+    "conditionHaveTotem": {
       "var": "conditionHaveTotem",
-      "type": "check",
       "label": "Do you have a Totem summoned?",
-      "ifCond": "HaveTotem",
-      "tooltip": "You will automatically be considered to have a Totem if your main skill is a Totem,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Totem Summoned"
     },
-    {
+    "conditionOnConsecratedGround": {
       "var": "conditionOnConsecratedGround",
-      "type": "check",
       "label": "Are you on Consecrated Ground?",
-      "tooltip": "In addition to allowing any 'while on Consecrated Ground' modifiers to apply,\nthis will apply the 6% life regen modifier granted by Consecrated Ground."
+      "abbreviation": "On Consecrated Ground"
     },
-    {
+    "conditionOnBurningGround": {
       "var": "conditionOnBurningGround",
-      "type": "check",
       "label": "Are you on Burning Ground?",
-      "ifCond": "OnBurningGround"
+      "abbreviation": "On Burning Ground"
     },
-    {
+    "conditionOnChilledGround": {
       "var": "conditionOnChilledGround",
-      "type": "check",
       "label": "Are you on Chilled Ground?",
-      "ifCond": "OnChilledGround"
+      "abbreviation": "On Chilled Ground"
     },
-    {
+    "conditionOnShockedGround": {
       "var": "conditionOnShockedGround",
-      "type": "check",
       "label": "Are you on Shocked Ground?",
-      "ifCond": "OnShockedGround"
+      "abbreviation": "On Shocked Ground"
     },
-    {
+    "conditionIgnited": {
       "var": "conditionIgnited",
-      "type": "check",
       "label": "Are you Ignited?",
-      "ifCond": "Ignited"
+      "abbreviation": "Ignited"
     },
-    {
+    "conditionChilled": {
       "var": "conditionChilled",
-      "type": "check",
       "label": "Are you Chilled?",
-      "ifCond": "Chilled"
+      "abbreviation": "Chilled"
     },
-    {
+    "conditionFrozen": {
       "var": "conditionFrozen",
-      "type": "check",
       "label": "Are you Frozen?",
-      "ifCond": "Frozen"
+      "abbreviation": "Frozen"
     },
-    {
+    "conditionShocked": {
       "var": "conditionShocked",
-      "type": "check",
       "label": "Are you Shocked?",
-      "ifCond": "Shocked"
+      "abbreviation": "Shocked"
     },
-    {
+    "conditionBleeding": {
       "var": "conditionBleeding",
-      "type": "check",
       "label": "Are you Bleeding?",
-      "ifCond": "Bleeding"
+      "abbreviation": "Bleeding"
     },
-    {
+    "conditionPoisoned": {
       "var": "conditionPoisoned",
-      "type": "check",
       "label": "Are you Poisoned?",
-      "ifCond": "Poisoned"
+      "abbreviation": "Poisoned"
     },
-    {
+    "multiplierPoisonOnSelf": {
       "var": "multiplierPoisonOnSelf",
-      "type": "number",
       "label": "# of Poison on You:",
-      "ifMult": "PoisonOnSelf"
+      "abbreviation": "Poisons on Self"
     },
-    {
+    "conditionOnlyOneNearbyEnemy": {
       "var": "conditionOnlyOneNearbyEnemy",
-      "type": "check",
       "label": "Is there only one nearby Enemy?",
-      "ifCond": "OnlyOneNearbyEnemy"
+      "abbreviation": "Single Enemy Nearby"
     },
-    {
+    "conditionHitRecently": {
       "var": "conditionHitRecently",
-      "type": "check",
       "label": "Have you Hit Recently?",
-      "ifCond": "HitRecently",
-      "tooltip": "You will automatically be considered to have Hit Recently if your main skill is self-cast,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Hit Recently"
     },
-    {
+    "conditionCritRecently": {
       "var": "conditionCritRecently",
-      "type": "check",
       "label": "Have you Crit Recently?",
-      "ifCond": "CritRecently"
+      "abbreviation": "Crit Recently"
     },
-    {
+    "conditionNonCritRecently": {
       "var": "conditionNonCritRecently",
-      "type": "check",
       "label": "Have you dealt a Non-Crit Recently?",
-      "ifCond": "NonCritRecently"
+      "abbreviation": "Non-Crit Recently"
     },
-    {
+    "conditionKilledRecently": {
       "var": "conditionKilledRecently",
-      "type": "check",
       "label": "Have you Killed Recently?",
-      "ifCond": "KilledRecently"
+      "abbreviation": "Killed Recently"
     },
-    {
+    "conditionTotemsKilledRecently": {
       "var": "conditionTotemsKilledRecently",
-      "type": "check",
       "label": "Have your Totems Killed Recently?",
-      "ifCond": "TotemsKilledRecently"
+      "abbreviation": "Totems Killed Recently"
     },
-    {
+    "conditionMinionsKilledRecently": {
       "var": "conditionMinionsKilledRecently",
-      "type": "check",
       "label": "Have your Minions Killed Recently?",
-      "ifCond": "MinionsKilledRecently"
+      "abbreviation": "Minions Killed Recently"
     },
-    {
+    "conditionKilledAffectedByDoT": {
       "var": "conditionKilledAffectedByDoT",
-      "type": "check",
       "label": "Killed Enemy affected by your DoT Recently?",
-      "ifCond": "KilledAffectedByDotRecently"
+      "abbreviation": "Killed Affected By Dot"
     },
-    {
+    "multiplierShockedEnemyKilledRecently": {
       "var": "multiplierShockedEnemyKilledRecently",
-      "type": "number",
       "label": "# of Shocked Enemies Killed Recently:",
-      "ifMult": "ShockedEnemyKilledRecently"
+      "abbreviation": "Killed Shocked Enemies Recently"
     },
-    {
+    "conditionFrozenEnemyRecently": {
       "var": "conditionFrozenEnemyRecently",
-      "type": "check",
       "label": "Have you Frozen an Enemy Recently?",
-      "ifCond": "FrozenEnemyRecently"
+      "abbreviation": "Frozen an Enemy Recently"
     },
-    {
+    "conditionIgnitedEnemyRecently": {
       "var": "conditionIgnitedEnemyRecently",
-      "type": "check",
       "label": "Have you Ignited an Enemy Recently?",
-      "ifCond": "IgnitedEnemyRecently"
+      "abbreviation": "Ignited an Enemy Recently"
     },
-    {
+    "conditionShockedEnemyRecently": {
       "var": "conditionShockedEnemyRecently",
-      "type": "check",
       "label": "Have you Shocked an Enemy Recently?",
-      "ifCond": "ShockedEnemyRecently"
+      "abbreviation": "Shocked an Enemy Recently"
     },
-    {
+    "multiplierPoisonAppliedRecently": {
       "var": "multiplierPoisonAppliedRecently",
-      "type": "number",
       "label": "# of Poisons applied Recently:",
-      "ifMult": "PoisonAppliedRecently"
+      "abbreviation": "Applied Poisons"
     },
-    {
+    "conditionBeenHitRecently": {
       "var": "conditionBeenHitRecently",
-      "type": "check",
       "label": "Have you been Hit Recently?",
-      "ifCond": "BeenHitRecently"
+      "abbreviation": "Been Hit Recently"
     },
-    {
+    "conditionBeenCritRecently": {
       "var": "conditionBeenCritRecently",
-      "type": "check",
       "label": "Have you been Crit Recently?",
-      "ifCond": "BeenCritRecently"
+      "abbreviation": "Been Crit Recently"
     },
-    {
+    "conditionBeenSavageHitRecently": {
       "var": "conditionBeenSavageHitRecently",
-      "type": "check",
       "label": "Have you been Savage Hit Recently?",
-      "ifCond": "BeenSavageHitRecently"
+      "abbreviation": "Been Savage Hit Recently"
     },
-    {
+    "conditionHitByFireDamageRecently": {
       "var": "conditionHitByFireDamageRecently",
-      "type": "check",
       "label": "Have you been hit by Fire Recently?",
-      "ifCond": "HitByFireDamageRecently"
+      "abbreviation": "Hit by Fire Recently"
     },
-    {
+    "conditionHitByColdDamageRecently": {
       "var": "conditionHitByColdDamageRecently",
-      "type": "check",
       "label": "Have you been hit by Cold Recently?",
-      "ifCond": "HitByColdDamageRecently"
+      "abbreviation": "Hit by Cold Recently"
     },
-    {
+    "conditionHitByLightningDamageRecently": {
       "var": "conditionHitByLightningDamageRecently",
-      "type": "check",
       "label": "Have you been hit by Light. Recently?",
-      "ifCond": "HitByLightningDamageRecently"
+      "abbreviation": "Hit by Light. Recently"
     },
-    {
+    "conditionBlockedAttackRecently": {
       "var": "conditionBlockedAttackRecently",
-      "type": "check",
       "label": "Have you Blocked an Attack Recently?",
-      "ifCond": "BlockedAttackRecently"
+      "abbreviation": "Attack Blocked Recently"
     },
-    {
+    "conditionBlockedSpellRecently": {
       "var": "conditionBlockedSpellRecently",
-      "type": "check",
       "label": "Have you Blocked a Spell Recently?",
-      "ifCond": "BlockedSpellRecently"
+      "abbreviation": "Spell Blocked Recently"
     },
-    {
+    "buffPendulum": {
       "var": "buffPendulum",
-      "type": "check",
-      "ifVer": "2_6",
-      "label": "Is Pendulum of Destruction active?"
+      "label": "Is Pendulum of Destruction active?",
+      "abbreviation": "Pendulum"
     },
-    {
-      "var": "buffPendulum",
-      "type": "list",
-      "ifVer": "3_0",
-      "label": "Is Pendulum of Destruction active?"
-    },
-    {
+    "buffConflux": {
       "var": "buffConflux",
-      "type": "list",
-      "label": "Conflux Buff:"
+      "label": "Conflux Buff:",
+      "abbreviation": "Conflux"
     },
-    {
+    "buffBastionOfHope": {
       "var": "buffBastionOfHope",
-      "type": "check",
-      "label": "Is Bastion of Hope active?"
+      "label": "Is Bastion of Hope active?",
+      "abbreviation": "Bastion of Hope"
     },
-    {
+    "buffHerEmbrace": {
       "var": "buffHerEmbrace",
-      "type": "check",
       "label": "Are you in Her Embrace?",
-      "ifCond": "HerEmbrace",
-      "tooltip": "This option is specific to Oni-Goroshi."
+      "abbreviation": "Her Embrace"
     },
-    {
+    "conditionAttackedRecently": {
       "var": "conditionAttackedRecently",
-      "type": "check",
       "label": "Have you Attacked Recently?",
-      "tooltip": "You will automatically be considered to have Attacked Recently if your main skill is an attack,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Attacked Recently"
     },
-    {
+    "conditionCastSpellRecently": {
       "var": "conditionCastSpellRecently",
-      "type": "check",
       "label": "Have you Cast a Spell Recently?",
-      "tooltip": "You will automatically be considered to have Cast a Spell Recently if your main skill is a spell,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Cast Recently"
     },
-    {
+    "conditionUsedSkillRecently": {
       "var": "conditionUsedSkillRecently",
-      "type": "check",
       "label": "Have you used a Skill Recently?",
-      "ifCond": "UsedSkillRecently"
+      "abbreviation": "Used Skill Recently"
     },
-    {
+    "multiplierSkillUsedRecently": {
       "var": "multiplierSkillUsedRecently",
-      "type": "number",
-      "label": "# of Skills Used Recently:"
+      "label": "# of Skills Used Recently:",
+      "abbreviation": "Skills used Recently"
     },
-    {
+    "conditionUsedWarcryRecently": {
       "var": "conditionUsedWarcryRecently",
-      "type": "check",
       "label": "Have you used a Warcry Recently?",
-      "ifCond": "UsedWarcryRecently"
+      "abbreviation": "Used Warcry"
     },
-    {
+    "multiplierMineDetonatedRecently": {
       "var": "multiplierMineDetonatedRecently",
-      "type": "number",
       "label": "# of Mines Detonated Recently:",
-      "ifMult": "MineDetonatedRecently"
+      "abbreviation": "Mines Detonated"
     },
-    {
+    "multiplierTrapTriggeredRecently": {
       "var": "multiplierTrapTriggeredRecently",
-      "type": "number",
       "label": "# of Traps Triggered Recently:",
-      "ifMult": "TrapTriggeredRecently"
+      "abbreviation": "Traps Triggered"
     },
-    {
+    "conditionConsumedCorpseRecently": {
       "var": "conditionConsumedCorpseRecently",
-      "type": "check",
       "label": "Consumed a corpse Recently?",
-      "ifCond": "ConsumedCorpseRecently"
+      "abbreviation": "Corpses Consumed"
     },
-    {
+    "multiplierCorpseConsumedRecently": {
       "var": "multiplierCorpseConsumedRecently",
-      "type": "number",
-      "label": "# of Corpses Consumed Recently:"
+      "label": "# of Corpses Consumed Recently:",
+      "abbreviation": "Corpses Consumed"
     },
-    {
+    "conditionTauntedEnemyRecently": {
       "var": "conditionTauntedEnemyRecently",
-      "type": "check",
       "label": "Taunted an Enemy Recently?",
-      "ifCond": "TauntedEnemyRecently"
+      "abbreviation": "Taunted Enemy"
     },
-    {
+    "conditionUsedFireSkillRecently": {
       "var": "conditionUsedFireSkillRecently",
-      "type": "check",
       "label": "Have you used a Fire Skill Recently?",
-      "ifCond": "UsedFireSkillRecently"
+      "abbreviation": "Used Fire Skill Recently"
     },
-    {
+    "conditionUsedColdSkillRecently": {
       "var": "conditionUsedColdSkillRecently",
-      "type": "check",
       "label": "Have you used a Cold Skill Recently?",
-      "ifCond": "UsedColdSkillRecently"
+      "abbreviation": "Used Cold Skill Recently"
     },
-    {
+    "conditionUsedMinionSkillRecently": {
       "var": "conditionUsedMinionSkillRecently",
-      "type": "check",
       "label": "Have you used a Minion Skill Recently?",
-      "ifCond": "UsedMinionSkillRecently",
-      "tooltip": "You will automatically be considered to have used a Minion skill Recently if your main skill is a minion skill,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Used Minion Skill Recently"
     },
-    {
+    "conditionUsedMovementSkillRecently": {
       "var": "conditionUsedMovementSkillRecently",
-      "type": "check",
       "label": "Have you used a Movement Skill Recently?",
-      "ifCond": "UsedMovementSkillRecently",
-      "tooltip": "You will automatically be considered to have used a Movement skill Recently if your main skill is a movement skill,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Used Movement Skill Recently"
     },
-    {
+    "conditionUsedFireSkillInPast10Sec": {
       "var": "conditionUsedFireSkillInPast10Sec",
-      "type": "check",
       "label": "Have you used a Fire Skill in the past 10s?",
-      "ifNode": 61259
+      "abbreviation": "Used Fire Skill last 10s"
     },
-    {
+    "conditionUsedColdSkillInPast10Sec": {
       "var": "conditionUsedColdSkillInPast10Sec",
-      "type": "check",
       "label": "Have you used a Cold Skill in the past 10s?",
-      "ifNode": 61259
+      "abbreviation": "Used Cold Skill last 10s"
     },
-    {
+    "conditionUsedLightningSkillInPast10Sec": {
       "var": "conditionUsedLightningSkillInPast10Sec",
-      "type": "check",
       "label": "Have you used a Light. Skill in the past 10s?",
-      "ifNode": 61259
+      "abbreviation": "Used Light. Skill last 10s"
     },
-    {
+    "conditionBlockedHitFromUniqueEnemyRecently": {
       "var": "conditionBlockedHitFromUniqueEnemyRecently",
-      "type": "check",
-      "ifVer": "2_6",
       "label": "Blocked hit from a Unique Recently?",
-      "ifNode": 63490
+      "abbreviation": "Blocked hit from a Unique"
     },
-    {
+    "conditionBlockedHitFromUniqueEnemyInPast10Sec": {
       "var": "conditionBlockedHitFromUniqueEnemyInPast10Sec",
-      "type": "check",
-      "ifVer": "3_0",
       "label": "Blocked hit from a Unique in the past 10s?",
-      "ifNode": 63490
+      "abbreviation": "Blocked hit from a Unique last 10s"
     },
-    {
+    "critChanceLucky": {
       "var": "critChanceLucky",
-      "type": "check",
-      "label": "Is your Crit Chance Lucky?"
+      "label": "Is your Crit Chance Lucky?",
+      "abbreviation": "Lucky Crits"
     },
-    {
+    "skillChainCount": {
       "var": "skillChainCount",
-      "type": "number",
       "label": "# of times Skill has Chained:",
-      "ifFlag": "chaining"
+      "abbreviation": "Chains"
     },
-    {
-      "var": "projectileDistance",
-      "type": "number",
-      "label": "Projectile travel distance:",
-      "ifFlag": "projectile"
-    },
-    {
+    "conditionEnemyMoving": {
       "var": "conditionEnemyMoving",
-      "type": "check",
-      "label": "Is the enemy Moving?"
+      "label": "Is the enemy Moving?",
+      "abbreviation": "Enemy Moveing"
     },
-    {
+    "conditionEnemyFullLife": {
       "var": "conditionEnemyFullLife",
-      "type": "check",
       "label": "Is the enemy on Full Life?",
-      "ifEnemyCond": "FullLife"
+      "abbreviation": "Enemy Full Life"
     },
-    {
+    "conditionEnemyLowLife": {
       "var": "conditionEnemyLowLife",
-      "type": "check",
       "label": "Is the enemy on Low Life?",
-      "ifEnemyCond": "LowLife"
+      "abbreviation": "Enemy Low Life"
     },
-    {
+    "conditionAtCloseRange": {
       "var": "conditionAtCloseRange",
-      "type": "check",
       "label": "Is the enemy at Close Range?",
-      "ifCond": "AtCloseRange"
+      "abbreviation": "Close Range"
     },
-    {
+    "conditionEnemyCursed": {
       "var": "conditionEnemyCursed",
-      "type": "check",
       "label": "Is the enemy Cursed?",
-      "ifEnemyCond": "Cursed",
-      "tooltip": "Your enemy will automatically be considered to be Cursed if you have at least one curse enabled,\nbut you can use this option to force it if necessary."
+      "abbreviation": "Enemy Cursed"
     },
-    {
+    "conditionEnemyBleeding": {
       "var": "conditionEnemyBleeding",
-      "type": "check",
-      "label": "Is the enemy Bleeding?"
+      "label": "Is the enemy Bleeding?",
+      "abbreviation": "Enemy Bleeding"
     },
-    {
+    "conditionEnemyPoisoned": {
       "var": "conditionEnemyPoisoned",
-      "type": "check",
       "label": "Is the enemy Poisoned?",
-      "ifEnemyCond": "Poisoned"
+      "abbreviation": "Enemy Poisoned"
     },
-    {
+    "multiplierPoisonOnEnemy": {
       "var": "multiplierPoisonOnEnemy",
-      "type": "number",
-      "label": "# of Poison on Enemy:"
+      "label": "# of Poison on Enemy:",
+      "abbreviation": "Poisons on Enemy"
     },
-    {
+    "conditionEnemyMaimed": {
       "var": "conditionEnemyMaimed",
-      "type": "check",
-      "label": "Is the enemy Maimed?"
+      "label": "Is the enemy Maimed?",
+      "abbreviation": "Enemy Maimed"
     },
-    {
+    "conditionEnemyHindered": {
       "var": "conditionEnemyHindered",
-      "type": "check",
       "label": "Is the enemy Hindered?",
-      "ifEnemyCond": "Hindered"
+      "abbreviation": "Enemy Hindered"
     },
-    {
+    "conditionEnemyBlinded": {
       "var": "conditionEnemyBlinded",
-      "type": "check",
       "label": "Is the enemy Blinded?",
-      "tooltip": "In addition to allowing 'against Blinded Enemies' modifiers to apply,\nthis will lessen the enemy's chance to hit, and thereby increase your evade chance."
+      "abbreviation":"Enemy Blinded"
     },
-    {
+    "conditionEnemyTaunted": {
       "var": "conditionEnemyTaunted",
-      "type": "check",
       "label": "Is the enemy Taunted?",
-      "ifEnemyCond": "Taunted"
+      "abbreviation":"Enemy Taunted"
     },
-    {
+    "conditionEnemyBurning": {
       "var": "conditionEnemyBurning",
-      "type": "check",
-      "label": "Is the enemy Burning?"
+      "label": "Is the enemy Burning?",
+      "abbreviation":"Enemy Burning"
     },
-    {
+    "conditionEnemyIgnited": {
       "var": "conditionEnemyIgnited",
-      "type": "check",
-      "label": "Is the enemy Ignited?",
-      "ifEnemyCond": "Ignited",
-      "tooltip": "This also implies that the enemy is Burning."
+      "label": "Is the enemy Ignited?"
+      ,
+      "abbreviation":"Enemy Ignited"
     },
-    {
+    "conditionEnemyChilled": {
       "var": "conditionEnemyChilled",
-      "type": "check",
-      "label": "Is the enemy Chilled?"
+      "label": "Is the enemy Chilled?",
+      "abbreviation":"Enemy Chilled"
     },
-    {
+    "conditionEnemyFrozen": {
       "var": "conditionEnemyFrozen",
-      "type": "check",
       "label": "Is the enemy Frozen?",
-      "ifEnemyCond": "Frozen",
-      "tooltip": "This also implies that the enemy is Chilled."
+      "abbreviation":"Enemy Frozen"
     },
-    {
+    "conditionEnemyShocked": {
       "var": "conditionEnemyShocked",
-      "type": "check",
       "label": "Is the enemy Shocked?",
-      "tooltip": "In addition to allowing any 'against Shocked Enemies' modifiers to apply,\nthis will apply Shock's Damage Taken modifier to the enemy."
+      "abbreviation":"Enemy Shocked"
     },
-    {
+    "multiplierFreezeShockIgniteOnEnemy": {
       "var": "multiplierFreezeShockIgniteOnEnemy",
-      "type": "number",
       "label": "# of Freeze/Shock/Ignite on Enemy:",
-      "ifMult": "FreezeShockIgniteOnEnemy"
+      "abbreviation":"Ele. Ailments on Enemy"
     },
-    {
+    "conditionEnemyIntimidated": {
       "var": "conditionEnemyIntimidated",
-      "type": "check",
-      "ifVer": "2_6",
       "label": "Is the enemy Intimidated?",
-      "tooltip": "This adds the following modifiers:\n10% increased Damage Taken by enemy"
+      "abbreviation":"Enemy Intimidated"
     },
-    {
-      "var": "conditionEnemyIntimidated",
-      "type": "check",
-      "ifVer": "3_0",
-      "label": "Is the enemy Intimidated?",
-      "tooltip": "This adds the following modifiers:\n10% increased Attack Damage Taken by enemy"
-    },
-    {
+    "conditionEnemyCoveredInAsh": {
       "var": "conditionEnemyCoveredInAsh",
-      "type": "check",
       "label": "Is the enemy covered in Ash?",
-      "tooltip": "This adds the following modifiers:\n20% less enemy Movement Speed\n20% increased Fire Damage Taken by enemy"
+      "abbreviation":"Enemy Covered in Ash"
     },
-    {
+    "conditionEnemyRareOrUnique": {
       "var": "conditionEnemyRareOrUnique",
-      "type": "check",
-      "label": "is the enemy Rare or Unique?",
-      "ifCond": "EnemyRareOrUnique",
-      "tooltip": "Your enemy will automatically be considered to be Unique if one of the Boss options is selected."
+      "label": "is the enemy Rare or Unique?"
+      ,
+      "abbreviation":"Enemy Rare or Unique"
     },
-    {
+    "enemyIsBoss": {
       "var": "enemyIsBoss",
-      "type": "list",
-      "ifVer": "2_6",
       "label": "Is the enemy a Boss?",
-      "tooltip": "Standard Boss adds the following modifiers:\n60% less Effect of your Curses\n+30% to enemy Elemental Resistances\n+15% to enemy Chaos Resistance\n\nShaper/Guardian adds the following modifiers:\n80% less Effect of your Curses\n+40% to enemy Elemental Resistances\n+25% to enemy Chaos Resistance\n50% less Duration of Bleed\n50% less Duration of Poison\n50% less Duration of Ignite"
+      "abbreviation":"Boss"
     },
-    {
-      "var": "enemyIsBoss",
-      "type": "list",
-      "ifVer": "3_0",
-      "label": "Is the enemy a Boss?",
-      "tooltip": "Standard Boss adds the following modifiers:\n60% less Effect of your Curses\n+30% to enemy Elemental Resistances\n+15% to enemy Chaos Resistance\n\nShaper/Guardian adds the following modifiers:\n80% less Effect of your Curses\n+40% to enemy Elemental Resistances\n+25% to enemy Chaos Resistance"
-    },
-    {
-      "var": "enemyPhysicalReduction",
-      "type": "number",
-      "label": "Enemy Phys. Damage Reduction:"
-    },
-    {
-      "var": "enemyFireResist",
-      "type": "number",
-      "label": "Enemy Fire Resistance:"
-    },
-    {
-      "var": "enemyColdResist",
-      "type": "number",
-      "label": "Enemy Cold Resistance:"
-    },
-    {
-      "var": "enemyLightningResist",
-      "type": "number",
-      "label": "Enemy Lightning Resistance:"
-    },
-    {
-      "var": "enemyChaosResist",
-      "type": "number",
-      "label": "Enemy Chaos Resistance:"
-    },
-    {
+    "enemyConditionHitByFireDamage": {
       "var": "enemyConditionHitByFireDamage",
-      "type": "check",
       "label": "Enemy was Hit by Fire Damage?",
-      "ifNode": 39085
+      "abbreviation":"Enemy Hit by Fire Damage"
     },
-    {
+    "enemyConditionHitByColdDamage": {
       "var": "enemyConditionHitByColdDamage",
-      "type": "check",
       "label": "Enemy was Hit by Cold Damage?",
-      "ifNode": 39085
+      "abbreviation":"Enemy Hit by Cold Damage"
     },
-    {
+    "enemyConditionHitByLightningDamage": {
       "var": "enemyConditionHitByLightningDamage",
-      "type": "check",
       "label": "Enemy was Hit by Light. Damage?",
-      "ifNode": 39085
-    },
-    {
-      "var": "EEIgnoreHitDamage",
-      "type": "check",
-      "label": "Ignore Skill Hit Damage?",
-      "ifNode": 39085,
-      "tooltip": "This option prevents EE from being reset by the hit damage of your main skill."
+      "abbreviation":"Enemy Hit by Light Damage"
     }
-  ]
+  }
 }

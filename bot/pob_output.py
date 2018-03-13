@@ -33,8 +33,6 @@ def create_embed(author, tree, level, ascendency_name, class_name, main_skill: S
     return embed
 
 
-
-
 def calc_dps(comparison_dps):
     max = 0
     for dps in comparison_dps:
@@ -63,15 +61,18 @@ def get_offense(build):
 
 
 def get_config(config):
-    output = ""
-    if len(config) < 1:
-        return
+    print(config)
+    strings=[]
     for key, val in config.items():
+        conf_item=""
         pob_conf_key = pob_conf.pob_find_entry(key)
-        if pob_conf_key and pob_conf_key['label']:
-            output += "{} - {};\t".format(pob_conf_key['label'], val.capitalize())
-    return output
-
+        if pob_conf_key and pob_conf_key['abbreviation']:
+            abbrev = pob_conf_key['abbreviation']
+            conf_item += "{}".format(abbrev if abbrev else key)
+            if val.lower() != 'true':
+                conf_item += ": {}".format(val.capitalize())
+            strings.append(conf_item)
+    return ", ".join(strings)
 
 def get_main_skill(build):
     active_skill = build.get_active_skill()
@@ -80,7 +81,6 @@ def get_main_skill(build):
         return output
     else:
         return "None selected"
-
 
 def generate_minified_output(author, build: Build, inline=True):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
@@ -95,7 +95,6 @@ def generate_minified_output(author, build: Build, inline=True):
     # output
     embed.add_field(name='Tree:', value=build.tree)
     return embed
-
 
 def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,

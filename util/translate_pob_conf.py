@@ -7,7 +7,7 @@ class PobConfig():
         self.config = json.load(open(path_to_pob_config))
 
 
-    def pob_find_entry(self, config_var: str, version="3_0"):
+    def pob_find_entry(self, config_var: str):
         """
         Reads the pob_config.json and finds the specific entries that are needed.
         :param config_var:
@@ -15,12 +15,11 @@ class PobConfig():
         :return:
         """
         for entry in self.config['conf']:
-            if 'var' in entry and entry['var'] == config_var and (
-                            'ifVer' not in entry or entry['ifVer'] == version):
-                return entry
+            if entry == config_var:
+                return self.config['conf'][entry]
 
 
-    def pob_find_all(self, config_vars: [str], version="3_0"):
+    def pob_find_all(self, config_vars: [str]):
         """
         Reads the pob_config.json and finds the specific entries that are needed.
         :param config_var:
