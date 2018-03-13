@@ -14,10 +14,10 @@
 - Support for having passive channels where the bot only triggers when using the command
 - Parsing most of the information from the XML into classes to facilitate extensive custom output
 - Various config options in `config.py`
-
+- Secondary Defenses
+- Primary defenses need to hit Thresholds to be displayed
 ### Future Work
 - Configuration rework
-    - From "Key":"True" to "Key" only
     - Py3.5: not all configs are returned although they are available
 - Refine Offense output
     - Poison/Ignite and Dots in general are crude
@@ -43,8 +43,8 @@
 - Bot logs into `discord_pob.log`
 
 ### Usage
-- Bot reacts to `!pob <pastebin (not raw!) link>` in all configured channels on the invited server or to pastebin links it can parse in general.
+- Bot reacts to `!pob <pastebin (not raw!) link>` in all configured passive channels on the invited server or to pastebin links it can parse in active channels.
 
 ### Showcase
-![](https://cdn.discordapp.com/attachments/418758449954947076/419161884139454477/unknown.png)
+![](https://cdn.discordapp.com/attachments/418758449954947076/423174211373236224/unknown.png)
 
