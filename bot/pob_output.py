@@ -61,7 +61,6 @@ def get_offense(build):
 
 
 def get_config(config):
-    print(config)
     strings=[]
     for key, val in config.items():
         conf_item=""
