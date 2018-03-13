@@ -6,8 +6,8 @@ import re
 class Gem:
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
         self.name = name
-        self.level = level
-        self.quality = quality
+        self.level = int(level)
+        self.quality = int(quality)
         self.id = id
         self.skill_part = int(skill_part) if skill_part else None
         self.enabled = True if enabled == 'true' else False
@@ -38,9 +38,10 @@ class Skill:
         return None
 
     def get_links(self, item=None, join_str=" + "):
-        # Join the gem names, if they are in the slected skill group and if they are enabled
+        # Join the gem names, if they are in the slected skill group and if they are enabled. Show quality and level if level is >20 or quality is set.
         ret = join_str.join(
-            [gem.name + " (" + gem.level + "/" + gem.quality + ")" for gem in self.gems if gem.enabled == True])
+            [gem.name + " ({}/{})".format(gem.level,gem.quality) if (gem.level > 20 or gem.quality > 0)
+                else gem.name for gem in self.gems if gem.enabled == True])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
@@ -141,6 +142,6 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        if len(self.skills)<1 or self.activeSkill < 1:
+        if len(self.skills) < 1 or self.activeSkill < 1:
             return None
         return self.skills[self.activeSkill - 1]

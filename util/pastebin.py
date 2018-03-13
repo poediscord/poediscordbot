@@ -5,6 +5,7 @@ import zlib
 import defusedxml.ElementTree as ET
 import urllib.request
 from retrying import retry
+from util.logging import log
 
 '''
 Original from: https://github.com/aggixx/PoBPreviewBot/blob/master/util.py 
@@ -30,19 +31,19 @@ def decode_base64_and_inflate(b64string):
 def decode_to_xml(enc):
     enc = enc.replace("-", "+").replace("_", "/")
     xml_str = decode_base64_and_inflate(enc)
-    # print(xml_str)
+    log.debug("XML={}".format(xml_str))
     xml = None
     try:
         xml = ET.fromstring(xml_str)
     except TypeError as err:
-        logging.debug("Could not parse the pastebin as xml msg={}".format(err))
+        log.debug("Could not parse the pastebin as xml msg={}".format(err))
 
     return xml
 
 
 def urllib_error_retry(attempt_number, ms_since_first_attempt):
     delay = 1 * (2 ** (attempt_number - 1))
-    logging.error("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
+    log.error("An error occurred during get_url_data(). Sleeping for {:.0f}s before retrying...".format(delay))
     return delay * 1000
 
 
@@ -56,6 +57,6 @@ def get_raw_data(url):
 
 def get_as_xml(paste_key):
     raw_url = 'https://pastebin.com/raw/' + paste_key
-    logging.debug("Retrieved from raw_url={}".format(raw_url))
+    log.debug("Retrieved from raw_url={}".format(raw_url))
     data = get_raw_data(raw_url)
     return decode_to_xml(data)

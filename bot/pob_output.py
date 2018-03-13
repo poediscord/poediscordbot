@@ -1,6 +1,7 @@
 from discord import Embed
 
 import config
+from bot.output.defense import get_defense
 from models import Build, Gem, Skill
 from util.translate_pob_conf import pob_conf
 
@@ -32,51 +33,6 @@ def create_embed(author, tree, level, ascendency_name, class_name, main_skill: S
     return embed
 
 
-def get_defense(build: Build):
-    # LET THERE BE DIRTY GUIS
-    output = ""
-    # Basics
-    output += "**Life**: {life:.0f} ({life_inc:.0f}%) | **Regen**: {life_regen:.1f}/s\n".format(
-        life=build.stats['Player']['Life'],
-        life_inc=build.stats['Player'][
-            'Spec:LifeInc'],
-        life_regen=build.stats['Player']['LifeRegen'])
-
-    output += "**Energy Shield**: {es:.0f} ({es_inc:.0f}%) | **Regen**: {es_regen:.1f}/s\n".format(
-        es=build.stats['Player']['EnergyShield'],
-        es_inc=build.stats['Player'][
-            'Spec:EnergyShieldInc'],
-        es_regen=build.stats['Player'][
-            'EnergyShieldRegen'])
-
-    output += "**Mana**: {mana:.0f} ({mana_inc:.0f}%)| **Regen**: {mana_regen:.1f}/s\n".format(
-        mana=build.stats['Player']['Mana'],
-        mana_inc=build.stats['Player'][
-            'Spec:ManaInc'],
-        mana_regen=build.stats['Player'][
-            'ManaRegen'])
-    # Res
-    output += ":fire: {:.0f}".format(build.stats['Player']['FireResist'])
-    if int(build.stats['Player']['FireResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['Player']['FireResistOverCap'])
-    output += " | "
-
-    output += ":snowflake: {:.0f}".format(build.stats['Player']['ColdResist'])
-    if int(build.stats['Player']['ColdResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['Player']['ColdResistOverCap'])
-    output += " | "
-
-    output += ":zap: {:.0f}".format(build.stats['Player']['LightningResist'])
-    if int(build.stats['Player']['ColdResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['Player']['LightningResistOverCap'])
-    output += " | "
-
-    output += ":skull: {:.0f}".format(build.stats['Player']['ChaosResist'])
-    if int(build.stats['Player']['ChaosResistOverCap']) > 0:
-        output += "(+{:.0f}) ".format(build.stats['Player']['ChaosResistOverCap'])
-    output += "\n"
-    # add_line({'es': build.stats['Player']['EnergyShield'], 'life': build.stats['Player']['Life']})
-    return output
 
 
 def calc_dps(comparison_dps):

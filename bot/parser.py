@@ -1,8 +1,9 @@
 import logging
+from xml import etree
 
 from models import Build, Skill, Gem, Item, ItemSlot
 from util.poeurl import shrink_tree_url
-
+from util.logging import log
 
 class Parser:
     @staticmethod
@@ -33,7 +34,10 @@ class Parser:
                       xml_build.attrib['className'],
                       xml_build.attrib['ascendClassName'], selected_tree, skills, active_skill, item_slots)
         for player_stat in xml_build:
-            build.append_stat(player_stat.attrib['stat'], player_stat.attrib['value'], player_stat.tag)
+            if 'stat' in player_stat.attrib and 'value' in player_stat.attrib:
+                build.append_stat(player_stat.attrib['stat'], player_stat.attrib['value'], player_stat.tag)
+            else:
+                log.info("Encountered unsupported player stat: k={}, v={}".format(player_stat.tag,player_stat.attrib))
 
         # parse config
         for input in xml_root.find('Config'):
@@ -54,7 +58,7 @@ class Parser:
             try:
                 return shrink_tree_url(selected_tree)
             except ValueError as err:
-                logging.error("Tree shrinking failed... err={}".format(err))
+                log.error("Tree shrinking failed... err={}".format(err))
                 return selected_tree
 
     @staticmethod
