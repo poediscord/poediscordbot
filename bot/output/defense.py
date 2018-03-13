@@ -51,7 +51,6 @@ def get_secondary_def(build: Build):
     :param build: current build
     :return: String containing noteworthy secondary defense, Empty string as default
     """
-    output = "**Secondary:** "
     stats = []
     armour = build.get_stat('Player', 'Armour')
     stats.append("Armour: {}".format(armour) if armour and armour > OutputThresholds.ARMOUR_THRESHOLD.value else None)
@@ -72,9 +71,8 @@ def get_secondary_def(build: Build):
     spell_block = build.get_stat('Player', 'SpellBlockChance')
     stats.append("Spell Block: {}%".format(
         spell_block) if spell_block and spell_block > OutputThresholds.SPELLBLOCK_THRESHOLD.value else None)
-    output += " | ".join([s for s in stats if s]) + "\n"
-    return output if output != "" else None
-
+    output = " | ".join([s for s in stats if s])
+    return "**Secondary:** " + output + "\n" if output != "" else ""
 
 def get_defense(build: Build):
     output = ""
