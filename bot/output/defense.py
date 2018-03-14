@@ -2,7 +2,7 @@ from bot.output.thresholds import OutputThresholds
 from models import Build
 
 
-def get_resistances(build: Build, normal_res_cap: int, force_display=False):
+def get_resistances(build: Build, force_display=False):
     """
     Creates the resistance string
     :param build: build we want to output
@@ -15,10 +15,11 @@ def get_resistances(build: Build, normal_res_cap: int, force_display=False):
     emojis = [':fire:', ':snowflake:', ':zap:', ':skull:']
     show = False
     for i, res in enumerate(resistances):
-        res_val = build.get_stat('Player', res + 'Resist')
+        res_val = build.get_stat('Player', res + 'Resist', OutputThresholds.CHAOS_RES.value if res == 'Chaos'
+            else OutputThresholds.ELE_RES.value)
         res_over_cap = build.get_stat('Player', res + 'ResistOverCap')
 
-        if res_val and (force_display or res_val > normal_res_cap):
+        if res_val:
             output += emojis[i] + " {:.0f}".format(res_val)
             show = True
             if res_over_cap and res_over_cap > 0:
@@ -69,7 +70,7 @@ def get_secondary_def(build: Build):
     spell_block = build.get_stat('Player', 'SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
     stats.append("Spell Block: {}%".format(spell_block)) if spell_block  else None
     if len(stats) > 0:
-        output +="**Secondary:** "
+        output += "**Secondary:** "
         output += " | ".join([s for s in stats if s]) + "\n"
     return "**Secondary:** " + output if output != "" else None
 
@@ -98,6 +99,6 @@ def get_defense(build: Build):
     secondary_def = get_secondary_def(build)
     if secondary_def:
         output += secondary_def
-    output += get_resistances(build, OutputThresholds.MAX_RES.value)
+    output += get_resistances(build)
 
     return output

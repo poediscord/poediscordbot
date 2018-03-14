@@ -11,7 +11,10 @@ class OutputThresholds(Enum):
     ES_PERCENT = 50
     ES_REGEN = 100
 
-    MAX_RES = 75
+    #Show ele res bigger than the 75 cap
+    ELE_RES = 76
+    #Show all positive chaos res
+    CHAOS_RES = 0
 
     ARMOUR = 3000
     EVASION = 3000
