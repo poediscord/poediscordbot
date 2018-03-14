@@ -13,8 +13,8 @@ class OutputThresholds(Enum):
 
     MAX_RES = 75
 
-    ARMOUR = 5000
-    EVASION = 5000
+    ARMOUR = 3000
+    EVASION = 3000
 
     # most shields have 25-30 base, so +10 should be easily doable, spellblock is lower
     BLOCK = 40

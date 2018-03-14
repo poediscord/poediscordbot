@@ -30,7 +30,6 @@ def get_resistances(build: Build, normal_res_cap: int, force_display=False):
 
 def get_basic_line(name, basic_stat, basic_stat_percent, stat_unreserved=0, basic_stat_regen=0):
     output = ""
-    print("Mana",basic_stat,basic_stat_percent) if 'Mana' in name else None
     if basic_stat and basic_stat_percent:
         output = "**" + name + "**: "
         if stat_unreserved and basic_stat - stat_unreserved > 0:
@@ -54,23 +53,22 @@ def get_secondary_def(build: Build):
     stats = []
     armour = build.get_stat('Player', 'Armour')
     stats.append("Armour: {}".format(armour) if armour and armour > OutputThresholds.ARMOUR.value else None)
-    evasion = build.get_stat('Player', 'Evasion')
-    stats.append(
-        "Evasion: {}".format(evasion) if evasion and evasion > OutputThresholds.EVASION.value else None)
 
-    dodge = build.get_stat('Player', 'AttackDodgeChance')
-    stats.append("Dodge: {}%".format(dodge) if dodge and dodge > OutputThresholds.DODGE.value else None)
+    evasion = build.get_stat('Player', 'Evasion', OutputThresholds.EVASION.value)
+    stats.append("Evasion: {}".format(evasion) if evasion else None)
 
-    spell_dodge = build.get_stat('Player', 'SpellDodgeChance')
+    dodge = build.get_stat('Player', 'AttackDodgeChance', OutputThresholds.DODGE.value)
+    stats.append("Dodge: {}%".format(dodge) if dodge else None)
+
+    spell_dodge = build.get_stat('Player', 'SpellDodgeChance', OutputThresholds.SPELL_DODGE.value)
     stats.append("Spell Dodge: {}%".format(
-        spell_dodge) if spell_dodge and spell_dodge > OutputThresholds.SPELL_DODGE.value else None)
+        spell_dodge) if spell_dodge else None)
 
-    block = build.get_stat('Player', 'BlockChance')
-    stats.append("Block: {}%".format(block) if block and block > OutputThresholds.BLOCK.value else None)
+    block = build.get_stat('Player', 'BlockChance', OutputThresholds.BLOCK.value)
+    stats.append("Block: {}%".format(block) if block else None)
 
-    spell_block = build.get_stat('Player', 'SpellBlockChance')
-    stats.append("Spell Block: {}%".format(
-        spell_block) if spell_block and spell_block > OutputThresholds.SPELL_BLOCK.value else None)
+    spell_block = build.get_stat('Player', 'SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
+    stats.append("Spell Block: {}%".format(spell_block) if spell_block  else None)
     output += " | ".join([s for s in stats if s]) + "\n"
     return output if output != "" else None
 
@@ -80,14 +78,16 @@ def get_defense(build: Build):
     output += get_basic_line("Life", build.get_stat('Player', 'Life'),
                              build.get_stat('Player', 'Spec:LifeInc', OutputThresholds.LIFE_PERCENT.value),
                              basic_stat_regen=build.get_stat('Player', 'LifeRegen', OutputThresholds.LIFE_REGEN.value),
-                             stat_unreserved=build.get_stat('Player','LifeUnreserved'))
-
+                             stat_unreserved=build.get_stat('Player', 'LifeUnreserved'))
 
     output += get_basic_line("Energy Shield", build.get_stat('Player', 'EnergyShield'),
                              build.get_stat('Player', 'Spec:EnergyShieldInc', OutputThresholds.ES_PERCENT.value),
-                             basic_stat_regen=build.get_stat('Player', 'EnergyShieldRegen',OutputThresholds.ES_REGEN.value))
-
-    output += "**Net Regen**: {:.0f}/s\n".format(build.get_stat('Player','NetLifeRegen'))
+                             basic_stat_regen=build.get_stat('Player', 'EnergyShieldRegen',
+                                                             OutputThresholds.ES_REGEN.value))
+    net_regen = build.get_stat('Player', 'NetLifeRegen')
+    if net_regen and (abs(net_regen) > OutputThresholds.LIFE_REGEN.value or abs(
+            net_regen) > OutputThresholds.ES_REGEN.value):
+        output += "**Net Regen**: {:.0f}/s\n".format(net_regen)
 
     output += get_basic_line("Mana", build.get_stat('Player', 'Mana'), build.get_stat('Player', 'Spec:ManaInc'),
                              basic_stat_regen=build.get_stat('Player', 'ManaRegen'),

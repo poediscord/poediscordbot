@@ -45,8 +45,8 @@ class Skill:
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
-                ret += "\n(+ " + join_str.join([gem['name'] + " (" + gem['level'] + "/0)" for gem in supports])
-                ret += "; From: {})".format(item.name)
+                ret += "\n(+ " + join_str.join([gem['name'] + " (" + gem['level'] + ")" for gem in supports])
+                ret += " from: *{}*)".format(item.name)
         return ret
 
 
