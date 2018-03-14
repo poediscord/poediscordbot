@@ -49,28 +49,29 @@ def get_secondary_def(build: Build):
     :param build: current build
     :return: String containing noteworthy secondary defense, Empty string as default
     """
-    output = "**Secondary:** "
+    output = ""
     stats = []
     armour = build.get_stat('Player', 'Armour')
-    stats.append("Armour: {}".format(armour) if armour and armour > OutputThresholds.ARMOUR.value else None)
+    stats.append("Armour: {}".format(armour)) if armour and armour > OutputThresholds.ARMOUR.value else None
 
     evasion = build.get_stat('Player', 'Evasion', OutputThresholds.EVASION.value)
-    stats.append("Evasion: {}".format(evasion) if evasion else None)
+    stats.append("Evasion: {}".format(evasion)) if evasion else None
 
     dodge = build.get_stat('Player', 'AttackDodgeChance', OutputThresholds.DODGE.value)
-    stats.append("Dodge: {}%".format(dodge) if dodge else None)
+    stats.append("Dodge: {}%".format(dodge)) if dodge else None
 
     spell_dodge = build.get_stat('Player', 'SpellDodgeChance', OutputThresholds.SPELL_DODGE.value)
-    stats.append("Spell Dodge: {}%".format(
-        spell_dodge) if spell_dodge else None)
+    stats.append("Spell Dodge: {}%".format(spell_dodge)) if spell_dodge else None
 
     block = build.get_stat('Player', 'BlockChance', OutputThresholds.BLOCK.value)
-    stats.append("Block: {}%".format(block) if block else None)
+    stats.append("Block: {}%".format(block)) if block else None
 
     spell_block = build.get_stat('Player', 'SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
-    stats.append("Spell Block: {}%".format(spell_block) if spell_block  else None)
-    output += " | ".join([s for s in stats if s]) + "\n"
-    return output if output != "" else None
+    stats.append("Spell Block: {}%".format(spell_block)) if spell_block  else None
+    if len(stats) > 0:
+        output +="**Secondary:** "
+        output += " | ".join([s for s in stats if s]) + "\n"
+    return "**Secondary:** " + output if output != "" else None
 
 
 def get_defense(build: Build):
@@ -94,7 +95,9 @@ def get_defense(build: Build):
                              stat_unreserved=build.get_stat('Player', 'ManaUnreserved'))
 
     # todo: only pass necessary values to the following options:
-    output += get_secondary_def(build)
+    secondary_def = get_secondary_def(build)
+    if secondary_def:
+        output += secondary_def
     output += get_resistances(build, OutputThresholds.MAX_RES.value)
 
     return output
