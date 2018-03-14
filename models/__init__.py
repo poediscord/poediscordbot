@@ -1,6 +1,6 @@
-import logging
-
 import re
+
+from util.logging import log
 
 
 class Gem:
@@ -40,8 +40,8 @@ class Skill:
     def get_links(self, item=None, join_str=" + "):
         # Join the gem names, if they are in the slected skill group and if they are enabled. Show quality and level if level is >20 or quality is set.
         ret = join_str.join(
-            [gem.name + " ({}/{})".format(gem.level,gem.quality) if (gem.level > 20 or gem.quality > 0)
-                else gem.name for gem in self.gems if gem.enabled == True])
+            [gem.name + " ({}/{})".format(gem.level, gem.quality) if (gem.level > 20 or gem.quality > 0)
+             else gem.name for gem in self.gems if gem.enabled == True])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
@@ -75,7 +75,14 @@ class Item:
         # see here for regex: https://regex101.com/r/MivGPM/1
         regex = r"\s*Rarity:.*\n\s*(.*)\n"
         matches = re.findall(regex, self.raw_content, re.IGNORECASE)
-        return matches[0]
+        name = "UNDEFINED"
+        try:
+            name = matches[0]
+        except IndexError as err:
+            log.warning("Name could not be retrieved. Trying string split method Err={}".format(err))
+            name = self.raw_content.split('\n')[0]
+
+        return name
 
     def parse_item_for_support(self):
         # Socketed Gems are Supported by level 20 Elemental Proliferation
