@@ -125,9 +125,10 @@ class Build:
         if slot:
             return self.item_slots[slot].item
 
-    def get_stat(self, owner, key):
+    def get_stat(self, owner, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:
-            return self.stats[owner][key]
+            val = self.stats[owner][key]
+            return val if val >= threshold else None
         else:
             return None
 

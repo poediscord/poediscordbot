@@ -3,18 +3,26 @@ from enum import Enum
 
 class OutputThresholds(Enum):
     # Basic Defense
-    LIFE_FLAT_THRESHOLD = 1000
-    LIFE_REGEN_THRESHOLD = 100
-    ES_THRESHOLD = 300
-    ES_REGEN_THRESHOLD = 100
-    MAX_RES_THRESHOLD = 75
+    LIFE_FLAT = 1000
+    LIFE_PERCENT = 50
+    LIFE_REGEN = 100
 
-    ARMOUR_THRESHOLD = 5000
-    EVASION_THRESHOLD = 5000
+    ES_FLAT = 300
+    ES_PERCENT = 50
+    ES_REGEN = 100
+
+    MAX_RES = 75
+
+    ARMOUR = 5000
+    EVASION = 5000
 
     # most shields have 25-30 base, so +10 should be easily doable, spellblock is lower
-    BLOCK_THRESHOLD = 40
-    SPELLBLOCK_THRESHOLD = 20
+    BLOCK = 40
+    SPELL_BLOCK = 20
     # 30 = Acro/Phase Acro
-    DODGE_THRESHOLD = 30
-    SPELLDODGE_THRESHOLD = 30
+    DODGE = 30
+    SPELL_DODGE = 30
+
+    #Offense
+    ACCURACY = 95
+    CRIT_CHANCE = 5

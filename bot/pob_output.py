@@ -2,6 +2,7 @@ from discord import Embed
 
 import config
 from bot.output.defense import get_defense
+from bot.output.thresholds import OutputThresholds
 from models import Build, Gem, Skill
 from util.translate_pob_conf import pob_conf
 
@@ -52,18 +53,26 @@ def get_offense(build):
     output += "**DPS**: {dps:,} @ {speed}/s\n".format(
         dps=dps,
         speed=round(build.stats['Player']['Speed'], 2))
-    output += "**Crit**: Chance {crit_ch:,.2f}% | Damage: {crit_dam:,.0f}%\n".format(
-        crit_ch=build.stats['Player']['CritChance'],
-        crit_dam=build.stats['Player']['CritMultiplier'] * 100)
-    output += "**Hit Chance**: {:.2f}%".format(build.stats['Player']['HitChance'])
+
+    crit_chance = build.stats['Player']['CritChance']
+    crit_multi = build.stats['Player']['CritMultiplier'] * 100
+    if crit_chance > OutputThresholds.CRIT_CHANCE.value:
+        output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
+            crit_chance=crit_chance,
+            crit_multi=crit_multi)
+
+    acc = build.stats['Player']['HitChance']
+    if acc < OutputThresholds.ACCURACY.value:
+        output += "**Hit Chance**: {:.2f}%".format(acc)
+
     # todo: make a toggle for dot/hits
     return output
 
 
 def get_config(config):
-    strings=[]
+    strings = []
     for key, val in config.items():
-        conf_item=""
+        conf_item = ""
         pob_conf_key = pob_conf.pob_find_entry(key)
         if pob_conf_key and pob_conf_key['abbreviation']:
             abbrev = pob_conf_key['abbreviation']
@@ -73,6 +82,7 @@ def get_config(config):
             strings.append(conf_item)
     return ", ".join(strings)
 
+
 def get_main_skill(build):
     active_skill = build.get_active_skill()
     if active_skill and isinstance(active_skill, Skill):
@@ -80,6 +90,7 @@ def get_main_skill(build):
         return output
     else:
         return "None selected"
+
 
 def generate_minified_output(author, build: Build, inline=True):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
@@ -94,6 +105,7 @@ def generate_minified_output(author, build: Build, inline=True):
     # output
     embed.add_field(name='Tree:', value=build.tree)
     return embed
+
 
 def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
