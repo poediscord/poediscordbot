@@ -85,8 +85,8 @@ def get_defense(build: Build):
                              basic_stat_regen=build.get_stat('Player', 'EnergyShieldRegen',
                                                              OutputThresholds.ES_REGEN.value))
     net_regen = build.get_stat('Player', 'NetLifeRegen')
-    if net_regen and (abs(net_regen) > OutputThresholds.LIFE_REGEN.value or abs(
-            net_regen) > OutputThresholds.ES_REGEN.value):
+
+    if net_regen:
         output += "**Net Regen**: {:.0f}/s\n".format(net_regen)
 
     output += get_basic_line("Mana", build.get_stat('Player', 'Mana'), build.get_stat('Player', 'Spec:ManaInc'),
