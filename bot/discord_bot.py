@@ -1,3 +1,5 @@
+from discord.ext import commands
+
 from util.logging import log
 from urllib.error import HTTPError
 
@@ -9,17 +11,17 @@ from bot.parser import Parser
 from bot import pob_output
 from util import pastebin
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='!', description="descriptinon")
 
 
-@client.event
+@bot.event
 async def on_ready():
-    log.info('Logged in: uname={}, id={}'.format(client.user.name, client.user.id))
+    log.info('Logged in: uname={}, id={}'.format(bot.user.name, bot.user.id))
     if config.presence_message:
-        await client.change_presence(game=discord.Game(name=config.presence_message))
+        await bot.change_presence(game=discord.Game(name=config.presence_message))
 
 
-@client.event
+@bot.event
 async def on_message(message):
     """
     Handle message events
@@ -29,20 +31,21 @@ async def on_message(message):
     if message.channel.name in config.active_channels or message.channel.name in config.passive_channels:
         # if the keyword is present in either channel type, display pob message
         if any(util.starts_with(keyword, message.content) for keyword in config.keywords):
-            embed = parse_pob(message)
+            embed = parse_pob(message.content)
             if embed:
-                await client.send_message(message.channel, embed=embed)
+                await bot.send_message(message.author, message.channel, embed=embed)
         else:
             # in active channels look for pastebin links
             if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
                 # check if valid xml
                 # send message
                 log.debug("P| {}: {}".format(message.channel, message.content))
-                embed = parse_pob(message,minify=True)
+                embed = parse_pob(message.author, message.content, minify=True)
                 if embed:
-                    await client.send_message(message.channel, embed=embed)
+                    await bot.send_message(message.channel, embed=embed)
 
-def parse_pob(message, minify=False):
+
+def parse_pob(author, content, minify=False):
     """
     Trigger the parsing of the pastebin link, pass it to the output creating object and send a message back
     :param channel: receiving channel
@@ -51,7 +54,7 @@ def parse_pob(message, minify=False):
     :param argument: optional: arguments to determine the output
     :return:
     """
-    paste_key = pastebin.fetch_paste_key(message.content)
+    paste_key = pastebin.fetch_paste_key(content)
     if paste_key:
         xml = None
         log.info("Parsing pastebin with key={}".format(paste_key))
@@ -65,8 +68,7 @@ def parse_pob(message, minify=False):
             build = parser.parse_build(xml)
             # print(build)
 
-            embed = pob_output.generate_output(message.author, build) if not minify \
-                else pob_output.generate_minified_output(message.author,build)
-            log.debug("sending reply to channel: {}".format(message.channel))
+            embed = pob_output.generate_output(author, build) if not minify \
+                else pob_output.generate_minified_output(author, build)
             log.debug("embed={}; length={}".format(embed, embed.__sizeof__()))
             return embed
