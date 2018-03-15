@@ -18,15 +18,17 @@ class OutputThresholds(Enum):
     #Show all positive chaos res
     CHAOS_RES = 0
 
-    ARMOUR = 3000
-    EVASION = 3000
+    # The amount below specifies the ratio of life to ev/ar: 100 life <> 80+ AR/EV is displayed
+    AR_EV_THRESHOLD_PERCENTAGE = 0.8
+    ARMOUR = 5000
+    EVASION = 5000
 
     # most shields have 25-30 base, so +10 should be easily doable, spellblock is lower
     BLOCK = 40
     SPELL_BLOCK = 20
-    # 30 = Acro/Phase Acro
-    DODGE = 30
-    SPELL_DODGE = 30
+    # 30 = Acro/Phase Acro, half of that is displayable
+    DODGE = 15
+    SPELL_DODGE = 15
 
     #Offense
     ACCURACY = 99

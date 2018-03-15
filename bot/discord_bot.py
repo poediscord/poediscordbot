@@ -24,23 +24,21 @@ async def on_message(message):
     :param message:
     :return: None
     """
-    if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
-        # check if valid xml
-        # send message
-        log.debug("P| {}: {}".format(message.channel, message.content))
-        embed = parse_pob(message,minify=True)
-        if embed:
-            await client.send_message(message.channel, embed=embed)
-
-    if message.channel.name in config.passive_channels:
-        log.debug("A| {}: {} [keywords={}]".format(message.channel, message.content,
-                                                      config.keywords))
-        # If the command should be anywhere in the message => keyword in message.content
+    if message.channel.name in config.active_channels or message.channel.name in config.passive_channels:
+        # if the keyword is present in either channel type, display pob message
         if any(util.starts_with(keyword, message.content) for keyword in config.keywords):
             embed = parse_pob(message)
             if embed:
                 await client.send_message(message.channel, embed=embed)
-
+        else:
+            # in active channels look for pastebin links
+            if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
+                # check if valid xml
+                # send message
+                log.debug("P| {}: {}".format(message.channel, message.content))
+                embed = parse_pob(message,minify=True)
+                if embed:
+                    await client.send_message(message.channel, embed=embed)
 
 def parse_pob(message, minify=False):
     """

@@ -11,22 +11,30 @@ from util.logging import log
 Original from: https://github.com/aggixx/PoBPreviewBot/blob/master/util.py 
             && https://github.com/aggixx/PoBPreviewBot/blob/master/pastebin.py
 '''
+
+
 def fetch_paste_key(content):
     """
     Fetches the last paste key in a message.
     :param content: message.content
     :return: paste key to retrieve pastebin content
     """
+    content=content.replace('raw/','')
     regex = r".*pastebin.com\/(\S*)"
     results = re.findall(regex, content)
+    print(results)
     return results[0]
 
+
 def decode_base64_and_inflate(b64string):
-    decoded_data = base64.b64decode(b64string)
     try:
+        decoded_data = base64.b64decode(b64string)
         return zlib.decompress(decoded_data)
     except zlib.error:
         pass
+    except ValueError as err:
+        pass
+
 
 def decode_to_xml(enc):
     enc = enc.replace("-", "+").replace("_", "/")

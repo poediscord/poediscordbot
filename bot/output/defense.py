@@ -31,9 +31,7 @@ def get_resistances(build: Build, force_display=False):
 
 def get_basic_line(name, basic_stat, basic_stat_percent, stat_unreserved=0, basic_stat_regen=0):
     output = None
-    print(name, basic_stat, basic_stat_percent, basic_stat_regen)
     if isinstance(basic_stat, float) and basic_stat > 0 and isinstance(basic_stat_percent, float):
-        print("GO")
         output = "**" + name + "**: "
         if stat_unreserved and basic_stat - stat_unreserved > 0:
             output += "{unreserved:.0f}/".format(unreserved=stat_unreserved)
@@ -54,10 +52,13 @@ def get_secondary_def(build: Build):
     """
     output = ""
     stats = []
-    armour = build.get_stat('Player', 'Armour')
-    stats.append("Armour: {:.0f}".format(armour)) if armour and armour > OutputThresholds.ARMOUR.value else None
+    effective_life = max(
+        filter(None.__ne__, [build.get_stat('Player', 'Life'), build.get_stat('Player', 'EnergyShield')]))
 
-    evasion = build.get_stat('Player', 'Evasion', OutputThresholds.EVASION.value)
+    armour = build.get_stat('Player', 'Armour', min(OutputThresholds.ARMOUR.value, effective_life))
+    stats.append("Armour: {:.0f}".format(armour)) if armour and armour else None
+
+    evasion = build.get_stat('Player', 'Evasion', min(OutputThresholds.EVASION.value, effective_life))
     stats.append("Evasion: {:.0f}".format(evasion)) if evasion else None
 
     dodge = build.get_stat('Player', 'AttackDodgeChance', OutputThresholds.DODGE.value)
@@ -103,7 +104,6 @@ def get_defense(build: Build):
     mana_string = get_basic_line("Mana", build.get_stat('Player', 'Mana'), build.get_stat('Player', 'Spec:ManaInc'),
                                  basic_stat_regen=build.get_stat('Player', 'ManaRegen'),
                                  stat_unreserved=build.get_stat('Player', 'ManaUnreserved'))
-    print(mana_string)
     if mana_string:
         output += mana_string
 
