@@ -30,7 +30,7 @@ def create_embed(author, tree, level, ascendency_name, class_name, main_skill: S
         gem=gem_name,
         level=level)
     if author:
-        embed.title += " by " + author.name
+        embed.title += " by: " + author.name
     return embed
 
 
