@@ -16,7 +16,7 @@ def get_resistances(build: Build, force_display=False):
     show = False
     for i, res in enumerate(resistances):
         res_val = build.get_stat('Player', res + 'Resist', OutputThresholds.CHAOS_RES.value if res == 'Chaos'
-            else OutputThresholds.ELE_RES.value)
+        else OutputThresholds.ELE_RES.value)
         res_over_cap = build.get_stat('Player', res + 'ResistOverCap')
 
         if res_val:
@@ -30,8 +30,10 @@ def get_resistances(build: Build, force_display=False):
 
 
 def get_basic_line(name, basic_stat, basic_stat_percent, stat_unreserved=0, basic_stat_regen=0):
-    output = ""
-    if basic_stat and basic_stat_percent:
+    output = None
+    print(name, basic_stat, basic_stat_percent, basic_stat_regen)
+    if isinstance(basic_stat, float) and isinstance(basic_stat_percent, float):
+        print("GO")
         output = "**" + name + "**: "
         if stat_unreserved and basic_stat - stat_unreserved > 0:
             output += "{unreserved:.0f}/".format(unreserved=stat_unreserved)
@@ -53,47 +55,57 @@ def get_secondary_def(build: Build):
     output = ""
     stats = []
     armour = build.get_stat('Player', 'Armour')
-    stats.append("Armour: {}".format(armour)) if armour and armour > OutputThresholds.ARMOUR.value else None
+    stats.append("Armour: {:.0f}".format(armour)) if armour and armour > OutputThresholds.ARMOUR.value else None
 
     evasion = build.get_stat('Player', 'Evasion', OutputThresholds.EVASION.value)
-    stats.append("Evasion: {}".format(evasion)) if evasion else None
+    stats.append("Evasion: {:.0f}".format(evasion)) if evasion else None
 
     dodge = build.get_stat('Player', 'AttackDodgeChance', OutputThresholds.DODGE.value)
-    stats.append("Dodge: {}%".format(dodge)) if dodge else None
+    stats.append("Dodge: {:.0f}%".format(dodge)) if dodge else None
 
     spell_dodge = build.get_stat('Player', 'SpellDodgeChance', OutputThresholds.SPELL_DODGE.value)
-    stats.append("Spell Dodge: {}%".format(spell_dodge)) if spell_dodge else None
+    stats.append("Spell Dodge: {:.0f}%".format(spell_dodge)) if spell_dodge else None
 
     block = build.get_stat('Player', 'BlockChance', OutputThresholds.BLOCK.value)
-    stats.append("Block: {}%".format(block)) if block else None
+    stats.append("Block: {:.0f}%".format(block)) if block else None
 
     spell_block = build.get_stat('Player', 'SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
-    stats.append("Spell Block: {}%".format(spell_block)) if spell_block  else None
+    stats.append("Spell Block: {:.0f}%".format(spell_block)) if spell_block  else None
     if len(stats) > 0:
-        output += "**Secondary:** "
         output += " | ".join([s for s in stats if s]) + "\n"
     return "**Secondary:** " + output if output != "" else None
 
 
 def get_defense(build: Build):
     output = ""
-    output += get_basic_line("Life", build.get_stat('Player', 'Life'),
-                             build.get_stat('Player', 'Spec:LifeInc', OutputThresholds.LIFE_PERCENT.value),
-                             basic_stat_regen=build.get_stat('Player', 'LifeRegen', OutputThresholds.LIFE_REGEN.value),
-                             stat_unreserved=build.get_stat('Player', 'LifeUnreserved'))
+    life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
+                                 OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
+    life_string = get_basic_line("Life", build.get_stat('Player', 'Life'),
+                                 build.get_stat('Player', 'Spec:LifeInc', life_percent_threshold),
+                                 basic_stat_regen=build.get_stat('Player', 'LifeRegen'),
+                                 stat_unreserved=build.get_stat('Player', 'LifeUnreserved'))
+    if life_string:
+        output += life_string
 
-    output += get_basic_line("Energy Shield", build.get_stat('Player', 'EnergyShield'),
-                             build.get_stat('Player', 'Spec:EnergyShieldInc', OutputThresholds.ES_PERCENT.value),
-                             basic_stat_regen=build.get_stat('Player', 'EnergyShieldRegen',
-                                                             OutputThresholds.ES_REGEN.value))
+    es_percent_threshold = min(OutputThresholds.ES_PERCENT.value,
+                               OutputThresholds.ES_PERCENT_PER_LEVEL.value * build.level)
+    es_string = get_basic_line("Energy Shield", build.get_stat('Player', 'EnergyShield'),
+                               build.get_stat('Player', 'Spec:EnergyShieldInc', es_percent_threshold),
+                               basic_stat_regen=build.get_stat('Player', 'EnergyShieldRegen'))
+    if es_string:
+        output += es_string
+
     net_regen = build.get_stat('Player', 'NetLifeRegen')
 
     if net_regen:
         output += "**Net Regen**: {:.0f}/s\n".format(net_regen)
 
-    output += get_basic_line("Mana", build.get_stat('Player', 'Mana'), build.get_stat('Player', 'Spec:ManaInc'),
-                             basic_stat_regen=build.get_stat('Player', 'ManaRegen'),
-                             stat_unreserved=build.get_stat('Player', 'ManaUnreserved'))
+    mana_string = get_basic_line("Mana", build.get_stat('Player', 'Mana'), build.get_stat('Player', 'Spec:ManaInc'),
+                                 basic_stat_regen=build.get_stat('Player', 'ManaRegen'),
+                                 stat_unreserved=build.get_stat('Player', 'ManaUnreserved'))
+    print(mana_string)
+    if mana_string:
+        output += mana_string
 
     # todo: only pass necessary values to the following options:
     secondary_def = get_secondary_def(build)

@@ -102,7 +102,7 @@ class Item:
 
 class Build:
     def __init__(self, level, version, bandit, class_name, ascendency_name, tree, skills, activeSkill, item_slots):
-        self.level = level
+        self.level = int(level)
         self.version = version
         self.bandit = bandit
         self.class_name = class_name

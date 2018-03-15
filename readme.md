@@ -16,19 +16,22 @@
 - Various config options in `config.py`
 - Secondary Defenses
 - Primary defenses need to hit Thresholds to be displayed
+
 ### Future Work
 - Configuration rework
     - Py3.5: not all configs are returned although they are available
 - Refine Offense output
     - Poison/Ignite and Dots in general are crude
-    - Only show crit stats when they are above threshholds
-    - Maybe: 
-        - Number of totems
+    - Maybe:
         - Balls
-        - Arrows 
-- Customizable Layout (maybe)
+        - Arrows
+
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
 - Add supports for Active Skills from items (Ice Storm)
+- Add support for Keystones
+    - Add support for Endu/Frenzy/Power Charges
+    - Number of totems
+- Add support for "Notable" Uniques that are displayed in the extended version
 
 
 ### How To Run

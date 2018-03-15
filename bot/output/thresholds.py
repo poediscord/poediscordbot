@@ -5,10 +5,12 @@ class OutputThresholds(Enum):
     # Basic Defense
     LIFE_FLAT = 1000
     LIFE_PERCENT = 50
+    LIFE_PERCENT_PER_LEVEL = 1.5
     LIFE_REGEN = 100
 
     ES_FLAT = 300
     ES_PERCENT = 50
+    ES_PERCENT_PER_LEVEL = 1.5
     ES_REGEN = 100
 
     #Show ele res bigger than the 75 cap
@@ -27,5 +29,5 @@ class OutputThresholds(Enum):
     SPELL_DODGE = 30
 
     #Offense
-    ACCURACY = 95
+    ACCURACY = 99
     CRIT_CHANCE = 5
