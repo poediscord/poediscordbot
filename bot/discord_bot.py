@@ -31,9 +31,9 @@ async def on_message(message):
     if message.channel.name in config.active_channels or message.channel.name in config.passive_channels:
         # if the keyword is present in either channel type, display pob message
         if any(util.starts_with(keyword, message.content) for keyword in config.keywords):
-            embed = parse_pob(message.content)
+            embed = parse_pob(message.author, message.content)
             if embed:
-                await bot.send_message(message.author, message.channel, embed=embed)
+                await bot.send_message(message.channel, embed=embed)
         else:
             # in active channels look for pastebin links
             if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
