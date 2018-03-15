@@ -15,6 +15,8 @@ client = discord.Client()
 @client.event
 async def on_ready():
     log.info('Logged in: uname={}, id={}'.format(client.user.name, client.user.id))
+    if config.presence_message:
+        await client.change_presence(game=discord.Game(name=config.presence_message))
 
 
 @client.event

@@ -14,3 +14,5 @@ passive_channels = ['general']
 active_channels = ['pob']
 # debug level
 debug_level = logging.INFO
+
+presence_message = '!pob <pastebin>'
