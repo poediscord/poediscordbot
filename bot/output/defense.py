@@ -32,7 +32,7 @@ def get_resistances(build: Build, force_display=False):
 def get_basic_line(name, basic_stat, basic_stat_percent, stat_unreserved=0, basic_stat_regen=0):
     output = None
     print(name, basic_stat, basic_stat_percent, basic_stat_regen)
-    if isinstance(basic_stat, float) and isinstance(basic_stat_percent, float):
+    if isinstance(basic_stat, float) and basic_stat > 0 and isinstance(basic_stat_percent, float):
         print("GO")
         output = "**" + name + "**: "
         if stat_unreserved and basic_stat - stat_unreserved > 0:
