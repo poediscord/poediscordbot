@@ -1,3 +1,5 @@
+import random
+
 from discord.ext import commands
 
 from util.logging import log
@@ -11,7 +13,7 @@ from bot.parser import Parser
 from bot import pob_output
 from util import pastebin
 
-bot = commands.Bot(command_prefix='!', description="descriptinon")
+bot = commands.Bot(command_prefix='!', description="x")
 
 
 @bot.event
@@ -21,6 +23,15 @@ async def on_ready():
         await bot.change_presence(game=discord.Game(name=config.presence_message))
 
 
+@bot.command(pass_context=True)
+async def pob(ctx, *, key):
+    #print(ctx.invoked_subcommand)
+    embed = parse_pob(ctx.message.author, ctx.message.content)
+
+    await bot.send_message(ctx.message.channel, embed=embed)
+    # await ctx.say(arg)
+
+
 @bot.event
 async def on_message(message):
     """
@@ -28,21 +39,13 @@ async def on_message(message):
     :param message:
     :return: None
     """
-    if message.channel.name in config.active_channels or message.channel.name in config.passive_channels:
-        # if the keyword is present in either channel type, display pob message
-        if any(util.starts_with(keyword, message.content) for keyword in config.keywords):
-            embed = parse_pob(message.author, message.content)
-            if embed:
-                await bot.send_message(message.channel, embed=embed)
-        else:
-            # in active channels look for pastebin links
-            if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
-                # check if valid xml
-                # send message
-                log.debug("P| {}: {}".format(message.channel, message.content))
-                embed = parse_pob(message.author, message.content, minify=True)
-                if embed:
-                    await bot.send_message(message.channel, embed=embed)
+    if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
+        # check if valid xml
+        # send message
+        log.debug("A| {}: {}".format(message.channel, message.content))
+        embed = parse_pob(message.author, message.content, minify=True)
+        if embed:
+            await bot.send_message(message.channel, embed=embed)
 
 
 def parse_pob(author, content, minify=False):
