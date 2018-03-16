@@ -24,8 +24,10 @@ async def on_ready():
 
 
 @bot.command(pass_context=True)
+@commands.cooldown(1, 5, commands.BucketType.user)
 async def pob(ctx, *, key):
-    #print(ctx.invoked_subcommand)
+    print(ctx.__dict__)
+
     embed = parse_pob(ctx.message.author, ctx.message.content)
 
     await bot.send_message(ctx.message.channel, embed=embed)
@@ -39,13 +41,20 @@ async def on_message(message):
     :param message:
     :return: None
     """
-    if message.channel.name in config.active_channels and "pastebin.com/" in message.content:
+    # call bot commands, if not a bot command, check the message for pastebins
+
+
+    if message.channel.name in config.active_channels \
+            and not util.starts_with("!pob",message.content[:4]) \
+            and "pastebin.com/" in message.content:
         # check if valid xml
         # send message
         log.debug("A| {}: {}".format(message.channel, message.content))
         embed = parse_pob(message.author, message.content, minify=True)
         if embed:
             await bot.send_message(message.channel, embed=embed)
+    else:
+        await bot.process_commands(message)
 
 
 def parse_pob(author, content, minify=False):
