@@ -24,7 +24,7 @@ async def on_ready():
 
 
 @bot.command(pass_context=True)
-@commands.cooldown(1, 5, commands.BucketType.user)
+# @commands.cooldown(1, 5, commands.BucketType.user)
 async def pob(ctx, *, key):
     print(ctx.__dict__)
 
@@ -35,6 +35,12 @@ async def pob(ctx, *, key):
 
 
 @bot.event
+async def on_command_error(error, ctx):
+    channel = ctx.message.channel
+    await bot.send_message(channel, error)
+
+
+@bot.event
 async def on_message(message):
     """
     Handle message events
@@ -42,10 +48,11 @@ async def on_message(message):
     :return: None
     """
     # call bot commands, if not a bot command, check the message for pastebins
+    # better way to do this would probably be to create the context, then check if its valid, then invoke it. If its valid,its a command, if not, its not. You could backport this to async pretty ez
 
-
+    # todo: replace async with rewrite of the bot, then use on_command_completion
     if message.channel.name in config.active_channels \
-            and not util.starts_with("!pob",message.content[:4]) \
+            and not util.starts_with("!pob", message.content[:4]) \
             and "pastebin.com/" in message.content:
         # check if valid xml
         # send message
