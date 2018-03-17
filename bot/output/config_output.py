@@ -17,28 +17,19 @@ def get_config_string(config):
     :param config: a dictionary of configs from a Build object
     :return: string representation
     """
-    configs = {'Player': [], 'Enemy': [], 'Charges': [], 'Minion':[]}
+    configs = {}
     for key, entry in config.items():
         abbrev = entry.get('abbreviation')
         value = entry.get('value')
-        label = entry.get('label')
+        category = entry.get('category')
         string = prepare_config_line(abbrev if abbrev else key, value)
-        if label:
-            if 'minion' in label.lower():
-                configs['Minion'].append(string)
-
-            elif 'you' in label.lower():
-                if 'charge' in label.lower():
-                    configs['Charges'].append(string)
-                else:
-                    configs['Player'].append(string)
-            elif 'enemy' in label.lower():
-                configs['Enemy'].append(string)
+        if category:
+            configs.setdefault(category.capitalize(),[]).append(string)
 
     out = ''
     for category in configs:
+        print(category)
         if len(configs[category])>0:
-            print(category)
             out += '**' + category + '**: '
             out += ', '.join(configs[category])
             out += '\n'
