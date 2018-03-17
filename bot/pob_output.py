@@ -110,7 +110,7 @@ def generate_output(author, build: Build, inline=False):
     if skill:
         embed.add_field(name="Main Skill", value=skill, inline=inline)
     conf_str = config_output.get_config_string(build.config)
-    if config:
+    if conf_str:
         embed.add_field(name="Config", value=conf_str, inline=inline)
 
     # output

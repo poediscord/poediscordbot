@@ -34,12 +34,12 @@ async def pob(ctx, *, key):
     # await ctx.say(arg)
 
 
-@bot.event
-async def on_command_error(error, ctx):
-    if isinstance(error, CommandNotFound):
-        pass
-    else:
-        log.error(error)
+# @bot.event
+# async def on_command_error(error, ctx):
+#     if isinstance(error, CommandNotFound):
+#         pass
+#     else:
+#         log.error(error)
 
 @bot.event
 async def on_message(message):

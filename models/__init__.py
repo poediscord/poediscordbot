@@ -124,7 +124,6 @@ class Build:
         # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
-        print(key, val)
         conf_enry = pob_conf.fetch_entry(key)
         # ignore unknown settings.
         if conf_enry:

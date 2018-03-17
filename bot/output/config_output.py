@@ -1,7 +1,7 @@
 def get_conf_string(name, value):
-    conf_item = "{}".format(name)
+    conf_item = '{}'.format(name)
     if value and value.lower() != 'true':
-        conf_item += ": {}".format(value.capitalize())
+        conf_item += ': {}'.format(value.capitalize())
     return conf_item
 
 
@@ -15,25 +15,24 @@ def get_config_string(config):
         if label:
             if 'minion' in label.lower():
                 configs['Minion'].append(string)
-                continue
-            if 'you' in label.lower():
+
+            elif 'you' in label.lower():
                 if 'charge' in label.lower():
                     configs['Charges'].append(string)
                 else:
                     configs['Player'].append(string)
-                continue
             elif 'enemy' in label.lower():
                 configs['Enemy'].append(string)
-                continue
 
-                # conf_item = "{}".format(abbrev if abbrev else key)
+                # conf_item = '{}'.format(abbrev if abbrev else key)
                 # if value and value.lower() != 'true':
-                #     conf_item += ": {}".format(value.capitalize())
+                #     conf_item += ': {}'.format(value.capitalize())
                 # strings.append(conf_item)
-    out = ""
+    out = ''
     for category in configs:
         if len(configs[category])>0:
-            out += "**" + category + "**: "
+            print(category)
+            out += '**' + category + '**: '
             out += ', '.join(configs[category])
-            out += "\n"
-    return out
+            out += '\n'
+    return out if out != '' else None
