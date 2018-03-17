@@ -23,7 +23,6 @@ def fetch_paste_key(content):
         content = content.replace('raw/', '')
     regex = r".*pastebin.com\/(\S*)"
     results = re.findall(regex, content)
-    print(results)
     return results[0]
 
 

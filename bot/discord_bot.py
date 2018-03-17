@@ -26,8 +26,6 @@ async def on_ready():
 @bot.command(pass_context=True)
 # @commands.cooldown(1, 5, commands.BucketType.user)
 async def pob(ctx, *, key):
-    print(ctx.__dict__)
-
     embed = parse_pob(ctx.message.author, ctx.message.content)
 
     await bot.send_message(ctx.message.channel, embed=embed)

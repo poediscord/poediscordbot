@@ -28,7 +28,6 @@ def get_config_string(config):
 
     out = ''
     for category in configs:
-        print(category)
         if len(configs[category])>0:
             out += '**' + category + '**: '
             out += ', '.join(configs[category])
