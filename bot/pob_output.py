@@ -1,10 +1,10 @@
 from discord import Embed
 
 import config
-from bot.output.defense import get_defense
+from bot.output import defense_output, config_output
 from bot.output.thresholds import OutputThresholds
 from models import Build, Gem, Skill
-from util.translate_pob_conf import pob_conf
+from util.pob import pob_conf
 
 
 def wrap_codeblock(string, lang='css'):
@@ -69,20 +69,6 @@ def get_offense(build):
     return output
 
 
-def get_config(config):
-    strings = []
-    for key, val in config.items():
-        conf_item = ""
-        pob_conf_key = pob_conf.pob_find_entry(key)
-        if pob_conf_key and pob_conf_key['abbreviation']:
-            abbrev = pob_conf_key['abbreviation']
-            conf_item += "{}".format(abbrev if abbrev else key)
-            if val.lower() != 'true':
-                conf_item += ": {}".format(val.capitalize())
-            strings.append(conf_item)
-    return ", ".join(strings)
-
-
 def get_main_skill(build):
     active_skill = build.get_active_skill()
     if active_skill and isinstance(active_skill, Skill):
@@ -114,18 +100,18 @@ def generate_output(author, build: Build, inline=False):
     # print(build.config)
 
     # add new fields
-    defense = get_defense(build)
-    if defense:
-        embed.add_field(name="Defense", value=defense, inline=inline)
+    def_str = defense_output.get_defense_string(build)
+    if def_str:
+        embed.add_field(name="Defense", value=def_str, inline=inline)
     offense = get_offense(build)
     if offense:
         embed.add_field(name="Offense", value=offense, inline=inline)
     skill = get_main_skill(build)
     if skill:
         embed.add_field(name="Main Skill", value=skill, inline=inline)
-    config = get_config(build.config)
+    conf_str = config_output.get_config_string(build.config)
     if config:
-        embed.add_field(name="Config", value=config, inline=inline)
+        embed.add_field(name="Config", value=conf_str, inline=inline)
 
     # output
     embed.add_field(name='Tree:', value=build.tree)

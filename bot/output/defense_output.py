@@ -77,7 +77,7 @@ def get_secondary_def(build: Build):
     return "**Secondary:** " + output if output != "" else None
 
 
-def get_defense(build: Build):
+def get_defense_string(build: Build):
     output = ""
     life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                  OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)

@@ -1,6 +1,7 @@
 import re
 
 from util.logging import log
+from util.pob import pob_conf
 
 
 class Gem:
@@ -123,7 +124,12 @@ class Build:
         # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
-        self.config[key] = val
+        print(key, val)
+        conf_enry = pob_conf.fetch_entry(key)
+        # ignore unknown settings.
+        if conf_enry:
+            self.config[key] = {'value': val}
+            self.config[key].update(conf_enry)
 
     def __repr__(self) -> str:
         return "{}".format(self.__dict__)
