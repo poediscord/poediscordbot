@@ -82,7 +82,7 @@ def generate_minified_output(author, build: Build, inline=True):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())
     # add new fields
-    defense = get_defense(build)
+    defense = defense_output.get_defense_string(build)
     if defense:
         embed.add_field(name="Defense", value=defense, inline=inline)
     offense = get_offense(build)
@@ -96,8 +96,6 @@ def generate_minified_output(author, build: Build, inline=True):
 def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())
-    # print(build.stats)
-    # print(build.config)
 
     # add new fields
     def_str = defense_output.get_defense_string(build)
