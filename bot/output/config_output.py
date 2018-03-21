@@ -33,3 +33,4 @@ def get_config_string(config):
             out += ', '.join(configs[category])
             out += '\n'
     return out if out != '' else None
+

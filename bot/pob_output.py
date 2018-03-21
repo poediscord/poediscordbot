@@ -1,7 +1,7 @@
 from discord import Embed
 
 import config
-from bot.output import defense_output, config_output
+from bot.output import defense_output, config_output, charges_output
 from bot.output.thresholds import OutputThresholds
 from models import Build, Gem, Skill
 from util.pob import pob_conf
@@ -82,18 +82,21 @@ def generate_minified_output(author, build: Build, inline=True):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())
     # add new fields
-    defense = defense_output.get_defense_string(build)
-    if defense:
-        embed.add_field(name="Defense", value=defense, inline=inline)
+    def_str = defense_output.get_defense_string(build)
+    if def_str:
+        embed.add_field(name="Defense", value=def_str, inline=inline)
     offense = get_offense(build)
     if offense:
         embed.add_field(name="Offense", value=offense, inline=inline)
+    charges_str = charges_output.get_charges(build)
+    if charges_str:
+        embed.add_field(name="Charges", value=charges_str, inline=inline)
     # output
     embed.add_field(name='Tree:', value=build.tree)
     return embed
 
 
-def generate_output(author, build: Build, inline=False):
+def generate_output(author, build: Build, inline=True):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())
 
@@ -104,13 +107,15 @@ def generate_output(author, build: Build, inline=False):
     offense = get_offense(build)
     if offense:
         embed.add_field(name="Offense", value=offense, inline=inline)
+    charges_str = charges_output.get_charges(build)
+    if charges_str:
+        embed.add_field(name="Charges", value=charges_str, inline=inline)
     skill = get_main_skill(build)
     if skill:
         embed.add_field(name="Main Skill", value=skill, inline=inline)
     conf_str = config_output.get_config_string(build.config)
     if conf_str:
         embed.add_field(name="Config", value=conf_str, inline=inline)
-
     # output
     embed.add_field(name='Tree:', value=build.tree)
     return embed

@@ -33,3 +33,6 @@ class OutputThresholds(Enum):
     #Offense
     ACCURACY = 99
     CRIT_CHANCE = 5
+
+    #Charges
+    CHARGE_MAXIMUM = 3
