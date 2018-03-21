@@ -96,7 +96,7 @@ def generate_minified_output(author, build: Build, inline=True):
     return embed
 
 
-def generate_output(author, build: Build, inline=True):
+def generate_output(author, build: Build, inline=False):
     embed = create_embed(author, build.tree, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill())
 
