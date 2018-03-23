@@ -1,10 +1,11 @@
-import logging
-import re
 import base64
-import zlib
-import defusedxml.ElementTree as ET
+import re
 import urllib.request
+import zlib
+
+import defusedxml.ElementTree as ET
 from retrying import retry
+
 from util.logging import log
 
 '''
@@ -30,10 +31,10 @@ def decode_base64_and_inflate(b64string):
     try:
         decoded_data = base64.b64decode(b64string)
         return zlib.decompress(decoded_data)
-    except zlib.error:
-        pass
+    except zlib.error as err:
+        log.error("ZLib Error in paste: err={}".format(err))
     except ValueError as err:
-        pass
+        log.error("Value Error in paste: err={}".format(err))
 
 
 def decode_to_xml(enc):
@@ -56,7 +57,7 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
 
 
 @retry(wait_exponential_multiplier=1000,
-       stop_max_attempt_number=1,
+       stop_max_attempt_number=2,
        wait_func=urllib_error_retry)
 def get_raw_data(url):
     url = urllib.request.urlopen(url)

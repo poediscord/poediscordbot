@@ -1,5 +1,3 @@
-import logging
-
 import config
 from bot.discord_bot import bot
 from util.logging import log

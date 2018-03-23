@@ -1,7 +1,6 @@
-import logging
 import json
-from urllib import request
 from datetime import datetime
+from urllib import request
 
 import util
 

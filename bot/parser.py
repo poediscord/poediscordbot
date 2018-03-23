@@ -1,9 +1,7 @@
-import logging
-from xml import etree
-
 from models import Build, Skill, Gem, Item, ItemSlot
-from util.poeurl import shrink_tree_url
 from util.logging import log
+from util.poeurl import shrink_tree_url
+
 
 class Parser:
     @staticmethod

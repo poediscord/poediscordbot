@@ -1,4 +1,4 @@
-from bot.output.thresholds import OutputThresholds
+from bot.consts.thresholds import OutputThresholds
 from models import Build
 
 

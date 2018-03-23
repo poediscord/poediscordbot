@@ -1,27 +1,25 @@
-import random
-
-from discord.ext import commands
-from discord.ext.commands import CommandNotFound
-
-from util.logging import log
 from urllib.error import HTTPError
 
 import discord
+from discord.ext import commands
 
 import config
 import util
-from bot.parser import Parser
 from bot import pob_output
+from bot.parser import Parser
 from util import pastebin
+from util.logging import log
 
 bot = commands.Bot(command_prefix='!', description="x")
 bot.remove_command('help')
+
 
 @bot.event
 async def on_ready():
     log.info('Logged in: uname={}, id={}'.format(bot.user.name, bot.user.id))
     if config.presence_message:
         await bot.change_presence(game=discord.Game(name=config.presence_message))
+
 
 @bot.command(pass_context=True)
 # @commands.cooldown(1, 5, commands.BucketType.user)
@@ -31,13 +29,6 @@ async def pob(ctx, *, key):
     await bot.send_message(ctx.message.channel, embed=embed)
     # await ctx.say(arg)
 
-
-# @bot.event
-# async def on_command_error(error, ctx):
-#     if isinstance(error, CommandNotFound):
-#         pass
-#     else:
-#         log.error(error)
 
 @bot.event
 async def on_message(message):
@@ -86,7 +77,7 @@ def parse_pob(author, content, minify=False):
             build = parser.parse_build(xml)
             # print(build)
 
-            embed = pob_output.generate_output(author, build) if not minify \
-                else pob_output.generate_minified_output(author, build)
+            embed = pob_output.generate_response(author, build, minified=minify)
+
             log.debug("embed={}; length={}".format(embed, embed.__sizeof__()))
             return embed
