@@ -6,7 +6,7 @@ from discord.ext import commands
 import config
 import util
 from bot import pob_output
-from bot.parser import Parser
+from bot import parser
 from util import pastebin
 from util.logging import log
 
@@ -73,7 +73,6 @@ def parse_pob(author, content, minify=False):
         except HTTPError as err:
             log.error("Invalid pastebin-url msg={}".format(err))
         if xml:
-            parser = Parser()
             build = parser.parse_build(xml)
             # print(build)
 
