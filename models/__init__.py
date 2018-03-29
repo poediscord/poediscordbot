@@ -114,7 +114,7 @@ class Build:
         self.config = {}
         self.tree = tree
         self.skills = skills
-        self.activeSkill = int(activeSkill)
+        self.active_skill_id = int(activeSkill)
         self.item_slots = item_slots
 
     def append_stat(self, key, val, stat_owner):
@@ -157,6 +157,6 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        if len(self.skills) < 1 or self.activeSkill < 1:
+        if len(self.skills) < 1 or self.active_skill_id < 1:
             return None
-        return self.skills[self.activeSkill - 1]
+        return self.skills[self.active_skill_id - 1]

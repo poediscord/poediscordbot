@@ -67,7 +67,6 @@ def parse_item_slots(xml_items):
     items = []
     slots = {}
     activeSet = get_attrib_if_exists(xml_items, 'activeItemSet')
-    print(activeSet)
     for entry in xml_items:
         # todo: only parse needed items for the current build
         if entry.tag.lower() == "item":
@@ -76,24 +75,28 @@ def parse_item_slots(xml_items):
         # todo: implement check if we need to parse the second weapon set instead of the normal one.
         if entry.tag.lower() == "slot":
             item_id = get_attrib_if_exists(entry, 'itemId')
-            slots[entry.attrib['name']] = parse_item_slot(entry, items, item_id)
+            item = parse_item_slot(entry, items, item_id)
+            if item:
+                slots[entry.attrib['name']] = item
 
         if entry.tag.lower() == "itemset" and get_attrib_if_exists(entry, 'id') == activeSet:
             for slot in entry:
-                item_id = get_attrib_if_exists(entry, 'itemId')
-                slots[slot.attrib['name']] = parse_item_slot(slot, items, item_id)
-
+                item_id = get_attrib_if_exists(slot, 'itemId')
+                item = parse_item_slot(slot, items, item_id)
+                if item:
+                    slots[slot.attrib['name']] = item
     return slots
 
 
 def parse_item_slot(entry, items, item_id):
-    item = None
     if item_id:
         # print(item_id)
         # go through all items by their id, if the id matches return the first match of the comprehension.
-        item = [item for item in items if item.id == item_id][0]
-    slot = ItemSlot(entry.attrib['name'], item_id, item, get_attrib_if_exists(entry, 'active'))
-    return slot
+        item_match = [item for item in items if item.id == item_id]
+        item = item_match[0] if len(item_match)>0 else None
+        if item:
+            slot = ItemSlot(entry.attrib['name'], item_id, item, get_attrib_if_exists(entry, 'active'))
+            return slot
 
 
 def parse_skills(xml_skills):

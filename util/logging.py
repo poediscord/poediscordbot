@@ -22,7 +22,7 @@ def init_logging(name):
             'file': {
                 'formatter': "standard",
                 'level': config.debug_level,
-                'filename': 'discord_pob.log',
+                'filename': config.ROOT_DIR + '/discord_pob.log',
                 'mode': 'w',
                 'class': 'logging.FileHandler',
             }
@@ -40,4 +40,5 @@ def init_logging(name):
     return log
 
 
+print(config.ROOT_DIR)
 log = init_logging("discord_pob")
