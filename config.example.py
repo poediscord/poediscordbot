@@ -2,9 +2,8 @@ import logging
 
 # -- Rename this file to config.py! --
 
-# Enter discord token from https://discordapp.com/developers/applications/me/
 import os
-
+# Enter discord token from https://discordapp.com/developers/applications/me/
 token = 'yoursupersecrettoken'
 # color of the embed
 color = 0x859900
@@ -14,7 +13,7 @@ keywords = ['!pob']
 active_channels = ['pob']
 # debug level
 debug_level = logging.DEBUG
-
+# bot status (presence) message
 presence_message = '!pob <pastebin>'
 # This is your Project Root
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
