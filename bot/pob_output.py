@@ -37,7 +37,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         gem=gem_name,
         level=level)
     if author:
-        embed.title += " by: " + author.name
+        embed.title += " by: " + (author.nick if author.nick else author.name)
     return embed
 
 
