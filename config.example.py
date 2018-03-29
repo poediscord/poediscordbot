@@ -11,6 +11,6 @@ keywords = ['!pob']
 # reacts to pastebin posts with pob info in these channels
 active_channels = ['pob']
 # debug level
-debug_level = logging.INFO
+debug_level = logging.DEBUG
 
 presence_message = '!pob <pastebin>'
