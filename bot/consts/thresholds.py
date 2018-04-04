@@ -2,11 +2,13 @@ from enum import Enum
 
 
 class OutputThresholds(Enum):
+    LEECH = .1
     # Basic Defense
     LIFE_FLAT = 1000
     LIFE_PERCENT = 50
     LIFE_PERCENT_PER_LEVEL = 1.5
     LIFE_REGEN = 100
+
 
     ES_FLAT = 300
     ES_PERCENT = 50
