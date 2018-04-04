@@ -39,9 +39,9 @@ def get_basic_line(name, stat, stat_percent, stat_unreserved=0, stat_regen=0, st
         output += " ({stat_percent:,.0f}%)".format(stat_percent=stat_percent)
         if stat_regen:
             # Total regen, if displayed is regen - degen.
-            output += " | Regen: {regen:,.0f}/s".format(regen=stat_regen)
+            output += " | Reg: {regen:,.0f}/s ({regen_percent:,.1f}%)".format(regen=stat_regen,regen_percent=stat_regen/stat*100)
         if stat_leech_rate:
-            output += " | Leech {leech:,.0f}/s".format(leech=stat_leech_rate)
+            output += " | Leech {leech:,.0f}/s ({leech_percent:,.1f}%)".format(leech=stat_leech_rate, leech_percent=stat_leech_rate/stat*100)
         output += "\n"
     return output
 
