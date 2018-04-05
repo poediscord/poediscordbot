@@ -80,5 +80,5 @@ def parse_pob(author, content, minify=False):
 
             embed = pob_output.generate_response(author, build, minified=minify)
 
-            log.debug("embed={}; length={}".format(embed, embed.__sizeof__()))
+            log.debug("embed={}; icon={}; length={}".format(embed, embed.thumbnail,embed.__sizeof__()))
             return embed
