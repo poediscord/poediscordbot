@@ -32,13 +32,12 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
             ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
         # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
-
     embed.title = "{gem} - {char} (Lvl: {level})".format(
         char=class_name if ascendency_name.lower() == 'none' else ascendency_name,
         gem=gem_name,
         level=level)
     if author:
-        embed.title += " by: " + author.name
+        embed.title += " by: " + (author.nick if author.nick else author.name)
     return embed
 
 

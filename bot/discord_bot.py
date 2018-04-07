@@ -6,7 +6,7 @@ from discord.ext import commands
 import config
 import util
 from bot import pob_output
-from bot.parser import Parser
+from bot import pob_parser
 from util import pastebin
 from util.logging import log
 
@@ -61,7 +61,7 @@ def parse_pob(author, content, minify=False):
     :param author: user sending the message
     :param paste_key: pastebin paste key
     :param argument: optional: arguments to determine the output
-    :return:
+    :return: Embed
     """
     paste_key = pastebin.fetch_paste_key(content)
     if paste_key:
@@ -73,11 +73,10 @@ def parse_pob(author, content, minify=False):
         except HTTPError as err:
             log.error("Invalid pastebin-url msg={}".format(err))
         if xml:
-            parser = Parser()
-            build = parser.parse_build(xml)
+            build = pob_parser.parse_build(xml)
             # print(build)
 
             embed = pob_output.generate_response(author, build, minified=minify)
 
-            log.debug("embed={}; length={}".format(embed, embed.__sizeof__()))
+            log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
             return embed

@@ -1,13 +1,15 @@
 import json
+import os
 from datetime import datetime
 from urllib import request
 
+import config
 import util
 
 
 class PobConfig():
-    def __init__(self, path_to_pob_config="pob_conf.json"):
-        self.config = json.load(open(path_to_pob_config))
+    def __init__(self, path_to_pob_conf="pob_conf.json"):
+        self.config = json.load(open(config.ROOT_DIR + '/' + path_to_pob_conf))
 
     def fetch_entry(self, config_var: str):
         """
@@ -42,7 +44,6 @@ class PobConfig():
                     attribute[key] = val
             if all(key in keywords for key in attribute):
                 attributes[attribute['var']] = attribute
-
 
         with open('pob_conf.json', 'r') as file:
             file_content = json.load(file)

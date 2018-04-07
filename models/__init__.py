@@ -52,13 +52,15 @@ class Skill:
 
 
 class ItemSlot:
-    def __init__(self, name, item_id, item):
+    def __init__(self, name, item_id, item, active=False):
         self.name = name
         self.item_id = item_id
         self.item = item
+        self.active = bool(active)
 
     def __repr__(self) -> str:
-        return "ItemSlot [name={}; item_id={}; item={}]".format(self.name, self.item_id, self.item)
+        return "ItemSlot [name={}; item_id={}; item={}; active={}]".format(self.name, self.item_id, self.item,
+                                                                           self.active)
 
 
 class Item:
@@ -112,7 +114,7 @@ class Build:
         self.config = {}
         self.tree = tree
         self.skills = skills
-        self.activeSkill = int(activeSkill)
+        self.active_skill_id = int(activeSkill)
         self.item_slots = item_slots
 
     def append_stat(self, key, val, stat_owner):
@@ -155,6 +157,6 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        if len(self.skills) < 1 or self.activeSkill < 1:
+        if len(self.skills) < 1 or self.active_skill_id < 1:
             return None
-        return self.skills[self.activeSkill - 1]
+        return self.skills[self.active_skill_id - 1]
