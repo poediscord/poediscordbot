@@ -9,6 +9,12 @@ def wrap_codeblock(string, lang='css'):
     return '```' + lang + '\n' + string + '```'
 
 
+def replace_generic_names(name):
+    if name == 'UniqueAnimateWeapon':
+        name = 'Manifest Dancing Dervish'
+    return name
+
+
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     """
     Create the basic embed we add information to
@@ -25,7 +31,8 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     if main_skill:
         main_gem = main_skill.get_selected()
         if isinstance(main_gem, Gem):
-            gem_name = main_gem.name
+            gem_name = replace_generic_names(main_gem.name)
+
 
     if ascendency_name or class_name:
         url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
