@@ -25,8 +25,10 @@ async def on_ready():
 # @commands.cooldown(1, 5, commands.BucketType.user)
 async def pob(ctx, *, key):
     embed = parse_pob(ctx.message.author, ctx.message.content)
-
-    await bot.send_message(ctx.message.channel, embed=embed)
+    try:
+        await bot.send_message(ctx.message.channel, embed=embed)
+    except discord.Forbidden:
+        log.info("Tried pasting in channel without access.")
     # await ctx.say(arg)
 
 

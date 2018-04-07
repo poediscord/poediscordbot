@@ -21,7 +21,7 @@ def get_offense(build):
                       build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
 
     dps = calc_dps(comparison_dps)
-    output += "**DPS**: {dps:,} @ {speed}/s\n".format(
+    output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
         dps=dps,
         speed=round(build.stats['Player']['Speed'], 2))
 

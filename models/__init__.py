@@ -33,7 +33,7 @@ class Skill:
 
     def get_selected(self):
         if self.main_active_skill:
-            active_skills = [gem for gem in self.gems if "support" not in gem.id.lower()]
+            active_skills = [gem for gem in self.gems if  gem.id and  "support" not in gem.id.lower()]
             # print(active_skills)
             return active_skills[self.main_active_skill - 1]
         return None
@@ -42,7 +42,7 @@ class Skill:
         # Join the gem names, if they are in the slected skill group and if they are enabled. Show quality and level if level is >20 or quality is set.
         ret = join_str.join(
             [gem.name + " ({}/{})".format(gem.level, gem.quality) if (gem.level > 20 or gem.quality > 0)
-             else gem.name for gem in self.gems if gem.enabled == True])
+             else gem.name for gem in self.gems if gem.enabled == True and 'jewel' not in gem.name.lower()])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
