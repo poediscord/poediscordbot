@@ -45,7 +45,6 @@ async def on_message(message):
     # better way to do this would probably be to create the context, then check if its valid, then invoke it. If its valid,its a command, if not, its not. You could backport this to async pretty ez
 
     # todo: replace async with rewrite of the bot, then use on_command_completion
-    print(message.content)
     if message.author.bot:
         return
 
