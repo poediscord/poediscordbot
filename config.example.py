@@ -17,3 +17,5 @@ debug_level = logging.DEBUG
 presence_message = '!pob <pastebin>'
 # This is your Project Root
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Enable PMs
+allow_pming = True

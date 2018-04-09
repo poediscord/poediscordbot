@@ -24,6 +24,8 @@ async def on_ready():
 @bot.command(pass_context=True)
 # @commands.cooldown(1, 5, commands.BucketType.user)
 async def pob(ctx, *, key):
+    if not config.allow_pming and ctx.message.channel.is_private:
+        return
     embed = parse_pob(ctx.message.author, ctx.message.content)
     try:
         await bot.send_message(ctx.message.channel, embed=embed)
@@ -43,7 +45,13 @@ async def on_message(message):
     # better way to do this would probably be to create the context, then check if its valid, then invoke it. If its valid,its a command, if not, its not. You could backport this to async pretty ez
 
     # todo: replace async with rewrite of the bot, then use on_command_completion
-    if message.channel.name in config.active_channels \
+    print(message.content)
+    if message.author.bot:
+        return
+
+    if config.allow_pming and message.channel.is_private and 'help' in message.content.lower():
+        await bot.send_message(message.channel,"Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
+    if message.channel.name in config.active_channels or (message.channel.is_private and config.allow_pming)\
             and not util.starts_with("!pob", message.content[:4]) \
             and "pastebin.com/" in message.content:
         # check if valid xml

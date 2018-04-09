@@ -6,7 +6,7 @@ from util.pob import pob_conf
 
 class Gem:
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
-        self.name = name
+        self.name = self.translate_name(name)
         self.level = int(level)
         self.quality = int(quality)
         self.id = id
@@ -15,6 +15,15 @@ class Gem:
 
     def __repr__(self) -> str:
         return "Gem [name={}]".format(self.name)
+
+    def translate_name(self, name):
+        if name == 'UniqueAnimateWeapon':
+            name = 'Manifest Dancing Dervish'
+        if name == 'ChaosDegenAuraUnique':
+            name = "Death Aura"
+        if name == 'IcestormUniqueStaff12':
+            name = "Ice Storm"
+        return name
 
 
 class Skill:
@@ -33,7 +42,7 @@ class Skill:
 
     def get_selected(self):
         if self.main_active_skill:
-            active_skills = [gem for gem in self.gems if  gem.id and  "support" not in gem.id.lower()]
+            active_skills = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
             # print(active_skills)
             return active_skills[self.main_active_skill - 1]
         return None

@@ -9,11 +9,6 @@ def wrap_codeblock(string, lang='css'):
     return '```' + lang + '\n' + string + '```'
 
 
-def replace_generic_names(name):
-    if name == 'UniqueAnimateWeapon':
-        name = 'Manifest Dancing Dervish'
-    return name
-
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     """
@@ -31,7 +26,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     if main_skill:
         main_gem = main_skill.get_selected()
         if isinstance(main_gem, Gem):
-            gem_name = replace_generic_names(main_gem.name)
+            gem_name = main_gem.name
 
 
     if ascendency_name or class_name:
@@ -44,7 +39,11 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         gem=gem_name,
         level=level)
     if author:
-        embed.title += " by: " + (author.nick if author.nick else author.name)
+        print(author)
+        displayed_name = author.name
+        if hasattr(author,'nick'):
+            displayed_name = author.nick
+        embed.title += " by: " + displayed_name
     return embed
 
 
