@@ -1,6 +1,7 @@
 # PoB Parsing Bot for Discord
 *Written in Python 3.6*
 
+### Do not forget to re-do your config.py every time you pull. Breaking changes may happen at this stage.
 ### Used Libraries
 - refer to the [requirements.txt](/requirements.txt)
 
@@ -18,16 +19,12 @@
 - Primary defenses need to hit Thresholds to be displayed
 
 ### Future Work
-- Configuration rework
-    - Py3.5: not all configs are returned although they are available
 - Refine Offense output
     - Poison/Ignite and Dots in general are crude
     - Maybe:
         - Balls
         - Arrows
-
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
-- Add supports for Active Skills from items (Ice Storm)
 - Add support for Keystones
     - Add support for Endu/Frenzy/Power Charges
     - Number of totems
