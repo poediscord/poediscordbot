@@ -42,7 +42,11 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         try:
             displayed_name = author.nick
         except AttributeError:
+            pass
+        if not displayed_name:
             displayed_name = author.name
+
+
         embed.title += " by: " + displayed_name
     return embed
 
