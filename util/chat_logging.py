@@ -28,10 +28,10 @@ def write_to_file(user, messages):
         except OSError as exc:  # Guard against race condition
             if exc.errno != errno.EEXIST:
                 raise
-
-    with open(file_path, mode='a') as file:
-        file.write('\n'.join(
-            [config.dm_log_format.format(ts=m.timestamp if not m.edited_timestamp else m.edited_timestamp,
-                                         u=m.author, uid=m.author.id, content=m.content) for m in
-             reversed(messages)]))
-        file.write('\n')
+    if len(messages) > 0:
+        with open(file_path, mode='a') as file:
+            file.write('\n'.join(
+                [config.dm_log_format.format(ts=m.timestamp if not m.edited_timestamp else m.edited_timestamp,
+                                             u=m.author, uid=m.author.id, content=m.content) for m in
+                 reversed(messages)]))
+            file.write('\n')

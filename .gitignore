@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 config.py
+dm_logs
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
