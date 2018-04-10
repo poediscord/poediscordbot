@@ -1,3 +1,4 @@
+import asyncio
 from urllib.error import HTTPError
 
 import discord
@@ -7,12 +8,30 @@ import config
 import util
 from bot import pob_output
 from bot import pob_parser
-from util import pastebin
+from util import pastebin, chat_logging
 from util.logging import log
 
 bot = commands.Bot(command_prefix='!', description="x")
 bot.remove_command('help')
 
+async def export_dm_logs():
+    log.info("Exporting all DMs. channels: {}".format(len(bot.private_channels)))
+
+    for ch in bot.private_channels:
+        print("Exporting",ch)
+        recipient = ch.recipients[0]
+        if recipient:
+            latest_date = chat_logging.get_latest_date_utc(recipient)
+            msgs = [m async for m in bot.logs_from(ch, after=latest_date) if not m.author.bot]
+            chat_logging.write_to_file(recipient, msgs)
+
+async def trigger_export_logs():
+    await bot.wait_until_login()
+    await export_dm_logs()
+    await asyncio.sleep(10) # task runs every 12h
+
+if config.dm_auto_log:
+    bot.loop.create_task(trigger_export_logs())
 
 @bot.event
 async def on_ready():
@@ -31,8 +50,12 @@ async def pob(ctx, *, key):
         await bot.send_message(ctx.message.channel, embed=embed)
     except discord.Forbidden:
         log.info("Tried pasting in channel without access.")
-    # await ctx.say(arg)
+        # await ctx.say(arg)
 
+
+@bot.command()
+async def export_logs():
+    await export_dm_logs()
 
 @bot.event
 async def on_message(message):
@@ -49,8 +72,9 @@ async def on_message(message):
         return
 
     if config.allow_pming and message.channel.is_private and 'help' in message.content.lower():
-        await bot.send_message(message.channel,"Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
-    if message.channel.name in config.active_channels or (message.channel.is_private and config.allow_pming)\
+        await bot.send_message(message.channel,
+                               "Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
+    if message.channel.name in config.active_channels or (message.channel.is_private and config.allow_pming) \
             and not util.starts_with("!pob", message.content[:4]) \
             and "pastebin.com/" in message.content:
         # check if valid xml
