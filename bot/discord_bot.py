@@ -17,7 +17,6 @@ bot.remove_command('help')
 
 async def export_dm_logs():
     while not bot.is_closed:
-        print("autologging2 ")
 
         log.info("Exporting all DMs. channels: {}".format(len(bot.private_channels)))
 
@@ -27,7 +26,8 @@ async def export_dm_logs():
                 latest_date = chat_logging.get_latest_date_utc(recipient)
                 msgs=[]
                 async for msg in bot.logs_from(ch, after=latest_date):
-                    msgs.append(msg)
+                    if not msg.author.bot:
+                        msgs.append(msg)
 
                 print("Msgs={}".format(msgs))
                 chat_logging.write_to_file(recipient, msgs)
@@ -41,7 +41,6 @@ async def trigger_export_logs():
 
 
 if config.dm_auto_log:
-    print("autologging")
     bot.loop.create_task(export_dm_logs())
 
 
