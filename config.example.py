@@ -24,7 +24,12 @@ presence_message = '!pob <pastebin>'
 # Color of the embed
 color = 0x859900
 
+
 ## -- Logging
 # Owners of the bot that can use the advanced/admin commands to export logs.
-owners = ['Faust#2687']
-auto_log = False
+owners = ['Owner#1337']
+dm_auto_log = True
+# required vars: {ts}=timestamp, {u}=username, {uid} = user id, {content} = message content
+dm_log_format = '{ts} <{u}({uid})>: {content}'
+# Poll dm's every 60 minutes once.
+dm_poll_rate_seconds=60*60*60
