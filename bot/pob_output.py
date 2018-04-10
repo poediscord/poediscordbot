@@ -39,9 +39,10 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         gem=gem_name,
         level=level)
     if author:
-        displayed_name = author.name
-        if hasattr(author,'nick'):
+        try:
             displayed_name = author.nick
+        except AttributeError:
+            displayed_name = author.name
         embed.title += " by: " + displayed_name
     return embed
 

@@ -22,7 +22,7 @@ def get_latest_date_utc(user):
 
 def write_to_file(user, messages):
     file_path = get_file_path(user)
-
+    print(messages)
     if not os.path.exists(os.path.dirname(file_path)):
         try:
             os.makedirs(os.path.dirname(file_path))
