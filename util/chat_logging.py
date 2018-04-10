@@ -1,3 +1,4 @@
+import codecs
 import os
 
 import errno
@@ -8,7 +9,7 @@ from os import path
 import config
 
 
-def get_file_path(user, directory='dm_logs'):
+def get_file_path(user, directory='_logs'):
     return config.ROOT_DIR + os.sep + directory + os.sep + user.name + '_' + user.discriminator + '.log'
 
 
@@ -29,9 +30,9 @@ def write_to_file(user, messages):
             if exc.errno != errno.EEXIST:
                 raise
     if len(messages) > 0:
-        with open(file_path, mode='a') as file:
-            file.write('\n'.join(
-                [config.dm_log_format.format(ts=m.timestamp if not m.edited_timestamp else m.edited_timestamp,
-                                             u=m.author, uid=m.author.id, content=m.content) for m in
-                 reversed(messages)]))
-            file.write('\n')
+        with  codecs.open(file_path, "a", "utf-8") as file:
+            for m in reversed(messages):
+                content = config.dm_log_format.format(ts=m.timestamp if not m.edited_timestamp else m.edited_timestamp,
+                                                      u=m.author, uid=m.author.id, content=m.content)
+                file.write(content)
+
