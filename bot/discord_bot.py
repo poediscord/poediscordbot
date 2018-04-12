@@ -29,7 +29,7 @@ async def export_dm_logs():
                     if not msg.author.bot:
                         msgs.append(msg)
 
-                print("Msgs={}".format(msgs))
+                # print("Msgs={}".format(msgs))
                 chat_logging.write_to_file(recipient, msgs)
 
         await asyncio.sleep(config.dm_poll_rate_seconds)  # task runs every 60 seconds

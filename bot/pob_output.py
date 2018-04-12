@@ -39,6 +39,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         gem=gem_name,
         level=level)
     if author:
+        displayed_name=None
         try:
             displayed_name = author.nick
         except AttributeError:
@@ -46,8 +47,8 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         if not displayed_name:
             displayed_name = author.name
 
-
-        embed.title += " by: " + displayed_name
+        if displayed_name:
+            embed.title += " by: " + displayed_name
     return embed
 
 
