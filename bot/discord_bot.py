@@ -86,7 +86,7 @@ async def on_message(message):
     if config.allow_pming and message.channel.is_private and 'help' in message.content.lower():
         await bot.send_message(message.channel,
                                "Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
-    if message.channel.name in config.active_channels or (message.channel.is_private and config.allow_pming) \
+    if (message.channel.name in config.active_channels or (message.channel.is_private and config.allow_pming)) \
             and not util.starts_with("!pob", message.content[:4]) \
             and "pastebin.com/" in message.content:
         # check if valid xml
