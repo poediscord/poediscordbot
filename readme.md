@@ -29,7 +29,7 @@
     - Add support for Endu/Frenzy/Power Charges
     - Number of totems
 - Add support for "Notable" Uniques that are displayed in the extended version
-
+- !pob `manually input build name here` <pob link>
 
 ### How To Run
 - Copy and rename `config.example.py`
