@@ -40,5 +40,5 @@ def init_logging(name):
     return log
 
 
-print(config.ROOT_DIR)
+# print(config.ROOT_DIR)
 log = init_logging("discord_pob")
