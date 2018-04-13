@@ -29,10 +29,11 @@ def get_offense(build):
 
         crit_chance = build.get_stat('Player','CritChance',)
         crit_multi = build.get_stat('Player','CritMultiplier')
+        print(crit_multi)
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
             output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
                 crit_chance=crit_chance,
-                crit_multi=crit_multi*50 if crit_multi else 150)
+                crit_multi=crit_multi*100 if crit_multi else 150)
 
         acc = build.get_stat('Player','HitChance',)
 
