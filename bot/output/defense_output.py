@@ -55,7 +55,7 @@ def get_secondary_def(build: Build):
     output = ""
     stats = []
     effective_life = max(
-        filter(None.__ne__, [build.get_stat('Player', 'Life'), build.get_stat('Player', 'EnergyShield')]))
+        filter(None.__ne__, [build.get_stat('Player', 'Life'), build.get_stat('Player', 'EnergyShield'), 0]))
 
     armour = build.get_stat('Player', 'Armour', min(OutputThresholds.ARMOUR.value, effective_life))
     stats.append("Armour: {:,.0f}".format(armour)) if armour and armour else None
@@ -89,7 +89,7 @@ def get_defense_string(build: Build):
                                  stat_regen=build.get_stat('Player', 'LifeRegen'),
                                  stat_unreserved=build.get_stat('Player', 'LifeUnreserved'),
                                  stat_leech_rate=build.get_stat('Player', 'LifeLeechGainRate',
-                                                                life_flat * OutputThresholds.LEECH.value))
+                                                                life_flat * OutputThresholds.LEECH.value if life_flat else 0))
     if life_string:
         output += life_string
 
@@ -100,7 +100,7 @@ def get_defense_string(build: Build):
                                build.get_stat('Player', 'Spec:EnergyShieldInc', es_percent_threshold),
                                stat_regen=build.get_stat('Player', 'EnergyShieldRegen'),
                                stat_leech_rate=build.get_stat('Player', 'EnergyShieldLeechGainRate',
-                                                              es_flat * OutputThresholds.LEECH.value))
+                                                              es_flat * OutputThresholds.LEECH.value if es_flat else 0))
     if es_string:
         output += es_string
 
@@ -113,7 +113,7 @@ def get_defense_string(build: Build):
                                  stat_regen=build.get_stat('Player', 'ManaRegen'),
                                  stat_unreserved=build.get_stat('Player', 'ManaUnreserved'),
                                  stat_leech_rate=build.get_stat('Player', 'ManaLeechGainRate',
-                                                                mana_flat * OutputThresholds.LEECH.value))
+                                                                mana_flat * OutputThresholds.LEECH.value if mana_flat else 0))
     if mana_string:
         output += mana_string
 

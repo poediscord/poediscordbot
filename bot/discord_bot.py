@@ -24,7 +24,7 @@ async def export_dm_logs():
             recipient = ch.recipients[0]
             if recipient:
                 latest_date = chat_logging.get_latest_date_utc(recipient)
-                msgs=[]
+                msgs = []
                 async for msg in bot.logs_from(ch, after=latest_date):
                     if not msg.author.bot:
                         msgs.append(msg)
@@ -58,7 +58,8 @@ async def pob(ctx, *, key):
         return
     embed = parse_pob(ctx.message.author, ctx.message.content)
     try:
-        await bot.send_message(ctx.message.channel, embed=embed)
+        if embed:
+            await bot.send_message(ctx.message.channel, embed=embed)
     except discord.Forbidden:
         log.info("Tried pasting in channel without access.")
         # await ctx.say(arg)
@@ -120,8 +121,9 @@ def parse_pob(author, content, minify=False):
         if xml:
             build = pob_parser.parse_build(xml)
             # print(build)
-
-            embed = pob_output.generate_response(author, build, minified=minify)
-
-            log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
-            return embed
+            try:
+                embed = pob_output.generate_response(author, build, minified=minify)
+                log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
+                return embed
+            except Exception as e:
+                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, e))
