@@ -3,6 +3,7 @@ from urllib.error import HTTPError
 
 import discord
 from discord.ext import commands
+from discord.ext.commands import CommandInvokeError
 
 import config
 import util
@@ -112,7 +113,7 @@ def parse_pob(author, content, minify=False):
     paste_key = pastebin.fetch_paste_key(content)
     if paste_key:
         xml = None
-        log.info("Parsing pastebin with key={}".format(paste_key))
+        log.info("Parsing pastebin with key={} from author={}".format(paste_key,author))
 
         try:
             xml = pastebin.get_as_xml(paste_key)
@@ -126,4 +127,7 @@ def parse_pob(author, content, minify=False):
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
-                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, e))
+                log.error("Could not parse pastebin={} - Exception={}, Msg={}".format(paste_key, type(e).__name__, e))
+                # raise e
+
+

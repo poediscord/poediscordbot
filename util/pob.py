@@ -20,7 +20,7 @@ class PobConfig():
         """
         for entry in self.config['conf']:
             if entry == config_var:
-                return self.config['conf'][entry]
+                return self.config['conf'].get(entry)
 
     @staticmethod
     def fetch_config():

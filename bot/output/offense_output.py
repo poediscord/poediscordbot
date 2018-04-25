@@ -1,4 +1,5 @@
 from bot.consts.thresholds import OutputThresholds
+from models import Skill
 
 
 def calc_max(comparison_dps: []):
@@ -14,6 +15,21 @@ def calc_max(comparison_dps: []):
     return round(max, 2)
 
 
+def show_avg_damage(active_skill: Skill) -> bool:
+    """
+    Determine if we have to show avg damage instead of dps (useful for mines and traps)
+    :param build:
+    :return: boolean
+    """
+    if active_skill:
+        show_avg = any("mine" in gem.name.lower() for gem in active_skill.gems)
+        show_avg = show_avg or any("trap" in gem.name.lower() for gem in active_skill.gems)
+        show_avg = show_avg or any(
+            "firestorm" in gem.name.lower() or "ice storm" in gem.name.lower() for gem in active_skill.gems)
+
+        return show_avg
+
+
 def get_offense(build):
     output = ""
     # Basics
@@ -25,17 +41,16 @@ def get_offense(build):
 
     if dps > 0 or avg > 0:
         speed = build.get_stat('Player', 'Speed')
-        if dps > avg:
+        if show_avg_damage(build.get_active_skill()) or avg > dps:
+            output += "**AVG**: {avg:,.0f}\n".format(
+                avg=avg)
+        else:
             output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
                 dps=dps,
                 speed=round(speed, 2) if speed else 0)
-        else:
-            output += "**AVG**: {avg:,.0f}\n".format(
-                avg=avg)
 
         crit_chance = build.get_stat('Player', 'CritChance', )
         crit_multi = build.get_stat('Player', 'CritMultiplier')
-        print(crit_multi)
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
             output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
                 crit_chance=crit_chance,
@@ -46,5 +61,4 @@ def get_offense(build):
         if acc and acc < OutputThresholds.ACCURACY.value:
             output += "**Hit Chance**: {:.2f}%".format(acc)
 
-        # todo: make a toggle for dot/hits
         return output
