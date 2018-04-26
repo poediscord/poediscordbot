@@ -33,7 +33,7 @@ async def export_dm_logs():
                 # print("Msgs={}".format(msgs))
                 chat_logging.write_to_file(recipient, msgs)
 
-        await asyncio.sleep(config.dm_poll_rate_seconds)  # task runs every 60 seconds
+        await asyncio.sleep(config.dm_poll_rate_seconds)  # task runs every x seconds
 
 
 async def trigger_export_logs():

@@ -33,5 +33,5 @@ def write_to_file(user, messages):
             for m in reversed(messages):
                 content = config.dm_log_format.format(ts=m.timestamp if not m.edited_timestamp else m.edited_timestamp,
                                                       u=m.author, uid=m.author.id, content=m.content)
-                file.write(content)
+                file.write(content+"\n")
 

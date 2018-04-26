@@ -1,5 +1,5 @@
 {
-  "utc-date": "2018-03-13T16:44:49.630787",
+  "utc-date": "2018-04-26T17:25:02.876954",
   "conf": {
     "conditionStationary": {
       "var": "conditionStationary",
@@ -667,6 +667,84 @@
       "label": "Enemy was Hit by Light. Damage?",
       "category": "enemy",
       "abbreviation": "EE (Light)"
+    },
+    "aspectOfTheAvianAviansMight": {
+      "var": "aspectOfTheAvianAviansMight",
+      "label": "Is Avian's Might active?",
+      "category": "playerSkill",
+      "abbreviation": "Avian's Might"
+    },
+    "aspectOfTheAvianAviansFlight": {
+      "var": "aspectOfTheAvianAviansFlight",
+      "label": "Is Avian's Flight active?",
+      "category": "playerSkill",
+      "abbreviation": "Avian's Flight"
+    },
+    "aspectOfTheCatCatsStealth": {
+      "var": "aspectOfTheCatCatsStealth",
+      "label": "Is Cat's Stealth active?",
+      "category": "playerSkill",
+      "abbreviation": "Cat's Stealth"
+    },
+    "aspectOfTheCatCatsAgility": {
+      "var": "aspectOfTheCatCatsAgility",
+      "label": "Is Cat's Agility active?",
+      "category": "playerSkill",
+      "abbreviation": "Cat's Agility"
+    },
+    "overrideCrabBarriers": {
+      "var": "overrideCrabBarriers",
+      "label": "# of Crab Barriers (if not maximum):",
+      "category": "overrides  ",
+      "abbreviation": "Crab Barriers"
+    },
+    "overridePowerCharges": {
+      "var": "overridePowerCharges",
+      "label": "# of Power Charges (if not maximum):",
+      "category": "overrides",
+      "abbreviation": "#PC"
+    },
+    "overrideFrenzyCharges": {
+      "var": "overrideFrenzyCharges",
+      "label": "# of Frenzy Charges (if not maximum):",
+      "category": "overrides",
+      "abbreviation": "#FC"
+    },
+    "overrideEnduranceCharges": {
+      "var": "overrideEnduranceCharges",
+      "label": "# of Endurance Charges (if not maximum):",
+      "category": "overrides",
+      "abbreviation": "#EC"
+    },
+    "overrideSiphoningCharges": {
+      "var": "overrideSiphoningCharges",
+      "label": "# of Siphoning Charges (if not maximum):",
+      "category": "overrides",
+      "abbreviation": "#SC"
+    },
+    "conditionBurning": {
+      "var": "conditionBurning",
+      "label": "Are you Burning?",
+      "category": "player",
+      "abbreviation": "Burning"
+    },
+    "conditionBlockedRecently": {
+      "var": "conditionBlockedRecently",
+      "label": "Have you Blocked Recently?",
+      "category": "playerRecently",
+      "abbreviation": "Blocked Recently"
+    },
+    "conditionEnergyShieldRechargeRecently": {
+      "var": "conditionEnergyShieldRechargeRecently",
+      "label": "Energy Shield Recharge started Recently?",
+      "category": "playerRecently",
+      "abbreviation": "ES Recharged recently"
+    },
+    "projectileDistance": {
+      "var": "projectileDistance",
+      "label": "Projectile travel distance:",
+      "category": "playerSkill",
+      "abbreviation": "Proj. Distance"
     }
   }
 }

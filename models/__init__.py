@@ -135,11 +135,11 @@ class Build:
         # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
-        conf_enry = pob_conf.fetch_entry(key)
+        conf_entry = pob_conf.fetch_entry(key)
         # ignore unknown settings.
-        if conf_enry:
+        if conf_entry:
             self.config[key] = {'value': val}
-            self.config[key].update(conf_enry)
+            self.config[key].update(conf_entry)
 
     def __repr__(self) -> str:
         return "{}".format(self.__dict__)
