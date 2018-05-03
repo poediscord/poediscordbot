@@ -100,9 +100,9 @@ class Item:
         # Socketed Gems are Supported by level 20 Elemental Proliferation
         add_supports = []
         # see here for regex: https://regex101.com/r/CcxRuz/1
-        regex = r"({variant:([0-9,]*)}|)Socketed Gems are Supported by level ([0-9]*) ([a-zA-Z ]*)"
+        pattern = r"({variant:([0-9,]*)}|)Socketed Gems are Supported by level ([0-9]*) ([a-zA-Z ]*)"
         try:
-            supports = re.findall(regex, self.raw_content, re.IGNORECASE)
+            supports = re.findall(pattern, self.raw_content, re.IGNORECASE)
             for support in supports:
                 # if either no variant exists, or our variant matches the current supports variant
                 if 'variant' not in support[0] or self.variant in support[0]:
@@ -135,18 +135,19 @@ class Build:
         # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
-        conf_enry = pob_conf.fetch_entry(key)
+        conf_entry = pob_conf.fetch_entry(key)
         # ignore unknown settings.
-        if conf_enry:
+        if conf_entry:
             self.config[key] = {'value': val}
-            self.config[key].update(conf_enry)
+            self.config[key].update(conf_entry)
 
     def __repr__(self) -> str:
         return "{}".format(self.__dict__)
 
     def get_item(self, slot):
-        if slot:
-            return self.item_slots[slot].item
+        item_slot = self.item_slots.get(slot)
+        if item_slot:
+            return item_slot.item
 
     def get_stat(self, owner, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:

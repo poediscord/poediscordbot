@@ -4,6 +4,7 @@ from urllib.error import HTTPError
 
 import discord
 from discord.ext import commands
+from discord.ext.commands import CommandInvokeError
 
 import config
 import util
@@ -33,7 +34,7 @@ async def export_dm_logs():
                 # print("Msgs={}".format(msgs))
                 chat_logging.write_to_file(recipient, msgs)
 
-        await asyncio.sleep(config.dm_poll_rate_seconds)  # task runs every 60 seconds
+        await asyncio.sleep(config.dm_poll_rate_seconds)  # task runs every x seconds
 
 
 async def trigger_export_logs():
@@ -85,9 +86,6 @@ async def on_message(message):
     if message.author.bot:
         return
 
-    if 'bad' in message.content:
-        await bot.send_message(message.author, "Hai")
-        return
     if config.allow_pming and message.channel.is_private and 'help' in message.content.lower():
         await bot.send_message(message.channel,
                                "Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
@@ -116,8 +114,9 @@ def parse_pob(author, content, minify=False):
     paste_keys = pastebin.fetch_paste_key(content)
     if paste_keys:
         xml = None
-        log.info("Parsing pastebin with key={}".format(paste_keys))
         paste_key=random.choice(paste_keys)
+        log.info("Parsing pastebin with key={} from author={}".format(paste_key,author))
+
         try:
             xml = pastebin.get_as_xml(paste_key)
         except HTTPError as err:

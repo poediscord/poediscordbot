@@ -5,11 +5,6 @@ from bot.output import defense_output, config_output, charges_output, skill_outp
 from models import Build, Gem, Skill
 
 
-def wrap_codeblock(string, lang='css'):
-    return '```' + lang + '\n' + string + '```'
-
-
-
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     """
     Create the basic embed we add information to
