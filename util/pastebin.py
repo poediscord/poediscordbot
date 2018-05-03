@@ -22,9 +22,9 @@ def fetch_paste_key(content):
     """
     if 'raw' in content:
         content = content.replace('raw/', '')
-    regex = r".*pastebin.com\/(\S*)"
+    regex = r"pastebin.com\/(\S*)"
     results = re.findall(regex, content)
-    return results[0]
+    return results
 
 
 def decode_base64_and_inflate(b64string):

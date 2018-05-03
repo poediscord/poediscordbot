@@ -9,7 +9,8 @@
 - [discord.py](https://github.com/Rapptz/discord.py)
 - [PoBPreviewBott](https://github.com/aggixx/PoBPreviewBot)
 - [LiftDiscord Bot](https://github.com/andreandersen/LiftDiscord/)
-
+### Important
+- Setting your own keyword has been disabled via the config. You need to change it in
 ### Finished
 - Support for having active channels where the bot fetches all pastebin links and tries to past
 - Support for having passive channels where the bot only triggers when using the command

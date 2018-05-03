@@ -1,4 +1,5 @@
 import asyncio
+import random
 from urllib.error import HTTPError
 
 import discord
@@ -84,6 +85,9 @@ async def on_message(message):
     if message.author.bot:
         return
 
+    if 'bad' in message.content:
+        await bot.send_message(message.author, "Hai")
+        return
     if config.allow_pming and message.channel.is_private and 'help' in message.content.lower():
         await bot.send_message(message.channel,
                                "Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a detailled respoonse.")
@@ -109,11 +113,11 @@ def parse_pob(author, content, minify=False):
     :param argument: optional: arguments to determine the output
     :return: Embed
     """
-    paste_key = pastebin.fetch_paste_key(content)
-    if paste_key:
+    paste_keys = pastebin.fetch_paste_key(content)
+    if paste_keys:
         xml = None
-        log.info("Parsing pastebin with key={}".format(paste_key))
-
+        log.info("Parsing pastebin with key={}".format(paste_keys))
+        paste_key=random.choice(paste_keys)
         try:
             xml = pastebin.get_as_xml(paste_key)
         except HTTPError as err:

@@ -7,8 +7,7 @@ import os
 ## --  Main
 # Enter discord token from https://discordapp.com/developers/applications/me/
 token = 'yoursupersecrettoken'
-# keywords to trigger the bot in passive channels
-keywords = ['!pob']
+
 # reacts to pastebin posts with pob info in these channels
 active_channels = ['active-pob']
 # debug level
