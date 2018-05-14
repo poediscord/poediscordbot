@@ -47,7 +47,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     return embed
 
 
-def generate_response(author, build: Build, minified=False):
+def generate_response(author, build: Build, minified=False,pastebin=None):
     """
     Build an embed to respond to the user.
     :param author: name of the person triggering the action
@@ -76,5 +76,12 @@ def generate_response(author, build: Build, minified=False):
         if conf_str:
             embed.add_field(name="Config", value=conf_str, inline=minified)
     # output
-    embed.add_field(name='Tree:', value=build.tree)
+    info_text=""
+    if pastebin:
+        print(pastebin)
+        info_text+="[Pastebin](https://pastebin.com/"+pastebin+") - "
+
+    info_text+= "[WebTree ]("+build.tree+") - powered by [Path of Building](https://github.com/Openarl/PathOfBuilding). "
+    embed.add_field(name='Info:', value=info_text)
+
     return embed

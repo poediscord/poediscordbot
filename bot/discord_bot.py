@@ -125,7 +125,7 @@ def parse_pob(author, content, minify=False):
             build = pob_parser.parse_build(xml)
             # print(build)
             try:
-                embed = pob_output.generate_response(author, build, minified=minify)
+                embed = pob_output.generate_response(author, build, minified=minify,pastebin=paste_key)
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
