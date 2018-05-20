@@ -1,5 +1,6 @@
 from bot.consts.thresholds import OutputThresholds
 from models import Skill
+from bot.util import build_checker
 
 
 def calc_max(comparison_dps: []):
@@ -30,6 +31,32 @@ def show_avg_damage(active_skill: Skill) -> bool:
         return show_avg
 
 
+def get_damage_output(build, avg, dps):
+    output = ""
+    speed = build.get_stat('Player', 'Speed')
+    if show_avg_damage(build.get_active_skill()) or avg > dps:
+        output += "**AVG**: {avg:,.0f}\n".format(
+            avg=avg)
+    else:
+        output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
+            dps=dps,
+            speed=round(speed, 2) if speed else 0)
+
+    crit_chance = build.get_stat('Player', 'CritChance', )
+    crit_multi = build.get_stat('Player', 'CritMultiplier')
+    if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
+        output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
+            crit_chance=crit_chance,
+            crit_multi=crit_multi * 100 if crit_multi else 150)
+
+    acc = build.get_stat('Player', 'HitChance', )
+
+    if acc and acc < OutputThresholds.ACCURACY.value:
+        output += "**Hit Chance**: {:.2f}%".format(acc)
+
+def get_support_outptut(build):
+    return "Auras: {}, Curses: {}".format(build.aura_count,build.curse_count)
+
 def get_offense(build):
     output = ""
     # Basics
@@ -38,27 +65,8 @@ def get_offense(build):
     comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage')]
     dps = calc_max(comparison_dps)
     avg = calc_max(comparison_avg)
-
-    if dps > 0 or avg > 0:
-        speed = build.get_stat('Player', 'Speed')
-        if show_avg_damage(build.get_active_skill()) or avg > dps:
-            output += "**AVG**: {avg:,.0f}\n".format(
-                avg=avg)
-        else:
-            output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
-                dps=dps,
-                speed=round(speed, 2) if speed else 0)
-
-        crit_chance = build.get_stat('Player', 'CritChance', )
-        crit_multi = build.get_stat('Player', 'CritMultiplier')
-        if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
-            output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
-                crit_chance=crit_chance,
-                crit_multi=crit_multi * 100 if crit_multi else 150)
-
-        acc = build.get_stat('Player', 'HitChance', )
-
-        if acc and acc < OutputThresholds.ACCURACY.value:
-            output += "**Hit Chance**: {:.2f}%".format(acc)
-
-        return output
+    if build_checker.is_support(build):
+        output+=get_support_outptut(build)
+    elif dps > 0 or avg > 0:
+        output+=get_damage_output(build, avg, dps)
+    return output

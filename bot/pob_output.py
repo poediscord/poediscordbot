@@ -1,11 +1,13 @@
 from discord import Embed
 
 import config
+from bot.util import build_checker
+from bot.consts.thresholds import OutputThresholds
 from bot.output import defense_output, config_output, charges_output, skill_output, offense_output
 from models import Build, Gem, Skill
 
 
-def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
+def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
     """
     Create the basic embed we add information to
     :param author: of the parsed message - str
@@ -18,11 +20,12 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     """
     embed = Embed(title='tmp', color=config.color)
     gem_name = "Undefined"
-    if main_skill:
+    if is_support:
+        gem_name = "Support"
+    elif main_skill:
         main_gem = main_skill.get_selected()
         if isinstance(main_gem, Gem):
             gem_name = main_gem.name
-
 
     if ascendency_name or class_name:
         url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
@@ -34,7 +37,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
         gem=gem_name,
         level=level)
     if author:
-        displayed_name=None
+        displayed_name = None
         try:
             displayed_name = author.nick
         except AttributeError:
@@ -47,7 +50,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill):
     return embed
 
 
-def generate_response(author, build: Build, minified=False,pastebin=None):
+def generate_response(author, build: Build, minified=False, pastebin=None):
     """
     Build an embed to respond to the user.
     :param author: name of the person triggering the action
@@ -55,15 +58,17 @@ def generate_response(author, build: Build, minified=False,pastebin=None):
     :param minified (bool): whether to get a minified version or the full one
     :return: Filled embed for discord
     """
+    is_support = build_checker.is_support(build)
     embed = create_embed(author, build.level, build.ascendency_name, build.class_name,
-                         build.get_active_skill())
+                         build.get_active_skill(), is_support)
     # add new fields
     def_str = defense_output.get_defense_string(build)
     if def_str:
         embed.add_field(name="Defense", value=def_str, inline=minified)
     offense = offense_output.get_offense(build)
     if offense:
-        embed.add_field(name="Offense", value=offense, inline=minified)
+        embed.add_field(name="Offense" if not build_checker.is_support(build) else "Support", value=offense, inline=minified)
+
     charges_str = charges_output.get_charges(build)
     if charges_str:
         embed.add_field(name="Charges", value=charges_str, inline=minified)
@@ -76,12 +81,11 @@ def generate_response(author, build: Build, minified=False,pastebin=None):
         if conf_str:
             embed.add_field(name="Config", value=conf_str, inline=minified)
     # output
-    info_text=""
+    info_text = ""
     if pastebin:
-        print(pastebin)
-        info_text+="[Pastebin](https://pastebin.com/"+pastebin+") - "
+        info_text += "[Pastebin](https://pastebin.com/" + pastebin + ") | "
 
-    info_text+= "[WebTree ]("+build.tree+") - powered by [Path of Building](https://github.com/Openarl/PathOfBuilding). "
+    info_text += "[WebTree ](" + build.tree + ") - powered by [Path of Building](https://github.com/Openarl/PathOfBuilding). "
     embed.add_field(name='Info:', value=info_text)
 
     return embed

@@ -38,3 +38,7 @@ class OutputThresholds(Enum):
 
     #Charges
     CHARGE_MAXIMUM = 3
+
+    #AURAS AND CURSES
+    CURSE_SUPPORT=3
+    AURA_SUPPORT=3

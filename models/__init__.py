@@ -1,5 +1,6 @@
 import re
 
+from util import poe_consts
 from util.logging import log
 from util.pob import pob_conf
 
@@ -125,6 +126,24 @@ class Build:
         self.skills = skills
         self.active_skill_id = int(activeSkill)
         self.item_slots = item_slots
+        self.aura_count, self.curse_count = self.count_curses_auras()
+
+    def count_curses_auras(self):
+        """
+        Iterates through all skills and gems and counts socketed auras and curses
+        :return: auracount, curse count as named tuple
+        """
+        aura_count=0
+        curse_count=0
+        for skill in self.skills:
+            for gem in skill.gems:
+                if gem.enabled:
+                    if gem.name in poe_consts.curse_list:
+                        curse_count+=1
+                    if gem.name in poe_consts.aura_list:
+                        aura_count+=1
+        return aura_count, curse_count
+
 
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
