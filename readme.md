@@ -27,8 +27,8 @@
         - Arrows
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
 - Add support for Keystones
-    - Add support for Endu/Frenzy/Power Charges
     - Number of totems
+- Support for Auras from Items (check if they're active)
 - Add support for "Notable" Uniques that are displayed in the extended version
 - !pob `manually input build name here` <pob link>
 
