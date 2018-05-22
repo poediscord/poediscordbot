@@ -31,6 +31,8 @@
 - Support for Auras from Items (check if they're active)
 - Add support for "Notable" Uniques that are displayed in the extended version
 - !pob `manually input build name here` <pob link>
+- Split auras into def and supporting auras
+
 
 ### How To Run
 - Copy and rename `config.example.py`
