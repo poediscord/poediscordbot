@@ -1,14 +1,16 @@
 import unittest
+
 import defusedxml.ElementTree as ET
-from bot.pob_parser import parse_build
-from models import Build, Skill, Gem
+from src.bot.pob_parser import parse_build
+
+from src.models import Build, Skill, Gem
 
 
 def load_test_build(file='in/jugg_tectonic.xml'):
-    xml_str = open(file).read()
-    xml = ET.fromstring(xml_str)
-    parse_build(xml)
-    return parse_build(xml)
+    with open(file, 'r') as f:
+        xml = ET.fromstring(f.read())
+        parse_build(xml)
+        return parse_build(xml)
 
 
 class TestParser(unittest.TestCase):
@@ -33,7 +35,7 @@ class TestParser(unittest.TestCase):
     def test_item_slots(self):
         build = load_test_build()
         # Test build has exactly 14 equipped items
-        self.assertEquals(len(build.item_slots),14)
+        self.assertEqual(len(build.item_slots),14)
 
 
 

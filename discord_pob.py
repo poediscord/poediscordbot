@@ -1,8 +1,6 @@
-import sys
-
 import config
-from bot.discord_bot import bot
-from util.logging import log
+from src.bot.discord_bot import bot
+from src.util.logging import log
 
 if __name__ == '__main__':
     token = config.token  # create config.py file and enter a new string!
