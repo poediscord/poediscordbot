@@ -1,6 +1,7 @@
 import asyncio
 import random
 from urllib.error import HTTPError
+import traceback
 
 import discord
 from discord.ext import commands
@@ -129,4 +130,4 @@ def parse_pob(author, content, minify=False):
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
-                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, e))
+                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))

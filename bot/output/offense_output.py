@@ -53,6 +53,7 @@ def get_damage_output(build, avg, dps):
 
     if acc and acc < OutputThresholds.ACCURACY.value:
         output += "**Hit Chance**: {:.2f}%".format(acc)
+    return output
 
 def get_support_outptut(build):
     return "Auras: {}, Curses: {}".format(build.aura_count,build.curse_count)
