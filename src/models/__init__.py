@@ -1,8 +1,8 @@
 import re
 
-from src.util import poe_consts
-from src.util.logging import log
-from src.util.pob import pob_conf
+from util import poe_consts
+from util.logging import log
+from util.pob import pob_conf
 
 
 class Gem:
@@ -28,9 +28,10 @@ class Gem:
 
 
 class Skill:
-    def __init__(self, gems, main_active_skill, slot=None):
+    def __init__(self, gems, main_active_skill, slot=None, enabled=False):
         self.slot = slot
         self.gems = gems
+        self.enabled = True if enabled == 'true' else False
         try:
             self.main_active_skill = int(main_active_skill)
         except:
@@ -38,8 +39,8 @@ class Skill:
         self.links = len(gems)
 
     def __repr__(self) -> str:
-        return "Skill [slot={}; gems={}; links={}; selected={}]".format(self.slot, self.gems, self.links,
-                                                                        self.main_active_skill)
+        return "Skill [slot={}; gems={}; links={}; selected={}; enabled={}]".format(self.slot, self.gems, self.links,
+                                                                        self.main_active_skill,self.enabled)
 
     def get_selected(self):
         if self.main_active_skill:
@@ -52,8 +53,7 @@ class Skill:
         # Join the gem names, if they are in the slected skill group and if they are enabled. Show quality and level if level is >20 or quality is set.
         ret = join_str.join(
             [gem.name + " ({}/{})".format(gem.level, gem.quality) if (gem.level > 20 or gem.quality > 0)
-             else gem.name for gem in self.gems if
-             gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()])
+             else gem.name for gem in self.gems if gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
@@ -134,16 +134,18 @@ class Build:
         Iterates through all skills and gems and counts socketed auras and curses
         :return: auracount, curse count as named tuple
         """
-        aura_count = 0
-        curse_count = 0
+        aura_count=0
+        curse_count=0
         for skill in self.skills:
-            for gem in skill.gems:
-                if gem.enabled:
-                    if gem.name in poe_consts.curse_list:
-                        curse_count += 1
-                    if gem.name in poe_consts.aura_list:
-                        aura_count += 1
+            if skill.enabled:
+                for gem in skill.gems:
+                    if gem.enabled:
+                        if gem.name in poe_consts.curse_list:
+                            curse_count+=1
+                        if gem.name in poe_consts.aura_list:
+                            aura_count+=1
         return aura_count, curse_count
+
 
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string

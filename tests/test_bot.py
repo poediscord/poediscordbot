@@ -9,7 +9,7 @@ def get_links(file="in/pastebins.txt"):
         return [line.rstrip() for line in file.readlines() if "#" not in line]
 
 
-class TestParser(unittest.TestCase):
+class TestBot(unittest.TestCase):
     def test_bot_parse_routine(self):
         """
         Tests whether all links inside of the file can be successfully parsed
