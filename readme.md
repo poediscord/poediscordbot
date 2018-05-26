@@ -45,6 +45,8 @@
 - Run `discord_pob.py`
 - Bot logs into `discord_pob.log`
 
+If you need more thorough insturctions see the wiki entry: [Usage](https://github.com/FWidm/discord-pob/wiki/Usage)
+
 ### Usage
 - Bot reacts to `!pob <pastebin (not raw!) link>` in all configured passive channels on the invited server or to pastebin links it can parse in active channels.
 
