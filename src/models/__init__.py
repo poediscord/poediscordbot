@@ -46,7 +46,8 @@ class Skill:
         if self.main_active_skill:
             active_skills = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
             # print(active_skills)
-            return active_skills[self.main_active_skill - 1]
+            print(active_skills)
+            return active_skills[self.main_active_skill - 1] if len(active_skills) > 0 else None
         return None
 
     def get_links(self, item=None, join_str=" + "):
