@@ -13,9 +13,15 @@ class Gem:
         self.id = id
         self.skill_part = int(skill_part) if skill_part else None
         self.enabled = True if enabled == 'true' else False
+        self.second_name = name.split("Vaal ", 1)
+        if len(self.second_name) > 1:
+            self.second_name = self.second_name[1]
+        else:
+            self.second_name = None
+        self.active_skill = 0
 
     def __repr__(self) -> str:
-        return "Gem [name={}]".format(self.name)
+        return "Gem [name={}]".format(self.name if self.active_skill == 0 else self.second_name)
 
     def translate_name(self, name):
         if name == 'UniqueAnimateWeapon':
@@ -40,21 +46,35 @@ class Skill:
 
     def __repr__(self) -> str:
         return "Skill [slot={}; gems={}; links={}; selected={}; enabled={}]".format(self.slot, self.gems, self.links,
-                                                                        self.main_active_skill,self.enabled)
+                                                                                    self.main_active_skill,
+                                                                                    self.enabled)
 
     def get_selected(self):
+        """
+        Gets the selected main skill gem. first filter the this gem to only allow supports, then get the right gem
+        via the main_active_skill.
+        With new Vaal skills: Players can select the non vaal version in index+1 which is not saved in the xml.
+        :return:
+        """
+        gem = None
+
         if self.main_active_skill:
-            active_skills = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
-            # print(active_skills)
-            print(active_skills)
-            return active_skills[self.main_active_skill - 1] if len(active_skills) > 0 else None
-        return None
+            active_gems = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
+            if self.main_active_skill > len(active_gems):
+                try:
+                    gem = active_gems[self.main_active_skill - 1]
+                except IndexError as err:  # vaal skill
+                    gem = active_gems[self.main_active_skill - 2]
+                    gem.active_skill = 1
+        return gem
 
     def get_links(self, item=None, join_str=" + "):
-        # Join the gem names, if they are in the slected skill group and if they are enabled. Show quality and level if level is >20 or quality is set.
+        # Join the gem names, if they are in the selected skill group and if they are enable d. Show quality and level
+        # if level is >20 or quality is set.
         ret = join_str.join(
             [gem.name + " ({}/{})".format(gem.level, gem.quality) if (gem.level > 20 or gem.quality > 0)
-             else gem.name for gem in self.gems if gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()])
+             else gem.name for gem in self.gems if
+             gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()])
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
@@ -135,18 +155,17 @@ class Build:
         Iterates through all skills and gems and counts socketed auras and curses
         :return: auracount, curse count as named tuple
         """
-        aura_count=0
-        curse_count=0
+        aura_count = 0
+        curse_count = 0
         for skill in self.skills:
             if skill.enabled:
                 for gem in skill.gems:
                     if gem.enabled:
                         if gem.name in poe_consts.curse_list:
-                            curse_count+=1
+                            curse_count += 1
                         if gem.name in poe_consts.aura_list:
-                            aura_count+=1
+                            aura_count += 1
         return aura_count, curse_count
-
 
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
