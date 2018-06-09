@@ -23,6 +23,9 @@ class Gem:
     def __repr__(self) -> str:
         return "Gem [name={}]".format(self.name if self.active_skill == 0 else self.second_name)
 
+    def get_name(self):
+        return self.name if self.active_skill == 0 else self.second_name
+
     def translate_name(self, name):
         if name == 'UniqueAnimateWeapon':
             name = 'Manifest Dancing Dervish'
@@ -60,12 +63,16 @@ class Skill:
 
         if self.main_active_skill:
             active_gems = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
-            if self.main_active_skill > len(active_gems):
-                try:
-                    gem = active_gems[self.main_active_skill - 1]
-                except IndexError as err:  # vaal skill
-                    gem = active_gems[self.main_active_skill - 2]
-                    gem.active_skill = 1
+            full_list = []
+            # easier abstraction than calculating the stuff
+            for gem in active_gems:
+                if 'vaal' in gem.name.lower():
+                    full_list.append(gem)
+                full_list.append(gem)
+            if len(full_list) > 1:
+                gem = full_list[self.main_active_skill - 1]
+                # if the previous gem has the same name, toggle it to be the non val version.
+                gem.active_skill = 1 if gem == full_list[self.main_active_skill - 2] else 0
         return gem
 
     def get_links(self, item=None, join_str=" + "):
@@ -161,9 +168,9 @@ class Build:
             if skill.enabled:
                 for gem in skill.gems:
                     if gem.enabled:
-                        if gem.name in poe_consts.curse_list:
+                        if gem.get_name() in poe_consts.curse_list:
                             curse_count += 1
-                        if gem.name in poe_consts.aura_list:
+                        if gem.get_name() in poe_consts.aura_list:
                             aura_count += 1
         return aura_count, curse_count
 

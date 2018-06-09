@@ -118,5 +118,6 @@ def parse_skills(xml_skills):
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:
             pass
+
         skills.append(Skill(gems, skill.attrib['mainActiveSkill'], slot, skill.attrib['enabled']))
     return skills

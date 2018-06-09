@@ -22,10 +22,10 @@ def show_avg_damage(active_skill: Skill) -> bool:
     :return: boolean
     """
     if active_skill:
-        show_avg = any("mine" in gem.name.lower() for gem in active_skill.gems)
-        show_avg = show_avg or any("trap" in gem.name.lower() for gem in active_skill.gems)
+        show_avg = any("mine" in gem.get_name().lower() for gem in active_skill.gems)
+        show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems)
         show_avg = show_avg or any(
-            "firestorm" in gem.name.lower() or "ice storm" in gem.name.lower() for gem in active_skill.gems)
+            "firestorm" in gem.get_name().lower() or "ice storm" in gem.get_name().lower() for gem in active_skill.gems)
 
         return show_avg
 

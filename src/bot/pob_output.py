@@ -24,7 +24,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     elif main_skill:
         main_gem = main_skill.get_selected()
         if isinstance(main_gem, Gem):
-            gem_name = main_gem.name
+            gem_name = main_gem.get_name()
 
     if ascendency_name or class_name:
         url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
