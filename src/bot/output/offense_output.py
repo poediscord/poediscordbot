@@ -67,7 +67,7 @@ def get_offense(build):
     comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage')]
     dps = calc_max(comparison_dps)
     avg = calc_max(comparison_avg)
-    if build_checker.is_support(build):
+    if build_checker.is_support(build, dps, avg):
         output += get_support_outptut(build)
     elif dps > 0 or avg > 0:
         output += get_damage_output(build, avg, dps)

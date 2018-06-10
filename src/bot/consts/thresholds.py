@@ -41,3 +41,5 @@ class OutputThresholds(Enum):
     # AURAS AND CURSES
     CURSE_SUPPORT = 3
     AURA_SUPPORT = 3
+    DPS_SUPPORT = 100000
+    AVG_SUPPORT = 20000
