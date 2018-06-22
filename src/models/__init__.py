@@ -153,7 +153,7 @@ class Build:
         self.config = {}
         self.tree = tree
         self.skills = skills
-        self.active_skill_id = int(activeSkill)
+        self.active_skill_id = int(activeSkill) if activeSkill else None
         self.item_slots = item_slots
         self.aura_count, self.curse_count = self.count_curses_auras()
 
@@ -215,6 +215,7 @@ class Build:
         return ret
 
     def get_active_skill(self):
-        if len(self.skills) < 1 or self.active_skill_id < 1:
+
+        if len(self.skills) < 1 or self.active_skill_id == None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]
