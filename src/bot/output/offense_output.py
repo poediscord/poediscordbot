@@ -60,6 +60,11 @@ def get_support_outptut(build):
 
 
 def get_offense(build):
+    """
+    Parses the meat of the build as in either support or dmg stats
+    :param build:  Build instance
+    :return: String (Support|Offense), String (Output)
+    """
     output = ""
     # Basics
     comparison_dps = [build.get_stat('Player', 'TotalDPS'), build.get_stat('Player', 'WithPoisonDPS'),
@@ -67,8 +72,8 @@ def get_offense(build):
     comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage')]
     dps = calc_max(comparison_dps)
     avg = calc_max(comparison_avg)
+    print(dps, avg)
     if build_checker.is_support(build, dps, avg):
-        output += get_support_outptut(build)
+        return "Support", get_support_outptut(build)
     elif dps > 0 or avg > 0:
-        output += get_damage_output(build, avg, dps)
-    return output
+        return "Offense", get_damage_output(build, avg, dps)
