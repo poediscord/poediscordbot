@@ -19,9 +19,7 @@ bot.remove_command('help')
 
 async def export_dm_logs():
     while not bot.is_closed:
-
-        log.info("Exporting all DMs. channels: {}".format(len(bot.private_channels)))
-
+        # log.info("Exporting all DMs. channels: {}".format(len(bot.private_channels)))
         for ch in bot.private_channels:
             recipient = ch.recipients[0]
             if recipient:
