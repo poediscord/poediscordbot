@@ -121,8 +121,10 @@ def parse_pob(author, content, minify=False):
             # print(build)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key)
+                print(embed)
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
+                raise e
                 log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
                     traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
