@@ -64,9 +64,9 @@ def generate_response(author, build: Build, minified=False, pastebin=None):
     def_str = defense_output.get_defense_string(build)
     if def_str:
         embed.add_field(name="Defense", value=def_str, inline=minified)
-    offense = offense_output.get_offense(build)
+    key, offense = offense_output.get_offense(build)
     if offense:
-        embed.add_field(name="Offense" if not build_checker.is_support(build) else "Support", value=offense,
+        embed.add_field(name=key, value=offense,
                         inline=minified)
 
     charges_str = charges_output.get_charges(build)

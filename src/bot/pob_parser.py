@@ -23,7 +23,7 @@ def parse_build(xml_root):
     # parse items
     item_slots = parse_item_slots(xml_items)
     skills = parse_skills(xml_skills)
-    active_skill = xml_build.attrib['mainSocketGroup']
+    active_skill = get_attrib_if_exists(xml_build,'mainSocketGroup')
 
     build = Build(xml_build.attrib['level'], xml_build.attrib['targetVersion'],
                   get_attrib_if_exists(xml_build, 'bandit'),
@@ -36,18 +36,21 @@ def parse_build(xml_root):
             log.info("Encountered unsupported player stat: k={}, v={}".format(player_stat.tag, player_stat.attrib))
 
     # parse config
-    for input in xml_root.find('Config'):
-        if input.tag == "Input":
-            extracted = [val for (key, val) in input.attrib.items()]
-            if len(extracted) < 1:
-                continue
-            build.append_conf(extracted[0], extracted[1])
+    config = xml_root.find('Config')
+    if not config == None:
+        for input in xml_root.find('Config'):
+            if input.tag == "Input":
+                extracted = [val for (key, val) in input.attrib.items()]
+                if len(extracted) < 1:
+                    continue
+                build.append_conf(extracted[0], extracted[1])
 
     return build
 
 
 def get_tree_link(tree):
-    tree_index = get_attrib_if_exists(tree, 'activeSpec')
+    active_spec=get_attrib_if_exists(tree, 'activeSpec')
+    tree_index = active_spec if active_spec else 1
     if tree_index:
         # when a tree was selected, get the corresponding url
         selected_tree = tree[int(tree_index) - 1].find('URL').text
@@ -118,6 +121,5 @@ def parse_skills(xml_skills):
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:
             pass
-
-        skills.append(Skill(gems, skill.attrib['mainActiveSkill'], slot, skill.attrib['enabled']))
+        skills.append(Skill(gems, get_attrib_if_exists(skill,'mainActiveSkill'), slot, skill.attrib['enabled']))
     return skills
