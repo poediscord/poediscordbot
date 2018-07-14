@@ -7,7 +7,7 @@ from src.util.pob import pob_conf
 
 class Gem:
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
-        self.name = self.translate_name(name)
+        self.name = self.translate_name(id) if name == "" else name
         self.level = int(level)
         self.quality = int(quality)
         self.id = id
@@ -26,14 +26,14 @@ class Gem:
     def get_name(self):
         return self.name if self.active_skill == 0 else self.second_name
 
-    def translate_name(self, name):
-        if name == 'UniqueAnimateWeapon':
-            name = 'Manifest Dancing Dervish'
-        if name == 'ChaosDegenAuraUnique':
-            name = "Death Aura"
-        if name == 'IcestormUniqueStaff12':
-            name = "Ice Storm"
-        return name
+    def translate_name(self, id):
+        if id == 'UniqueAnimateWeapon':
+            id = 'Manifest Dancing Dervish'
+        if id == 'ChaosDegenAuraUnique':
+            id = "Death Aura"
+        if id == 'IcestormUniqueStaff12':
+            id = "Ice Storm"
+        return id
 
 
 class Skill:

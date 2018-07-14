@@ -33,13 +33,15 @@ def show_avg_damage(active_skill: Skill) -> bool:
 def get_damage_output(build, avg, dps):
     output = ""
     speed = build.get_stat('Player', 'Speed')
+    minion_speed = build.get_stat('Minion', 'Speed')
     if show_avg_damage(build.get_active_skill()) or avg > dps:
         output += "**AVG**: {avg:,.0f}\n".format(
             avg=avg)
     else:
+        shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
         output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
             dps=dps,
-            speed=round(speed, 2) if speed else 0)
+            speed=round(shown_speed, 2) if shown_speed else min)
 
     crit_chance = build.get_stat('Player', 'CritChance', )
     crit_multi = build.get_stat('Player', 'CritMultiplier')
