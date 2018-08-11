@@ -24,9 +24,8 @@ def show_avg_damage(active_skill: Skill) -> bool:
     if active_skill:
         show_avg = any("mine" in gem.get_name().lower() for gem in active_skill.gems)
         show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems)
-        # fixme: doesnt work if players mash in more than one skillgem in their setup. e.g. flameblast+firestorm => shows avg.
-        show_avg = show_avg or any(
-            "firestorm" in gem.get_name().lower() or "ice storm" in gem.get_name().lower() for gem in active_skill.gems)
+        selected_skill = active_skill.get_selected().get_name()
+        show_avg = show_avg or "firestorm" in selected_skill.lower() or "ice storm" in selected_skill.lower()
 
         return show_avg
 
