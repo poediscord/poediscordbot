@@ -6,6 +6,8 @@ from src.util.pob import pob_conf
 
 
 class Gem:
+    __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active'
+
     def __init__(self, id, name, level, quality, skill_part, enabled=''):
         self.name = self.translate_name(id) if name == "" else name
         self.level = int(level)
@@ -18,13 +20,21 @@ class Gem:
             self.second_name = self.second_name[1]
         else:
             self.second_name = None
-        self.active_skill = 0
+        self.active_part = 0
+        self.is_active = self.determine_active(self.id)
 
     def __repr__(self) -> str:
-        return "Gem [name={}]".format(self.name if self.active_skill == 0 else self.second_name)
+        return "Gem [name={}]".format(self.get_name())
+
+    def determine_active(self, id):
+        return "Support".lower() not in id.lower()
+
 
     def get_name(self):
-        return self.name if self.active_skill == 0 else self.second_name
+        return self.name if self.active_part == 0 else self.second_name
+
+    def set_active_part(self, part_id):
+        self.active_part = part_id
 
     def translate_name(self, id):
         if id == 'UniqueAnimateWeapon':
@@ -72,7 +82,7 @@ class Skill:
             if len(full_list) > 1:
                 gem = full_list[self.main_active_skill - 1]
                 # if the previous gem has the same name, toggle it to be the non val version.
-                gem.active_skill = 1 if gem == full_list[self.main_active_skill - 2] else 0
+                gem.set_active_part(1 if gem == full_list[self.main_active_skill - 2] else 0)
         return gem
 
     def get_links(self, item=None, join_str=" + "):
