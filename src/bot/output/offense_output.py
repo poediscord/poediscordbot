@@ -24,6 +24,7 @@ def show_avg_damage(active_skill: Skill) -> bool:
     if active_skill:
         show_avg = any("mine" in gem.get_name().lower() for gem in active_skill.gems)
         show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems)
+        # fixme: doesnt work if players mash in more than one skillgem in their setup. e.g. flameblast+firestorm => shows avg.
         show_avg = show_avg or any(
             "firestorm" in gem.get_name().lower() or "ice storm" in gem.get_name().lower() for gem in active_skill.gems)
 
@@ -71,7 +72,7 @@ def get_offense(build):
     # Basics
     comparison_dps = [build.get_stat('Player', 'TotalDPS'), build.get_stat('Player', 'WithPoisonDPS'),
                       build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
-    comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage')]
+    comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage'), build.get_stat("Player", "AverageDamage")]
     dps = calc_max(comparison_dps)
     avg = calc_max(comparison_avg)
     if build_checker.is_support(build, dps, avg):

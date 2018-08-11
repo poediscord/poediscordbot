@@ -83,9 +83,10 @@ def generate_response(author, build: Build, minified=False, pastebin=None):
     # output
     info_text = ""
     if pastebin:
-        info_text += "[Pastebin](https://pastebin.com/" + pastebin + ") | "
+        info_text += "[Pastebin](https://pastebin.com/{}) | ".format(pastebin)
 
-    info_text += "[WebTree ](" + build.tree + ") - powered by [Path of Building](https://github.com/Openarl/PathOfBuilding). "
+    info_text += "[Web Tree]({}) | [**Web Preview**](https://poe.technology/poebuddy/{}) - created in [Path of Building](https://github.com/Openarl/PathOfBuilding). ".format(
+        build.tree, pastebin)
     embed.add_field(name='Info:', value=info_text)
 
     return embed
