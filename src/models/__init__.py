@@ -62,6 +62,9 @@ class Skill:
                                                                                     self.main_active_skill,
                                                                                     self.enabled)
 
+    def get_active_gems(self):
+        return [gem for gem in self.gems if gem.is_active]
+
     def get_selected(self):
         """
         Gets the selected main skill gem. first filter the this gem to only allow supports, then get the right gem
