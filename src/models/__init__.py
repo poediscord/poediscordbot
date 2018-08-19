@@ -27,7 +27,7 @@ class Gem:
         return "Gem [name={}]".format(self.get_name())
 
     def determine_active(self, id):
-        return "Support".lower() not in id.lower()
+        return False if not id else  "Support".lower() not in id.lower()
 
 
     def get_name(self):
@@ -92,9 +92,12 @@ class Skill:
         # Join the gem names, if they are in the selected skill group and if they are enable d. Show quality and level
         # if level is >20 or quality is set.
         ret = join_str.join(
-            [gem.name + " ({}/{})".format(gem.level, gem.quality) if (gem.level > 20 or gem.quality > 0)
-             else gem.name for gem in self.gems if
-             gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()])
+            [gem.name + " ({}/{})".format(gem.level, gem.quality)
+             if (gem.level > 20 or gem.quality > 0)
+             else gem.name for gem in self.gems if gem.name and
+             gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()]
+        )
+
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):

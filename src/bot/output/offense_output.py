@@ -22,26 +22,34 @@ def show_avg_damage(active_skill: Skill) -> bool:
     :return: boolean
     """
     if active_skill:
-        show_avg = any("mine" in gem.get_name().lower() for gem in active_skill.gems)
-        show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems)
-        selected_skill = active_skill.get_selected().get_name()
-        show_avg = show_avg or "firestorm" in selected_skill.lower() or "ice storm" in selected_skill.lower()
+        selected_skill = active_skill.get_selected()
+        show_avg = any("mine" in gem.get_name().lower() for gem in active_skill.gems if gem.get_name())
+        show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems if gem.get_name())
+        if selected_skill and selected_skill.get_name():
+            gem_name = selected_skill.get_name()
+            show_avg = show_avg or "firestorm" in gem_name.lower() or "ice storm" in gem_name.lower()
 
         return show_avg
 
 
-def get_damage_output(build, avg, dps):
+def get_damage_output(build, avg, dps, ignite_dps):
     output = ""
     speed = build.get_stat('Player', 'Speed')
     minion_speed = build.get_stat('Minion', 'Speed')
+    shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
+
     if show_avg_damage(build.get_active_skill()) or avg > dps:
         output += "**AVG**: {avg:,.0f}\n".format(
             avg=avg)
     else:
-        shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
         output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
             dps=dps,
             speed=round(shown_speed, 2) if shown_speed else min)
+
+    if ignite_dps > dps or (avg and ignite_dps > avg * shown_speed):
+        output += "**Ignite DPS**: {ignite:,.0f}\n".format(
+            ignite=ignite_dps
+        )
 
     crit_chance = build.get_stat('Player', 'CritChance', )
     crit_multi = build.get_stat('Player', 'CritMultiplier')
@@ -50,7 +58,7 @@ def get_damage_output(build, avg, dps):
             crit_chance=crit_chance,
             crit_multi=crit_multi * 100 if crit_multi else 150)
 
-    acc = build.get_stat('Player', 'HitChance', )
+    acc = build.get_stat('Player', 'HitChance')
 
     if acc and acc < OutputThresholds.ACCURACY.value:
         output += "**Hit Chance**: {:.2f}%".format(acc)
@@ -73,8 +81,9 @@ def get_offense(build):
                       build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
     comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage'), build.get_stat("Player", "AverageDamage")]
     dps = calc_max(comparison_dps)
+    ignite_dps = build.get_stat('Player', 'IgniteDPS')
     avg = calc_max(comparison_avg)
     if build_checker.is_support(build, dps, avg):
         return "Support", get_support_outptut(build)
     else:
-        return "Offense", get_damage_output(build, avg, dps)
+        return "Offense", get_damage_output(build, avg, dps, 0 if not ignite_dps else ignite_dps)

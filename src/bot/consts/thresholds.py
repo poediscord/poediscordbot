@@ -43,3 +43,4 @@ class OutputThresholds(Enum):
     AURA_SUPPORT = 3
     DPS_SUPPORT = 100000
     AVG_SUPPORT = 20000
+    IGNITE_DPS = 10000
