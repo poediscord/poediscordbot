@@ -27,7 +27,9 @@ def show_avg_damage(active_skill: Skill) -> bool:
         show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems if gem.get_name())
         if selected_skill and selected_skill.get_name():
             gem_name = selected_skill.get_name()
-            show_avg = show_avg or "firestorm" in gem_name.lower() or "ice storm" in gem_name.lower()
+            show_avg = show_avg or "firestorm" in gem_name.lower() \
+                       or "ice storm" in gem_name.lower() \
+                       or "molten burst" in gem_name.lower()
 
         return show_avg
 

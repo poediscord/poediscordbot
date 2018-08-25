@@ -43,6 +43,8 @@ class Gem:
             id = "Death Aura"
         if id == 'IcestormUniqueStaff12':
             id = "Ice Storm"
+        if id == 'TriggeredMoltenStrike':
+            id = "Molten Burst"
         return id
 
 
