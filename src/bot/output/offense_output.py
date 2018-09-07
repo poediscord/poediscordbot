@@ -44,9 +44,11 @@ def get_damage_output(build, avg, dps, ignite_dps):
         output += "**AVG**: {avg:,.0f}\n".format(
             avg=avg)
     else:
-        output += "**DPS**: {dps:,.0f} @ {speed}/s\n".format(
-            dps=dps,
-            speed=round(shown_speed, 2) if shown_speed else min)
+        output += "**DPS**: {dps:,.0f}".format(
+            dps=dps)
+        if shown_speed > 0:
+            output += "@ {speed}/s\n".format(
+                speed=round(shown_speed, 2) if shown_speed else 0)
 
     if ignite_dps > dps or (avg and ignite_dps > avg * shown_speed):
         output += "**Ignite DPS**: {ignite:,.0f}\n".format(
