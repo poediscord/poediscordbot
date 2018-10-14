@@ -12,14 +12,18 @@ def get_builds(file="in/specific_builds.json"):
         return json.loads(file.read())
 
 
+
 class TestBot(unittest.TestCase):
     def test_bot_parse_routine(self):
         """
-        Tests whether all links inside of the file can be successfully parsed
+        Tests whether all links inside of the file can be successfully parsed.
+        The key in the json has to either be  "level", "ascendency", "skill" or any of the categories in the bot output.
+        I.e. "Offense", "Defense", ...
         """
         demo_author = None
 
         json = get_builds()
+
         for build in json['builds']:
             with self.subTest(i=build['name']):
                 build_embed = parse_pob(demo_author, build['pastebin'])
@@ -28,23 +32,50 @@ class TestBot(unittest.TestCase):
                 print(embed_dict)
                 for assertion in build['assertions']:
                     print(assertion)
-                    term, value = assertion['key'], assertion['value']
-                    assertion_succeeded = False
-                    for field in embed_dict['fields']:
-                        if 'level' in term or 'lvl' in term:
-                            assertion_succeeded = value in embed_dict.get('title', '')
-                        elif 'ascendency' in term:
-                            assertion_succeeded = value in embed_dict.get('title', '')
-                            assertion_succeeded = assertion_succeeded or value in embed_dict.get('thumbnail', '').get(
-                                'url', '')
-                        # fixme: remove catchall and precisely go to the section where stuff should be in.
-                        elif value in field['value']:
-                            assertion_succeeded = True
+                    term, value, negated = assertion.get('key', ''), assertion.get('value', ''), assertion.get('not',
+                                                                                                               False)
 
-                        if assertion_succeeded:
-                            break
-                    self.assertTrue(assertion_succeeded,
-                                    msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
+                    if 'level' in term or 'lvl' in term:
+                        assertion_succeeded = value in embed_dict.get('title', '')
+                        self.assertTrue(assertion_succeeded,
+                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
+                    elif 'ascendency' in term:
+                        assertion_succeeded = value in embed_dict.get('title', '')
+                        assertion_succeeded = assertion_succeeded or value in embed_dict.get('thumbnail', '').get('url',
+                                                                                                                  '')
+                        self.assertTrue(assertion_succeeded,
+                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
+                    elif 'skill' in term:
+                        assertion_succeeded = value in embed_dict.get('title', '')
+                        self.assertTrue(assertion_succeeded,
+                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
+                    else:
+                        assertion_succeeded = False
+                        for field in embed_dict['fields']:
+                            assertion_succeeded = self.single_assert(field, term, value, negated)
+                            if assertion_succeeded:
+                                break
+
+    def single_assert(self, field, term, value, negated):
+        """
+        Assert that the term, value and whether the term is negated apply to the given field.
+        :param field: embed field to search
+        :param term: term we search for
+        :param value: we want to match
+        :param negated: negated
+        :return:  true if the assertion succeeded
+        """
+        do_check = term in field['name']
+        print(f"searching title={field['name']}for {term},{value} - negated? {negated}")
+
+        if do_check:
+            print(f"searching for {term},{value} - negated? {negated}")
+            if not negated:
+                self.assertTrue(value in field['value'],
+                                msg=f"Assertion ({term}:'{value}') in embed failed.")
+            elif negated:
+                self.assertTrue(value not in field['value'],
+                                msg=f"Assertion ({term}:'{value}') not in embed failed.")
 
 
 if __name__ == '__main__':
