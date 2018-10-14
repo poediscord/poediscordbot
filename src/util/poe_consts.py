@@ -48,3 +48,13 @@ unique_aura_dict = {
     "Victario's Flight": "Victario's Flight Aura",
     "Dying Breath": "Dying Breath Aura"
 }
+
+"""
+Utility skills
+"""
+utility_skills = [
+    "Immortal Call",
+    "Enduring Cry",
+    "Abyssal Cry",
+    "Immortal Call"
+]

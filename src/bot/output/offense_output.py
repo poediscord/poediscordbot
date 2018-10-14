@@ -79,7 +79,9 @@ def get_offense(build):
     :param build:  Build instance
     :return: String (Support|Offense), String (Output)
     """
-    output = ""
+    if not build_checker.has_offensive_ability(build):
+        return "None", None
+
     # Basics
     comparison_dps = [build.get_stat('Player', 'TotalDPS'), build.get_stat('Player', 'WithPoisonDPS'),
                       build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
