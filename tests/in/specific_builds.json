@@ -76,6 +76,30 @@
           "value": "90"
         }
       ]
+    },
+    {
+      "name": "Immortal Call Ascendant",
+      "description": "Should not show dps section.'",
+      "pastebin": "https://pastebin.com/958ujX7S",
+      "assertions": [
+        {
+          "key": "ascendency",
+          "value": "Ascendant"
+        },
+        {
+          "key": "skill",
+          "value": "Immortal Call"
+        },
+        {
+          "key": "level",
+          "value": "70"
+        },
+        {
+          "key": "Offense",
+          "value": "dps",
+          "not": true
+        }
+      ]
     }
   ]
 }
