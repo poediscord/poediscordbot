@@ -73,13 +73,13 @@ def get_support_outptut(build):
     return "Auras: {}, Curses: {}".format(build.aura_count, build.curse_count)
 
 
-def get_offense(build):
+def get_offense(build, consts=None):
     """
     Parses the meat of the build as in either support or dmg stats
     :param build:  Build instance
     :return: String (Support|Offense), String (Output)
     """
-    if not build_checker.has_offensive_ability(build):
+    if not build_checker.has_offensive_ability(build, consts):
         return "None", None
 
     # Basics

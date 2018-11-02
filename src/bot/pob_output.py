@@ -49,9 +49,10 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     return embed
 
 
-def generate_response(author, build: Build, minified=False, pastebin=None):
+def generate_response(author, build: Build, minified=False, pastebin=None, consts=None):
     """
     Build an embed to respond to the user.
+    :param consts: poe constants - skill info
     :param author: name of the person triggering the action
     :param build: build to parse an embed from
     :param minified (bool): whether to get a minified version or the full one
@@ -64,7 +65,7 @@ def generate_response(author, build: Build, minified=False, pastebin=None):
     def_str = defense_output.get_defense_string(build)
     if def_str:
         embed.add_field(name="Defense", value=def_str, inline=minified)
-    key, offense = offense_output.get_offense(build)
+    key, offense = offense_output.get_offense(build, consts)
     if offense:
         embed.add_field(name=key, value=offense,
                         inline=minified)

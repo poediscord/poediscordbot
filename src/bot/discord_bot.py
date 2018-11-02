@@ -10,7 +10,7 @@ import config
 from src import util
 from src.bot import pob_output
 from src.bot import pob_parser
-from src.util import pastebin, chat_logging
+from src.util import pastebin, chat_logging, poe_consts
 from src.util.logging import log
 
 bot = commands.Bot(command_prefix='!', description="x")
@@ -120,11 +120,11 @@ def parse_pob(author, content, minify=False):
             build = pob_parser.parse_build(xml)
             # print(build)
             try:
-                embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key)
+                embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key,
+                                                     consts=poe_consts)
                 print(embed)
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
-                raise e
                 log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
                     traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
