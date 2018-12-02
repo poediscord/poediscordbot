@@ -122,7 +122,6 @@ def parse_pob(author, content, minify=False):
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key,
                                                      consts=poe_consts)
-                print(embed)
                 log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
                 return embed
             except Exception as e:
