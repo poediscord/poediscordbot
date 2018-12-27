@@ -81,7 +81,13 @@ def get_secondary_def(build: Build):
     return "**Secondary:** " + output if output != "" else None
 
 
-def get_defense_string(build: Build):
+def get_keystones(keystones: list, minified=False):
+    show_abbrev = lambda x: minified and x['abbrev'] != None
+    keystone_strs = [keystone['name'] if not show_abbrev(keystone) else keystone['abbrev'] for keystone in keystones]
+    return "**Keystones**: " + ", ".join(keystone_strs)
+
+
+def get_defense_string(build: Build, keystones, minified):
     output = ""
     life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                  OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
@@ -125,4 +131,6 @@ def get_defense_string(build: Build):
         output += secondary_def
     output += get_resistances(build)
 
+    if keystones:
+        output += get_keystones(keystones, minified)
     return output

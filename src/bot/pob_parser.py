@@ -54,11 +54,11 @@ def get_tree_link(tree):
     if tree_index:
         # when a tree was selected, get the corresponding url
         selected_tree = tree[int(tree_index) - 1].find('URL').text
-        try:
-            return shrink_tree_url(selected_tree)
-        except ValueError as err:
-            log.error("Tree shrinking failed... err={}".format(err))
-            return selected_tree
+        # try:
+        return selected_tree
+        # except ValueError as err:
+        #     log.error("Tree shrinking failed... err={}".format(err))
+        #     return selected_tree
 
 
 def parse_item_slots(xml_items):

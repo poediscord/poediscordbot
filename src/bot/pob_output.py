@@ -5,6 +5,7 @@ from src.bot.output import config_output, charges_output, skill_output, offense_
 from src.bot.output import defense_output
 from src.bot.util import build_checker
 from src.models import Build, Gem, Skill
+from src.util import poe_tree_codec as poe_tree
 
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
@@ -59,12 +60,16 @@ def generate_response(author, build: Build, minified=False, pastebin=None, const
     :return: Filled embed for discord
     """
     is_support = build_checker.is_support(build)
+    _, _, _, _, node_list = poe_tree.decode_url(build.tree)
+    keystones = poe_tree.decode_keystones(node_list)
+
     embed = create_embed(author, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill(), is_support)
     # add new fields
-    def_str = defense_output.get_defense_string(build)
+    def_str = defense_output.get_defense_string(build, keystones, minified)
     if def_str:
-        embed.add_field(name="Defense", value=def_str, inline=minified)
+        embed.add_field(name="General", value=def_str, inline=minified)
+
     key, offense = offense_output.get_offense(build, consts)
     if offense:
         embed.add_field(name=key, value=offense,
