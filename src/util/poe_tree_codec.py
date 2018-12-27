@@ -32,7 +32,6 @@ def decode_url(payload: str) -> tuple:
     if payload.strip().startswith("https"):
         payload = payload[(payload.rindex('/') + 1):]
 
-    print(">>>" + payload)
     bytes = base64.urlsafe_b64decode(payload)
     # bytes 0-3 contain the version
     ver = struct.unpack(">i", bytes[0:4])[0]

@@ -1,8 +1,7 @@
 from discord import Embed
 
 import config
-from src.bot.output import config_output, charges_output, skill_output, offense_output
-from src.bot.output import defense_output
+from src.bot.output import config_output, charges_output, skill_output, offense_output, general_output
 from src.bot.util import build_checker
 from src.models import Build, Gem, Skill
 from src.util import poe_tree_codec as poe_tree
@@ -66,9 +65,9 @@ def generate_response(author, build: Build, minified=False, pastebin=None, const
     embed = create_embed(author, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill(), is_support)
     # add new fields
-    def_str = defense_output.get_defense_string(build, keystones, minified)
-    if def_str:
-        embed.add_field(name="General", value=def_str, inline=minified)
+    general_str = general_output.get_defense_string(build, keystones)
+    if general_str:
+        embed.add_field(name="General", value=general_str, inline=minified)
 
     key, offense = offense_output.get_offense(build, consts)
     if offense:

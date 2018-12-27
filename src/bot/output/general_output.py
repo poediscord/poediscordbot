@@ -3,11 +3,10 @@ from src.bot.consts.thresholds import OutputThresholds
 from src.models import Build
 
 
-def get_resistances(build: Build, force_display=False):
+def get_resistances(build: Build):
     """
     Creates the resistance string
     :param build: build we want to output
-    :param force_display:  override threshold
     :return: string containing all resistances or and empty string if nothing is noteworthy
     """
     output = "**Resistances**: "
@@ -82,12 +81,12 @@ def get_secondary_def(build: Build):
 
 
 def get_keystones(keystones: list, minified=False):
-    show_abbrev = lambda x: minified and x['abbrev'] != None
+    show_abbrev = lambda x: minified  # and x['abbrev'] != None
     keystone_strs = [keystone['name'] if not show_abbrev(keystone) else keystone['abbrev'] for keystone in keystones]
     return "**Keystones**: " + ", ".join(keystone_strs)
 
 
-def get_defense_string(build: Build, keystones, minified):
+def get_defense_string(build: Build, keystones):
     output = ""
     life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                  OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
@@ -132,5 +131,5 @@ def get_defense_string(build: Build, keystones, minified):
     output += get_resistances(build)
 
     if keystones:
-        output += get_keystones(keystones, minified)
+        output += get_keystones(keystones)
     return output
