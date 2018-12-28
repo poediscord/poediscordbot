@@ -10,7 +10,7 @@ from src.util.logging import log
 class PobConfig():
     def __init__(self, path_to_pob_conf="pob_conf.json"):
         try:
-            self.config = json.load(open(config.ROOT_DIR + '/' + path_to_pob_conf))
+            self.config = json.load(open(config.ROOT_DIR + '/resources/' + path_to_pob_conf))
         except FileNotFoundError as err:
             log.error("pob_conf is missing, trying to obtain a new copy... err={}".format(err))
             self.fetch_config()
