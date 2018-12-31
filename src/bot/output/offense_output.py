@@ -1,5 +1,5 @@
 from src.bot.consts.thresholds import OutputThresholds
-from src.bot.util import build_checker
+from src.bot.bot_util import build_checker
 from src.models import Skill
 
 

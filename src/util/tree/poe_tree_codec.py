@@ -2,8 +2,7 @@ import base64
 import json
 import struct
 import config
-
-from util.tree.poe_tree import PoeTree
+from .poe_tree import PoeTree
 
 
 class PoeTreeCodec:

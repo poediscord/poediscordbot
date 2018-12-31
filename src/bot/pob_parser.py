@@ -1,6 +1,6 @@
 from src.models import Skill, Item, Build, ItemSlot, Gem
 from src.util.logging import log
-from src.util.poeurl import shrink_tree_url
+from src.util.tree import poe_tree_codec
 
 
 def get_attrib_if_exists(xml_elem, key):
@@ -44,6 +44,10 @@ def parse_build(xml_root):
                 if len(extracted) < 1:
                     continue
                 build.append_conf(extracted[0], extracted[1])
+
+    # keystones
+    tree = poe_tree_codec.codec.decode_url(selected_tree)
+    build.keystones = tree.get_keystones(poe_tree_codec.codec.keystones)
 
     return build
 

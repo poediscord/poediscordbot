@@ -10,6 +10,9 @@ def is_support(build: Build, dps=0, avg=0):
 
 
 def has_offensive_ability(build: Build, consts):
+    if not build.get_active_skill():
+        return False
+
     skill = build.get_active_skill().get_selected()
     if consts and skill and (skill.name in consts.aura_list
                              or skill.name in consts.curse_list

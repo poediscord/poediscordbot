@@ -174,6 +174,8 @@ class Build:
         self.active_skill_id = int(activeSkill) if activeSkill else None
         self.item_slots = item_slots
         self.aura_count, self.curse_count = self.count_curses_auras()
+        self.keystones = []
+
 
     def count_curses_auras(self):
         """

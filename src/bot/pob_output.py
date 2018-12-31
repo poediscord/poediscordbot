@@ -2,9 +2,8 @@ from discord import Embed
 
 import config
 from src.bot.output import config_output, charges_output, skill_output, offense_output, general_output
-from src.bot.util import build_checker
+from src.bot.bot_util import build_checker
 from src.models import Build, Gem, Skill
-from util.tree import poe_tree_codec
 
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
@@ -59,13 +58,11 @@ def generate_response(author, build: Build, minified=False, pastebin=None, const
     :return: Filled embed for discord
     """
     is_support = build_checker.is_support(build)
-    tree = poe_tree_codec.codec.decode_url(build.tree)
-    keystones = tree.get_keystones(poe_tree_codec.codec.keystones)
 
     embed = create_embed(author, build.level, build.ascendency_name, build.class_name,
                          build.get_active_skill(), is_support)
     # add new fields
-    general_str = general_output.get_defense_string(build, keystones)
+    general_str = general_output.get_defense_string(build)
     if general_str:
         embed.add_field(name="General", value=general_str, inline=minified)
 

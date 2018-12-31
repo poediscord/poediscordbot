@@ -86,7 +86,7 @@ def get_keystones(keystones: list, minified=False):
     return "**Keystones**: " + ", ".join(keystone_strs)
 
 
-def get_defense_string(build: Build, keystones):
+def get_defense_string(build: Build):
     output = ""
     life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                  OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
@@ -130,6 +130,6 @@ def get_defense_string(build: Build, keystones):
         output += secondary_def
     output += get_resistances(build)
 
-    if keystones:
-        output += get_keystones(keystones)
+    if build.keystones:
+        output += get_keystones(build.keystones)
     return output
