@@ -93,9 +93,16 @@ async def on_message(message):
         # check if valid xml
         # send message
         log.debug("A| {}: {}".format(message.channel, message.content))
-        embed = parse_pob(message.author, message.content, minify=True)
-        if embed:
-            await bot.send_message(message.channel, embed=embed)
+        try:
+            embed = parse_pob(message.author, message.content, minify=True)
+            if embed:
+                await bot.send_message(message.channel, embed=embed)
+        except HTTPError as err:
+            log.error("Pastebin: Invalid pastebin-url msg={}".format(err))
+        except pastebin.CaptchaError as err:
+            log.error("Pastebin: Marked as spam msg={}".format(err))
+            await bot.send_message(message.channel, err.message)
+
     else:
         await bot.process_commands(message)
 
@@ -112,10 +119,8 @@ def parse_pob(author, content, minify=False):
         paste_key = random.choice(paste_keys)
         log.info("Parsing pastebin with key={} from author={}".format(paste_key, author))
 
-        try:
-            xml = pastebin.get_as_xml(paste_key)
-        except HTTPError as err:
-            log.error("Invalid pastebin-url msg={}".format(err))
+        xml = pastebin.get_as_xml(paste_key)
+
         if xml:
             build = pob_parser.parse_build(xml)
             # print(build)

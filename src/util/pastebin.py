@@ -1,7 +1,8 @@
 import base64
 import re
-import urllib.request
+import urllib
 import zlib
+from urllib.request import Request
 
 import defusedxml.ElementTree as ET
 from retrying import retry
@@ -60,8 +61,17 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
        stop_max_attempt_number=2,
        wait_func=urllib_error_retry)
 def get_raw_data(url):
+    q = Request(url)
+    q.add_header('Cache-Control', 'max-age=0')
+    # url = urllib.request.urlopen(q)
+    # content = url.read().decode('utf-8')
+    # if "Possible Spam Detected" in content:
+    #     raise CaptchaError("Pastebin marked this as possible spam. Please reupload and clear captchas before retrying.")
+    #
     url = urllib.request.urlopen(url)
-    return url.read().decode('utf-8')  # read and encode as utf-8
+    content = url.read().decode('utf-8')
+
+    return content  # read and encode as utf-8
 
 
 def get_as_xml(paste_key):
@@ -69,3 +79,13 @@ def get_as_xml(paste_key):
     log.debug("Retrieved from raw_url={}".format(raw_url))
     data = get_raw_data(raw_url)
     return decode_to_xml(data)
+
+
+class CaptchaError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+
+class CaptchaError(Exception):
+    def __init__(self, message):
+        self.message = message
