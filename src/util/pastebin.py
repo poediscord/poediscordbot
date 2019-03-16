@@ -63,13 +63,10 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
 def get_raw_data(url):
     q = Request(url)
     q.add_header('Cache-Control', 'max-age=0')
-    # url = urllib.request.urlopen(q)
-    # content = url.read().decode('utf-8')
-    # if "Possible Spam Detected" in content:
-    #     raise CaptchaError("Pastebin marked this as possible spam. Please reupload and clear captchas before retrying.")
-    #
-    url = urllib.request.urlopen(url)
+    url = urllib.request.urlopen(q)
     content = url.read().decode('utf-8')
+    if "Possible Spam Detected" in content:
+        raise CaptchaError("Pastebin marked this as possible spam. Please reupload and clear captchas before retrying.")
 
     return content  # read and encode as utf-8
 
