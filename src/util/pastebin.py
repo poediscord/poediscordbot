@@ -33,7 +33,7 @@ def decode_base64_and_inflate(b64string):
         decoded_data = base64.b64decode(b64string)
         return zlib.decompress(decoded_data)
     except zlib.error as err:
-        log.error("ZLib Error in paste: err={}".format(err))
+        log.error("ZLib Error in paste: err={}. Data={}".format(err, b64string))
     except ValueError as err:
         log.error("Value Error in paste: err={}".format(err))
 
