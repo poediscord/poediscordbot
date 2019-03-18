@@ -6,7 +6,7 @@ from src.bot.pob_parser import parse_build
 from src.models import Build, Skill, Gem
 
 
-def load_test_build(file='in/jugg_tectonic.xml'):
+def load_test_build(file='tests/in/jugg_tectonic.xml'):
     with open(file, 'r') as f:
         xml = ET.fromstring(f.read())
         parse_build(xml)

@@ -6,7 +6,7 @@ from discord import Embed
 from src.bot.discord_bot import parse_pob
 
 
-def get_builds(file="in/specific_builds.json"):
+def get_builds(file="tests/in/specific_builds.json"):
     with open(file, "r") as file:
         return json.loads(file.read())
 

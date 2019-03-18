@@ -4,7 +4,8 @@ from discord import Embed
 
 from src.bot.discord_bot import parse_pob
 
-def get_links(file="in/pastebins.txt"):
+
+def get_links(file="tests/in/pastebins.txt"):
     with open(file,"r") as file:
         return [line.rstrip() for line in file.readlines() if "#" not in line]
 
