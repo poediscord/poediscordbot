@@ -63,7 +63,10 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
 def get_raw_data(url):
     q = Request(url)
     q.add_header('Cache-Control', 'max-age=0')
-    url = urllib.request.urlopen(q)
+    try:
+        url = urllib.request.urlopen(q)
+    except urllib.error.HTTPError as e:
+        return None
     content = url.read().decode('utf-8')
     if "Possible Spam Detected" in content:
         raise CaptchaError("Pastebin marked this as possible spam. Please reupload and clear captchas before retrying.")
@@ -75,7 +78,7 @@ def get_as_xml(paste_key):
     raw_url = 'https://pastebin.com/raw/' + paste_key
     log.debug("Retrieved from raw_url={}".format(raw_url))
     data = get_raw_data(raw_url)
-    return decode_to_xml(data)
+    return data
 
 
 class CaptchaError(Exception):

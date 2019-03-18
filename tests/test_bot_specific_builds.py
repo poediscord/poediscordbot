@@ -1,6 +1,5 @@
 import json
 import unittest
-from unittest import mock
 
 from discord import Embed
 

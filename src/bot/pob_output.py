@@ -48,7 +48,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     return embed
 
 
-def generate_response(author, build: Build, minified=False, pastebin=None, consts=None):
+def generate_response(author, build: Build, minified=False, pastebin=None, consts=None, web_poe_token=None):
     """
     Build an embed to respond to the user.
     :param consts: poe constants - skill info
@@ -86,9 +86,10 @@ def generate_response(author, build: Build, minified=False, pastebin=None, const
     info_text = ""
     if pastebin:
         info_text += "[Pastebin](https://pastebin.com/{}) | ".format(pastebin)
-
-    info_text += "[Web Tree]({}) | [**Web Preview**](https://poe.technology/poebuddy/{}) - created in [Path of Building](https://github.com/Openarl/PathOfBuilding). ".format(
-        build.tree, pastebin)
+    info_text += f"[Web Tree]({build.tree}) "
+    if web_poe_token:
+        info_text += f"| [**Experimental Web-PoB (Thanks xyz!)**](https://pob.party/share/{web_poe_token}) "
+    info_text += f"- created in [Path of Building](https://github.com/Openarl/PathOfBuilding). "
     embed.add_field(name='Info:', value=info_text)
 
     return embed

@@ -118,17 +118,24 @@ def parse_pob(author, content, minify=False):
         xml = None
         paste_key = random.choice(paste_keys)
         log.info("Parsing pastebin with key={} from author={}".format(paste_key, author))
+        raw_data = pastebin.get_as_xml(paste_key)
+        if not raw_data:
+            log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
+            return
 
-        xml = pastebin.get_as_xml(paste_key)
+        xml = pastebin.decode_to_xml(raw_data)
+        if not xml:
+            log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
+            return
 
-        if xml:
-            build = pob_parser.parse_build(xml)
-            # print(build)
-            try:
-                embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key,
-                                                     consts=poe_consts)
-                log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
-                return embed
-            except Exception as e:
-                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
-                    traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
+        web_poe_token = util.fetch_xyz_pob_token(raw_data)
+        build = pob_parser.parse_build(xml)
+        # print(build)
+        try:
+            embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key,
+                                                 consts=poe_consts, web_poe_token=web_poe_token)
+            log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
+            return embed
+        except Exception as e:
+            log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
+                traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
