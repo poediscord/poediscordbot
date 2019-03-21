@@ -7,4 +7,4 @@ install:
 # command to run tests
 script:
   - cp config.example.py config.py
-  - python -m unittest
+  - python -m pytest
