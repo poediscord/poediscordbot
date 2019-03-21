@@ -1,8 +1,6 @@
-# PoB Parsing Bot for Discord
-*Written in Python 3.6* - Does not work with Python 3.7+ due to the used discord library.
+# PoB Parsing Bot for Discord [![Build Status](https://travis-ci.org/FWidm/discord-pob.svg?branch=master)](https://travis-ci.org/FWidm/discord-pob)
 
-Status:
-[![Build Status](https://travis-ci.org/FWidm/discord-pob.svg?branch=master)](https://travis-ci.org/FWidm/discord-pob)
+*Written in Python 3.6* - Does not work with Python 3.7+ due to the used discord library.
 
 ### Do not forget to re-do your config.py every time you pull. Breaking changes may happen at this stage.
 ### Used Libraries
