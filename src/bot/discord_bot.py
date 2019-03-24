@@ -132,7 +132,7 @@ def parse_pob(author, content, minify=False):
         build = pob_parser.parse_build(xml)
         # print(build)
         try:
-            embed = pob_output.generate_response(author, build, minified=minify, pastebin=paste_key,
+            embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
                                                  consts=poe_consts, web_poe_token=web_poe_token)
             log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
             return embed

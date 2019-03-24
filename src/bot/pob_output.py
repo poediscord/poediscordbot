@@ -48,7 +48,20 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     return embed
 
 
-def generate_response(author, build: Build, minified=False, pastebin=None, consts=None, web_poe_token=None):
+def generate_info_text(tree, pastebin_key, web_poe_token):
+    info_text = ""
+    if pastebin_key:
+        info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}) | "
+    info_text += f"[Web Tree]({tree}) "
+    if web_poe_token:
+        info_text += f"| [{config.web_pob_text}](https://pob.party/share/{web_poe_token}) "
+    if config.poe_technology_enabled:
+        info_text += f"| [{config.poe_technology_text}](https://poe.technology/poebuddy/{pastebin_key})  "
+    info_text += f"\nCreated in [Path of Building](https://github.com/Openarl/PathOfBuilding). "
+    return info_text
+
+
+def generate_response(author, build: Build, minified=False, pastebin_key=None, consts=None, web_poe_token=None):
     """
     Build an embed to respond to the user.
     :param consts: poe constants - skill info
@@ -83,13 +96,6 @@ def generate_response(author, build: Build, minified=False, pastebin=None, const
         if conf_str:
             embed.add_field(name="Config", value=conf_str, inline=minified)
     # output
-    info_text = ""
-    if pastebin:
-        info_text += "[Pastebin](https://pastebin.com/{}) | ".format(pastebin)
-    info_text += f"[Web Tree]({build.tree}) "
-    if web_poe_token:
-        info_text += f"| [**Experimental Web-PoB (Thanks xyz!)**](https://pob.party/share/{web_poe_token}) "
-    info_text += f"- created in [Path of Building](https://github.com/Openarl/PathOfBuilding). "
-    embed.add_field(name='Info:', value=info_text)
+    embed.add_field(name='Info:', value=generate_info_text(build.tree, pastebin_key, web_poe_token))
 
     return embed
