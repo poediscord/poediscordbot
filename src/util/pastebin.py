@@ -38,13 +38,13 @@ def decode_base64_and_inflate(b64string):
         log.error("Value Error in paste: err={}".format(err))
 
 
-def decode_to_xml(enc):
+def decode_to_xml(enc, encoding='windows-1252'):
     enc = enc.replace("-", "+").replace("_", "/")
     xml_str = decode_base64_and_inflate(enc)
     log.debug("XML={}".format(xml_str))
     xml = None
     try:
-        xml = ET.fromstring(xml_str)
+        xml = ET.fromstring(xml_str.decode(encoding))
     except TypeError as err:
         log.debug("Could not parse the pastebin as xml msg={}".format(err))
 

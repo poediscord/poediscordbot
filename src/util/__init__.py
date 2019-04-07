@@ -9,5 +9,6 @@ def starts_with(prefix, string):
 
 def fetch_xyz_pob_token(payload, version="3.6.0"):
     url = f"https://pob.party/kv/put?ver=v{version}"
-    response = requests.post(url, data=payload).json()
-    return response['url']
+    response = requests.post(url, data=payload)
+    if response.status_code == 200:
+        return response.json()['url']
