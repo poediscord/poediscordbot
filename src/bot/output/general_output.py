@@ -81,8 +81,7 @@ def get_secondary_def(build: Build):
 
 
 def get_keystones(keystones: list, minified=False):
-    show_abbrev = lambda x: minified  # and x['abbrev'] != None
-    keystone_strs = [keystone['name'] if not show_abbrev(keystone) else keystone['abbrev'] for keystone in keystones]
+    keystone_strs = [keystone['name'] if not minified else keystone['abbrev'] for keystone in keystones]
     return "**Keystones**: " + ", ".join(keystone_strs)
 
 
