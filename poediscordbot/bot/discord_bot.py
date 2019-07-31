@@ -36,7 +36,7 @@ async def export_dm_logs():
 
 
 async def trigger_export_logs():
-    await bot.wait_until_login()
+    await bot.wait_until_ready()
     await export_dm_logs()
 
 
@@ -59,7 +59,7 @@ async def pob(ctx, *, key):
     embed = parse_pob(ctx.message.author, ctx.message.content)
     try:
         if embed:
-            await bot.send_message(ctx.message.channel, embed=embed)
+            await ctx.message.channel.send(embed=embed)
     except discord.Forbidden:
         log.info("Tried pasting in channel without access.")
         # await ctx.say(arg)
@@ -123,7 +123,7 @@ def parse_pob(author, content, minify=False):
     if paste_keys:
         xml = None
         paste_key = random.choice(paste_keys)
-        log.info("Parsing pastebin with key={} from author={}".format(paste_key, author))
+        log.info(f"Parsing pastebin with key={paste_key} from author={author}")
         raw_data = pastebin.get_as_xml(paste_key)
         if not raw_data:
             log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
@@ -140,7 +140,7 @@ def parse_pob(author, content, minify=False):
         try:
             embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
                                                  consts=poe_consts, web_poe_token=web_poe_token)
-            log.debug("embed={}; thumbnail={}; length={}".format(embed, embed.thumbnail, embed.__sizeof__()))
+            log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
             return embed
         except Exception as e:
             log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
