@@ -1,0 +1,105 @@
+{
+  "builds": [
+    {
+      "name": "Consecrated Path Scion",
+      "description": "Show dps including aps.",
+      "pastebin": "https://pastebin.com/aHDvrbrC",
+      "assertions": [
+        {
+          "key": "ascendency",
+          "value": "Ascendant"
+        },
+        {
+          "key": "skill",
+          "value": "Consecrated Path"
+        },
+        {
+          "key": "level",
+          "value": "91"
+        },
+        {
+          "key": "tree",
+          "value": "http://poeurl.com/b6xw"
+        },
+        {
+          "key": "Offense",
+          "value": "DPS"
+        },
+        {
+          "key": "Offense",
+          "value": "@"
+        },
+        {
+          "key": "Offense",
+          "value": "/s"
+        }
+      ]
+    },
+    {
+      "name": "ED Pathfinder",
+      "description": "Show avg instead of dps.",
+      "pastebin": "https://pastebin.com/YpKxeyGq",
+      "assertions": [
+        {
+          "key": "ascendency",
+          "value": "Pathfinder"
+        },
+        {
+          "key": "skill",
+          "value": "Essence Drain"
+        },
+        {
+          "key": "level",
+          "value": "94"
+        },
+        {
+          "key": "Offense",
+          "value": "AVG"
+        }
+      ]
+    },
+    {
+      "name": "Dancing Duo Champion",
+      "description": "Show 'Manifest Dancing Dervish' as skill.'",
+      "pastebin": "https://pastebin.com/kftetdrw",
+      "assertions": [
+        {
+          "key": "ascendency",
+          "value": "Champion"
+        },
+        {
+          "key": "skill",
+          "value": "Manifest Dancing Dervish"
+        },
+        {
+          "key": "level",
+          "value": "90"
+        }
+      ]
+    },
+    {
+      "name": "Immortal Call Ascendant",
+      "description": "Should not show dps section.'",
+      "pastebin": "https://pastebin.com/958ujX7S",
+      "assertions": [
+        {
+          "key": "ascendency",
+          "value": "Ascendant"
+        },
+        {
+          "key": "skill",
+          "value": "Immortal Call"
+        },
+        {
+          "key": "level",
+          "value": "70"
+        },
+        {
+          "key": "Offense",
+          "value": "dps",
+          "not": true
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 import config
-from poediscordbot.cogs.pob.pob_cog import PathOfBuilding
+from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util import chat_logging
 from poediscordbot.util.logging import log
 
@@ -41,7 +41,7 @@ if config.dm_auto_log:
 
 @bot.event
 async def on_ready():
-    bot.add_cog(PathOfBuilding(bot, config.active_channels, config.allow_pming))
+    bot.add_cog(PoBCog(bot, config.active_channels, config.allow_pming))
     log.info(f'Logged in: uname={bot.user.name}, id={bot.user.id}')
     if config.presence_message:
         await bot.change_presence(activity=discord.Activity(name=config.presence_message))

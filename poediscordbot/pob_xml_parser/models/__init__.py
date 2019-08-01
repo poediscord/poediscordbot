@@ -57,10 +57,11 @@ class Skill:
         self.slot = slot
         self.gems = gems
         self.enabled = True if enabled == 'true' else False
-        try:
+        self.main_active_skill = None
+
+        if main_active_skill and main_active_skill.isdigit():
             self.main_active_skill = int(main_active_skill)
-        except ValueError:
-            self.main_active_skill = None
+
         self.links = len(gems)
 
     def __repr__(self) -> str:

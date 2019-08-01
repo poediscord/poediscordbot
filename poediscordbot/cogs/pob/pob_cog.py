@@ -14,10 +14,10 @@ from poediscordbot.util.logging import log
 
 
 def setup(bot, active_channels, allow_pming=True):
-    bot.add_cog(PathOfBuilding(bot, active_channels, allow_pming))
+    bot.add_cog(PoBCog(bot, active_channels, allow_pming))
 
 
-class PathOfBuilding(commands.Cog):
+class PoBCog(commands.Cog):
     def __init__(self, bot, active_channels, allow_pming=True):
         self.bot = bot
         self.active_channels = active_channels
