@@ -1,8 +1,8 @@
 import re
 
-from poediscordbot.util import poe_consts
+from poediscordbot.bot.cogs.pob.build import poe_consts
 from poediscordbot.util.logging import log
-from poediscordbot.util.pob import pob_conf
+from poediscordbot.bot.cogs.pob.util.pob import pob_conf
 
 
 class Gem:

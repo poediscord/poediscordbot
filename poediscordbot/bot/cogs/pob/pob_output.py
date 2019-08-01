@@ -1,8 +1,9 @@
 from discord import Embed
 
 import config
-from poediscordbot.bot.output import config_output, charges_output, skill_output, offense_output, general_output
-from poediscordbot.bot.bot_util import build_checker
+from poediscordbot.bot.cogs.pob.output import config_output, charges_output, skill_output, offense_output
+from poediscordbot.bot.cogs.pob.output import general_output
+from poediscordbot.bot.cogs.pob.build import build_checker
 from poediscordbot.models import Build, Gem, Skill
 
 

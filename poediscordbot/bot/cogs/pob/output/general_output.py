@@ -1,5 +1,4 @@
-from poediscordbot.bot.consts.thresholds import OutputThresholds
-
+from poediscordbot.bot.cogs.pob.build.thresholds import OutputThresholds
 from poediscordbot.models import Build
 
 
