@@ -1,6 +1,6 @@
 from poediscordbot.models import Skill, Item, Build, ItemSlot, Gem
 from poediscordbot.util.logging import log
-from poediscordbot.util.tree import poe_tree_codec
+from poediscordbot.bot.cogs.pob.parser.tree import poe_tree_codec
 
 
 def get_attrib_if_exists(xml_elem, key):

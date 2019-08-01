@@ -5,7 +5,8 @@ import discord
 from discord.ext import commands
 from requests import HTTPError
 
-from poediscordbot.bot.cogs.pob import pob_xml_parser, pob_output, util
+from poediscordbot.bot.cogs.pob import pob_output, util
+from poediscordbot.bot.cogs.pob.parser import pob_xml_parser
 from poediscordbot.bot.cogs.pob.util import pastebin
 from poediscordbot.bot.cogs.pob.build import poe_consts
 from poediscordbot.util.logging import log
