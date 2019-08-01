@@ -1,6 +1,7 @@
 import base64
 import json
 import struct
+
 import config
 from .poe_tree import PoeTree
 

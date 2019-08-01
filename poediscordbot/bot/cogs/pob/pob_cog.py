@@ -8,8 +8,8 @@ from requests import HTTPError
 from poediscordbot.bot.cogs.pob import util
 from poediscordbot.bot.cogs.pob.build import poe_consts
 from poediscordbot.bot.cogs.pob.output import pob_output
-from poediscordbot.bot.cogs.pob.parser import pob_xml_parser
 from poediscordbot.bot.cogs.pob.util import pastebin
+from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 
 
@@ -47,7 +47,7 @@ class PathOfBuilding(commands.Cog):
             # send message
             log.debug(f"A| {message.channel}: {message.content}")
             try:
-                embed = self.__parse_pob(message.author, message.content, minify=True)
+                embed = self._parse_pob(message.author, message.content, minify=True)
                 if embed:
                     await message.channel.send(embed=embed)
             except HTTPError as err:
@@ -60,7 +60,7 @@ class PathOfBuilding(commands.Cog):
     async def pob(self, ctx, *, key):
         if not self.allow_pming and ctx.message.channel.is_private:
             return
-        embed = self.__parse_pob(ctx.message.author, ctx.message.content)
+        embed = self._parse_pob(ctx.message.author, ctx.message.content)
         try:
             if embed:
                 await ctx.message.channel.send(embed=embed)
@@ -68,7 +68,7 @@ class PathOfBuilding(commands.Cog):
             log.info("Tried pasting in channel without access.")
 
     @staticmethod
-    def __parse_pob(author, content, minify=False):
+    def _parse_pob(author, content, minify=False):
         """
         Trigger the parsing of the pastebin link, pass it to the output creating object and send a message back
         :param minify: show minified version of the embed

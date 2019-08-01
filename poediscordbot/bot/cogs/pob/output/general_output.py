@@ -1,5 +1,5 @@
 from poediscordbot.bot.cogs.pob.build.thresholds import OutputThresholds
-from poediscordbot.models import Build
+from poediscordbot.pob_xml_parser.models import Build
 
 
 def get_resistances(build: Build):

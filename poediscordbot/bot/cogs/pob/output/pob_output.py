@@ -4,7 +4,7 @@ import config
 from poediscordbot.bot.cogs.pob.build import build_checker
 from poediscordbot.bot.cogs.pob.output import config_output, charges_output, skill_output, offense_output
 from poediscordbot.bot.cogs.pob.output import general_output
-from poediscordbot.models import Build, Gem, Skill
+from poediscordbot.pob_xml_parser.models import Build, Gem, Skill
 
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
