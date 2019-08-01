@@ -5,9 +5,9 @@ def prepare_config_line(name, value):
     :param value:
     :return: string
     """
-    conf_item = '{}'.format(name)
+    conf_item = f'{name}'
     if value and value.lower() != 'true':
-        conf_item += ': {}'.format(value.capitalize())
+        conf_item += f': {value.capitalize()}'
     return conf_item
 
 

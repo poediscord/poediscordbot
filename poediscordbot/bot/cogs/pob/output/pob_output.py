@@ -31,10 +31,8 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
             ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
         # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
-    embed.title = "{gem} - {char} (Lvl: {level})".format(
-        char=class_name if ascendency_name.lower() == 'none' else ascendency_name,
-        gem=gem_name,
-        level=level)
+    class_display_name = class_name if ascendency_name.lower() == 'none' else ascendency_name
+    embed.title = f"{gem_name} - {class_display_name} (Lvl: {level})"
     if author:
         displayed_name = None
         try:
@@ -73,7 +71,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, c
     """
     is_support = build_checker.is_support(build)
 
-    embed = create_embed(author, build.level, build.ascendency_name, build.class_name,
+    embed = create_embed(author, build.level, build.ascendancy_name, build.class_name,
                          build.get_active_skill(), is_support)
     # add new fields
     general_str = general_output.get_defense_string(build)

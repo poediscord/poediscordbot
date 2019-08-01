@@ -1,6 +1,6 @@
+from poediscordbot.bot.cogs.pob.parser.tree import poe_tree_codec
 from poediscordbot.models import Skill, Item, Build, ItemSlot, Gem
 from poediscordbot.util.logging import log
-from poediscordbot.bot.cogs.pob.parser.tree import poe_tree_codec
 
 
 def get_attrib_if_exists(xml_elem, key):
@@ -33,7 +33,7 @@ def parse_build(xml_root):
         if 'stat' in player_stat.attrib and 'value' in player_stat.attrib:
             build.append_stat(player_stat.attrib['stat'], player_stat.attrib['value'], player_stat.tag)
         else:
-            log.info("Encountered unsupported player stat: k={}, v={}".format(player_stat.tag, player_stat.attrib))
+            log.info(f"Encountered unsupported player stat: k={player_stat.tag}, v={player_stat.attrib}")
 
     # parse config
     config = xml_root.find('Config')

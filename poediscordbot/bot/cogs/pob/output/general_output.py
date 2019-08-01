@@ -18,10 +18,10 @@ def get_resistances(build: Build):
         res_over_cap = build.get_stat('Player', res + 'ResistOverCap')
 
         if res_val:
-            output += emojis[i] + " {:.0f}".format(res_val)
+            output += emojis[i] + f" {res_val:.0f}"
             show = True
             if res_over_cap and res_over_cap > 0:
-                output += "(+{:.0f}) ".format(res_over_cap)
+                output += f"(+{res_over_cap:.0f}) "
             output += " "
     output += "\n"
     return output if show else ""
@@ -32,16 +32,14 @@ def get_basic_line(name, stat, stat_percent, stat_unreserved=0, stat_regen=0, st
     if isinstance(stat, float) and stat > 0 and isinstance(stat_percent, float):
         output = "**" + name + "**: "
         if stat_unreserved and stat - stat_unreserved > 0:
-            output += "{unreserved:,.0f}/".format(unreserved=stat_unreserved)
-        output += "{stat:,.0f}".format(stat=stat)
-        output += " ({stat_percent:,.0f}%)".format(stat_percent=stat_percent)
+            output += f"{stat_unreserved:,.0f}/"
+        output += f"{stat:,.0f}"
+        output += f" ({stat_percent:,.0f}%)"
         if stat_regen:
             # Total regen, if displayed is regen - degen.
-            output += " | Reg: {regen:,.0f}/s ({regen_percent:,.1f}%)".format(regen=stat_regen,
-                                                                              regen_percent=stat_regen / stat * 100)
+            output += f" | Reg: {stat_regen:,.0f}/s ({stat_regen / stat * 100:,.1f}%)"
         if stat_leech_rate:
-            output += " | Leech {leech:,.0f}/s ({leech_percent:,.1f}%)".format(leech=stat_leech_rate,
-                                                                               leech_percent=stat_leech_rate / stat * 100)
+            output += f" | Leech {stat_leech_rate:,.0f}/s ({stat_leech_rate / stat * 100:,.1f}%)"
         output += "\n"
     return output
 
@@ -58,22 +56,22 @@ def get_secondary_def(build: Build):
         filter(None.__ne__, [build.get_stat('Player', 'Life'), build.get_stat('Player', 'EnergyShield'), 0]))
 
     armour = build.get_stat('Player', 'Armour', min(OutputThresholds.ARMOUR.value, effective_life))
-    stats.append("Armour: {:,.0f}".format(armour)) if armour and armour else None
+    stats.append(f"Armour: {armour:,.0f}") if armour and armour else None
 
     evasion = build.get_stat('Player', 'Evasion', min(OutputThresholds.EVASION.value, effective_life))
-    stats.append("Evasion: {:,.0f}".format(evasion)) if evasion else None
+    stats.append(f"Evasion: {evasion:,.0f}") if evasion else None
 
     dodge = build.get_stat('Player', 'AttackDodgeChance', OutputThresholds.DODGE.value)
-    stats.append("Dodge: {:,.0f}%".format(dodge)) if dodge else None
+    stats.append(f"Dodge: {dodge:,.0f}%") if dodge else None
 
     spell_dodge = build.get_stat('Player', 'SpellDodgeChance', OutputThresholds.SPELL_DODGE.value)
-    stats.append("Spell Dodge: {:,.0f}%".format(spell_dodge)) if spell_dodge else None
+    stats.append(f"Spell Dodge: {spell_dodge:,.0f}%") if spell_dodge else None
 
     block = build.get_stat('Player', 'BlockChance', OutputThresholds.BLOCK.value)
-    stats.append("Block: {:,.0f}%".format(block)) if block else None
+    stats.append(f"Block: {block:,.0f}%") if block else None
 
     spell_block = build.get_stat('Player', 'SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
-    stats.append("Spell Block: {:,.0f}%".format(spell_block)) if spell_block  else None
+    stats.append(f"Spell Block: {spell_block:,.0f}%") if spell_block  else None
     if len(stats) > 0:
         output += " | ".join([s for s in stats if s]) + "\n"
     return "**Secondary:** " + output if output != "" else None
@@ -112,7 +110,7 @@ def get_defense_string(build: Build):
     net_regen = build.get_stat('Player', 'NetLifeRegen')
 
     if net_regen:
-        output += "**Net Regen**: {:,.0f}/s\n".format(net_regen)
+        output += f"**Net Regen**: {net_regen:,.0f}/s\n"
     mana_flat = build.get_stat('Player', 'Mana')
     mana_string = get_basic_line("Mana", mana_flat, build.get_stat('Player', 'Spec:ManaInc'),
                                  stat_regen=build.get_stat('Player', 'ManaRegen'),

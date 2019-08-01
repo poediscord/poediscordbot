@@ -12,7 +12,7 @@ class PobConfig():
         try:
             self.config = json.load(open(config.ROOT_DIR + '/resources/' + path_to_pob_conf))
         except FileNotFoundError as err:
-            log.error("pob_conf is missing, trying to obtain a new copy... err={}".format(err))
+            log.error(f"pob_conf is missing, trying to obtain a new copy... err={err}")
             self.fetch_config()
 
     def fetch_entry(self, config_var: str):
@@ -55,7 +55,7 @@ class PobConfig():
                 if 'conf' in file_content:
                     # we need to do this to keep manually entered values in our file such as category
                     for confkey in file_content['conf']:
-                        print(">> {}".format(file_content['conf'][confkey]))
+                        print(f">> {file_content['conf'][confkey]}")
                         file_content['conf'][confkey].update(attributes[confkey])
 
                     new_keys = [key for key in attributes if not any(k == key for k in file_content['conf'])]

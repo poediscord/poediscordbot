@@ -1,18 +1,18 @@
 import re
 
 from poediscordbot.bot.cogs.pob.build import poe_consts
-from poediscordbot.util.logging import log
 from poediscordbot.bot.cogs.pob.util.pob import pob_conf
+from poediscordbot.util.logging import log
 
 
 class Gem:
     __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active'
 
-    def __init__(self, id, name, level, quality, skill_part, enabled=''):
-        self.name = self.translate_name(id) if name == "" else name
+    def __init__(self, gem_id, name, level, quality, skill_part, enabled=''):
+        self.name = self.translate_name(gem_id) if name == "" else name
         self.level = int(level)
         self.quality = int(quality)
-        self.id = id
+        self.id = gem_id
         self.skill_part = int(skill_part) if skill_part else None
         self.enabled = True if enabled == 'true' else False
         self.second_name = name.split("Vaal ", 1)
@@ -24,11 +24,11 @@ class Gem:
         self.is_active = self.determine_active(self.id)
 
     def __repr__(self) -> str:
-        return "Gem [name={}]".format(self.get_name())
+        return f"Gem [name={self.get_name()}]"
 
-    def determine_active(self, id):
-        return False if not id else  "Support".lower() not in id.lower()
-
+    @staticmethod
+    def determine_active(gem_id):
+        return False if not gem_id else "Support".lower() not in gem_id.lower()
 
     def get_name(self):
         return self.name if self.active_part == 0 else self.second_name
@@ -36,16 +36,20 @@ class Gem:
     def set_active_part(self, part_id):
         self.active_part = part_id
 
-    def translate_name(self, id):
-        if id == 'UniqueAnimateWeapon':
-            id = 'Manifest Dancing Dervish'
-        if id == 'ChaosDegenAuraUnique':
-            id = "Death Aura"
-        if id == 'IcestormUniqueStaff12':
-            id = "Ice Storm"
-        if id == 'TriggeredMoltenStrike':
-            id = "Molten Burst"
-        return id
+    @staticmethod
+    def translate_name(skill_id):
+        name = None
+        if skill_id == 'UniqueAnimateWeapon':
+            name = 'Manifest Dancing Dervish'
+        if skill_id == 'ChaosDegenAuraUnique':
+            name = "Death Aura"
+        if skill_id == 'IcestormUniqueStaff12':
+            name = "Ice Storm"
+        if skill_id == 'TriggeredMoltenStrike':
+            name = "Molten Burst"
+        if skill_id == 'TriggeredSummonSpider':
+            name = "Raise Spiders"
+        return name
 
 
 class Skill:
@@ -55,14 +59,13 @@ class Skill:
         self.enabled = True if enabled == 'true' else False
         try:
             self.main_active_skill = int(main_active_skill)
-        except:
+        except ValueError:
             self.main_active_skill = None
         self.links = len(gems)
 
     def __repr__(self) -> str:
-        return "Skill [slot={}; gems={}; links={}; selected={}; enabled={}]".format(self.slot, self.gems, self.links,
-                                                                                    self.main_active_skill,
-                                                                                    self.enabled)
+        return f"Skill [slot={self.slot}; gems={self.gems}; links={self.links}; selected={self.main_active_skill}; " \
+            f"enabled={self.enabled}] "
 
     def get_active_gems(self):
         return [gem for gem in self.gems if gem.is_active]
@@ -94,17 +97,17 @@ class Skill:
         # Join the gem names, if they are in the selected skill group and if they are enable d. Show quality and level
         # if level is >20 or quality is set.
         ret = join_str.join(
-            [gem.name + " ({}/{})".format(gem.level, gem.quality)
+            [gem.name + f" ({gem.level}/{gem.quality})"
              if (gem.level > 20 or gem.quality > 0)
              else gem.name for gem in self.gems if gem.name and
-             gem.enabled == True and gem.name != '' and 'jewel' not in gem.name.lower()]
+             gem.enabled and gem.name != '' and 'jewel' not in gem.name.lower()]
         )
 
         if item:
             supports = item.added_supports
             if supports and isinstance(supports, list):
                 ret += "\n(+ " + join_str.join([gem['name'] + " (" + gem['level'] + ")" for gem in supports])
-                ret += " from: *{}*)".format(item.name)
+                ret += f" from: *{item.name}*)"
         return ret
 
 
@@ -116,8 +119,7 @@ class ItemSlot:
         self.active = bool(active)
 
     def __repr__(self) -> str:
-        return "ItemSlot [name={}; item_id={}; item={}; active={}]".format(self.name, self.item_id, self.item,
-                                                                           self.active)
+        return f"ItemSlot [name={self.name}; item_id={self.item_id}; item={self.item}; active={self.active}]"
 
 
 class Item:
@@ -129,7 +131,7 @@ class Item:
         self.added_supports = self.parse_item_for_support()
 
     def __repr__(self) -> str:
-        return "Item [id={}; name={}; Supports={}]".format(self.id, self.name, self.added_supports)
+        return f"Item [id={self.id}; name={self.name}; Supports={self.added_supports}]"
 
     def parse_item_name(self):
         # see here for regex: https://regex101.com/r/MivGPM/1
@@ -139,7 +141,7 @@ class Item:
         try:
             name = matches[0]
         except IndexError as err:
-            log.warning("Name could not be retrieved. Trying string split method Err={}".format(err))
+            log.warning(f"Name could not be retrieved. Trying string split method Err={err}")
             name = self.raw_content.split('\n')[0]
 
         return name
@@ -161,21 +163,20 @@ class Item:
 
 
 class Build:
-    def __init__(self, level, version, bandit, class_name, ascendency_name, tree, skills, activeSkill, item_slots):
+    def __init__(self, level, version, bandit, class_name, ascendancy_name, tree, skills, active_skill, item_slots):
         self.level = int(level)
         self.version = version
         self.bandit = bandit
         self.class_name = class_name
-        self.ascendency_name = ascendency_name
+        self.ascendancy_name = ascendancy_name
         self.stats = {}
         self.config = {}
         self.tree = tree
         self.skills = skills
-        self.active_skill_id = int(activeSkill) if activeSkill else None
+        self.active_skill_id = int(active_skill) if active_skill else None
         self.item_slots = item_slots
         self.aura_count, self.curse_count = self.count_curses_auras()
         self.keystones = []
-
 
     def count_curses_auras(self):
         """
@@ -210,7 +211,7 @@ class Build:
             self.config[key].update(conf_entry)
 
     def __repr__(self) -> str:
-        return "{}".format(self.__dict__)
+        return f"{self.__dict__}"
 
     def get_item(self, slot):
         item_slot = self.item_slots.get(slot)
@@ -236,6 +237,6 @@ class Build:
 
     def get_active_skill(self):
 
-        if len(self.skills) < 1 or self.active_skill_id == None or self.active_skill_id < 1:
+        if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]

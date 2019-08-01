@@ -41,36 +41,30 @@ def get_damage_output(build, avg, dps, ignite_dps):
     shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
 
     if show_avg_damage(build.get_active_skill()) or avg > dps:
-        output += "**AVG**: {avg:,.0f}\n".format(
-            avg=avg)
+        output += f"**AVG**: {avg:,.0f}\n"
     else:
-        output += "**DPS**: {dps:,.0f}".format(
-            dps=dps)
+        output += f"**DPS**: {dps:,.0f}"
         if shown_speed > 0:
-            output += "@ {speed}/s\n".format(
-                speed=round(shown_speed, 2) if shown_speed else 0)
+            output += f"@ {round(shown_speed, 2) if shown_speed else 0}/s\n"
 
     if ignite_dps > dps or (avg and ignite_dps > avg * shown_speed):
-        output += "**Ignite DPS**: {ignite:,.0f}\n".format(
-            ignite=ignite_dps
-        )
+        output += f"**Ignite DPS**: {ignite_dps:,.0f}\n"
 
     crit_chance = build.get_stat('Player', 'CritChance', )
     crit_multi = build.get_stat('Player', 'CritMultiplier')
     if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
-        output += "**Crit**: Chance {crit_chance:,.2f}% | Multiplier: {crit_multi:,.0f}%\n".format(
-            crit_chance=crit_chance,
-            crit_multi=crit_multi * 100 if crit_multi else 150)
+        output += f"**Crit**: Chance {crit_chance:,.2f}%" \
+            f" | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
 
     acc = build.get_stat('Player', 'HitChance')
 
     if acc and acc < OutputThresholds.ACCURACY.value:
-        output += "**Hit Chance**: {:.2f}%".format(acc)
+        output += f"**Hit Chance**: {acc:.2f}%"
     return output
 
 
 def get_support_outptut(build):
-    return "Auras: {}, Curses: {}".format(build.aura_count, build.curse_count)
+    return f"Auras: {build.aura_count}, Curses: {build.curse_count}"
 
 
 def get_offense(build, consts=None):

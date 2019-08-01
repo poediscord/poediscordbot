@@ -42,7 +42,7 @@ if config.dm_auto_log:
 @bot.event
 async def on_ready():
     bot.add_cog(PathOfBuilding(bot, config.active_channels, config.allow_pming))
-    log.info('Logged in: uname={}, id={}'.format(bot.user.name, bot.user.id))
+    log.info(f'Logged in: uname={bot.user.name}, id={bot.user.id}')
     if config.presence_message:
         await bot.change_presence(activity=discord.Activity(name=config.presence_message))
 

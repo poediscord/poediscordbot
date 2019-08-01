@@ -45,15 +45,15 @@ class PathOfBuilding(commands.Cog):
                 and "pastebin.com/" in message.content:
             # check if valid xml
             # send message
-            log.debug("A| {}: {}".format(message.channel, message.content))
+            log.debug(f"A| {message.channel}: {message.content}")
             try:
                 embed = self.__parse_pob(message.author, message.content, minify=True)
                 if embed:
                     await message.channel.send(embed=embed)
             except HTTPError as err:
-                log.error("Pastebin: Invalid pastebin-url msg={}".format(err))
+                log.error(f"Pastebin: Invalid pastebin-url msg={err}")
             except pastebin.CaptchaError as err:
-                log.error("Pastebin: Marked as spam msg={}".format(err))
+                log.error(f"Pastebin: Marked as spam msg={err}")
                 await message.channel.send(err.message)
 
     @commands.command(pass_context=True)
@@ -100,5 +100,5 @@ class PathOfBuilding(commands.Cog):
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed
             except Exception as e:
-                log.error("Could not parse pastebin={} - Exception={}".format(paste_key, ''.join(
-                    traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))))
+                ex_msg=''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
+                log.error(f"Could not parse pastebin={paste_key} - Exception={ex_msg}")

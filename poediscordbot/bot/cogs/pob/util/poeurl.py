@@ -17,13 +17,13 @@ def shrink_tree_url(tree):
     # build requesturl
     param = '{"url":"' + tree + '"}'
     url = 'http://poeurl.com/api/?shrink=' + param
-    log.debug("Poeurl payload={}".format(url))
+    log.debug(f"Poeurl payload={url}")
 
     contents = urllib.request.urlopen(url).read().decode('utf-8')
-    log.debug("Poeurl contents={}".format(contents))
+    log.debug(f"Poeurl contents={contents}")
 
     contents = json.loads(contents)
-    log.debug("Got json content from poeurl ... {}".format(contents))
+    log.debug(f"Got json content from poeurl ... {contents}")
     if contents['url']:
         return 'http://poeurl.com/' + contents['url']
     else:
