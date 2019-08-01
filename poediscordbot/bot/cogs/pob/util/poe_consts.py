@@ -32,7 +32,10 @@ aura_list = [
     "Purity of Lightning",
     "Vitality",
     "Wrath",
-    "Envy"
+    "Envy",
+    "Precision",
+    "Pride",
+    "Flesh and Stone",
 ]
 
 """
