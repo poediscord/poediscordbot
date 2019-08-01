@@ -5,10 +5,10 @@ import discord
 from discord.ext import commands
 from requests import HTTPError
 
-from poediscordbot.bot.cogs.pob import util
-from poediscordbot.bot.cogs.pob.build import poe_consts
-from poediscordbot.bot.cogs.pob.output import pob_output
-from poediscordbot.bot.cogs.pob.util import pastebin
+from poediscordbot.cogs.pob import util
+from poediscordbot.cogs.pob.build import poe_consts
+from poediscordbot.cogs.pob.output import pob_output
+from poediscordbot.cogs.pob.util import pastebin
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 

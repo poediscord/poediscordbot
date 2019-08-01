@@ -1,4 +1,4 @@
-from poediscordbot.bot.cogs.pob.build.thresholds import OutputThresholds
+from poediscordbot.cogs.pob.build.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models import Build
 
 

@@ -1,5 +1,5 @@
 import config
-from poediscordbot.bot.discord_bot import bot
+from poediscordbot.discord_bot import bot
 from poediscordbot.util.logging import log
 
 if __name__ == '__main__':

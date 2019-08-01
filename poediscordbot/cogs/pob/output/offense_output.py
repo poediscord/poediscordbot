@@ -1,5 +1,5 @@
-from poediscordbot.bot.cogs.pob.build import build_checker
-from poediscordbot.bot.cogs.pob.build.thresholds import OutputThresholds
+from poediscordbot.cogs.pob.build import build_checker
+from poediscordbot.cogs.pob.build.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models import Skill
 
 

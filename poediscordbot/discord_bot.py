@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 import config
-from poediscordbot.bot.cogs.pob.pob_cog import PathOfBuilding
+from poediscordbot.cogs.pob.pob_cog import PathOfBuilding
 from poediscordbot.util import chat_logging
 from poediscordbot.util.logging import log
 

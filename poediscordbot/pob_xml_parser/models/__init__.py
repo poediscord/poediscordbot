@@ -1,7 +1,7 @@
 import re
 
-from poediscordbot.bot.cogs.pob.build import poe_consts
-from poediscordbot.bot.cogs.pob.util.pob import pob_conf
+from poediscordbot.cogs.pob.build import poe_consts
+from poediscordbot.cogs.pob.util.pob import pob_conf
 from poediscordbot.util.logging import log
 
 
