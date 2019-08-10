@@ -33,7 +33,7 @@ class TestParser(unittest.TestCase):
 
     def test_item_slots(self):
         build = load_test_build()
-        # Test poe_data has exactly 14 equipped items
+        # Test build has exactly 14 equipped items
         self.assertEqual(len(build.item_slots), 14)
 
 

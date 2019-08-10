@@ -93,7 +93,6 @@ class PoBCog(commands.Cog):
 
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
             build = pob_xml_parser.parse_build(xml)
-            # print(poe_data)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
                                                      consts=poe_consts, web_poe_token=web_poe_token)
