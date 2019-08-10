@@ -1,8 +1,8 @@
 from discord import Embed
 
 import config
-from poediscordbot.cogs.pob.build import build_checker
 from poediscordbot.cogs.pob.output import general_output, skill_output, config_output, charges_output, offense_output
+from poediscordbot.cogs.pob.poe_data import build_checker
 from poediscordbot.pob_xml_parser.models import Build, Gem, Skill
 
 
@@ -10,7 +10,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     """
     Create the basic embed we add information to
     :param author: of the parsed message - str
-    :param level: of the build
+    :param level: of the poe_data
     :param ascendency_name: to display
     :param class_name: to display if no ascendency has been chosen
     :param main_skill: main skill to display
@@ -64,7 +64,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, c
     Build an embed to respond to the user.
     :param consts: poe constants - skill info
     :param author: name of the person triggering the action
-    :param build: build to parse an embed from
+    :param build: poe_data to parse an embed from
     :param minified (bool): whether to get a minified version or the full one
     :return: Filled embed for discord
     """

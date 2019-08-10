@@ -15,9 +15,9 @@ def get_attrib_if_exists(xml_elem, key):
 
 def parse_build(xml_root) -> Build:
     """
-    Completely parse the given pob xml into a build.
+    Completely parse the given pob xml into a poe_data.
     :param xml_root: root node of pob xml
-    :return: completely parsed build
+    :return: completely parsed poe_data
     """
     xml_build = xml_root.find('Build')
     xml_items = xml_root.find('Items')
@@ -76,7 +76,7 @@ def _parse_item_slots(xml_items):
     slots = {}
     active_set = get_attrib_if_exists(xml_items, 'activeItemSet')
     for entry in xml_items:
-        # todo: only parse needed items for the current build
+        # todo: only parse needed items for the current poe_data
         if entry.tag.lower() == "item":
             items.append(
                 Item(entry.attrib['id'], entry.text, get_attrib_if_exists(entry, 'variant')))

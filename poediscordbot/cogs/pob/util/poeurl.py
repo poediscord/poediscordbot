@@ -14,7 +14,7 @@ def shrink_tree_url(tree):
     # sanitize
     tree = tree.strip()
 
-    # build requesturl
+    # poe_data requesturl
     param = '{"url":"' + tree + '"}'
     url = 'http://poeurl.com/api/?shrink=' + param
     log.debug(f"Poeurl payload={url}")
