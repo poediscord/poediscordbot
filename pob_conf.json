@@ -1,0 +1,597 @@
+{
+    "utc-date": "2019-08-10T22:06:15.438785",
+    "conf": {
+        "conditionStationary": {
+            "var": "conditionStationary",
+            "label": "Are you always stationary?"
+        },
+        "conditionMoving": {
+            "var": "conditionMoving",
+            "label": "Are you always moving?"
+        },
+        "conditionFullLife": {
+            "var": "conditionFullLife",
+            "label": "Are you always on Full Life?"
+        },
+        "conditionLowLife": {
+            "var": "conditionLowLife",
+            "label": "Are you always on Low Life?"
+        },
+        "conditionFullEnergyShield": {
+            "var": "conditionFullEnergyShield",
+            "label": "Are you always on Full Energy Shield?"
+        },
+        "conditionHaveEnergyShield": {
+            "var": "conditionHaveEnergyShield",
+            "label": "Do you always have Energy Shield?"
+        },
+        "minionsConditionFullLife": {
+            "var": "minionsConditionFullLife",
+            "label": "Are your minions always on Full Life?"
+        },
+        "aspectOfTheAvianAviansMight": {
+            "var": "aspectOfTheAvianAviansMight",
+            "label": "Is Avian's Might active?"
+        },
+        "aspectOfTheAvianAviansFlight": {
+            "var": "aspectOfTheAvianAviansFlight",
+            "label": "Is Avian's Flight active?"
+        },
+        "aspectOfTheCatCatsStealth": {
+            "var": "aspectOfTheCatCatsStealth",
+            "label": "Is Cat's Stealth active?"
+        },
+        "aspectOfTheCatCatsAgility": {
+            "var": "aspectOfTheCatCatsAgility",
+            "label": "Is Cat's Agility active?"
+        },
+        "overrideCrabBarriers": {
+            "var": "overrideCrabBarriers",
+            "label": "# of Crab Barriers (if not maximum):"
+        },
+        "bannerPlanted": {
+            "var": "bannerPlanted",
+            "label": "Is Banner Planted?"
+        },
+        "bladestormInBloodstorm": {
+            "var": "bladestormInBloodstorm",
+            "label": "Are you in a Bloodstorm?"
+        },
+        "bladestormInSandstorm": {
+            "var": "bladestormInSandstorm",
+            "label": "Are you in a Sandstorm?"
+        },
+        "brandAttachedToEnemy": {
+            "var": "brandAttachedToEnemy",
+            "label": "Is Attached to the Enemy?"
+        },
+        "iceNovaCastOnFrostbolt": {
+            "var": "iceNovaCastOnFrostbolt",
+            "label": "Cast on Frostbolt?"
+        },
+        "infusedChannellingInfusion": {
+            "var": "infusedChannellingInfusion",
+            "label": "Is Infusion active?"
+        },
+        "innervateInnervation": {
+            "var": "innervateInnervation",
+            "label": "Is Innervation active?"
+        },
+        "siphoningTrapAffectedEnemies": {
+            "var": "siphoningTrapAffectedEnemies",
+            "label": "# of Enemies affected:"
+        },
+        "bloodSandStance": {
+            "var": "bloodSandStance",
+            "label": "Stance:"
+        },
+        "vortexCastOnFrostbolt": {
+            "var": "vortexCastOnFrostbolt",
+            "label": "Cast on Frostbolt?"
+        },
+        "waveOfConvictionExposureType": {
+            "var": "waveOfConvictionExposureType",
+            "label": "Exposure Type:"
+        },
+        "usePowerCharges": {
+            "var": "usePowerCharges",
+            "label": "Do you use Power Charges?"
+        },
+        "overridePowerCharges": {
+            "var": "overridePowerCharges",
+            "label": "# of Power Charges (if not maximum):"
+        },
+        "useFrenzyCharges": {
+            "var": "useFrenzyCharges",
+            "label": "Do you use Frenzy Charges?"
+        },
+        "overrideFrenzyCharges": {
+            "var": "overrideFrenzyCharges",
+            "label": "# of Frenzy Charges (if not maximum):"
+        },
+        "useEnduranceCharges": {
+            "var": "useEnduranceCharges",
+            "label": "Do you use Endurance Charges?"
+        },
+        "overrideEnduranceCharges": {
+            "var": "overrideEnduranceCharges",
+            "label": "# of Endurance Charges (if not maximum):"
+        },
+        "useSiphoningCharges": {
+            "var": "useSiphoningCharges",
+            "label": "Do you use Siphoning Charges?"
+        },
+        "overrideSiphoningCharges": {
+            "var": "overrideSiphoningCharges",
+            "label": "# of Siphoning Charges (if not maximum):"
+        },
+        "useChallengerCharges": {
+            "var": "useChallengerCharges",
+            "label": "Do you use Challenger Charges?"
+        },
+        "overrideChallengerCharges": {
+            "var": "overrideChallengerCharges",
+            "label": "# of Challenger Charges (if not maximum):"
+        },
+        "useBlitzCharges": {
+            "var": "useBlitzCharges",
+            "label": "Do you use Blitz Charges?"
+        },
+        "overrideBlitzCharges": {
+            "var": "overrideBlitzCharges",
+            "label": "# of Blitz Charges (if not maximum):"
+        },
+        "minionsUsePowerCharges": {
+            "var": "minionsUsePowerCharges",
+            "label": "Do your minions use Power Charges?"
+        },
+        "minionsUseFrenzyCharges": {
+            "var": "minionsUseFrenzyCharges",
+            "label": "Do your minions use Frenzy Charges?"
+        },
+        "minionsUseEnduranceCharges": {
+            "var": "minionsUseEnduranceCharges",
+            "label": "Do your minions use Endur. Charges?"
+        },
+        "conditionFocused": {
+            "var": "conditionFocused",
+            "label": "Are you Focussed?"
+        },
+        "buffOnslaught": {
+            "var": "buffOnslaught",
+            "label": "Do you have Onslaught?"
+        },
+        "buffUnholyMight": {
+            "var": "buffUnholyMight",
+            "label": "Do you have Unholy Might?"
+        },
+        "buffPhasing": {
+            "var": "buffPhasing",
+            "label": "Do you have Phasing?"
+        },
+        "buffFortify": {
+            "var": "buffFortify",
+            "label": "Do you have Fortify?"
+        },
+        "buffTailwind": {
+            "var": "buffTailwind",
+            "label": "Do you have Tailwind?"
+        },
+        "buffAdrenaline": {
+            "var": "buffAdrenaline",
+            "label": "Do you have Adrenaline?"
+        },
+        "buffDivinity": {
+            "var": "buffDivinity",
+            "label": "Do you have Divinity?"
+        },
+        "multiplierRage": {
+            "var": "multiplierRage",
+            "label": "Rage:"
+        },
+        "conditionLeeching": {
+            "var": "conditionLeeching",
+            "label": "Are you Leeching?"
+        },
+        "conditionLeechingLife": {
+            "var": "conditionLeechingLife",
+            "label": "Are you Leeching Life?"
+        },
+        "conditionLeechingEnergyShield": {
+            "var": "conditionLeechingEnergyShield",
+            "label": "Are you Leeching Energy Shield?"
+        },
+        "conditionLeechingMana": {
+            "var": "conditionLeechingMana",
+            "label": "Are you Leeching Mana?"
+        },
+        "conditionUsingFlask": {
+            "var": "conditionUsingFlask",
+            "label": "Do you have a Flask active?"
+        },
+        "conditionHaveTotem": {
+            "var": "conditionHaveTotem",
+            "label": "Do you have a Totem summoned?"
+        },
+        "multiplierNearbyAlly": {
+            "var": "multiplierNearbyAlly",
+            "label": "# of Nearby Allies"
+        },
+        "conditionOnConsecratedGround": {
+            "var": "conditionOnConsecratedGround",
+            "label": "Are you on Consecrated Ground?"
+        },
+        "conditionOnBurningGround": {
+            "var": "conditionOnBurningGround",
+            "label": "Are you on Burning Ground?"
+        },
+        "conditionOnChilledGround": {
+            "var": "conditionOnChilledGround",
+            "label": "Are you on Chilled Ground?"
+        },
+        "conditionOnShockedGround": {
+            "var": "conditionOnShockedGround",
+            "label": "Are you on Shocked Ground?"
+        },
+        "conditionBurning": {
+            "var": "conditionBurning",
+            "label": "Are you Burning?"
+        },
+        "conditionIgnited": {
+            "var": "conditionIgnited",
+            "label": "Are you Ignited?"
+        },
+        "conditionChilled": {
+            "var": "conditionChilled",
+            "label": "Are you Chilled?"
+        },
+        "conditionFrozen": {
+            "var": "conditionFrozen",
+            "label": "Are you Frozen?"
+        },
+        "conditionShocked": {
+            "var": "conditionShocked",
+            "label": "Are you Shocked?"
+        },
+        "conditionBleeding": {
+            "var": "conditionBleeding",
+            "label": "Are you Bleeding?"
+        },
+        "conditionPoisoned": {
+            "var": "conditionPoisoned",
+            "label": "Are you Poisoned?"
+        },
+        "multiplierPoisonOnSelf": {
+            "var": "multiplierPoisonOnSelf",
+            "label": "# of Poison on You:"
+        },
+        "conditionOnlyOneNearbyEnemy": {
+            "var": "conditionOnlyOneNearbyEnemy",
+            "label": "Is there only one nearby Enemy?"
+        },
+        "conditionHitRecently": {
+            "var": "conditionHitRecently",
+            "label": "Have you Hit Recently?"
+        },
+        "conditionCritRecently": {
+            "var": "conditionCritRecently",
+            "label": "Have you Crit Recently?"
+        },
+        "conditionSkillCritRecently": {
+            "var": "conditionSkillCritRecently",
+            "label": "Have your Skills Crit Recently?"
+        },
+        "conditionNonCritRecently": {
+            "var": "conditionNonCritRecently",
+            "label": "Have you dealt a Non-Crit Recently?"
+        },
+        "conditionKilledRecently": {
+            "var": "conditionKilledRecently",
+            "label": "Have you Killed Recently?"
+        },
+        "multiplierKilledRecently": {
+            "var": "multiplierKilledRecently",
+            "label": "# of Enemies Killed Recently"
+        },
+        "conditionTotemsKilledRecently": {
+            "var": "conditionTotemsKilledRecently",
+            "label": "Have your Totems Killed Recently?"
+        },
+        "multiplierTotemsKilledRecently": {
+            "var": "multiplierTotemsKilledRecently",
+            "label": "# of Enemies Killed by Totems Recently"
+        },
+        "conditionMinionsKilledRecently": {
+            "var": "conditionMinionsKilledRecently",
+            "label": "Have your Minions Killed Recently?"
+        },
+        "multiplierMinionsKilledRecently": {
+            "var": "multiplierMinionsKilledRecently",
+            "label": "# of Enemies Killed by Minions Recently"
+        },
+        "conditionKilledAffectedByDoT": {
+            "var": "conditionKilledAffectedByDoT",
+            "label": "Killed Enemy affected by your DoT Recently?"
+        },
+        "multiplierShockedEnemyKilledRecently": {
+            "var": "multiplierShockedEnemyKilledRecently",
+            "label": "# of Shocked Enemies Killed Recently:"
+        },
+        "conditionFrozenEnemyRecently": {
+            "var": "conditionFrozenEnemyRecently",
+            "label": "Have you Frozen an Enemy Recently?"
+        },
+        "conditionShatteredEnemyRecently": {
+            "var": "conditionShatteredEnemyRecently",
+            "label": "Have you Shattered an Enemy Recently?"
+        },
+        "conditionIgnitedEnemyRecently": {
+            "var": "conditionIgnitedEnemyRecently",
+            "label": "Have you Ignited an Enemy Recently?"
+        },
+        "conditionShockedEnemyRecently": {
+            "var": "conditionShockedEnemyRecently",
+            "label": "Have you Shocked an Enemy Recently?"
+        },
+        "multiplierPoisonAppliedRecently": {
+            "var": "multiplierPoisonAppliedRecently",
+            "label": "# of Poisons applied Recently:"
+        },
+        "conditionBeenHitRecently": {
+            "var": "conditionBeenHitRecently",
+            "label": "Have you been Hit Recently?"
+        },
+        "conditionBeenCritRecently": {
+            "var": "conditionBeenCritRecently",
+            "label": "Have you been Crit Recently?"
+        },
+        "conditionBeenSavageHitRecently": {
+            "var": "conditionBeenSavageHitRecently",
+            "label": "Have you been Savage Hit Recently?"
+        },
+        "conditionHitByFireDamageRecently": {
+            "var": "conditionHitByFireDamageRecently",
+            "label": "Have you been hit by Fire Recently?"
+        },
+        "conditionHitByColdDamageRecently": {
+            "var": "conditionHitByColdDamageRecently",
+            "label": "Have you been hit by Cold Recently?"
+        },
+        "conditionHitByLightningDamageRecently": {
+            "var": "conditionHitByLightningDamageRecently",
+            "label": "Have you been hit by Light. Recently?"
+        },
+        "conditionBlockedRecently": {
+            "var": "conditionBlockedRecently",
+            "label": "Have you Blocked Recently?"
+        },
+        "conditionBlockedAttackRecently": {
+            "var": "conditionBlockedAttackRecently",
+            "label": "Have you Blocked an Attack Recently?"
+        },
+        "conditionBlockedSpellRecently": {
+            "var": "conditionBlockedSpellRecently",
+            "label": "Have you Blocked a Spell Recently?"
+        },
+        "conditionEnergyShieldRechargeRecently": {
+            "var": "conditionEnergyShieldRechargeRecently",
+            "label": "Energy Shield Recharge started Recently?"
+        },
+        "buffPendulum": {
+            "var": "buffPendulum",
+            "label": "Is Pendulum of Destruction active?"
+        },
+        "buffConflux": {
+            "var": "buffConflux",
+            "label": "Conflux Buff:"
+        },
+        "buffBastionOfHope": {
+            "var": "buffBastionOfHope",
+            "label": "Is Bastion of Hope active?"
+        },
+        "buffHerEmbrace": {
+            "var": "buffHerEmbrace",
+            "label": "Are you in Her Embrace?"
+        },
+        "conditionUsedSkillRecently": {
+            "var": "conditionUsedSkillRecently",
+            "label": "Have you used a Skill Recently?"
+        },
+        "multiplierSkillUsedRecently": {
+            "var": "multiplierSkillUsedRecently",
+            "label": "# of Skills Used Recently:"
+        },
+        "conditionAttackedRecently": {
+            "var": "conditionAttackedRecently",
+            "label": "Have you Attacked Recently?"
+        },
+        "conditionCastSpellRecently": {
+            "var": "conditionCastSpellRecently",
+            "label": "Have you Cast a Spell Recently?"
+        },
+        "conditionUsedFireSkillRecently": {
+            "var": "conditionUsedFireSkillRecently",
+            "label": "Have you used a Fire Skill Recently?"
+        },
+        "conditionUsedColdSkillRecently": {
+            "var": "conditionUsedColdSkillRecently",
+            "label": "Have you used a Cold Skill Recently?"
+        },
+        "conditionUsedMinionSkillRecently": {
+            "var": "conditionUsedMinionSkillRecently",
+            "label": "Have you used a Minion Skill Recently?"
+        },
+        "conditionUsedMovementSkillRecently": {
+            "var": "conditionUsedMovementSkillRecently",
+            "label": "Have you used a Movement Skill Recently?"
+        },
+        "conditionUsedVaalSkillRecently": {
+            "var": "conditionUsedVaalSkillRecently",
+            "label": "Have you used a Vaal Skill Recently?"
+        },
+        "conditionSoulGainPrevention": {
+            "var": "conditionSoulGainPrevention",
+            "label": "Do you have Soul Gain Prevention?"
+        },
+        "conditionUsedWarcryRecently": {
+            "var": "conditionUsedWarcryRecently",
+            "label": "Have you used a Warcry Recently?"
+        },
+        "multiplierMineDetonatedRecently": {
+            "var": "multiplierMineDetonatedRecently",
+            "label": "# of Mines Detonated Recently:"
+        },
+        "multiplierTrapTriggeredRecently": {
+            "var": "multiplierTrapTriggeredRecently",
+            "label": "# of Traps Triggered Recently:"
+        },
+        "conditionConsumedCorpseRecently": {
+            "var": "conditionConsumedCorpseRecently",
+            "label": "Consumed a corpse Recently?"
+        },
+        "multiplierCorpseConsumedRecently": {
+            "var": "multiplierCorpseConsumedRecently",
+            "label": "# of Corpses Consumed Recently:"
+        },
+        "conditionTauntedEnemyRecently": {
+            "var": "conditionTauntedEnemyRecently",
+            "label": "Taunted an Enemy Recently?"
+        },
+        "conditionUsedFireSkillInPast10Sec": {
+            "var": "conditionUsedFireSkillInPast10Sec",
+            "label": "Have you used a Fire Skill in the past 10s?"
+        },
+        "conditionUsedColdSkillInPast10Sec": {
+            "var": "conditionUsedColdSkillInPast10Sec",
+            "label": "Have you used a Cold Skill in the past 10s?"
+        },
+        "conditionUsedLightningSkillInPast10Sec": {
+            "var": "conditionUsedLightningSkillInPast10Sec",
+            "label": "Have you used a Light. Skill in the past 10s?"
+        },
+        "conditionBlockedHitFromUniqueEnemyRecently": {
+            "var": "conditionBlockedHitFromUniqueEnemyRecently",
+            "label": "Blocked hit from a Unique Recently?"
+        },
+        "conditionBlockedHitFromUniqueEnemyInPast10Sec": {
+            "var": "conditionBlockedHitFromUniqueEnemyInPast10Sec",
+            "label": "Blocked hit from a Unique in the past 10s?"
+        },
+        "critChanceLucky": {
+            "var": "critChanceLucky",
+            "label": "Is your Crit Chance Lucky?"
+        },
+        "skillChainCount": {
+            "var": "skillChainCount",
+            "label": "# of times Skill has Chained:"
+        },
+        "projectileDistance": {
+            "var": "projectileDistance",
+            "label": "Projectile travel distance:"
+        },
+        "conditionAtCloseRange": {
+            "var": "conditionAtCloseRange",
+            "label": "Is the enemy at Close Range?"
+        },
+        "conditionEnemyMoving": {
+            "var": "conditionEnemyMoving",
+            "label": "Is the enemy Moving?"
+        },
+        "conditionEnemyFullLife": {
+            "var": "conditionEnemyFullLife",
+            "label": "Is the enemy on Full Life?"
+        },
+        "conditionEnemyLowLife": {
+            "var": "conditionEnemyLowLife",
+            "label": "Is the enemy on Low Life?"
+        },
+        "conditionEnemyCursed": {
+            "var": "conditionEnemyCursed",
+            "label": "Is the enemy Cursed?"
+        },
+        "conditionEnemyBleeding": {
+            "var": "conditionEnemyBleeding",
+            "label": "Is the enemy Bleeding?"
+        },
+        "conditionEnemyPoisoned": {
+            "var": "conditionEnemyPoisoned",
+            "label": "Is the enemy Poisoned?"
+        },
+        "multiplierPoisonOnEnemy": {
+            "var": "multiplierPoisonOnEnemy",
+            "label": "# of Poison on Enemy:"
+        },
+        "conditionEnemyMaimed": {
+            "var": "conditionEnemyMaimed",
+            "label": "Is the enemy Maimed?"
+        },
+        "conditionEnemyHindered": {
+            "var": "conditionEnemyHindered",
+            "label": "Is the enemy Hindered?"
+        },
+        "conditionEnemyBlinded": {
+            "var": "conditionEnemyBlinded",
+            "label": "Is the enemy Blinded?"
+        },
+        "conditionEnemyTaunted": {
+            "var": "conditionEnemyTaunted",
+            "label": "Is the enemy Taunted?"
+        },
+        "conditionEnemyBurning": {
+            "var": "conditionEnemyBurning",
+            "label": "Is the enemy Burning?"
+        },
+        "conditionEnemyIgnited": {
+            "var": "conditionEnemyIgnited",
+            "label": "Is the enemy Ignited?"
+        },
+        "conditionEnemyChilled": {
+            "var": "conditionEnemyChilled",
+            "label": "Is the enemy Chilled?"
+        },
+        "conditionEnemyFrozen": {
+            "var": "conditionEnemyFrozen",
+            "label": "Is the enemy Frozen?"
+        },
+        "conditionEnemyShocked": {
+            "var": "conditionEnemyShocked",
+            "label": "Is the enemy Shocked?"
+        },
+        "multiplierFreezeShockIgniteOnEnemy": {
+            "var": "multiplierFreezeShockIgniteOnEnemy",
+            "label": "# of Freeze/Shock/Ignite on Enemy:"
+        },
+        "conditionEnemyIntimidated": {
+            "var": "conditionEnemyIntimidated",
+            "label": "Is the enemy Intimidated?"
+        },
+        "conditionEnemyCoveredInAsh": {
+            "var": "conditionEnemyCoveredInAsh",
+            "label": "Is the enemy covered in Ash?"
+        },
+        "conditionEnemyOnConsecratedGround": {
+            "var": "conditionEnemyOnConsecratedGround",
+            "label": "Is the enemy on consecrated ground?"
+        },
+        "conditionEnemyRareOrUnique": {
+            "var": "conditionEnemyRareOrUnique",
+            "label": "is the enemy Rare or Unique?"
+        },
+        "enemyIsBoss": {
+            "var": "enemyIsBoss",
+            "label": "Is the enemy a Boss?"
+        },
+        "enemyConditionHitByFireDamage": {
+            "var": "enemyConditionHitByFireDamage",
+            "label": "Enemy was Hit by Fire Damage?"
+        },
+        "enemyConditionHitByColdDamage": {
+            "var": "enemyConditionHitByColdDamage",
+            "label": "Enemy was Hit by Cold Damage?"
+        },
+        "enemyConditionHitByLightningDamage": {
+            "var": "enemyConditionHitByLightningDamage",
+            "label": "Enemy was Hit by Light. Damage?"
+        }
+    }
+}

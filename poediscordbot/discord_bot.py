@@ -3,7 +3,7 @@ import asyncio
 import discord
 from discord.ext import commands
 
-import config
+from instance import config
 from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util import chat_logging
 from poediscordbot.util.logging import log

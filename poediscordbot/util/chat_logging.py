@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 from os import path
 
-import config
+from instance import config
 
 
 def get_file_path(user, directory='_logs'):

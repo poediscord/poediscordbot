@@ -2,7 +2,7 @@ import logging
 import logging.config
 import sys
 
-import config
+from instance import config
 
 
 def init_logging(name):

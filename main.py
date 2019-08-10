@@ -1,4 +1,4 @@
-import config
+from instance import config
 from poediscordbot.discord_bot import bot
 from poediscordbot.util.logging import log
 

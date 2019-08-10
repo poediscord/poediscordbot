@@ -2,8 +2,8 @@ import json
 from datetime import datetime
 from urllib import request
 
-import config
-from poediscordbot import util
+from instance import config
+from poediscordbot.cogs.pob import util
 from poediscordbot.util.logging import log
 
 
