@@ -1,11 +1,11 @@
-from poediscordbot.cogs.pob.build.thresholds import OutputThresholds
+from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models import Build
 
 
 def get_resistances(build: Build):
     """
     Creates the resistance string
-    :param build: build we want to output
+    :param build: poe_data we want to output
     :return: string containing all resistances or and empty string if nothing is noteworthy
     """
     output = "**Resistances**: "
@@ -47,7 +47,7 @@ def get_basic_line(name, stat, stat_percent, stat_unreserved=0, stat_regen=0, st
 def get_secondary_def(build: Build):
     """
     Parse all secondary defenses such as armor, eva, dodge, block and display them if they are higher than the thresholds.
-    :param build: current build
+    :param build: current poe_data
     :return: String containing noteworthy secondary defense, Empty string as default
     """
     output = ""

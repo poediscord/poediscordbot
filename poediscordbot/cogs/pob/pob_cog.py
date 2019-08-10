@@ -6,8 +6,8 @@ from discord.ext import commands
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
-from poediscordbot.cogs.pob.build import poe_consts
 from poediscordbot.cogs.pob.output import pob_output
+from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util import pastebin
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
@@ -93,7 +93,6 @@ class PoBCog(commands.Cog):
 
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
             build = pob_xml_parser.parse_build(xml)
-            # print(build)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
                                                      consts=poe_consts, web_poe_token=web_poe_token)

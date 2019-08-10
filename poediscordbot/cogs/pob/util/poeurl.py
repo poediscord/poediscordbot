@@ -15,8 +15,8 @@ def shrink_tree_url(tree):
     tree = tree.strip()
 
     # build requesturl
-    param = '{"url":"' + tree + '"}'
-    url = 'http://poeurl.com/api/?shrink=' + param
+    param = f'{"url":"{tree}"}'
+    url = f'http://poeurl.com/api/?shrink={param}'
     log.debug(f"Poeurl payload={url}")
 
     contents = urllib.request.urlopen(url).read().decode('utf-8')
@@ -25,6 +25,6 @@ def shrink_tree_url(tree):
     contents = json.loads(contents)
     log.debug(f"Got json content from poeurl ... {contents}")
     if contents['url']:
-        return 'http://poeurl.com/' + contents['url']
+        return f"http://poeurl.com/{contents['url']}"
     else:
         raise ValueError("Unable to retrieve URL")

@@ -1,5 +1,5 @@
-from poediscordbot.cogs.pob.build import build_checker
-from poediscordbot.cogs.pob.build.thresholds import OutputThresholds
+from poediscordbot.cogs.pob.poe_data import build_checker
+from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models import Skill
 
 
@@ -69,7 +69,7 @@ def get_support_outptut(build):
 
 def get_offense(build, consts=None):
     """
-    Parses the meat of the build as in either support or dmg stats
+    Parses the meat of the poe_data as in either support or dmg stats
     :param build:  Build instance
     :return: String (Support|Offense), String (Output)
     """
