@@ -1,5 +1,7 @@
 # PoB Parsing Bot for Discord [![Build Status](https://travis-ci.org/FWidm/discord-pob.svg?branch=master)](https://travis-ci.org/FWidm/discord-pob)
 
+## The bot was moved and updated to be compatible with Python 3.7, please check out the new repository: https://github.com/poediscord/poediscordbot
+
 *Written in Python 3.6* - Does not work with Python 3.7+ due to the used discord library.
 
 ### Do not forget to re-do your config.py every time you pull. Breaking changes may happen at this stage.
