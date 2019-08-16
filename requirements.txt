@@ -1,4 +1,3 @@
-discord
 retrying==1.3.3
 defusedxml==0.6.0
 requests==2.21.0
