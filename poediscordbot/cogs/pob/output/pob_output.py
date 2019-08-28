@@ -26,10 +26,9 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
             gem_name = main_gem.get_name()
 
     if ascendency_name or class_name:
-        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
+        url = 'https://raw.github.com/poediscord/poediscordbot/master/resources/img/' + (
             ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
-        # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
     class_display_name = class_name if ascendency_name.lower() == 'none' else ascendency_name
     embed.title = f"{gem_name} - {class_display_name} (Lvl: {level})"
     if author:
