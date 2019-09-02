@@ -1,6 +1,7 @@
 # config
 config.py
 
+
 # editors
 .idea
 
@@ -111,3 +112,5 @@ venv.bak/
 
 # projects
 .vscode/
+
+!/instance/config.example.py
