@@ -21,20 +21,42 @@ class Gem:
         else:
             self.second_name = None
         self.active_part = 0
-        self.is_active = self.determine_active(self.id)
+        self.is_active = self.determine_active()
 
     def __repr__(self) -> str:
-        return f"Gem [name={self.get_name()}]"
+        return f"Gem [{self.build_gem_string()}]"
 
-    @staticmethod
-    def determine_active(gem_id):
-        return False if not gem_id else "Support".lower() not in gem_id.lower()
+    def determine_active(self):
+        return False if not self.id else "Support".lower() not in self.id.lower()
 
     def get_name(self):
         return self.name if self.active_part == 0 else self.second_name
 
     def set_active_part(self, part_id):
         self.active_part = part_id
+
+    def build_gem_string(self):
+        """
+        Get the display string for a gem, adds level and quality info if the gem is remarkable in some way.
+        :return: information string: name | name (level/quality)
+        """
+        exceptional_gems = ['empower', 'enlighten', 'enhance']
+        gem_string = self.name
+
+        special_gem = self.name.lower() in exceptional_gems
+        high_level = self.level > 20
+        is_notable = self.quality > 5
+
+        if special_gem or high_level or is_notable:
+            gem_string += f" ({self.level}/{self.quality}%)"
+        return gem_string
+
+    def is_valid_gem(self):
+        """
+        A gem is valid if it's enabled, it has a nonempty, non jewel name
+        :return: true if it is a parseable gem
+        """
+        return self.name and self.enabled and self.name != '' and 'jewel' not in self.name.lower()
 
     @staticmethod
     def translate_name(skill_id):
@@ -97,12 +119,7 @@ class Skill:
     def get_links(self, item=None, join_str=" + "):
         # Join the gem names, if they are in the selected skill group and if they are enable d. Show quality and level
         # if level is >20 or quality is set.
-        ret = join_str.join(
-            [gem.name + f" ({gem.level}/{gem.quality})"
-             if (gem.level > 20 or gem.quality > 0)
-             else gem.name for gem in self.gems if gem.name and
-             gem.enabled and gem.name != '' and 'jewel' not in gem.name.lower()]
-        )
+        ret = join_str.join([gem.build_gem_string() for gem in self.gems if gem.is_valid_gem()])
 
         if item:
             supports = item.added_supports
