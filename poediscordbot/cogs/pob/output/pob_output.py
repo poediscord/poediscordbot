@@ -1,9 +1,11 @@
 from discord import Embed
-
 from instance import config
+
 from poediscordbot.cogs.pob.output import general_output, skill_output, config_output, charges_output, offense_output
 from poediscordbot.cogs.pob.poe_data import build_checker
-from poediscordbot.pob_xml_parser.models import Build, Gem, Skill
+from poediscordbot.pob_xml_parser.models.build import Build
+from poediscordbot.pob_xml_parser.models.gem import Gem
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
@@ -26,10 +28,9 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
             gem_name = main_gem.get_name()
 
     if ascendency_name or class_name:
-        url = 'https://raw.githubusercontent.com/FWidm/discord-pob/master/_img/' + (
+        url = 'https://raw.github.com/poediscord/poediscordbot/master/resources/img/' + (
             ascendency_name if ascendency_name != "None" else class_name) + '.png'
         embed.set_thumbnail(url=url)
-        # url='http://web.poecdn.com/image/Art/2DArt/SkillIcons/passives/Ascendants/' + ascendency_name + '.png')
     class_display_name = class_name if ascendency_name.lower() == 'none' else ascendency_name
     embed.title = f"{gem_name} - {class_display_name} (Lvl: {level})"
     if author:

@@ -6,14 +6,18 @@ from instance import config
 from poediscordbot.cogs.pob import util
 from poediscordbot.util.logging import log
 
+POB_CONF_JSON = 'resources/pob_conf.json'
 
-class PobConfig():
-    def __init__(self, path_to_pob_conf="pob_conf.json"):
+
+class PobConfig:
+    def __init__(self, path_to_pob_conf=POB_CONF_JSON):
         try:
-            self.config = json.load(open(config.ROOT_DIR + '/resources/' + path_to_pob_conf))
+            self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
         except FileNotFoundError as err:
-            log.error(f"pob_conf is missing, trying to obtain a new copy... err={err}")
-            self.fetch_config()
+            log.error(f"pob_conf.json in resources is missing, trying to obtain a new copy... err={err}")
+            self.fetch_config(path_to_pob_conf)
+            log.info(f"finished creating new pob_conf.json in resources...")
+            self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
 
     def fetch_entry(self, config_var: str):
         """
@@ -26,7 +30,7 @@ class PobConfig():
                 return self.config['conf'].get(entry)
 
     @staticmethod
-    def fetch_config():
+    def fetch_config(path_to_pob_conf):
         """
         Read the current PoB master branch configoptions and create a json file for it.
         """
@@ -50,7 +54,7 @@ class PobConfig():
 
         pob_config_content = {'utc-date': datetime.utcnow().isoformat(), 'conf': attributes}
         try:
-            with open('pob_conf.json', 'r') as file:
+            with open(path_to_pob_conf, 'r') as file:
                 file_content = json.load(file)
                 if 'conf' in file_content:
                     # we need to do this to keep manually entered values in our file such as category
@@ -67,7 +71,7 @@ class PobConfig():
         except FileNotFoundError:
             pass
 
-        with open('pob_conf.json', 'w') as file:
+        with open(path_to_pob_conf, 'w') as file:
             json.dump(pob_config_content, file, indent=4)
 
 

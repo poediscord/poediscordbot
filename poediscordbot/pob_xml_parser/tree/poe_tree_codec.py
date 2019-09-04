@@ -3,22 +3,22 @@ import json
 import struct
 
 from instance import config
+
 from .poe_tree import PoeTree
 
 
 class PoeTreeCodec:
-    POE_TREE_JSON = 'resources/tree_3_7.json'
+    POE_TREE_JSON = 'resources/tree_3_8.json'
 
     def __init__(self):
         tree_data = json.load(open(config.ROOT_DIR + '/' + PoeTreeCodec.POE_TREE_JSON))
         node_data = tree_data['nodes']
-        extract_abbrev = lambda str: ''.join([x[0] for x in str.split()])
 
         # construct a dict containing the id of the node as key and the required attribs as value dict
         # {<id>:{name:<n>,abbrev:<abbrev>}} - {14914: {'name': 'Phase Acrobatics', 'abbrev': 'PA'}}
         self.keystones = {
             node_data[node]['id']:
-                {'name': node_data[node]['dn'], 'abbrev': extract_abbrev(node_data[node]['dn'])}
+                {'name': node_data[node]['dn'], 'abbrev': self.extract_abbrev(node_data[node]['dn'])}
             for node in node_data if node_data[node]['ks']}
 
     @staticmethod
@@ -62,6 +62,10 @@ class PoeTreeCodec:
         for count in range(start, len(bytes), 2):
             nodes.append(struct.unpack(">H", bytes[count:count + offset])[0])
         return PoeTree(ver, char, ascendency, fullscreen, nodes, payload)
+
+    @staticmethod
+    def extract_abbrev(node_dn):
+        return ''.join([x[0] for x in node_dn.split()])
 
 
 codec = PoeTreeCodec()

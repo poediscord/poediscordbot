@@ -1,6 +1,6 @@
 from poediscordbot.cogs.pob.poe_data import build_checker
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
-from poediscordbot.pob_xml_parser.models import Skill
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 def calc_max(comparison_dps: []):

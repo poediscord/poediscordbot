@@ -1,4 +1,4 @@
-from poediscordbot.pob_xml_parser.models import Build
+from poediscordbot.pob_xml_parser.models.build import Build
 
 
 def get_charges(build: Build, charge_types=['Endurance', 'Frenzy', 'Power']):

@@ -2,7 +2,9 @@ import unittest
 
 import defusedxml.ElementTree as ET
 
-from poediscordbot.pob_xml_parser.models import Build, Skill, Gem
+from poediscordbot.pob_xml_parser.models.build import Build
+from poediscordbot.pob_xml_parser.models.gem import Gem
+from poediscordbot.pob_xml_parser.models.skill import Skill
 from poediscordbot.pob_xml_parser.pob_xml_parser import parse_build
 from tests import load_file_as_string
 

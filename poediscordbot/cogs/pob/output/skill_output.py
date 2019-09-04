@@ -1,4 +1,4 @@
-from poediscordbot.pob_xml_parser.models import Skill
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 def get_main_skill(build):

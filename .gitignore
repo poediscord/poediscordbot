@@ -1,6 +1,10 @@
 # config
 config.py
 
+/instance/config.py
+/instance/*.log
+/resources/pob_conf.json
+
 # editors
 .idea
 
@@ -63,7 +67,6 @@ local_settings.py
 db.sqlite3
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -111,3 +114,4 @@ venv.bak/
 
 # projects
 .vscode/
+
