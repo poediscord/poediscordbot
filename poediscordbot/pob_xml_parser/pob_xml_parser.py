@@ -1,4 +1,7 @@
-from poediscordbot.pob_xml_parser.models import Skill, Item, Build, ItemSlot, Gem
+from poediscordbot.pob_xml_parser.models.build import Build
+from poediscordbot.pob_xml_parser.models.gem import Gem
+from poediscordbot.pob_xml_parser.models.item_slot import ItemSlot, Item
+from poediscordbot.pob_xml_parser.models.skill import Skill
 from poediscordbot.pob_xml_parser.tree import poe_tree_codec
 from poediscordbot.util.logging import log
 

@@ -1,5 +1,5 @@
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
-from poediscordbot.pob_xml_parser.models import Build
+from poediscordbot.pob_xml_parser.models.build import Build
 
 
 def is_support(build: Build, dps=0, avg=0):

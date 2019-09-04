@@ -1,9 +1,11 @@
 from discord import Embed
-
 from instance import config
+
 from poediscordbot.cogs.pob.output import general_output, skill_output, config_output, charges_output, offense_output
 from poediscordbot.cogs.pob.poe_data import build_checker
-from poediscordbot.pob_xml_parser.models import Build, Gem, Skill
+from poediscordbot.pob_xml_parser.models.build import Build
+from poediscordbot.pob_xml_parser.models.gem import Gem
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, is_support):
