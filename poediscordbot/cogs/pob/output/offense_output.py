@@ -36,8 +36,8 @@ def show_avg_damage(active_skill: Skill) -> bool:
 
 def get_damage_output(build, avg, dps, ignite_dps):
     output = ""
-    speed = build.get_stat('Player', 'Speed')
-    minion_speed = build.get_stat('Minion', 'Speed')
+    speed = build.get_player_stat('Speed')
+    minion_speed = build._get_stat('Minion', 'Speed')
     shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
 
     if show_avg_damage(build.get_active_skill()) or avg > dps:
@@ -50,13 +50,13 @@ def get_damage_output(build, avg, dps, ignite_dps):
     if ignite_dps > dps or (avg and ignite_dps > avg * shown_speed):
         output += f"**Ignite DPS**: {ignite_dps:,.0f}\n"
 
-    crit_chance = build.get_stat('Player', 'CritChance', )
-    crit_multi = build.get_stat('Player', 'CritMultiplier')
+    crit_chance = build.get_player_stat('CritChance', )
+    crit_multi = build.get_player_stat('CritMultiplier')
     if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
         output += f"**Crit**: Chance {crit_chance:,.2f}%" \
             f" | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
 
-    acc = build.get_stat('Player', 'HitChance')
+    acc = build.get_player_stat('HitChance')
 
     if acc and acc < OutputThresholds.ACCURACY.value:
         output += f"**Hit Chance**: {acc:.2f}%"
@@ -77,11 +77,11 @@ def get_offense(build, consts=None):
         return "None", None
 
     # Basics
-    comparison_dps = [build.get_stat('Player', 'TotalDPS'), build.get_stat('Player', 'WithPoisonDPS'),
-                      build.get_stat('Minion', 'TotalDPS'), build.get_stat('Minion', 'WithPoisonDPS')]
-    comparison_avg = [build.get_stat('Player', 'WithPoisonAverageDamage'), build.get_stat("Player", "AverageDamage")]
+    comparison_dps = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
+                      build._get_stat('Minion', 'TotalDPS'), build._get_stat('Minion', 'WithPoisonDPS')]
+    comparison_avg = [build.get_player_stat('WithPoisonAverageDamage'), build._get_stat("Player", "AverageDamage")]
     dps = calc_max(comparison_dps)
-    ignite_dps = build.get_stat('Player', 'IgniteDPS')
+    ignite_dps = build.get_player_stat('IgniteDPS')
     avg = calc_max(comparison_avg)
     if build_checker.is_support(build, dps, avg):
         return "Support", get_support_outptut(build)

@@ -1,5 +1,16 @@
+from enum import Enum
+
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util.pob import pob_conf
+
+
+class StatOwner(Enum):
+    PLAYER = "Player"
+
+    @staticmethod
+    def from_string(input):
+        if StatOwner.PLAYER.value in input:
+            return StatOwner.PLAYER
 
 
 class Build:
@@ -37,7 +48,7 @@ class Build:
 
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
-        stat_owner = stat_owner[:-4]
+        stat_owner = StatOwner.from_string(stat_owner)
         if not stat_owner in self.stats:
             self.stats[stat_owner] = {}
         self.stats[stat_owner][key] = float(val)
@@ -58,7 +69,7 @@ class Build:
         if item_slot:
             return item_slot.item
 
-    def get_stat(self, owner, key, threshold=0):
+    def _get_stat(self, owner: StatOwner, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:
             val = self.stats[owner][key]
             return val if val >= threshold else None
@@ -80,3 +91,6 @@ class Build:
         if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]
+
+    def get_player_stat(self, param, threshold=0):
+        return self._get_stat(StatOwner.PLAYER, param, threshold=threshold)
