@@ -10,15 +10,19 @@ def get_attributes(strength, intelligence, dexterity):
     :return: combined attributes string for embed usage
     """
     output = "**Attributes**: "
-    attributes = []
-    if strength and strength > OutputThresholds.ATTRIBUTES.value:
-        attributes.append(f"Str: {format_attribute(strength)}")
-    if intelligence and intelligence > OutputThresholds.ATTRIBUTES.value:
-        attributes.append(f"Int: {format_attribute(intelligence)}")
-    if dexterity and dexterity > OutputThresholds.ATTRIBUTES.value:
-        attributes.append(f"Dex: {format_attribute(dexterity)}")
+    if not strength:
+        strength = 0
+    if not intelligence:
+        intelligence = 0
+    if not dexterity:
+        dexterity = 0
 
-    return output+", ".join(attributes)
+    if strength > OutputThresholds.ATTRIBUTES.value \
+            or intelligence > OutputThresholds.ATTRIBUTES.value \
+            or dexterity > OutputThresholds.ATTRIBUTES.value:
+        return output + f"Str: {format_attribute(strength)}" \
+               + f"Int: {format_attribute(intelligence)}" \
+               + f"Dex: {format_attribute(dexterity)}"
 
 
 def format_attribute(attribute):
