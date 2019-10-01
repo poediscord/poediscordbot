@@ -78,7 +78,6 @@ class PoBCog(commands.Cog):
         """
         paste_keys = pastebin.fetch_paste_key(content)
         if paste_keys:
-            xml = None
             paste_key = random.choice(paste_keys)
             log.info(f"Parsing pastebin with key={paste_key} from author={author}")
             raw_data = pastebin.get_as_xml(paste_key)
