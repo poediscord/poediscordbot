@@ -5,11 +5,14 @@ from poediscordbot.cogs.pob.util.pob import pob_conf
 
 
 class StatOwner(Enum):
+    """
+    An enum that represent possible stat owners, currently this is only used for player stats
+    """
     PLAYER = "Player"
 
     @staticmethod
-    def from_string(input):
-        if StatOwner.PLAYER.value in input:
+    def from_string(stat_owner):
+        if StatOwner.PLAYER.value in stat_owner:
             return StatOwner.PLAYER
 
 
@@ -72,7 +75,8 @@ class Build:
     def _get_stat(self, owner: StatOwner, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:
             val = self.stats[owner][key]
-            return val if val >= threshold else None
+            return val if val >= threshold \
+                else None
         else:
             return None
 
@@ -87,10 +91,15 @@ class Build:
         return ret
 
     def get_active_skill(self):
-
         if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]
 
-    def get_player_stat(self, param, threshold=0):
-        return self._get_stat(StatOwner.PLAYER, param, threshold=threshold)
+    def get_player_stat(self, stat_name, threshold=0):
+        """
+        Wrapper method for the internal get stat method, that only reads player stats
+        :param stat_name: name of the stat in Pob XMLs such as "Str", "Int", ...
+        :param threshold: optional threshold which is the comparison base for this stat
+        :return: value if found (and above threshold) else None
+        """
+        return self._get_stat(StatOwner.PLAYER, stat_name, threshold=threshold)
