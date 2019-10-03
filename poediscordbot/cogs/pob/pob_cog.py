@@ -37,7 +37,7 @@ class PoBCog(commands.Cog):
 
         if 'help' in message.content.lower() and react_to_dms:
             await message.channel.send("Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a "
-                                       "detailled respoonse.")
+                                       "detailed response.")
             return
 
         if (react_to_dms or message.channel.name in self.active_channels) \
@@ -98,5 +98,5 @@ class PoBCog(commands.Cog):
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed
             except Exception as e:
-                ex_msg=''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
+                ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse pastebin={paste_key} - Exception={ex_msg}")

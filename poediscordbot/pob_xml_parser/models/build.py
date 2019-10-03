@@ -1,19 +1,30 @@
 from enum import Enum
+from typing import Optional
 
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util.pob import pob_conf
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 class StatOwner(Enum):
+    """
+    An enum that represent possible stat owners, currently this is only used for player stats
+    """
     PLAYER = "Player"
+    MINION = "Minion"
 
     @staticmethod
-    def from_string(input):
-        if StatOwner.PLAYER.value in input:
+    def from_string(stat_owner):
+        if StatOwner.PLAYER.value in stat_owner:
             return StatOwner.PLAYER
+        if StatOwner.MINION.value in stat_owner:
+            return StatOwner.MINION
 
 
 class Build:
+    __slots__ = 'level', 'version', 'bandit', 'class_name', 'ascendancy_name', 'stats', 'config', 'tree', 'skills', \
+                'active_skill_id', 'item_slots', 'aura_count', 'curse_count', 'keystones'
+
     def __init__(self, level, version, bandit, class_name, ascendancy_name, tree, skills, active_skill, item_slots):
         self.level = int(level)
         self.version = version
@@ -52,10 +63,9 @@ class Build:
         if not stat_owner in self.stats:
             self.stats[stat_owner] = {}
         self.stats[stat_owner][key] = float(val)
-        # print("owner_key={}; key={}, val={}".format(stat_owner, key, val))
 
     def append_conf(self, key, val):
-        conf_entry = pob_conf.fetch_entry(key)
+        conf_entry = pob_conf.fetch_config_entry(key)
         # ignore unknown settings.
         if conf_entry:
             self.config[key] = {'value': val}
@@ -72,7 +82,8 @@ class Build:
     def _get_stat(self, owner: StatOwner, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:
             val = self.stats[owner][key]
-            return val if val >= threshold else None
+            return val if val >= threshold \
+                else None
         else:
             return None
 
@@ -86,11 +97,19 @@ class Build:
                 ret += item + ": " + val + "\n"
         return ret
 
-    def get_active_skill(self):
-
+    def get_active_skill(self) -> Optional[Skill]:
         if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]
 
-    def get_player_stat(self, param, threshold=0):
-        return self._get_stat(StatOwner.PLAYER, param, threshold=threshold)
+    def get_player_stat(self, stat_name, threshold=0):
+        """
+        Wrapper method for the internal get stat method, that only reads player stats
+        :param stat_name: name of the stat in Pob XMLs such as "Str", "Int", ...
+        :param threshold: optional threshold which is the comparison base for this stat
+        :return: value if found (and above threshold) else None
+        """
+        return self._get_stat(StatOwner.PLAYER, stat_name, threshold=threshold)
+
+    def get_minion_stat(self, stat_name, threshold=0):
+        return self._get_stat(StatOwner.MINION, stat_name, threshold=threshold)

@@ -3,6 +3,7 @@ from instance import config
 
 from poediscordbot.cogs.pob.output import general_output, skill_output, config_output, charges_output, offense_output
 from poediscordbot.cogs.pob.poe_data import build_checker
+from poediscordbot.cogs.pob.util.pob import pob_minions
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.gem import Gem
 from poediscordbot.pob_xml_parser.models.skill import Skill
@@ -23,9 +24,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     if is_support:
         gem_name = "Support"
     elif main_skill:
-        main_gem = main_skill.get_selected()
-        if isinstance(main_gem, Gem):
-            gem_name = main_gem.get_name()
+        gem_name = fetch_displayed_skill(gem_name, main_skill)
 
     if ascendency_name or class_name:
         url = 'https://raw.github.com/poediscord/poediscordbot/master/resources/img/' + (
@@ -45,6 +44,19 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
         if displayed_name:
             embed.title += " by: " + displayed_name
     return embed
+
+
+def fetch_displayed_skill(gem_name, main_skill):
+    main_gem = main_skill.get_selected()
+    if isinstance(main_gem, Gem):
+        display_name = f'{main_gem.get_name()}'
+        if display_name and main_gem.minion_skill and main_gem.selected_minion:
+            monster_name = pob_minions.get_monster_name(main_gem.selected_minion)
+            if monster_name:
+                display_name += f' ({monster_name})'
+        return display_name
+    else:
+        return gem_name
 
 
 def generate_info_text(tree, pastebin_key, web_poe_token):

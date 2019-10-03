@@ -78,8 +78,8 @@ def get_offense(build, consts=None):
 
     # Basics
     comparison_dps = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
-                      build._get_stat('Minion', 'TotalDPS'), build._get_stat('Minion', 'WithPoisonDPS')]
-    comparison_avg = [build.get_player_stat('WithPoisonAverageDamage'), build._get_stat("Player", "AverageDamage")]
+                      build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS')]
+    comparison_avg = [build.get_player_stat('WithPoisonAverageDamage'), build.get_player_stat("AverageDamage")]
     dps = calc_max(comparison_dps)
     ignite_dps = build.get_player_stat('IgniteDPS')
     avg = calc_max(comparison_avg)

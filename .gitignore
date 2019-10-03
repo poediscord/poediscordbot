@@ -4,6 +4,7 @@ config.py
 /instance/config.py
 /instance/*.log
 /resources/pob_conf.json
+/resources/pob_spectres.json
 
 # editors
 .idea

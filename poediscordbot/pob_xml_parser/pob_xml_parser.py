@@ -65,7 +65,7 @@ def _get_tree_link(tree):
     if tree_index:
         # when a tree was selected, get the corresponding url
         selected_tree = tree[int(tree_index) - 1].find('URL').text
-        return selected_tree
+        return selected_tree.strip()
 
 
 def _parse_item_slots(xml_items):
@@ -120,11 +120,17 @@ def _parse_skills(xml_skills):
     for skill in xml_skills:
         gems = []
         for gem in skill:
+            skill_minion_skill = get_attrib_if_exists(gem, 'skillMinionSkill')
+            is_minion_skill = True if skill_minion_skill else False
             gems.append(
                 Gem(get_attrib_if_exists(gem, 'skillId'), gem.attrib['nameSpec'], gem.attrib['level'],
                     gem.attrib['quality'],
                     get_attrib_if_exists(gem, 'skillPart'),
-                    gem.attrib['enabled']))
+                    gem.attrib['enabled'],
+                    get_attrib_if_exists(gem, 'skillMinion'),
+                    is_minion_skill
+                    )
+            )
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:
             pass

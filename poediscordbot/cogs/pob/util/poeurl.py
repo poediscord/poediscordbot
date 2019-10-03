@@ -9,7 +9,7 @@ def shrink_tree_url(tree):
     """
     Shrink url with poeurl
     :param tree:
-    :return:
+    :return: valid poeurl if possible else raise a value error
     """
     # sanitize
     tree = tree.strip()
