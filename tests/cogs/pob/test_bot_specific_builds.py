@@ -36,7 +36,7 @@ class TestBot(unittest.TestCase):
                         else:
                             self.assertFalse(assertion_succeeded,
                                              msg=f"Assertion ({key}:'{value}') in embed={embed_dict} failed.")
-                    elif 'ascendency' in key:
+                    elif 'ascendancy' in key:
                         assertion_succeeded = value in embed_dict.get('title', '')
                         assertion_succeeded = assertion_succeeded or value in embed_dict.get('thumbnail', '').get('url',
                                                                                                                   '')
