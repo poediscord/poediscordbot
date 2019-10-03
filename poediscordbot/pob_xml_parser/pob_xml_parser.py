@@ -65,7 +65,7 @@ def _get_tree_link(tree):
     if tree_index:
         # when a tree was selected, get the corresponding url
         selected_tree = tree[int(tree_index) - 1].find('URL').text
-        return selected_tree
+        return selected_tree.strip()
 
 
 def _parse_item_slots(xml_items):

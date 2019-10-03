@@ -43,7 +43,6 @@ class TestBot(unittest.TestCase):
                         self.assertTrue(assertion_succeeded,
                                         msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
                     else:
-                        assertion_succeeded = False
                         for field in embed_dict['fields']:
                             assertion_succeeded = self.single_assert(field, term, value, negated)
                             if assertion_succeeded:

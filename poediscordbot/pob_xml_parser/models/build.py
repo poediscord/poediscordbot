@@ -1,7 +1,9 @@
 from enum import Enum
+from typing import Optional
 
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util.pob import pob_conf
+from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 class StatOwner(Enum):
@@ -95,7 +97,7 @@ class Build:
                 ret += item + ": " + val + "\n"
         return ret
 
-    def get_active_skill(self):
+    def get_active_skill(self) -> Optional[Skill]:
         if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]

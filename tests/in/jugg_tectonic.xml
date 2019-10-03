@@ -86,7 +86,7 @@
 	</Calcs>
 	<Skills defaultGemQuality="20" defaultGemLevel="20" sortGemsByDPS="true">
 		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Body Armour" mainActiveSkill="1">
-			<Gem level="20" skillId="EnduranceChargeSlam" skillMinionSkill="1" skillPart="1" skillMinionSkillCalcs="1" quality="0" skillMinionCalcs="SummonedRagingSpirit" skillPartCalcs="1" enabled="true" nameSpec="Tectonic Slam" skillMinion="SummonedPhantasm"/>
+			<Gem enableGlobal2="nil" quality="0" level="20" gemId="Metadata/Items/Gems/SkillGemTectonicSlam" skillId="EnduranceChargeSlam" enableGlobal1="true" enabled="true" nameSpec="Tectonic Slam" skillMinion="SummonedPhantasm"/>
 			<Gem level="20" skillId="SupportWeaponElementalDamage" skillPart="1" quality="0" enabled="true" nameSpec="Elemental Damage with Attacks" skillMinion="SummonedChaosGolem"/>
 			<Gem level="20" skillId="SupportMeleePhysicalDamage" skillPart="1" quality="0" enabled="true" nameSpec="Melee Physical Damage" skillMinion="SummonedChaosGolem"/>
 			<Gem level="20" skillId="SupportElementalFocus" skillPart="1" quality="0" enabled="true" nameSpec="Elemental Focus" skillMinion="SummonedChaosGolem"/>
