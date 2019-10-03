@@ -47,15 +47,16 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
 
 
 def fetch_displayed_skill(gem_name, main_skill):
-    display_name = gem_name
     main_gem = main_skill.get_selected()
     if isinstance(main_gem, Gem):
         display_name = f'{main_gem.get_name()}'
-    if display_name and main_gem.selected_minion:
-        monster_name = pob_minions.get_name(main_gem.selected_minion)
-        if monster_name:
-            display_name += f' ({monster_name})'
-    return display_name
+        if display_name and main_gem.selected_minion:
+            monster_name = pob_minions.get_name(main_gem.selected_minion)
+            if monster_name:
+                display_name += f' ({monster_name})'
+        return display_name
+    else:
+        return gem_name
 
 
 def generate_info_text(tree, pastebin_key, web_poe_token):
