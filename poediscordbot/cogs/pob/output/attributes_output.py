@@ -21,8 +21,8 @@ def get_attributes(strength, intelligence, dexterity):
             or intelligence > OutputThresholds.ATTRIBUTES.value \
             or dexterity > OutputThresholds.ATTRIBUTES.value:
         return output + f"Str: {format_attribute(strength)}" \
-               + f"Int: {format_attribute(intelligence)}" \
-               + f"Dex: {format_attribute(dexterity)}"
+               + f" Int: {format_attribute(intelligence)}" \
+               + f" Dex: {format_attribute(dexterity)}\n"
 
 
 def format_attribute(attribute):
