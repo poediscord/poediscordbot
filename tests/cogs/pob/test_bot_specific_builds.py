@@ -25,28 +25,30 @@ class TestBot(unittest.TestCase):
                 print(embed_dict)
                 for assertion in build['assertions']:
                     print(assertion)
-                    term, value, negated = assertion.get('key', ''), assertion.get('value', ''), assertion.get('not',
-                                                                                                               False)
+                    key, value, negated = assertion.get('key', ''), assertion.get('value', ''), assertion.get('not',
+                                                                                                              False)
 
-                    if 'level' in term or 'lvl' in term:
+                    if key in ['level', 'lvl', 'title']:
                         assertion_succeeded = value in embed_dict.get('title', '')
-                        self.assertTrue(assertion_succeeded,
-                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
-                    elif 'ascendency' in term:
+                        if not negated:
+                            self.assertTrue(assertion_succeeded,
+                                            msg=f"Assertion ({key}:'{value}') in embed={embed_dict} failed.")
+                        else:
+                            self.assertFalse(assertion_succeeded,
+                                             msg=f"Assertion ({key}:'{value}') in embed={embed_dict} failed.")
+                    elif 'ascendency' in key:
                         assertion_succeeded = value in embed_dict.get('title', '')
                         assertion_succeeded = assertion_succeeded or value in embed_dict.get('thumbnail', '').get('url',
                                                                                                                   '')
                         self.assertTrue(assertion_succeeded,
-                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
-                    elif 'skill' in term:
+                                        msg=f"Assertion ({key}:'{value}') in embed={embed_dict} failed.")
+                    elif 'skill' in key:
                         assertion_succeeded = value in embed_dict.get('title', '')
                         self.assertTrue(assertion_succeeded,
-                                        msg=f"Assertion ({term}:'{value}') in embed={embed_dict} failed.")
+                                        msg=f"Assertion ({key}:'{value}') in embed={embed_dict} failed.")
                     else:
                         for field in embed_dict['fields']:
-                            assertion_succeeded = self.single_assert(field, term, value, negated)
-                            if assertion_succeeded:
-                                break
+                            self.single_assert(field, key, value, negated)
 
     def single_assert(self, field, term, value, negated):
         """
@@ -58,7 +60,7 @@ class TestBot(unittest.TestCase):
         :return:  true if the assertion succeeded
         """
         do_check = term in field['name']
-        print(f"searching title={field['name']} for {term},{value} - negated? {negated}")
+        print(f"searching embed part={field['name']} for {term},{value} - negated? {negated}")
 
         if do_check:
             print(f"searching for {term},{value} - negated? {negated}")
