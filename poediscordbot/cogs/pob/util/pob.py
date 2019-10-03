@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime
 from urllib import request
 
@@ -7,19 +8,20 @@ from poediscordbot.cogs.pob import util
 from poediscordbot.util.logging import log
 
 POB_CONF_JSON = 'resources/pob_conf.json'
+POB_SPECTRES = 'resources/pob_spectres.json'
 
 
 class PobConfig:
-    def __init__(self, path_to_pob_conf=POB_CONF_JSON):
+    def __init__(self, path_to_pob_conf=POB_CONF_JSON, path_to_spectres=POB_SPECTRES):
         try:
             self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
         except FileNotFoundError as err:
-            log.error(f"pob_conf.json in resources is missing, trying to obtain a new copy... err={err}")
+            log.error(f'{path_to_pob_conf} is missing, trying to obtain a new copy... err was "{err}"')
             self.fetch_config(path_to_pob_conf)
-            log.info(f"finished creating new pob_conf.json in resources...")
+            log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
             self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
 
-    def fetch_entry(self, config_var: str):
+    def fetch_config_entry(self, config_var: str):
         """
         Reads the pob_config.json and finds the specific entries that are needed.
         :param config_var: config variable
@@ -75,4 +77,45 @@ class PobConfig:
             json.dump(pob_config_content, file, indent=4)
 
 
+class PobMinionLookup(object):
+    def __init__(self, path_to_spectres=POB_SPECTRES):
+        try:
+            self.spectres = json.load(open(config.ROOT_DIR + path_to_spectres))
+        except FileNotFoundError as err:
+            log.error(f'{path_to_spectres} is missing, trying to obtain a new copy... err was "{err}"')
+            self.fetch_spectres(path_to_spectres)
+            log.info(f"finished creating new {path_to_spectres} in resources...")
+            self.spectres = json.load(open(config.ROOT_DIR + path_to_spectres))
+
+    def get_name(self, minion_info):
+        # do in memory translation of any normal mobs we need to mention in addition to the skill for now only phantasms
+        if '\\' not in minion_info:
+            if 'SummonedPhantasm' in minion_info:
+                return 'Summoned Phantasm'
+            if 'AxisEliteSoldierHeraldOfLight':
+                return 'Sentinel of Purity'
+        # if we have any backslash in the name we have to look up spectre paths and translate them to names
+        return self.spectres['spectres'].get(minion_info)
+
+    @staticmethod
+    def fetch_spectres(file_path):
+        """
+        Read the current PoB master branch 3_0 spectre file  and create a json file for it.
+        """
+        url = "https://raw.githubusercontent.com/Openarl/PathOfBuilding/master/Data/3_0/Spectres.lua"
+        url = request.urlopen(url)
+        content = url.read().decode('utf-8')
+
+        regex = r'minions\[\"(?P<path>.*)\"\].*\s*name = \"(?P<name>.*)\"'
+        matches = re.findall(regex, content, re.MULTILINE)
+        spectre_dict = {m[0]: m[1] for m in matches}
+
+        file_content = {'utc-date': datetime.utcnow().isoformat(), 'spectres': spectre_dict}
+
+        with open(file_path, 'w') as file:
+            json.dump(file_content, file, indent=4)
+
+
 pob_conf = PobConfig()
+
+pob_minions = PobMinionLookup()
