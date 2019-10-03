@@ -1,4 +1,6 @@
 class Skill:
+    __slots__ = 'gems', 'main_active_skill', 'slot', 'enabled', 'links'
+
     def __init__(self, gems, main_active_skill, slot=None, enabled=False):
         self.slot = slot
         self.gems = gems

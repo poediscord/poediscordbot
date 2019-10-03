@@ -4,6 +4,8 @@ from poediscordbot.util.logging import log
 
 
 class ItemSlot:
+    __slots__ = 'active', 'item', 'item_id', 'name'
+
     def __init__(self, name, item_id, item, active=False):
         self.name = name
         self.item_id = item_id
@@ -15,6 +17,8 @@ class ItemSlot:
 
 
 class Item:
+    __slots__ = 'id', 'raw_content', 'variant', 'name', 'added_supports'
+
     def __init__(self, item_id, raw_content, variant=None):
         self.id = item_id
         self.raw_content = raw_content.strip()

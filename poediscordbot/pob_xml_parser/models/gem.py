@@ -1,7 +1,8 @@
 class Gem:
-    __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active'
+    __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active', \
+                'selected_minion'
 
-    def __init__(self, gem_id, name, level, quality, skill_part, enabled=''):
+    def __init__(self, gem_id, name, level, quality, skill_part, enabled='', selected_minion=None, ):
         self.name = self.translate_name(gem_id) if name == "" else name
         self.level = int(level)
         self.quality = int(quality)
@@ -14,6 +15,7 @@ class Gem:
         else:
             self.second_name = None
         self.active_part = 0
+        self.selected_minion = selected_minion
         self.is_active = self.determine_active()
 
     def __repr__(self) -> str:
