@@ -73,6 +73,13 @@ def get_secondary_def(build: Build):
 
     spell_block = build.get_player_stat('SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
     stats.append(f"Spell Block: {spell_block:,.0f}%") if spell_block else None
+
+    total_move_speed = build.get_player_stat('EffectiveMovementSpeedMod', 2)
+    if total_move_speed:
+        movement_speed = (total_move_speed - 1) * 100
+        stats.append(
+            f"Movement Speed: {movement_speed:.0f}%") if movement_speed > OutputThresholds.MOVE_SPEED.value else None
+
     if len(stats) > 0:
         output += " | ".join([s for s in stats if s]) + "\n"
     return "**Secondary:** " + output if output != "" else None
