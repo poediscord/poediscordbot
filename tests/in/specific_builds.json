@@ -6,7 +6,7 @@
       "pastebin": "https://pastebin.com/aHDvrbrC",
       "assertions": [
         {
-          "key": "ascendency",
+          "key": "ascendancy",
           "value": "Ascendant"
         },
         {
@@ -41,7 +41,7 @@
       "pastebin": "https://pastebin.com/YpKxeyGq",
       "assertions": [
         {
-          "key": "ascendency",
+          "key": "ascendancy",
           "value": "Pathfinder"
         },
         {
@@ -64,7 +64,7 @@
       "pastebin": "https://pastebin.com/kftetdrw",
       "assertions": [
         {
-          "key": "ascendency",
+          "key": "ascendancy",
           "value": "Champion"
         },
         {
@@ -83,7 +83,7 @@
       "pastebin": "https://pastebin.com/958ujX7S",
       "assertions": [
         {
-          "key": "ascendency",
+          "key": "ascendancy",
           "value": "Ascendant"
         },
         {
@@ -96,8 +96,71 @@
         },
         {
           "key": "Offense",
-          "value": "dps",
+          "value": "DPS",
           "not": true
+        }
+      ]
+    },
+    {
+      "name": "Blade Vortex - Pathfinder",
+      "description": "contains movement speed",
+      "pastebin": "https://pastebin.com/VjjfPGPx",
+      "assertions": [
+        {
+          "key": "ascendancy",
+          "value": "Pathfinder"
+        },
+        {
+          "key": "skill",
+          "value": "Blade Vortex"
+        },
+        {
+          "key": "level",
+          "value": "96"
+        },
+        {
+          "key": "Offense",
+          "value": "DPS",
+          "not": false
+        },
+        {
+          "key": "title",
+          "value": "(Summoned Phantasm)",
+          "not": true
+        },
+        {
+          "key": "Defense",
+          "value": "Movement Speed: 469%",
+          "not": false
+        }
+      ]
+    },
+    {
+      "name": "Raise Spectre (Bearded Shaman) - Necromancer (Lvl: 100)",
+      "description": "contains bearded shaman spectre",
+      "pastebin": "https://pastebin.com/2hB4zBcq",
+      "assertions": [
+        {
+          "key": "ascendancy",
+          "value": "Necromancer"
+        },
+        {
+          "key": "skill",
+          "value": "Raise Spectre"
+        },
+        {
+          "key": "level",
+          "value": "100"
+        },
+        {
+          "key": "Offense",
+          "value": "DPS",
+          "not": false
+        },
+        {
+          "key": "title",
+          "value": "Raise Spectre (Bearded Shaman) - Necromancer (Lvl: 100)",
+          "not": false
         }
       ]
     }
