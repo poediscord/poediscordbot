@@ -4,6 +4,7 @@ from datetime import datetime
 from urllib import request
 
 from instance import config
+
 from poediscordbot.cogs.pob import util
 from poediscordbot.util.logging import log
 
@@ -87,12 +88,12 @@ class PobMinionLookup(object):
             log.info(f"finished creating new {path_to_spectres} in resources...")
             self.spectres = json.load(open(config.ROOT_DIR + path_to_spectres))
 
-    def get_name(self, minion_info):
+    def get_monster_name(self, minion_info):
         # do in memory translation of any normal mobs we need to mention in addition to the skill for now only phantasms
-        if '\\' not in minion_info:
+        if minion_info and '\\' not in minion_info:
             if 'SummonedPhantasm' in minion_info:
                 return 'Summoned Phantasm'
-            if 'AxisEliteSoldierHeraldOfLight':
+            if 'AxisEliteSoldierHeraldOfLight' in minion_info:
                 return 'Sentinel of Purity'
         # if we have any backslash in the name we have to look up spectre paths and translate them to names
         return self.spectres['spectres'].get(minion_info)

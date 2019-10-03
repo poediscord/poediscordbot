@@ -120,12 +120,16 @@ def _parse_skills(xml_skills):
     for skill in xml_skills:
         gems = []
         for gem in skill:
+            skill_minion_skill = get_attrib_if_exists(gem, 'skillMinionSkill')
+            is_minion_skill = True if skill_minion_skill else False
             gems.append(
                 Gem(get_attrib_if_exists(gem, 'skillId'), gem.attrib['nameSpec'], gem.attrib['level'],
                     gem.attrib['quality'],
                     get_attrib_if_exists(gem, 'skillPart'),
                     gem.attrib['enabled'],
-                    get_attrib_if_exists(gem, 'skillMinion'))
+                    get_attrib_if_exists(gem, 'skillMinion'),
+                    is_minion_skill
+                    )
             )
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:

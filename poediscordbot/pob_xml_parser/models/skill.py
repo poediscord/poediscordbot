@@ -1,3 +1,6 @@
+from poediscordbot.pob_xml_parser.models.gem import Gem
+
+
 class Skill:
     __slots__ = 'gems', 'main_active_skill', 'slot', 'enabled', 'links'
 
@@ -19,7 +22,7 @@ class Skill:
     def get_active_gems(self):
         return [gem for gem in self.gems if gem.is_active]
 
-    def get_selected(self):
+    def get_selected(self) -> Gem:
         """
         Gets the selected main skill gem. first filter the this gem to only allow supports, then get the right gem
         via the main_active_skill.
