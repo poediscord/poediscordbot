@@ -35,7 +35,8 @@ class PobConfig:
 
         if loaded_conf:
             week_ago_date = datetime.now() - timedelta(days=7)
-            json_date = datetime.fromisoformat(loaded_conf['utc-date'])
+            # json_date = datetime.fromisoformat(loaded_conf['utc-date']) todo: enable when pypy 3.7 exists
+            json_date = datetime.strptime(loaded_conf['utc-date'], "%Y-%m-%dT%H:%M:%S.%f")
             # if json date is older than a week, update
             if json_date < week_ago_date:
                 self.fetch_config(path_to_pob_conf)
