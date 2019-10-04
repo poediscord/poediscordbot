@@ -1,6 +1,6 @@
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib import request
 
 from instance import config
@@ -13,14 +13,8 @@ POB_SPECTRES = 'resources/pob_spectres.json'
 
 
 class PobConfig:
-    def __init__(self, path_to_pob_conf=POB_CONF_JSON, path_to_spectres=POB_SPECTRES):
-        try:
-            self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
-        except FileNotFoundError as err:
-            log.error(f'{path_to_pob_conf} is missing, trying to obtain a new copy... err was "{err}"')
-            self.fetch_config(path_to_pob_conf)
-            log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
-            self.config = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+    def __init__(self, path_to_pob_conf=POB_CONF_JSON):
+        self.config = self.get_config(path_to_pob_conf)
 
     def fetch_config_entry(self, config_var: str):
         """
@@ -31,6 +25,29 @@ class PobConfig:
         for entry in self.config['conf']:
             if entry == config_var:
                 return self.config['conf'].get(entry)
+
+    def get_config(self, path_to_pob_conf):
+        loaded_conf = None
+        try:
+            loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+        except FileNotFoundError as err:
+            log.error(f'{path_to_pob_conf} is missing, trying to obtain a new copy... err was "{err}"')
+
+        if loaded_conf:
+            week_ago_date = datetime.now() - timedelta(days=7)
+            json_date = datetime.fromisoformat(loaded_conf['utc-date'])
+            # if json date is older than a week, update
+            if json_date < week_ago_date:
+                self.fetch_config(path_to_pob_conf)
+                log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
+                loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+
+        if not loaded_conf:
+            self.fetch_config(path_to_pob_conf)
+            log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
+            loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+
+        return loaded_conf
 
     @staticmethod
     def fetch_config(path_to_pob_conf):
