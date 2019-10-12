@@ -1,5 +1,5 @@
-# poediscordbot
-built with discordpy rewrite / python 3.7
+# poediscordbot [![Build Status](https://travis-ci.org/poediscord/poediscordbot.svg?branch=master)](https://travis-ci.org/poediscord/poediscordbot)
+built with discordpy rewrite / python 3.7; supports pypy 3.6
 
 ## Docker
 - `docker compose up` - start the container
