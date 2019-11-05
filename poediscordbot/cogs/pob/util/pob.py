@@ -28,8 +28,9 @@ class PobConfig:
 
     def get_config(self, path_to_pob_conf):
         loaded_conf = None
+        file_path = config.ROOT_DIR + path_to_pob_conf
         try:
-            loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+            loaded_conf = json.load(open(file_path))
         except FileNotFoundError as err:
             log.error(f'{path_to_pob_conf} is missing, trying to obtain a new copy... err was "{err}"')
 
@@ -39,14 +40,14 @@ class PobConfig:
             json_date = datetime.strptime(loaded_conf['utc-date'], "%Y-%m-%dT%H:%M:%S.%f")
             # if json date is older than a week, update
             if json_date < week_ago_date:
-                self.fetch_config(path_to_pob_conf)
+                self.fetch_config(file_path)
                 log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
-                loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+                loaded_conf = json.load(open(file_path))
 
         if not loaded_conf:
             self.fetch_config(path_to_pob_conf)
             log.info(f"finished creating new {path_to_pob_conf}.json in resources...")
-            loaded_conf = json.load(open(config.ROOT_DIR + path_to_pob_conf))
+            loaded_conf = json.load(open(file_path))
 
         return loaded_conf
 
@@ -56,6 +57,7 @@ class PobConfig:
         Read the current PoB master branch configoptions and create a json file for it.
         """
         url = "https://raw.githubusercontent.com/Openarl/PathOfBuilding/master/Modules/ConfigOptions.lua"
+        url = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/Modules/ConfigOptions.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
         conditions = [line.strip() for line in content.split('{ var') if
@@ -98,13 +100,14 @@ class PobConfig:
 
 class PobMinionLookup(object):
     def __init__(self, path_to_spectres=POB_SPECTRES):
+        file_path = config.ROOT_DIR + path_to_spectres
         try:
-            self.spectres = json.load(open(config.ROOT_DIR + path_to_spectres))
+            self.spectres = json.load(open(file_path))
         except FileNotFoundError as err:
             log.error(f'{path_to_spectres} is missing, trying to obtain a new copy... err was "{err}"')
-            self.fetch_spectres(path_to_spectres)
+            self.fetch_spectres(file_path)
             log.info(f"finished creating new {path_to_spectres} in resources...")
-            self.spectres = json.load(open(config.ROOT_DIR + path_to_spectres))
+            self.spectres = json.load(open(file_path))
 
     def get_monster_name(self, minion_info):
         # do in memory translation of any normal mobs we need to mention in addition to the skill for now only phantasms
@@ -121,7 +124,7 @@ class PobMinionLookup(object):
         """
         Read the current PoB master branch 3_0 spectre file  and create a json file for it.
         """
-        url = "https://raw.githubusercontent.com/Openarl/PathOfBuilding/master/Data/3_0/Spectres.lua"
+        url = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/Data/3_0/Spectres.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
 

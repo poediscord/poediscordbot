@@ -1,5 +1,5 @@
 {
-  "utc-date": "2019-10-04T09:32:23.093112",
+  "utc-date": "2019-11-05T17:05:16.279636",
   "conf": {
     "conditionStationary": {
       "var": "conditionStationary",
@@ -949,6 +949,50 @@
       "label": "Is the enemy on consecrated ground?",
       "category": "enemy",
       "abbreviation": "Consecrated Ground"
+    },
+    "conditionAgainstDamageOverTime": {
+      "var": "conditionAgainstDamageOverTime",
+      "label": "Are you against damage over time?"
+    },
+    "multiplierNearbyEnemies": {
+      "var": "multiplierNearbyEnemies",
+      "label": "# of nearby Enemies:"
+    },
+    "multiplierBeenHitRecently": {
+      "var": "multiplierBeenHitRecently",
+      "label": "# of Have you been Hit Recently:",
+      "category": "playerRecently",
+      "abbreviation": "Hits taken"
+    },
+    "conditionImpaledRecently": {
+      "var": "conditionImpaledRecently",
+      "label": "Impaled an Enemy recently?",
+      "category": "playerRecently",
+      "abbreviation": "Impaled"
+    },
+    "multiplierImpalesOnEnemy": {
+      "var": "multiplierImpalesOnEnemy",
+      "label": "# of Impales on Enemy (if not maximum):",
+      "category": "enemy",
+      "abbreviation": "Impales"
+    },
+    "meleeDistance": {
+      "var": "meleeDistance",
+      "label": "Melee distance to enemy:",
+      "category": "enemy",
+      "abbreviation": "Distance"
+    },
+    "multiplierWitheredStackCount": {
+      "var": "multiplierWitheredStackCount",
+      "label": "# of Withered Stacks:",
+      "category": "enemy",
+      "abbreviation": "Wither Stacks"
+    },
+    "conditionShockEffect": {
+      "var": "conditionShockEffect",
+      "label": "Effect of Shock:",
+      "category": "enemy",
+      "abbreviation": "Shock Effect"
     }
   }
 }

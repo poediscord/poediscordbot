@@ -2,13 +2,13 @@ import asyncio
 
 import discord
 from discord.ext import commands
-
 from instance import config
+
 from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util import chat_logging
 from poediscordbot.util.logging import log
 
-bot = commands.Bot(command_prefix='!', description="x")
+bot = commands.Bot(command_prefix='!', description="x", max_messages=101, guild_subscriptions=False, fetch_offline_members=False)
 bot.remove_command('help')
 
 
