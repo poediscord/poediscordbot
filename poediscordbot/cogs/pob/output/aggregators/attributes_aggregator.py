@@ -16,7 +16,6 @@ class AttributesAggregator(AbstractAggregator):
         :param dexterity: float value player dexterity
         :return: combined attributes string for embed usage
         """
-        output = "**Attributes**: "
         if not strength:
             strength = 0
         if not intelligence:
@@ -27,7 +26,7 @@ class AttributesAggregator(AbstractAggregator):
         if strength > OutputThresholds.ATTRIBUTES.value \
                 or intelligence > OutputThresholds.ATTRIBUTES.value \
                 or dexterity > OutputThresholds.ATTRIBUTES.value:
-            return output + f"Str: {self.format_attribute(strength)}" \
+            return f"Str: {self.format_attribute(strength)}" \
                    + f" Int: {self.format_attribute(intelligence)}" \
                    + f" Dex: {self.format_attribute(dexterity)}\n"
 

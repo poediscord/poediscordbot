@@ -66,7 +66,7 @@ class OffenseAggregator(AbstractAggregator):
         crit_multi = build.get_player_stat('CritMultiplier')
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
             output += f"**Crit**: Chance {crit_chance:,.2f}%" \
-                f" | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
+                f", Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
 
         acc = build.get_player_stat('HitChance')
 

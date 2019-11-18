@@ -2,10 +2,13 @@ from discord import Embed
 from instance import config
 
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
+from poediscordbot.cogs.pob.output.aggregators.attributes_aggregator import AttributesAggregator
 from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.output.aggregators.config_aggregator import ConfigAggregator
-from poediscordbot.cogs.pob.output.aggregators.general_aggregator import GeneralAggregator
+from poediscordbot.cogs.pob.output.aggregators.general_aggregator import GeneralAggregator, GeneralStats
+from poediscordbot.cogs.pob.output.aggregators.keystones_aggregator import KeystonesAggregator
 from poediscordbot.cogs.pob.output.aggregators.offense_aggregator import OffenseAggregator
+from poediscordbot.cogs.pob.output.aggregators.resists_aggregator import ResistAggregator
 from poediscordbot.cogs.pob.output.aggregators.secondary_defense_aggregator import SecondaryDefenseAggregator
 from poediscordbot.cogs.pob.output.aggregators.skill_aggregator import SkillAggregator
 from poediscordbot.cogs.pob.poe_data import build_checker
@@ -68,19 +71,22 @@ def _fetch_displayed_skill(gem_name, main_skill):
 def _generate_info_text(tree, pastebin_key, web_poe_token):
     info_text = ""
     if pastebin_key:
-        info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}) | "
-    info_text += f"[Web Tree]({tree}) "
+        info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}), "
+    info_text += f"[Web Tree]({tree})"
     if web_poe_token:
-        info_text += f"| [{config.web_pob_text}](https://pob.party/share/{web_poe_token}) "
+        info_text += f", [{config.web_pob_text}](https://pob.party/share/{web_poe_token})"
     if config.poe_technology_enabled:
-        info_text += f"| [{config.poe_technology_text}](https://poe.technology/poebuddy/{pastebin_key})  "
+        info_text += f", [{config.poe_technology_text}](https://poe.technology/poebuddy/{pastebin_key})"
     info_text += f"\nCreated in [Path of Building](https://github.com/Openarl/PathOfBuilding). "
     return info_text
 
 
 def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
     key, val = aggregator.get_output()
-    return embed.add_field(name=key, value=val, inline=inline)
+    if not val:
+        return
+
+    return embed.add_field(name=key, value=val, inline=True)
 
 
 def generate_response(author, build: Build, minified=False, pastebin_key=None, non_dps_skills=None, web_poe_token=None):
@@ -98,8 +104,13 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
                          build.get_active_skill(), is_support)
 
     base_aggregators = [
-        GeneralAggregator(build),
+        GeneralAggregator(build, GeneralStats.LIFE),
+        GeneralAggregator(build, GeneralStats.ENERGY_SHIELD),
+        GeneralAggregator(build, GeneralStats.MANA),
+        ResistAggregator(build),
         SecondaryDefenseAggregator(build),
+        AttributesAggregator(build),
+        KeystonesAggregator(build),
         OffenseAggregator(build, non_dps_skills),
         ChargesAggregator(build),
     ]
@@ -114,6 +125,6 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
         [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
 
     # output
-    embed.add_field(name='Info:', value=_generate_info_text(build.tree, pastebin_key, web_poe_token))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, pastebin_key, web_poe_token), inline=False)
 
     return embed
