@@ -83,10 +83,10 @@ def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
     return embed.add_field(name=key, value=val, inline=inline)
 
 
-def generate_response(author, build: Build, minified=False, pastebin_key=None, consts=None, web_poe_token=None):
+def generate_response(author, build: Build, minified=False, pastebin_key=None, non_dps_skills=None, web_poe_token=None):
     """
     Build an embed to respond to the user.
-    :param consts: poe constants - skill info
+    :param non_dps_skills: poe constants - skill info
     :param author: name of the person triggering the action
     :param build: poe_data to parse an embed from
     :param minified (bool): whether to get a minified version or the full one
@@ -100,7 +100,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, c
     base_aggregators = [
         GeneralAggregator(build),
         SecondaryDefenseAggregator(build),
-        OffenseAggregator(build, config),
+        OffenseAggregator(build, non_dps_skills),
         ChargesAggregator(build),
     ]
     additional_aggregators = [

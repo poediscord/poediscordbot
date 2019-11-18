@@ -7,12 +7,12 @@ from poediscordbot.pob_xml_parser.models.skill import Skill
 
 class OffenseAggregator(AbstractAggregator):
 
-    def __init__(self, build: Build, config):
+    def __init__(self, build: Build, non_dps_skills):
         super().__init__(build)
-        self.config = config
+        self.non_dps_skills = non_dps_skills
 
     def get_output(self) -> (str, str):
-        return self.get_offense_or_support_string(self.build)
+        return self.get_offense_or_support_string(self.build, self.non_dps_skills)
 
     @staticmethod
     def calc_max(comparison_dps: []):
@@ -75,7 +75,7 @@ class OffenseAggregator(AbstractAggregator):
         return output
 
     @staticmethod
-    def _get_support_outptut(build):
+    def _get_support_output(build):
         return f"Auras: {build.aura_count}, Curses: {build.curse_count}"
 
     def get_offense_or_support_string(self, build, consts=None):
@@ -96,6 +96,6 @@ class OffenseAggregator(AbstractAggregator):
         ignite_dps = build.get_player_stat('IgniteDPS')
         avg = self.calc_max(comparison_avg)
         if build_checker.is_support(build, dps, avg):
-            return "Support", self._get_support_outptut(build)
+            return "Support", self._get_support_output(build)
         else:
             return "Offense", self._get_damage_output(build, avg, dps, 0 if not ignite_dps else ignite_dps)
