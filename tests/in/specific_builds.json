@@ -129,7 +129,7 @@
           "not": true
         },
         {
-          "key": "Defense",
+          "key": "Secondary Defense",
           "value": "Movement Speed: 469%",
           "not": false
         }

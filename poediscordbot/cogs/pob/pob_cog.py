@@ -94,7 +94,7 @@ class PoBCog(commands.Cog):
             build = pob_xml_parser.parse_build(xml)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
-                                                     consts=poe_consts, web_poe_token=web_poe_token)
+                                                     non_dps_skills=poe_consts, web_poe_token=web_poe_token)
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed
             except Exception as e:

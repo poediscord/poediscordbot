@@ -1,7 +1,13 @@
 from discord import Embed
 from instance import config
 
-from poediscordbot.cogs.pob.output import general_output, skill_output, config_output, charges_output, offense_output
+from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
+from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
+from poediscordbot.cogs.pob.output.aggregators.config_aggregator import ConfigAggregator
+from poediscordbot.cogs.pob.output.aggregators.general_aggregator import GeneralAggregator
+from poediscordbot.cogs.pob.output.aggregators.offense_aggregator import OffenseAggregator
+from poediscordbot.cogs.pob.output.aggregators.secondary_defense_aggregator import SecondaryDefenseAggregator
+from poediscordbot.cogs.pob.output.aggregators.skill_aggregator import SkillAggregator
 from poediscordbot.cogs.pob.poe_data import build_checker
 from poediscordbot.cogs.pob.util.pob import pob_minions
 from poediscordbot.pob_xml_parser.models.build import Build
@@ -24,7 +30,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     if is_support:
         gem_name = "Support"
     elif main_skill:
-        gem_name = fetch_displayed_skill(gem_name, main_skill)
+        gem_name = _fetch_displayed_skill(gem_name, main_skill)
 
     if ascendency_name or class_name:
         url = 'https://raw.github.com/poediscord/poediscordbot/master/resources/img/' + (
@@ -46,7 +52,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     return embed
 
 
-def fetch_displayed_skill(gem_name, main_skill):
+def _fetch_displayed_skill(gem_name, main_skill):
     main_gem = main_skill.get_selected()
     if isinstance(main_gem, Gem):
         display_name = f'{main_gem.get_name()}'
@@ -59,7 +65,7 @@ def fetch_displayed_skill(gem_name, main_skill):
         return gem_name
 
 
-def generate_info_text(tree, pastebin_key, web_poe_token):
+def _generate_info_text(tree, pastebin_key, web_poe_token):
     info_text = ""
     if pastebin_key:
         info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}) | "
@@ -72,10 +78,15 @@ def generate_info_text(tree, pastebin_key, web_poe_token):
     return info_text
 
 
-def generate_response(author, build: Build, minified=False, pastebin_key=None, consts=None, web_poe_token=None):
+def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
+    key, val = aggregator.get_output()
+    return embed.add_field(name=key, value=val, inline=inline)
+
+
+def generate_response(author, build: Build, minified=False, pastebin_key=None, non_dps_skills=None, web_poe_token=None):
     """
     Build an embed to respond to the user.
-    :param consts: poe constants - skill info
+    :param non_dps_skills: poe constants - skill info
     :param author: name of the person triggering the action
     :param build: poe_data to parse an embed from
     :param minified (bool): whether to get a minified version or the full one
@@ -85,28 +96,24 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, c
 
     embed = create_embed(author, build.level, build.ascendancy_name, build.class_name,
                          build.get_active_skill(), is_support)
-    # add new fields
-    general_str = general_output.get_defense_string(build)
-    if general_str:
-        embed.add_field(name="General", value=general_str, inline=minified)
 
-    key, offense = offense_output.get_offense(build, consts)
-    if offense:
-        embed.add_field(name=key, value=offense,
-                        inline=minified)
+    base_aggregators = [
+        GeneralAggregator(build),
+        SecondaryDefenseAggregator(build),
+        OffenseAggregator(build, non_dps_skills),
+        ChargesAggregator(build),
+    ]
+    additional_aggregators = [
+        SkillAggregator(build),
+        ConfigAggregator(build)
+    ]
 
-    charges_str = charges_output.get_charges(build)
-    if charges_str:
-        embed.add_field(name="Charges", value=charges_str, inline=minified)
-    # if not minified, add detailed infos.
+    [expand_embed(embed, aggregator, inline=minified) for aggregator in base_aggregators]
+
     if not minified:
-        skill = skill_output.get_main_skill(build)
-        if skill:
-            embed.add_field(name="Main Skill", value=skill, inline=minified)
-        conf_str = config_output.get_config_string(build.config)
-        if conf_str:
-            embed.add_field(name="Config", value=conf_str, inline=minified)
+        [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
+
     # output
-    embed.add_field(name='Info:', value=generate_info_text(build.tree, pastebin_key, web_poe_token))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, pastebin_key, web_poe_token))
 
     return embed
