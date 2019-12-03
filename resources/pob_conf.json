@@ -1,5 +1,5 @@
 {
-    "utc-date": "2019-11-16T22:12:49.574897",
+    "utc-date": "2019-12-03T16:50:35.395266",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -993,6 +993,12 @@
             "label": "Effect of Shock:",
             "category": "enemy",
             "abbreviation": "Shock Effect"
+        },
+        "conditionHitBySpellDamageRecently": {
+            "var": "conditionHitBySpellDamageRecently",
+            "label": "Have you taken Spell Damage Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Hit by Spells"
         }
     }
 }
