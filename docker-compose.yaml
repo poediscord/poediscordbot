@@ -1,11 +1,5 @@
 version: "3.7"
 services:
   bot:
+    container_name: pobdiscord
     build: ./
-    networks:
-     - poediscord
-
-
-networks:
-  poediscord:
-    driver: bridge
