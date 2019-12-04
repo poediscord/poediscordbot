@@ -80,7 +80,9 @@ def _generate_info_text(tree, pastebin_key, web_poe_token):
 
 def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
     key, val = aggregator.get_output()
-    return embed.add_field(name=key, value=val, inline=inline)
+
+    if key and val:
+        embed.add_field(name=key, value=val, inline=inline)
 
 
 def generate_response(author, build: Build, minified=False, pastebin_key=None, non_dps_skills=None, web_poe_token=None):
