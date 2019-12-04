@@ -998,7 +998,7 @@
             "var": "conditionHitBySpellDamageRecently",
             "label": "Have you taken Spell Damage Recently?",
             "category": "playerRecently",
-            "abbreviation": "Hit by Spells"
+            "abbreviation": "Taken Spell Damage"
         }
     }
 }
