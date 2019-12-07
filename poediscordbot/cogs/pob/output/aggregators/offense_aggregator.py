@@ -1,5 +1,6 @@
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.cogs.pob.poe_data import build_checker
+from poediscordbot.cogs.pob.poe_data.poe_consts import show_avg_dps_skills
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.skill import Skill
@@ -39,9 +40,7 @@ class OffenseAggregator(AbstractAggregator):
             show_avg = show_avg or any("trap" in gem.get_name().lower() for gem in active_skill.gems if gem.get_name())
             if selected_skill and selected_skill.get_name():
                 gem_name = selected_skill.get_name()
-                show_avg = show_avg or "firestorm" in gem_name.lower() \
-                           or "ice storm" in gem_name.lower() \
-                           or "molten burst" in gem_name.lower()
+                show_avg = show_avg or gem_name.lower() in show_avg_dps_skills
 
             return show_avg
 
