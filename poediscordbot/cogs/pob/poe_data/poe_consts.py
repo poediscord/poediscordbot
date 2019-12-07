@@ -61,3 +61,13 @@ utility_skills = [
     "Abyssal Cry",
     "Immortal Call"
 ]
+
+show_avg_dps_skills = [
+    "firestorm",
+    "ice storm",
+    "molten burst",
+    "divine ire",
+    "explosive arrow",
+    "ball lightning",
+    "storm call",
+]
