@@ -1,5 +1,5 @@
 {
-    "utc-date": "2019-12-03T16:50:35.395266",
+    "utc-date": "2019-12-11T17:54:44.819279",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -999,6 +999,42 @@
             "label": "Have you taken Spell Damage Recently?",
             "category": "playerRecently",
             "abbreviation": "Taken Spell Damage"
+        },
+        "multiplierRampage": {
+            "var": "multiplierRampage",
+            "label": "# of Rampage Kills:",
+            "category": "player",
+            "abbreviation": "Rampage Kills"
+        },
+        "conditionKilledUniqueEnemy": {
+            "var": "conditionKilledUniqueEnemy",
+            "label": "Killed Rare or Unique Enemy Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Killed Rare/Unique"
+        },
+        "conditionHaveArborix": {
+            "var": "conditionHaveArborix",
+            "label": "Do you have Iron Reflexes?",
+            "category": "player",
+            "abbreviation": "Arborix IR"
+        },
+        "conditionHaveAugyre": {
+            "var": "conditionHaveAugyre",
+            "label": "Augyre rotating buff",
+            "category": "player",
+            "abbreviation": "Augyre Buff"
+        },
+        "conditionHaveVulconus": {
+            "var": "conditionHaveVulconus",
+            "label": "Do you have Avatar Of Fire?",
+            "category": "player",
+            "abbreviation": "Vulconus AoF"
+        },
+        "conditionHaveManaStorm": {
+            "var": "conditionHaveManaStorm",
+            "label": "Do you have Manastorm's Lightning Buff?",
+            "category": "player",
+            "abbreviation": "Manastorm Buff"
         }
     }
 }
