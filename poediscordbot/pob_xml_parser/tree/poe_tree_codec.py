@@ -8,7 +8,7 @@ from .poe_tree import PoeTree
 
 
 class PoeTreeCodec:
-    POE_TREE_JSON = 'resources/tree_3_8.json'
+    POE_TREE_JSON = 'resources/tree_3_9.json'
 
     def __init__(self):
         tree_data = json.load(open(config.ROOT_DIR + '/' + PoeTreeCodec.POE_TREE_JSON))
