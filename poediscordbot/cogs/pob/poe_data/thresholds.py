@@ -47,3 +47,5 @@ class OutputThresholds(Enum):
     DPS_SUPPORT = 100000
     AVG_SUPPORT = 20000
     IGNITE_DPS = 10000
+    # 30% of dps needs to be impale dmg to be shown
+    IMPALE_DPS_RATIO = 0.3

@@ -1,5 +1,5 @@
 {
-    "utc-date": "2019-12-11T17:54:44.819279",
+    "utc-date": "2020-01-18T14:24:43.261674",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1035,6 +1035,18 @@
             "label": "Do you have Manastorm's Lightning Buff?",
             "category": "player",
             "abbreviation": "Manastorm Buff"
+        },
+        "useGhostShrouds": {
+            "var": "useGhostShrouds",
+            "label": "Do you use Ghost Shrouds?"
+        },
+        "overrideGhostShrouds": {
+            "var": "overrideGhostShrouds",
+            "label": "# of Ghost Shrouds (if not maximum):"
+        },
+        "conditionUsedWarcryInPast8Seconds": {
+            "var": "conditionUsedWarcryInPast8Seconds",
+            "label": "Used a Warcry in the past 8 seconds?"
         }
     }
 }

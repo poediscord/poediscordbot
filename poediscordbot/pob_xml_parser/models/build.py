@@ -21,6 +21,8 @@ class StatOwner(Enum):
             return StatOwner.MINION
 
 
+
+
 class Build:
     __slots__ = 'level', 'version', 'bandit', 'class_name', 'ascendancy_name', 'stats', 'config', 'tree', 'skills', \
                 'active_skill_id', 'item_slots', 'aura_count', 'curse_count', 'keystones'

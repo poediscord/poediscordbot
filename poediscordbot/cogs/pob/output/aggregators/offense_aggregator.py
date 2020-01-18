@@ -45,27 +45,29 @@ class OffenseAggregator(AbstractAggregator):
             return show_avg
 
     @staticmethod
-    def _get_damage_output(build, avg, dps, ignite_dps):
+    def _get_damage_output(build, avg, player_dps, minion_dps, ignite_dps):
         output = ""
-        speed = build.get_player_stat('Speed')
+        player_speed = build.get_player_stat('Speed')
         minion_speed = build.get_minion_stat('Speed')
-        shown_speed = speed if not minion_speed or minion_speed < speed else minion_speed
 
-        if OffenseAggregator.show_avg_damage(build.get_active_skill()) or avg > dps:
+        if OffenseAggregator.show_avg_damage(build.get_active_skill()) or avg > max(player_dps, minion_dps):
             output += f"**AVG**: {avg:,.0f}\n"
-        else:
-            output += f"**DPS**: {dps:,.0f}"
-            if shown_speed > 0:
-                output += f"@ {round(shown_speed, 2) if shown_speed else 0}/s\n"
-
-        if ignite_dps > dps or (avg and ignite_dps > avg * shown_speed):
+        elif player_dps > minion_dps:
+            output += f"**DPS**: {player_dps:,.0f}"
+            if player_speed > 0:
+                output += f"@ {round(player_speed, 2) if player_speed else 0}/s\n"
+        elif minion_dps > player_dps:
+            output += f"**DPS**: {minion_dps:,.0f}"
+            if minion_speed > 0:
+                output += f"@ {round(minion_speed, 2) if minion_speed else 0}/s\n"
+        elif ignite_dps > player_dps or (avg and ignite_dps > avg * player_speed):
             output += f"**Ignite DPS**: {ignite_dps:,.0f}\n"
 
         crit_chance = build.get_player_stat('CritChance', )
         crit_multi = build.get_player_stat('CritMultiplier')
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
             output += f"**Crit**: Chance {crit_chance:,.2f}%" \
-                f" | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
+                      f" | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n"
 
         acc = build.get_player_stat('HitChance')
 
@@ -88,13 +90,18 @@ class OffenseAggregator(AbstractAggregator):
             return "None", None
 
         # Basics
-        comparison_dps = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
-                          build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS')]
+        player_dps_list = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
+                           build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS')]
+        minion_dps_list = [build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS'),
+                           build.get_minion_stat('WithImpaleDPS')]
         comparison_avg = [build.get_player_stat('WithPoisonAverageDamage'), build.get_player_stat("AverageDamage")]
-        dps = self.calc_max(comparison_dps)
+        player_dps = max([dps if dps else 0 for dps in player_dps_list])
+        minion_dps = max([dps if dps else 0 for dps in minion_dps_list])
         ignite_dps = build.get_player_stat('IgniteDPS')
-        avg = self.calc_max(comparison_avg)
-        if build_checker.is_support(build, dps, avg):
+        player_avg = self.calc_max(comparison_avg)
+
+        if build_checker.is_support(build, max(player_dps, minion_dps), player_avg):
             return "Support", self._get_support_output(build)
         else:
-            return "Offense", self._get_damage_output(build, avg, dps, 0 if not ignite_dps else ignite_dps)
+            return "Offense", self._get_damage_output(build, player_avg, player_dps, minion_dps,
+                                                      0 if not ignite_dps else ignite_dps)
