@@ -5,7 +5,7 @@ from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import Abstra
 from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.output.aggregators.config_aggregator import ConfigAggregator
 from poediscordbot.cogs.pob.output.aggregators.general_aggregator import GeneralAggregator
-from poediscordbot.cogs.pob.output.aggregators.offense_aggregator import OffenseAggregator
+from poediscordbot.cogs.pob.output.aggregators.offense_aggregator_v2 import OffenseAggregatorV2
 from poediscordbot.cogs.pob.output.aggregators.secondary_defense_aggregator import SecondaryDefenseAggregator
 from poediscordbot.cogs.pob.output.aggregators.skill_aggregator import SkillAggregator
 from poediscordbot.cogs.pob.poe_data import build_checker
@@ -102,7 +102,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
     base_aggregators = [
         GeneralAggregator(build),
         SecondaryDefenseAggregator(build),
-        OffenseAggregator(build, non_dps_skills),
+        OffenseAggregatorV2(build, non_dps_skills),
         ChargesAggregator(build),
     ]
     additional_aggregators = [
