@@ -40,8 +40,10 @@ class OffenseAggregatorV2(AbstractAggregator):
             return 'Minion Offense', self._generate_minion_output()
         elif player_dps:
             return 'DPS', self._generate_player_dps_output()
-        else:
+        elif self.ignite_dps:
             return 'Ignite', self._generate_player_ignite_output()
+        else:
+            return 'DPS', None
 
     @staticmethod
     def show_avg_damage(active_skill: Skill) -> bool:
