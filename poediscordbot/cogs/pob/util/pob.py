@@ -5,7 +5,7 @@ from urllib import request
 
 from instance import config
 
-from poediscordbot.cogs.pob import util
+from poediscordbot.pob_xml_parser.models.skill import Skill
 from poediscordbot.util.logging import log
 
 POB_CONF_JSON = 'resources/pob_conf.json'
@@ -78,7 +78,8 @@ class PobConfig:
                 if val.startswith('"'):
                     val = val.replace('"', '')
                 elif val.startswith('{'):
-                    val = list(map(lambda v: v.replace('"', '').replace('{', '').replace('}', '').strip(), val.split(',')))
+                    val = list(
+                        map(lambda v: v.replace('"', '').replace('{', '').replace('}', '').strip(), val.split(',')))
 
                 if key not in attribute and key in keywords:
                     attribute[key] = val
@@ -120,10 +121,11 @@ class PobMinionLookup(object):
             log.info(f"finished creating new {path_to_spectres} in resources...")
             self.spectres = json.load(open(file_path))
 
-    def get_monster_name(self, minion_info):
+    def get_monster_name(self, minion_info, main_skill: Skill):
         # do in memory translation of any normal mobs we need to mention in addition to the skill for now only phantasms
         if minion_info and '\\' not in minion_info:
-            if 'SummonedPhantasm' in minion_info:
+            if 'SummonedPhantasm' in minion_info \
+                    and any([gem for gem in main_skill.gems if 'SupportSummonGhostOnKill' in gem.id]):
                 return 'Summoned Phantasm'
             if 'AxisEliteSoldierHeraldOfLight' in minion_info:
                 return 'Sentinel of Purity'
