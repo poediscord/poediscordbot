@@ -2,7 +2,11 @@ import unittest
 
 from discord import Embed
 
+from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.pob_cog import PoBCog
+from poediscordbot.cogs.pob.poe_data import poe_consts
+from poediscordbot.cogs.pob.util import pastebin
+from poediscordbot.pob_xml_parser import pob_xml_parser
 from tests import load_json_file
 
 
@@ -17,13 +21,22 @@ class TestBot(unittest.TestCase):
 
         json = load_json_file("in/specific_builds.json")
 
-        for build in json['builds']:
-            with self.subTest(i=build['name']):
-                build_embed = PoBCog._parse_pob(demo_author, build['pastebin'])
+        for json_build in json['builds']:
+            with self.subTest(i=json_build['name']):
+                # load data from pastebin if needed
+                if 'data' not in json_build:
+                    build_embed = PoBCog._parse_pob(demo_author, json_build['pastebin'])
+                # load data locally from the 'data' value
+                else:
+                    xml = pastebin.decode_to_xml(json_build['data'])
+                    build = pob_xml_parser.parse_build(xml)
+                    build_embed = pob_output.generate_response(demo_author, build, minified=False, pastebin_key=None,
+                                                               non_dps_skills=poe_consts, web_poe_token=None)
+
                 self.assertTrue(isinstance(build_embed, Embed))
                 embed_dict = build_embed.to_dict()
                 print(embed_dict)
-                for assertion in build['assertions']:
+                for assertion in json_build['assertions']:
                     print(assertion)
                     key, value, negated = assertion.get('key', ''), assertion.get('value', ''), assertion.get('not',
                                                                                                               False)
