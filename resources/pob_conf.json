@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-03-01T10:11:37.972128",
+    "utc-date": "2020-03-01T10:14:10.970818",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -52,19 +52,22 @@
             "var": "iceNovaCastOnFrostbolt",
             "label": "Cast on Frostbolt?",
             "category": "playerSkill",
-            "abbreviation": "Nova on FB"
+            "abbreviation": "Nova on FB",
+            "ifSkill": "Ice Nova"
         },
         "innervateInnervation": {
             "var": "innervateInnervation",
             "label": "Is Innervation active?",
             "category": "player",
-            "abbreviation": "Innervation"
+            "abbreviation": "Innervation",
+            "ifSkill": "Innervate"
         },
         "vortexCastOnFrostbolt": {
             "var": "vortexCastOnFrostbolt",
             "label": "Cast on Frostbolt?",
             "category": "playerSkill",
-            "abbreviation": "Vortex on FB"
+            "abbreviation": "Vortex on FB",
+            "ifSkill": "Vortex"
         },
         "usePowerCharges": {
             "var": "usePowerCharges",
@@ -672,31 +675,36 @@
             "var": "aspectOfTheAvianAviansMight",
             "label": "Is Avian's Might active?",
             "category": "playerSkill",
-            "abbreviation": "Avian's Might"
+            "abbreviation": "Avian's Might",
+            "ifSkill": "Aspect of the Avian"
         },
         "aspectOfTheAvianAviansFlight": {
             "var": "aspectOfTheAvianAviansFlight",
             "label": "Is Avian's Flight active?",
             "category": "playerSkill",
-            "abbreviation": "Avian's Flight"
+            "abbreviation": "Avian's Flight",
+            "ifSkill": "Aspect of the Avian"
         },
         "aspectOfTheCatCatsStealth": {
             "var": "aspectOfTheCatCatsStealth",
             "label": "Is Cat's Stealth active?",
             "category": "playerSkill",
-            "abbreviation": "Cat's Stealth"
+            "abbreviation": "Cat's Stealth",
+            "ifSkill": "Aspect of the Cat"
         },
         "aspectOfTheCatCatsAgility": {
             "var": "aspectOfTheCatCatsAgility",
             "label": "Is Cat's Agility active?",
             "category": "playerSkill",
-            "abbreviation": "Cat's Agility"
+            "abbreviation": "Cat's Agility",
+            "ifSkill": "Aspect of the Cat"
         },
         "overrideCrabBarriers": {
             "var": "overrideCrabBarriers",
             "label": "# of Crab Barriers (if not maximum):",
             "category": "overrides  ",
-            "abbreviation": "Crab Barriers"
+            "abbreviation": "Crab Barriers",
+            "ifSkill": "Aspect of the Crab"
         },
         "overridePowerCharges": {
             "var": "overridePowerCharges",
@@ -754,67 +762,90 @@
             "var": "bannerPlanted",
             "label": "Is Banner Planted?",
             "category": "playerSkill",
-            "abbreviation": "Banner planted"
+            "abbreviation": "Banner planted",
+            "ifSkillList": [
+                "Dread Banner",
+                "War Banner"
+            ]
         },
         "bladestormInBloodstorm": {
             "var": "bladestormInBloodstorm",
             "label": "Are you in a Bloodstorm?",
             "category": "playerSkill",
-            "abbreviation": "In Bloodstorm"
+            "abbreviation": "In Bloodstorm",
+            "ifSkill": "Bladestorm"
         },
         "bladestormInSandstorm": {
             "var": "bladestormInSandstorm",
             "label": "Are you in a Sandstorm?",
             "category": "playerSkill",
-            "abbreviation": "In Sandstorm"
+            "abbreviation": "In Sandstorm",
+            "ifSkill": "Bladestorm"
         },
         "brandAttachedToEnemy": {
             "var": "brandAttachedToEnemy",
             "label": "Is Attached to the Enemy?",
             "category": "enemy",
-            "abbreviation": "Brand Attached"
+            "abbreviation": "Brand Attached",
+            "ifSkillList": [
+                "Armageddon Brand",
+                "Storm Brand"
+            ]
         },
         "deathmarkDeathmarkActive": {
             "var": "deathmarkDeathmarkActive",
             "label": "Is the enemy Deathmarked?",
             "category": "enemy",
-            "abbreviation": "Deathmarked"
+            "abbreviation": "Deathmarked",
+            "ifSkill": "Deathmark"
         },
         "feedingFrenzyFeedingFrenzyActive": {
             "var": "feedingFrenzyFeedingFrenzyActive",
             "label": "Is Feeding Frenzy active?",
             "category": "playerSkill",
-            "abbreviation": "Feeding Frenzy"
+            "abbreviation": "Feeding Frenzy",
+            "ifSkill": "Feeding Frenzy"
         },
         "infusedChannellingInfusion": {
             "var": "infusedChannellingInfusion",
             "label": "Is Infusion active?",
             "category": "playerSkill",
-            "abbreviation": "Infused Channeling"
+            "abbreviation": "Infused Channeling",
+            "ifSkill": "Infused Channelling"
         },
         "meatShieldEnemyNearYou": {
             "var": "meatShieldEnemyNearYou",
             "label": "Is the enemy near you?",
             "category": "nearby",
-            "abbreviation": "Meat Shield Target"
+            "abbreviation": "Meat Shield Target",
+            "ifSkill": "Meat Shield"
         },
         "siphoningTrapAffectedEnemies": {
             "var": "siphoningTrapAffectedEnemies",
             "label": "# of Enemies affected:",
             "category": "playerSkill",
-            "abbreviation": "Siphoning Trap Targets"
+            "abbreviation": "Siphoning Trap Targets",
+            "ifSkill": "Siphoning Trap"
         },
         "bloodSandStance": {
             "var": "bloodSandStance",
             "label": "Stance:",
             "category": "playerSkill",
-            "abbreviation": "Stance"
+            "abbreviation": "Stance",
+            "ifSkillList": [
+                "Blood and Sand",
+                "Flesh and Stone",
+                "Lacerate",
+                "Bladestorm",
+                "Perforate"
+            ]
         },
         "waveOfConvictionExposureType": {
             "var": "waveOfConvictionExposureType",
             "label": "Exposure Type:",
             "category": "playerSkill",
-            "abbreviation": "Exposure to"
+            "abbreviation": "Exposure to",
+            "ifSkill": "Wave of Conviction"
         },
         "useChallengerCharges": {
             "var": "useChallengerCharges",
