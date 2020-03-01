@@ -39,6 +39,13 @@ class ConfigAggregator(AbstractAggregator):
             abbrev = entry.get('abbreviation')
             value = entry.get('value')
             category = entry.get('category')
+            ifOption = entry.get('ifOption')
+
+            # Skip conditional options that are not matching precondition in output
+            if ifOption and (ifOption not in config or not
+                             bool(config.get(ifOption).get('value'))):
+                continue
+
             config_line = ConfigAggregator.prepare_config_line(abbrev if abbrev else key, value)
             if category and config_line:
                 configs.setdefault(category.capitalize(), []).append(config_line)

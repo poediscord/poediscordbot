@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-01-18T14:24:43.261674",
+    "utc-date": "2020-03-01T02:00:22.910595",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -702,25 +702,29 @@
             "var": "overridePowerCharges",
             "label": "# of Power Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#PC"
+            "abbreviation": "#PC",
+            "ifOption": "usePowerCharges"
         },
         "overrideFrenzyCharges": {
             "var": "overrideFrenzyCharges",
             "label": "# of Frenzy Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#FC"
+            "abbreviation": "#FC",
+            "ifOption": "useFrenzyCharges"
         },
         "overrideEnduranceCharges": {
             "var": "overrideEnduranceCharges",
             "label": "# of Endurance Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#EC"
+            "abbreviation": "#EC",
+            "ifOption": "useEnduranceCharges"
         },
         "overrideSiphoningCharges": {
             "var": "overrideSiphoningCharges",
             "label": "# of Siphoning Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#SC"
+            "abbreviation": "#SC",
+            "ifOption": "useSiphoningCharges"
         },
         "conditionBurning": {
             "var": "conditionBurning",
@@ -822,7 +826,8 @@
             "var": "overrideChallengerCharges",
             "label": "# of Challenger Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#Challenger Charges"
+            "abbreviation": "#Challenger Charges",
+            "ifOption": "useChallengerCharges"
         },
         "useBlitzCharges": {
             "var": "useBlitzCharges",
@@ -834,7 +839,8 @@
             "var": "overrideBlitzCharges",
             "label": "# of Blitz Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#Blitz Charges"
+            "abbreviation": "#Blitz Charges",
+            "ifOption": "useBlitzCharges"
         },
         "useInspirationCharges": {
             "var": "useInspirationCharges",
@@ -846,7 +852,8 @@
             "var": "overrideInspirationCharges",
             "label": "# of Inspiration Charges (if not maximum):",
             "category": "overrides",
-            "abbreviation": "#Inspiration Charges"
+            "abbreviation": "#Inspiration Charges",
+            "ifOption": "useInspirationCharges"
         },
         "conditionFocused": {
             "var": "conditionFocused",
@@ -952,7 +959,7 @@
         },
         "conditionAgainstDamageOverTime": {
             "var": "conditionAgainstDamageOverTime",
-            "label": "Are you against damage over time?"
+            "label": "Are you against Damage over Time?"
         },
         "multiplierNearbyEnemies": {
             "var": "multiplierNearbyEnemies",
@@ -992,7 +999,8 @@
             "var": "conditionShockEffect",
             "label": "Effect of Shock:",
             "category": "enemy",
-            "abbreviation": "Shock Effect"
+            "abbreviation": "Shock Effect",
+            "ifOption": "conditionEnemyShocked"
         },
         "conditionHitBySpellDamageRecently": {
             "var": "conditionHitBySpellDamageRecently",
@@ -1042,11 +1050,62 @@
         },
         "overrideGhostShrouds": {
             "var": "overrideGhostShrouds",
-            "label": "# of Ghost Shrouds (if not maximum):"
+            "label": "# of Ghost Shrouds (if not maximum):",
+            "ifOption": "useGhostShrouds"
         },
         "conditionUsedWarcryInPast8Seconds": {
             "var": "conditionUsedWarcryInPast8Seconds",
             "label": "Used a Warcry in the past 8 seconds?"
+        },
+        "buffLuckyHits": {
+            "var": "buffLuckyHits",
+            "label": "Do you have Vaal Arc's Lucky Buff?",
+            "varList": "{ Combat"
+        },
+        "buffElusive": {
+            "var": "buffElusive",
+            "label": "Are you Elusive?",
+            "varList": "{ Combat"
+        },
+        "multiplierSummonedMinion": {
+            "var": "multiplierSummonedMinion",
+            "label": "# of Summoned Minions"
+        },
+        "conditionOnFungalGround": {
+            "var": "conditionOnFungalGround",
+            "label": "Are you on Fungal Ground?"
+        },
+        "multiplierNearbyRareOrUniqueEnemies": {
+            "var": "multiplierNearbyRareOrUniqueEnemies",
+            "label": "# of nearby Rare or Unique Enemies:"
+        },
+        "conditionTakenFireDamageFromEnemyHitRecently": {
+            "var": "conditionTakenFireDamageFromEnemyHitRecently",
+            "label": "Taken Fire Damage from Enemy Hit Recently?"
+        },
+        "conditionStoppedTakingDamageOverTimeRecently": {
+            "var": "conditionStoppedTakingDamageOverTimeRecently",
+            "label": "Have you stopped taking DoT recently?"
+        },
+        "buffNgamahuFlamesAdvance": {
+            "var": "buffNgamahuFlamesAdvance",
+            "label": "Is Ngamahu"
+        },
+        "multiplierEnduranceChargesLostRecently": {
+            "var": "multiplierEnduranceChargesLostRecently",
+            "label": "# of Endurance Charges lost Recently:"
+        },
+        "multiplierBleedsOnEnemy": {
+            "var": "multiplierBleedsOnEnemy",
+            "label": "# of Bleeds on Enemy (if not maximum):"
+        },
+        "EnsnareStackCount": {
+            "var": "EnsnareStackCount",
+            "label": "# of Ensnare Stacks:"
+        },
+        "conditionEnemyOnFungalGround": {
+            "var": "conditionEnemyOnFungalGround",
+            "label": "Is the enemy on fungal ground?"
         }
     }
 }

@@ -62,7 +62,7 @@ class PobConfig:
         content = url.read().decode('utf-8')
         conditions = [line.strip() for line in content.split('{ var') if
                       "condition" in line.lower() or "ifflag" in line.lower()]
-        keywords = ['var', 'label']
+        keywords = ['var', 'label', 'ifOption']
 
         attributes = {}
         for condition in conditions:
@@ -72,7 +72,7 @@ class PobConfig:
                     key, val = attr.split(' = ')
                     val = val.replace('"', '')
                     attribute[key] = val
-            if all(key in keywords for key in attribute):
+            if any(key in keywords for key in attribute):
                 attributes[attribute['var']] = attribute
 
         pob_config_content = {'utc-date': datetime.utcnow().isoformat(), 'conf': attributes}
