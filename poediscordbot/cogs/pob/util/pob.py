@@ -63,15 +63,26 @@ class PobConfig:
         conditions = [line.strip() for line in content.split('{ var') if
                       "condition" in line.lower() or "ifflag" in line.lower()]
         keywords = ['var', 'label', 'ifOption']
+        regex = r'(\w+)\s*=\s*((?:"[^"]+")|{(?:\s*"[^"]+",?\s*)+})'
 
         attributes = {}
         for condition in conditions:
             attribute = {}
-            for attr in ('var ' + condition).split(', '):
-                if any(util.starts_with(keyword, attr) and '}' not in attr for keyword in keywords) and ' = ' in attr:
-                    key, val = attr.split(' = ')
+            condition = "var " + re.sub(r'{ label(.|\s)+$', '', condition)
+            matches = re.findall(regex, condition)
+
+            for m in matches:
+                key = m[0].strip()
+                val = m[1].strip()
+
+                if val.startswith('"'):
                     val = val.replace('"', '')
+                elif val.startswith('{'):
+                    val = list(map(lambda v: v.replace('"', '').replace('{', '').replace('}', '').strip(), val.split(',')))
+
+                if key not in attribute and key in keywords:
                     attribute[key] = val
+
             if any(key in keywords for key in attribute):
                 attributes[attribute['var']] = attribute
 
