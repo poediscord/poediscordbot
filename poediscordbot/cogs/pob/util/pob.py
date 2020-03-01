@@ -62,7 +62,7 @@ class PobConfig:
         content = url.read().decode('utf-8')
         conditions = [line.strip() for line in content.split('{ var') if
                       "condition" in line.lower() or "ifflag" in line.lower()]
-        keywords = ['var', 'label', 'ifOption']
+        keywords = ['var', 'label', 'ifOption', 'ifSkill', 'ifSkillList']
         regex = r'(\w+)\s*=\s*((?:"[^"]+")|{(?:\s*"[^"]+",?\s*)+})'
 
         attributes = {}
