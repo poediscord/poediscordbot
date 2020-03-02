@@ -959,11 +959,15 @@
         },
         "conditionAgainstDamageOverTime": {
             "var": "conditionAgainstDamageOverTime",
-            "label": "Are you against Damage over Time?"
+            "label": "Are you against Damage over Time?",
+            "category": "player",
+            "abbreviation": "Against DoT"
         },
         "multiplierNearbyEnemies": {
             "var": "multiplierNearbyEnemies",
-            "label": "# of nearby Enemies:"
+            "label": "# of nearby Enemies:",
+            "category": "player",
+            "abbreviation": "Nearby Enemies"
         },
         "multiplierBeenHitRecently": {
             "var": "multiplierBeenHitRecently",
@@ -1046,64 +1050,95 @@
         },
         "useGhostShrouds": {
             "var": "useGhostShrouds",
-            "label": "Do you use Ghost Shrouds?"
+            "label": "Do you use Ghost Shrouds?",
+            "category": "player",
+            "abbreviation": "Has Ghost Shrouds"
         },
         "overrideGhostShrouds": {
             "var": "overrideGhostShrouds",
             "label": "# of Ghost Shrouds (if not maximum):",
-            "ifOption": "useGhostShrouds"
+            "ifOption": "useGhostShrouds",
+            "category": "player",
+            "abbreviation": "Ghost Shrouds"
         },
         "conditionUsedWarcryInPast8Seconds": {
             "var": "conditionUsedWarcryInPast8Seconds",
-            "label": "Used a Warcry in the past 8 seconds?"
+            "label": "Used a Warcry in the past 8 seconds?",
+            "category": "player",
+            "abbreviation": "Used Warcry"
         },
         "buffLuckyHits": {
             "var": "buffLuckyHits",
-            "label": "Do you have Vaal Arc's Lucky Buff?"
+            "label": "Do you have Vaal Arc's Lucky Buff?",
+            "category": "player",
+            "abbreviation": "Vaal Arc Buff"
         },
         "buffElusive": {
             "var": "buffElusive",
-            "label": "Are you Elusive?"
+            "label": "Are you Elusive?",
+            "category": "player",
+            "abbreviation": "Elusive"
         },
         "multiplierSummonedMinion": {
             "var": "multiplierSummonedMinion",
-            "label": "# of Summoned Minions"
+            "label": "# of Summoned Minions",
+            "category": "player",
+            "abbreviation": "Summoned Minions"
         },
         "conditionOnFungalGround": {
             "var": "conditionOnFungalGround",
-            "label": "Are you on Fungal Ground?"
+            "label": "Are you on Fungal Ground?",
+            "category": "player",
+            "abbreviation": "Fungal Ground"
         },
         "multiplierNearbyRareOrUniqueEnemies": {
             "var": "multiplierNearbyRareOrUniqueEnemies",
-            "label": "# of nearby Rare or Unique Enemies:"
+            "label": "# of nearby Rare or Unique Enemies:",
+            "category": "player",
+            "abbreviation": "Nearby Rare or Uniques"
         },
         "conditionTakenFireDamageFromEnemyHitRecently": {
             "var": "conditionTakenFireDamageFromEnemyHitRecently",
-            "label": "Taken Fire Damage from Enemy Hit Recently?"
+            "label": "Taken Fire Damage from Enemy Hit Recently?",
+            "category": "playerRecently",
+            "suppress": "conditionHitByFireDamageRecently",
+            "abbreviation": "Hit by Fire"
         },
         "conditionStoppedTakingDamageOverTimeRecently": {
             "var": "conditionStoppedTakingDamageOverTimeRecently",
-            "label": "Have you stopped taking DoT recently?"
+            "label": "Have you stopped taking DoT recently?",
+            "category": "playerRecently",
+            "abbreviation": "Stopped taking DoT"
         },
         "buffNgamahuFlamesAdvance": {
             "var": "buffNgamahuFlamesAdvance",
-            "label": "Is Ngamahu, Flame's Advance active?"
+            "label": "Is Ngamahu, Flame's Advance active?",
+            "category": "player",
+            "abbreviation": "Ngamahu Flame's Advance"
         },
         "multiplierEnduranceChargesLostRecently": {
             "var": "multiplierEnduranceChargesLostRecently",
-            "label": "# of Endurance Charges lost Recently:"
+            "label": "# of Endurance Charges lost Recently:",
+            "category": "playerRecently",
+            "abbreviation": "Lost EC"
         },
         "multiplierBleedsOnEnemy": {
             "var": "multiplierBleedsOnEnemy",
-            "label": "# of Bleeds on Enemy (if not maximum):"
+            "label": "# of Bleeds on Enemy (if not maximum):",
+            "category": "enemy",
+            "abbreviation": "Bleeds on Enemy"
         },
         "multiplierEnsnaredStackCount": {
             "var": "multiplierEnsnaredStackCount",
-            "label": "# of Ensnare Stacks:"
+            "label": "# of Ensnare Stacks:",
+            "category": "enemy",
+            "abbreviation": "Ensnare Stacks"
         },
         "conditionEnemyOnFungalGround": {
             "var": "conditionEnemyOnFungalGround",
-            "label": "Is the enemy on fungal ground?"
+            "label": "Is the enemy on fungal ground?",
+            "category": "enemy",
+            "abbreviation": "Fungal Ground"
         }
     }
 }
