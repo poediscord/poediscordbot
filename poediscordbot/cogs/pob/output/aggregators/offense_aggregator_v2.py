@@ -24,6 +24,12 @@ class OffenseAggregatorV2(AbstractAggregator):
         self.max_minion_dps = max([dps if dps else 0 for dps in self.minion_dps_list])
         self.max_avg_dps = max([dps if dps else 0 for dps in self.comparison_avg])
 
+    def get_max_dps(self):
+        return max(self.max_player_dps, self.max_minion_dps, self.ignite_dps or 0)
+
+    def get_avg_dps(self):
+        return self.max_avg_dps
+
     def get_output(self) -> (str, str):
         if not build_checker.has_offensive_ability(self.build, self.non_dps_skills):
             return 'None', None
@@ -32,7 +38,8 @@ class OffenseAggregatorV2(AbstractAggregator):
         minion = self.max_minion_dps > self.max_player_dps
         player_dps = self.max_player_dps > self.max_minion_dps
 
-        if build_checker.is_support(self.build, max(self.max_player_dps, self.max_minion_dps), self.max_avg_dps):
+        if build_checker.is_support(self.build, self.get_max_dps(),
+                                    self.get_avg_dps()):
             return 'Support', self._get_support_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
