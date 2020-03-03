@@ -94,7 +94,12 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
     :param minified (bool): whether to get a minified version or the full one
     :return: Filled embed for discord
     """
-    is_support = build_checker.is_support(build)
+
+    # Needs to be created first because of embed support check
+    offense_aggregator = OffenseAggregatorV2(build, non_dps_skills)
+    is_support = build_checker.is_support(build,
+                                          offense_aggregator.get_max_dps(),
+                                          offense_aggregator.get_avg_dps())
 
     embed = create_embed(author, build.level, build.ascendancy_name, build.class_name,
                          build.get_active_skill(), is_support)
@@ -102,7 +107,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
     base_aggregators = [
         GeneralAggregator(build),
         SecondaryDefenseAggregator(build),
-        OffenseAggregatorV2(build, non_dps_skills),
+        offense_aggregator,
         ChargesAggregator(build),
     ]
     additional_aggregators = [
