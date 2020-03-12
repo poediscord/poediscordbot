@@ -8,7 +8,7 @@ from .poe_tree import PoeTree
 
 
 class PoeTreeCodec:
-    POE_TREE_JSON = 'resources/tree_3_9.json'
+    POE_TREE_JSON = 'resources/tree_3_10.json'
 
     def __init__(self):
         tree_data = json.load(open(config.ROOT_DIR + '/' + PoeTreeCodec.POE_TREE_JSON))
@@ -17,19 +17,15 @@ class PoeTreeCodec:
         # construct a dict containing the id of the node as key and the required attribs as value dict
         # {<id>:{name:<n>,abbrev:<abbrev>}} - {14914: {'name': 'Phase Acrobatics', 'abbrev': 'PA'}}
         self.keystones = {
-            node_data[node]['id']:
-                {'name': node_data[node]['dn'], 'abbrev': self.extract_abbrev(node_data[node]['dn'])}
-            for node in node_data if node_data[node]['ks']}
+            node_data[node]['skill']:
+                {'name': node_data[node]['name'], 'abbrev': self.extract_abbrev(node_data[node]['name'])}
+            for node in node_data if 'isKeystone' in node_data[node]}
 
     @staticmethod
     def encode_hashes(tree: PoeTree) -> str:
         """
         Creates a valid poe skilltree url payload
-        :param version: version
-        :param character: character in the tree
-        :param ascendancy: ascendancy of the char
-        :param full_screen: was the tree used in fullscreen
-        :param nodes: list of nodes
+        :param tree: class holding all tree infos such as version char ascendancy and tree
         :return:
         """
         # [ver,charclass,asc,[4byte ints]]
