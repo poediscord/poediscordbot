@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-03-12T19:45:06.314157",
+    "utc-date": "2020-03-21T20:18:58.266847",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -47,6 +47,12 @@
             "label": "Are your minions always on Full Life?",
             "category": "playerSkill",
             "abbreviation": "Minions Full Life"
+        },
+        "minionsConditionCreatedRecently": {
+            "var": "minionsConditionCreatedRecently",
+            "label": "Have your minions been created Recently?",
+            "category": "playerSkill",
+            "abbreviation": "Recently raised Minions"
         },
         "iceNovaCastOnFrostbolt": {
             "var": "iceNovaCastOnFrostbolt",
@@ -237,12 +243,6 @@
             "category": "playerAilment",
             "abbreviation": "Poisons on Self"
         },
-        "conditionOnlyOneNearbyEnemy": {
-            "var": "conditionOnlyOneNearbyEnemy",
-            "label": "Is there only one nearby Enemy?",
-            "category": "nearby",
-            "abbreviation": "Single Enemy"
-        },
         "conditionHitRecently": {
             "var": "conditionHitRecently",
             "label": "Have you Hit Recently?",
@@ -255,6 +255,18 @@
             "category": "playerRecently",
             "suppress": "conditionHitRecently",
             "abbreviation": "Crit"
+        },
+        "conditionCritWithHeraldSkillRecently": {
+            "var": "conditionCritWithHeraldSkillRecently",
+            "label": "Have your Herald Skills Crit Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Herald Crit"
+        },
+        "LostNonVaalBuffRecently": {
+            "var": "LostNonVaalBuffRecently",
+            "label": "Have you lost a Non-Vaal Guard Skill buff recently?",
+            "category": "playerRecently",
+            "abbreviation": "Lost Guard Skill"
         },
         "conditionNonCritRecently": {
             "var": "conditionNonCritRecently",
@@ -269,17 +281,35 @@
             "category": "playerRecently",
             "abbreviation": "Killed"
         },
+        "conditionTotemsNotSummonedInPastTwoSeconds": {
+            "var": "conditionTotemsNotSummonedInPastTwoSeconds",
+            "label": "No summoned Totems in the past 2 seconds?",
+            "category": "playerRecently",
+            "abbreviation": "Totem not summoned"
+        },
         "conditionTotemsKilledRecently": {
             "var": "conditionTotemsKilledRecently",
             "label": "Have your Totems Killed Recently?",
             "category": "playerRecently",
             "abbreviation": "Totems Killed"
         },
+        "conditionUsedBrandRecently": {
+            "var": "conditionUsedBrandRecently",
+            "label": "Have you used a Brand Skill recently?",
+            "category": "playerRecently",
+            "abbreviation": "Used Brand"
+        },
         "conditionMinionsKilledRecently": {
             "var": "conditionMinionsKilledRecently",
             "label": "Have your Minions Killed Recently?",
             "category": "playerRecently",
             "abbreviation": "Minions Killed"
+        },
+        "conditionMinionsDiedRecently": {
+            "var": "conditionMinionsDiedRecently",
+            "label": "Has a Minion Died Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Minion died"
         },
         "conditionKilledAffectedByDoT": {
             "var": "conditionKilledAffectedByDoT",
@@ -301,6 +331,12 @@
             "category": "playerRecently",
             "abbreviation": "Frozen Enemy"
         },
+        "conditionChilledEnemyRecently": {
+            "var": "conditionChilledEnemyRecently",
+            "label": "Have you Chilled an Enemy Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Chilled"
+        },
         "conditionIgnitedEnemyRecently": {
             "var": "conditionIgnitedEnemyRecently",
             "label": "Have you Ignited an Enemy Recently?",
@@ -313,11 +349,23 @@
             "category": "playerRecently",
             "abbreviation": "Shocked Enemy"
         },
+        "conditionStunnedEnemyRecently": {
+            "var": "conditionStunnedEnemyRecently",
+            "label": "Have you Stunned an Enemy Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Stunned"
+        },
         "multiplierPoisonAppliedRecently": {
             "var": "multiplierPoisonAppliedRecently",
             "label": "# of Poisons applied Recently:",
             "category": "playerRecently",
             "abbreviation": "Applied Poisons"
+        },
+        "multiplierManaSpentRecently": {
+            "var": "multiplierManaSpentRecently",
+            "label": "# of Mana spent Recently",
+            "category": "playerRecently",
+            "abbreviation": "Mana Spent"
         },
         "conditionBeenHitRecently": {
             "var": "conditionBeenHitRecently",
@@ -432,6 +480,18 @@
             "label": "# of Traps Triggered Recently:",
             "category": "playerRecently",
             "abbreviation": "Traps Triggered"
+        },
+        "conditionThrownTrapOrMineRecently": {
+            "var": "conditionThrownTrapOrMineRecently",
+            "label": "Have you thrown a Trap or Mine Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Trap/Mine Thrown"
+        },
+        "conditionCursedEnemyRecently": {
+            "var": "conditionCursedEnemyRecently",
+            "label": "Have you Cursed and Enemy Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Cursed"
         },
         "conditionConsumedCorpseRecently": {
             "var": "conditionConsumedCorpseRecently",
@@ -635,11 +695,21 @@
             "category": "enemy",
             "abbreviation": "Intimidated"
         },
+        "conditionEnemyUnnerved": {
+            "var": "conditionEnemyUnnerved",
+            "label": "Is the enemy Unnerved?",
+            "category": "enemy",
+            "abbreviation": "Unnerved"
+        },
         "conditionEnemyCoveredInAsh": {
             "var": "conditionEnemyCoveredInAsh",
             "label": "Is the enemy covered in Ash?",
             "category": "enemy",
             "abbreviation": "Ash"
+        },
+        "conditionEnemyInChillingArea": {
+            "var": "conditionEnemyInChillingArea",
+            "label": "Is the enemy in a chilling area?"
         },
         "conditionEnemyRareOrUnique": {
             "var": "conditionEnemyRareOrUnique",
@@ -782,11 +852,11 @@
             "abbreviation": "In Sandstorm",
             "ifSkill": "Bladestorm"
         },
-        "brandAttachedToEnemy": {
-            "var": "brandAttachedToEnemy",
-            "label": "Is Attached to the Enemy?",
+        "BrandsAttachedToEnemy": {
+            "var": "BrandsAttachedToEnemy",
+            "label": "Brands Attached to the Enemy?",
             "category": "enemy",
-            "abbreviation": "Brand Attached",
+            "abbreviation": "Attached Brands",
             "ifSkillList": [
                 "Armageddon Brand",
                 "Storm Brand"
@@ -975,12 +1045,6 @@
             "label": "Do you have Soul Gain Prevention?",
             "category": "player",
             "abbreviation": "Soul Gain Prevention"
-        },
-        "conditionEnemyUnnerved": {
-            "var": "conditionEnemyUnnerved",
-            "label": "Is the enemy Unnerved?",
-            "category": "enemy",
-            "abbreviation": "Unnerved"
         },
         "conditionEnemyOnConsecratedGround": {
             "var": "conditionEnemyOnConsecratedGround",
