@@ -1,9 +1,9 @@
 {
-    "utc-date": "2020-03-21T20:18:58.266847",
+    "utc-date": "2020-03-29T15:09:56.596663",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
-            "label": "Are you always stationary?",
+            "label": "Are you stationary?",
             "category": "player",
             "suppress": "conditionMoving",
             "abbreviation": "Stationary"
@@ -264,7 +264,7 @@
         },
         "LostNonVaalBuffRecently": {
             "var": "LostNonVaalBuffRecently",
-            "label": "Have you lost a Non-Vaal Guard Skill buff recently?",
+            "label": "Lost a Non-Vaal Guard Skill buff recently?",
             "category": "playerRecently",
             "abbreviation": "Lost Guard Skill"
         },
@@ -1234,6 +1234,14 @@
             "label": "Is the enemy on fungal ground?",
             "category": "enemy",
             "abbreviation": "Fungal Ground"
+        },
+        "lifeRegenMode": {
+            "var": "lifeRegenMode",
+            "label": "Life regen calculation mode:"
+        },
+        "skillForkCount": {
+            "var": "skillForkCount",
+            "label": "# of times Skill has Forked:"
         }
     }
 }
