@@ -95,7 +95,11 @@ class PobConfig:
                     # we need to do this to keep manually entered values in our file such as category
                     for confkey in file_content['conf']:
                         print(f">> {file_content['conf'][confkey]}")
-                        file_content['conf'][confkey].update(attributes[confkey])
+                        if confkey in attributes:
+                            file_content['conf'][confkey].update(attributes[confkey])
+                        else:
+                            log.error(f"Skipped config key: Please inform the bot author that the key '{confkey}' "
+                                      f"could not be parsed.")
 
                     new_keys = [key for key in attributes if not any(k == key for k in file_content['conf'])]
                     print(new_keys)
