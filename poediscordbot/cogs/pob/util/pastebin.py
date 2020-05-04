@@ -2,6 +2,7 @@ import base64
 import re
 import urllib
 import zlib
+from urllib.error import HTTPError
 from urllib.request import Request
 
 import defusedxml.ElementTree as ET
@@ -57,20 +58,39 @@ def urllib_error_retry(attempt_number, ms_since_first_attempt):
     return delay * 1000
 
 
+def fetch_code_from_html(html_content):
+    """
+    Sometimes pastebin's raw url does not let us get the raw data thus parse the code from the page's textfield with id
+    'paste_code'
+    :param html_content: html content we got
+    :return: code or None
+    """
+    regex = r'\"paste_code\".*?>(?P<code>.*?)<'
+    try:
+        return re.search(regex, html_content).group("code")
+    except IndexError:
+        raise CaptchaError("Pastebin captcha cleared after accessing, could not parse html page."
+                           "Please reupload and clear captchas before retrying.")
+
+
 @retry(wait_exponential_multiplier=1000,
        stop_max_attempt_number=2,
        wait_func=urllib_error_retry)
 def get_raw_data(url):
-    q = Request(url)
-    q.add_header('Cache-Control', 'max-age=0')
+    q = Request(url, headers={
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache"
+    })
     try:
         url = urllib.request.urlopen(q)
-    except urllib.error.HTTPError as e:
+    except HTTPError:
         return None
     content = url.read().decode('utf-8')
     if "Possible Spam Detected" in content:
         raise CaptchaError("Pastebin marked this as possible spam. Please reupload and clear captchas before retrying.")
-
+    if "<!DOCTYPE HTML>" in content and "paste_code" in content:
+        code = fetch_code_from_html(content)
+        content = code
     return content  # read and encode as utf-8
 
 
