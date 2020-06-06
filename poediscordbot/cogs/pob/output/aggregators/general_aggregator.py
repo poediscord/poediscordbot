@@ -67,6 +67,11 @@ class GeneralAggregator(AbstractAggregator):
         es_percent_threshold = min(OutputThresholds.ES_PERCENT.value,
                                    OutputThresholds.ES_PERCENT_PER_LEVEL.value * build.level)
         es_flat = build.get_player_stat('EnergyShield')
+        harold_es_override = es_flat and es_flat > OutputThresholds.ES_FLAT.value
+
+        if harold_es_override:
+            es_percent_threshold = 0
+
         es_string = self._get_basic_line("Energy Shield", es_flat,
                                          build.get_player_stat('Spec:EnergyShieldInc', es_percent_threshold),
                                          stat_regen=build.get_player_stat('EnergyShieldRegen'),

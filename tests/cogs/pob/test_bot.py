@@ -19,6 +19,7 @@ class TestBot(unittest.TestCase):
         for link in links:
             with self.subTest(i=link):
                 demo_author = None
+                print(f"Testing whether we can parse '{link}'")
                 build_embed = PoBCog._parse_pob(demo_author, link)
                 self.assertTrue(isinstance(build_embed, Embed))
 
