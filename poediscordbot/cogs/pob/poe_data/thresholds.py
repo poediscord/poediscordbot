@@ -12,7 +12,7 @@ class OutputThresholds(Enum):
     LIFE_PERCENT_PER_LEVEL = 1.5
     LIFE_REGEN = 100
 
-    ES_FLAT = 300
+    ES_FLAT = 5000
     ES_PERCENT = 50
     ES_PERCENT_PER_LEVEL = 1.5
     ES_REGEN = 100
