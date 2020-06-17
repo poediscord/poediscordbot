@@ -36,7 +36,7 @@ class Skill:
             full_list = []
             # easier abstraction than calculating the stuff
             for gem in active_gems:
-                if 'vaal' in gem.name.lower():
+                if gem.name and 'vaal' in gem.name.lower():
                     full_list.append(gem)
                 full_list.append(gem)
             if len(full_list) > 1:
