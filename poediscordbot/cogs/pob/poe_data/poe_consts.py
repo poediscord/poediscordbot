@@ -70,4 +70,5 @@ show_avg_dps_skills = [
     "explosive arrow",
     "ball lightning",
     "storm call",
+    "volatile dead"
 ]
