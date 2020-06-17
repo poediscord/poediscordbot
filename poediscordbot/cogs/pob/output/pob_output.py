@@ -69,7 +69,8 @@ def _generate_info_text(tree, pastebin_key, web_poe_token):
     info_text = ""
     if pastebin_key:
         info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}) | "
-    info_text += f"[Web Tree]({tree}) "
+    if tree and len(tree) < 600:
+        info_text += f"[Web Tree]({tree}) "
     if web_poe_token:
         info_text += f"| [{config.web_pob_text}](https://pob.party/share/{web_poe_token}) "
     if config.poe_technology_enabled:
