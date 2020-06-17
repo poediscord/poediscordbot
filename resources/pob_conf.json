@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-06-06T08:22:57.401483",
+    "utc-date": "2020-06-17T13:53:55.967331",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1241,23 +1241,33 @@
         },
         "skillForkCount": {
             "var": "skillForkCount",
-            "label": "# of times Skill has Forked:"
+            "label": "# of times Skill has Forked:",
+            "category": "player",
+            "abbreviation": "Forked #"
         },
         "buffVaalArcLuckyHits": {
             "var": "buffVaalArcLuckyHits",
-            "label": "Do you have Vaal Arc's Lucky Buff?"
+            "label": "Do you have Vaal Arc's Lucky Buff?",
+            "category": "player",
+            "abbreviation": "Lucky (Vaal Arc)"
         },
         "conditionChannelling": {
             "var": "conditionChannelling",
-            "label": "Are you Channelling?"
+            "label": "Are you Channelling?",
+            "category": "player",
+            "abbreviation": "Channeling"
         },
         "conditionUsedTravelSkillRecently": {
             "var": "conditionUsedTravelSkillRecently",
-            "label": "Have you used a Travel Skill Recently?"
+            "label": "Have you used a Travel Skill Recently?",
+            "category": "player",
+            "abbreviation": "Used Travel Skill"
         },
         "BlockedPast10Sec": {
             "var": "BlockedPast10Sec",
-            "label": "Number of times you've blocked in the past 10s"
+            "label": "Number of times you've blocked in the past 10s",
+            "category": "playerRecently",
+            "abbreviation": "# Blocks (10s)"
         }
     }
 }
