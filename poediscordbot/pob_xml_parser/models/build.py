@@ -4,6 +4,7 @@ from typing import Optional
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util.pob import pob_conf
 from poediscordbot.pob_xml_parser.models.skill import Skill
+from poediscordbot.util.custom_json_parser import JsonifyBuildSlotsWithConfig
 
 
 class StatOwner(Enum):
@@ -21,9 +22,7 @@ class StatOwner(Enum):
             return StatOwner.MINION
 
 
-
-
-class Build:
+class Build(JsonifyBuildSlotsWithConfig):
     __slots__ = 'level', 'version', 'bandit', 'class_name', 'ascendancy_name', 'stats', 'config', 'tree', 'skills', \
                 'active_skill_id', 'item_slots', 'aura_count', 'curse_count', 'keystones'
 
@@ -63,8 +62,8 @@ class Build:
         # remove "Stat" from the string
         stat_owner = StatOwner.from_string(stat_owner)
         if not stat_owner in self.stats:
-            self.stats[stat_owner] = {}
-        self.stats[stat_owner][key] = float(val)
+            self.stats[stat_owner.value] = {}
+        self.stats[stat_owner.value][key] = float(val)
 
     def append_conf(self, key, val):
         conf_entry = pob_conf.fetch_config_entry(key)
@@ -81,7 +80,7 @@ class Build:
         if item_slot:
             return item_slot.item
 
-    def _get_stat(self, owner: StatOwner, key, threshold=0):
+    def _get_stat(self, owner: str, key, threshold=0):
         if owner in self.stats and key in self.stats[owner]:
             val = self.stats[owner][key]
             return val if val >= threshold \
@@ -111,7 +110,7 @@ class Build:
         :param threshold: optional threshold which is the comparison base for this stat
         :return: value if found (and above threshold) else None
         """
-        return self._get_stat(StatOwner.PLAYER, stat_name, threshold=threshold)
+        return self._get_stat(StatOwner.PLAYER.value, stat_name, threshold=threshold)
 
     def get_minion_stat(self, stat_name, threshold=0):
-        return self._get_stat(StatOwner.MINION, stat_name, threshold=threshold)
+        return self._get_stat(StatOwner.MINION.value, stat_name, threshold=threshold)

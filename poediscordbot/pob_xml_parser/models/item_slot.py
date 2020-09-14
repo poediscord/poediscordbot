@@ -1,9 +1,10 @@
 import re
 
+from poediscordbot.util.custom_json_parser import JsonifySlotsCls
 from poediscordbot.util.logging import log
 
 
-class ItemSlot:
+class ItemSlot(JsonifySlotsCls):
     __slots__ = 'active', 'item', 'item_id', 'name'
 
     def __init__(self, name, item_id, item, active=False):
@@ -16,7 +17,7 @@ class ItemSlot:
         return f"ItemSlot [name={self.name}; item_id={self.item_id}; item={self.item}; active={self.active}]"
 
 
-class Item:
+class Item(JsonifySlotsCls):
     __slots__ = 'id', 'raw_content', 'variant', 'name', 'added_supports'
 
     def __init__(self, item_id, raw_content, variant=None):

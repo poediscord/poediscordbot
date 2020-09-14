@@ -6,6 +6,7 @@ from discord.ext import commands
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
+from poediscordbot.cogs.pob.models.PoBPaste import PobPaste
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util import pastebin
@@ -92,6 +93,13 @@ class PoBCog(commands.Cog):
 
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
             build = pob_xml_parser.parse_build(xml)
+            # send to page:
+            import json
+            name = author.name if author.name else author.nick
+
+            paste = PobPaste(author.id, f"{name}#{author.discriminator}", build)
+            json_paste = json.dumps(paste, default=lambda o: o.json(), indent=2)
+            print(json_paste)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
                                                      non_dps_skills=poe_consts, web_poe_token=web_poe_token)

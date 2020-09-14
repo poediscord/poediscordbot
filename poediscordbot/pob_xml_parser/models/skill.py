@@ -1,7 +1,8 @@
 from poediscordbot.pob_xml_parser.models.gem import Gem
+from poediscordbot.util.custom_json_parser import JsonifySlotsCls
 
 
-class Skill:
+class Skill(JsonifySlotsCls):
     __slots__ = 'gems', 'main_active_skill', 'slot', 'enabled', 'links'
 
     def __init__(self, gems, main_active_skill, slot=None, enabled=False):

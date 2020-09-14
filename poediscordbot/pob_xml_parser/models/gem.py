@@ -1,4 +1,7 @@
-class Gem:
+from poediscordbot.util.custom_json_parser import JsonifySlotsCls
+
+
+class Gem(JsonifySlotsCls):
     __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active', \
                 'selected_minion', 'minion_skill'
 

@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-06-17T13:53:55.967331",
+    "utc-date": "2020-09-13T08:33:24.733523",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -44,13 +44,13 @@
         },
         "minionsConditionFullLife": {
             "var": "minionsConditionFullLife",
-            "label": "Are your minions always on Full Life?",
+            "label": "Are your Minions always on Full Life?",
             "category": "playerSkill",
             "abbreviation": "Minions Full Life"
         },
         "minionsConditionCreatedRecently": {
             "var": "minionsConditionCreatedRecently",
-            "label": "Have your minions been created Recently?",
+            "label": "Have your Minions been created Recently?",
             "category": "playerSkill",
             "abbreviation": "Recently raised Minions"
         },
@@ -101,19 +101,19 @@
         },
         "minionsUsePowerCharges": {
             "var": "minionsUsePowerCharges",
-            "label": "Do your minions use Power Charges?",
+            "label": "Do your Minions use Power Charges?",
             "category": "playerCharge",
             "abbreviation": "Minion PC"
         },
         "minionsUseFrenzyCharges": {
             "var": "minionsUseFrenzyCharges",
-            "label": "Do your minions use Frenzy Charges?",
+            "label": "Do your Minions use Frenzy Charges?",
             "category": "playerCharge",
             "abbreviation": "Minion FC"
         },
         "minionsUseEnduranceCharges": {
             "var": "minionsUseEnduranceCharges",
-            "label": "Do your minions use Endur. Charges?",
+            "label": "Do your Minions use Endur. Charges?",
             "category": "playerCharge",
             "abbreviation": "Minion EC"
         },
@@ -313,7 +313,7 @@
         },
         "conditionKilledAffectedByDoT": {
             "var": "conditionKilledAffectedByDoT",
-            "label": "Killed Enemy affected by your DoT Recently?",
+            "label": "Killed enemy affected by your DoT Recently?",
             "category": "playerRecently",
             "suppress": "conditionKilledRecently",
             "abbreviation": "Killed DoT Affected"
@@ -327,31 +327,31 @@
         },
         "conditionFrozenEnemyRecently": {
             "var": "conditionFrozenEnemyRecently",
-            "label": "Have you Frozen an Enemy Recently?",
+            "label": "Have you Frozen an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Frozen Enemy"
         },
         "conditionChilledEnemyRecently": {
             "var": "conditionChilledEnemyRecently",
-            "label": "Have you Chilled an Enemy Recently?",
+            "label": "Have you Chilled an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Chilled"
         },
         "conditionIgnitedEnemyRecently": {
             "var": "conditionIgnitedEnemyRecently",
-            "label": "Have you Ignited an Enemy Recently?",
+            "label": "Have you Ignited an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Ignited Enemy"
         },
         "conditionShockedEnemyRecently": {
             "var": "conditionShockedEnemyRecently",
-            "label": "Have you Shocked an Enemy Recently?",
+            "label": "Have you Shocked an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Shocked Enemy"
         },
         "conditionStunnedEnemyRecently": {
             "var": "conditionStunnedEnemyRecently",
-            "label": "Have you Stunned an Enemy Recently?",
+            "label": "Have you Stunned an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Stunned"
         },
@@ -363,7 +363,7 @@
         },
         "multiplierManaSpentRecently": {
             "var": "multiplierManaSpentRecently",
-            "label": "# of Mana spent Recently",
+            "label": "# of Mana spent Recently:",
             "category": "playerRecently",
             "abbreviation": "Mana Spent"
         },
@@ -381,7 +381,7 @@
         },
         "conditionBeenSavageHitRecently": {
             "var": "conditionBeenSavageHitRecently",
-            "label": "Have you been Savage Hit Recently?",
+            "label": "Have you taken a Savage Hit Recently?",
             "category": "playerRecently",
             "abbreviation": "Been Savage Hit"
         },
@@ -489,7 +489,7 @@
         },
         "conditionCursedEnemyRecently": {
             "var": "conditionCursedEnemyRecently",
-            "label": "Have you Cursed and Enemy Recently?",
+            "label": "Have you Cursed an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Cursed"
         },
@@ -507,7 +507,7 @@
         },
         "conditionTauntedEnemyRecently": {
             "var": "conditionTauntedEnemyRecently",
-            "label": "Taunted an Enemy Recently?",
+            "label": "Taunted an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Taunted Enemy"
         },
@@ -557,13 +557,13 @@
         },
         "conditionBlockedHitFromUniqueEnemyRecently": {
             "var": "conditionBlockedHitFromUniqueEnemyRecently",
-            "label": "Blocked hit from a Unique Recently?",
+            "label": "Blocked a Hit from a Unique enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Blocked hit from a Unique"
         },
         "conditionBlockedHitFromUniqueEnemyInPast10Sec": {
             "var": "conditionBlockedHitFromUniqueEnemyInPast10Sec",
-            "label": "Blocked hit from a Unique in the past 10s?",
+            "label": "Blocked a Hit from a Unique enemy in the past 10s?",
             "category": "playerRecently",
             "abbreviation": "Blocked hit from a Unique (10s)"
         },
@@ -625,7 +625,7 @@
         },
         "multiplierPoisonOnEnemy": {
             "var": "multiplierPoisonOnEnemy",
-            "label": "# of Poison on Enemy:",
+            "label": "# of Poison on enemy:",
             "category": "enemy",
             "abbreviation": "Poisons on Enemy"
         },
@@ -685,7 +685,7 @@
         },
         "multiplierFreezeShockIgniteOnEnemy": {
             "var": "multiplierFreezeShockIgniteOnEnemy",
-            "label": "# of Freeze/Shock/Ignite on Enemy:",
+            "label": "# of Freeze/Shock/Ignite on enemy:",
             "category": "enemy",
             "abbreviation": "Ele. Ailments on Enemy"
         },
@@ -709,11 +709,11 @@
         },
         "conditionEnemyInChillingArea": {
             "var": "conditionEnemyInChillingArea",
-            "label": "Is the enemy in a chilling area?"
+            "label": "Is the enemy in a Chilling area?"
         },
         "conditionEnemyRareOrUnique": {
             "var": "conditionEnemyRareOrUnique",
-            "label": "is the enemy Rare or Unique?",
+            "label": "Is the enemy Rare or Unique?",
             "category": "enemy",
             "abbreviation": "Enemy Rare or Unique"
         },
@@ -988,7 +988,7 @@
         },
         "multiplierNearbyAlly": {
             "var": "multiplierNearbyAlly",
-            "label": "# of Nearby Allies",
+            "label": "# of Nearby Allies:",
             "category": "nearby",
             "abbreviation": "# Allies"
         },
@@ -1000,7 +1000,7 @@
         },
         "multiplierNearbyCorpse": {
             "var": "multiplierNearbyCorpse",
-            "label": "# of Nearby Corpses",
+            "label": "# of Nearby Corpses:",
             "category": "nearby",
             "abbreviation": "# Corpses"
         },
@@ -1012,25 +1012,25 @@
         },
         "multiplierKilledRecently": {
             "var": "multiplierKilledRecently",
-            "label": "# of Enemies Killed Recently",
+            "label": "# of Enemies Killed Recently:",
             "category": "playerRecently",
             "abbreviation": "# Kills"
         },
         "multiplierTotemsKilledRecently": {
             "var": "multiplierTotemsKilledRecently",
-            "label": "# of Enemies Killed by Totems Recently",
+            "label": "# of Enemies Killed by Totems Recently:",
             "category": "playerRecently",
             "abbreviation": "# Totem kills"
         },
         "multiplierMinionsKilledRecently": {
             "var": "multiplierMinionsKilledRecently",
-            "label": "# of Enemies Killed by Minions Recently",
+            "label": "# of Enemies Killed by Minions Recently:",
             "category": "playerRecently",
             "abbreviation": "# Minion kills"
         },
         "conditionShatteredEnemyRecently": {
             "var": "conditionShatteredEnemyRecently",
-            "label": "Have you Shattered an Enemy Recently?",
+            "label": "Have you Shattered an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Enemy shattered"
         },
@@ -1048,7 +1048,7 @@
         },
         "conditionEnemyOnConsecratedGround": {
             "var": "conditionEnemyOnConsecratedGround",
-            "label": "Is the enemy on consecrated ground?",
+            "label": "Is the enemy on Consecrated Ground?",
             "category": "enemy",
             "abbreviation": "Consecrated Ground"
         },
@@ -1066,19 +1066,19 @@
         },
         "multiplierBeenHitRecently": {
             "var": "multiplierBeenHitRecently",
-            "label": "# of Have you been Hit Recently:",
+            "label": "# of times you have been Hit Recently:",
             "category": "playerRecently",
             "abbreviation": "Hits taken"
         },
         "conditionImpaledRecently": {
             "var": "conditionImpaledRecently",
-            "label": "Impaled an Enemy recently?",
+            "label": "Impaled an enemy recently?",
             "category": "playerRecently",
             "abbreviation": "Impaled"
         },
         "multiplierImpalesOnEnemy": {
             "var": "multiplierImpalesOnEnemy",
-            "label": "# of Impales on Enemy (if not maximum):",
+            "label": "# of Impales on enemy (if not maximum):",
             "category": "enemy",
             "abbreviation": "Impales"
         },
@@ -1115,7 +1115,7 @@
         },
         "conditionKilledUniqueEnemy": {
             "var": "conditionKilledUniqueEnemy",
-            "label": "Killed Rare or Unique Enemy Recently?",
+            "label": "Killed a Rare or Unique enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Killed Rare/Unique"
         },
@@ -1127,7 +1127,7 @@
         },
         "conditionHaveAugyre": {
             "var": "conditionHaveAugyre",
-            "label": "Augyre rotating buff",
+            "label": "Augyre rotating buff:",
             "category": "player",
             "abbreviation": "Augyre Buff"
         },
@@ -1176,7 +1176,7 @@
         },
         "multiplierSummonedMinion": {
             "var": "multiplierSummonedMinion",
-            "label": "# of Summoned Minions",
+            "label": "# of Summoned Minions:",
             "category": "player",
             "abbreviation": "Summoned Minions"
         },
@@ -1194,7 +1194,7 @@
         },
         "conditionTakenFireDamageFromEnemyHitRecently": {
             "var": "conditionTakenFireDamageFromEnemyHitRecently",
-            "label": "Taken Fire Damage from Enemy Hit Recently?",
+            "label": "Taken Fire Damage from enemy Hit Recently?",
             "category": "playerRecently",
             "suppress": "conditionHitByFireDamageRecently",
             "abbreviation": "Hit by Fire"
@@ -1219,7 +1219,7 @@
         },
         "multiplierBleedsOnEnemy": {
             "var": "multiplierBleedsOnEnemy",
-            "label": "# of Bleeds on Enemy (if not maximum):",
+            "label": "# of Bleeds on enemy (if not maximum):",
             "category": "enemy",
             "abbreviation": "Bleeds on Enemy"
         },
@@ -1231,7 +1231,7 @@
         },
         "conditionEnemyOnFungalGround": {
             "var": "conditionEnemyOnFungalGround",
-            "label": "Is the enemy on fungal ground?",
+            "label": "Is the enemy on Fungal Ground?",
             "category": "enemy",
             "abbreviation": "Fungal Ground"
         },
@@ -1241,33 +1241,160 @@
         },
         "skillForkCount": {
             "var": "skillForkCount",
-            "label": "# of times Skill has Forked:",
-            "category": "player",
-            "abbreviation": "Forked #"
+            "label": "# of times Skill has Forked:"
         },
         "buffVaalArcLuckyHits": {
             "var": "buffVaalArcLuckyHits",
-            "label": "Do you have Vaal Arc's Lucky Buff?",
-            "category": "player",
-            "abbreviation": "Lucky (Vaal Arc)"
+            "label": "Do you have Vaal Arc's Lucky Buff?"
         },
         "conditionChannelling": {
             "var": "conditionChannelling",
-            "label": "Are you Channelling?",
-            "category": "player",
-            "abbreviation": "Channeling"
+            "label": "Are you Channelling?"
         },
         "conditionUsedTravelSkillRecently": {
             "var": "conditionUsedTravelSkillRecently",
-            "label": "Have you used a Travel Skill Recently?",
-            "category": "player",
-            "abbreviation": "Used Travel Skill"
+            "label": "Have you used a Travel Skill Recently?"
         },
         "BlockedPast10Sec": {
             "var": "BlockedPast10Sec",
-            "label": "Number of times you've blocked in the past 10s",
-            "category": "playerRecently",
-            "abbreviation": "# Blocks (10s)"
+            "label": "Number of times you've Blocked in the past 10s"
+        },
+        "warcryMode": {
+            "var": "warcryMode",
+            "label": "Warcry calculation mode:",
+            "ifSkillList": [
+                "Infernal Cry",
+                "Ancestral Cry",
+                "Enduring Cry",
+                "General's Cry",
+                "Intimidating Cry",
+                "Rallying Cry",
+                "Seismic Cry"
+            ]
+        },
+        "EVBypass": {
+            "var": "EVBypass",
+            "label": "Disable Emperor's Vigilance Bypass"
+        },
+        "targetBrandedEnemy": {
+            "var": "targetBrandedEnemy",
+            "label": "Are skills targeting the Branded enemy?",
+            "ifSkill": "Arcanist Brand"
+        },
+        "BrandsInLastQuarter": {
+            "var": "BrandsInLastQuarter",
+            "label": "Last 25% of Attached Duration?"
+        },
+        "greaterHarbingerOfTimeSlipstream": {
+            "var": "greaterHarbingerOfTimeSlipstream",
+            "label": "Is Slipstream active?:",
+            "ifSkill": "Summon Greater Harbinger of Time"
+        },
+        "harbingerOfTimeSlipstream": {
+            "var": "harbingerOfTimeSlipstream",
+            "label": "Is Slipstream active?:",
+            "ifSkill": "Summon Harbinger of Time"
+        },
+        "prideEffect": {
+            "var": "prideEffect",
+            "label": "Pride Aura Effect:",
+            "ifSkill": "Pride"
+        },
+        "changedStance": {
+            "var": "changedStance",
+            "label": "Changed Stance recently?"
+        },
+        "buffAlchemistsGenius": {
+            "var": "buffAlchemistsGenius",
+            "label": "Do you have Alchemist's Genius?"
+        },
+        "conditionSummonedTotemRecently": {
+            "var": "conditionSummonedTotemRecently",
+            "label": "Have you Summoned a Totem Recently?"
+        },
+        "TotemsSummoned": {
+            "var": "TotemsSummoned",
+            "label": "# of Summoned Totems (if not maximum):",
+            "ifSkillList": [
+                "Spell Totem",
+                "Ballista Totem",
+                "Siege Ballista",
+                "Artillery Ballista",
+                "Shrapnel Ballista",
+                "Ancestral Protector",
+                "Ancestral Warchief",
+                "Vaal Ancestral Warchief"
+            ]
+        },
+        "conditionBlinded": {
+            "var": "conditionBlinded",
+            "label": "Are you Blinded?"
+        },
+        "conditionKilledLast3Seconds": {
+            "var": "conditionKilledLast3Seconds",
+            "label": "Have you Killed in the last 3 Seconds?"
+        },
+        "conditionKilledPosionedLast2Seconds": {
+            "var": "conditionKilledPosionedLast2Seconds",
+            "label": "Killed a poisoned enemy in the last 2 Seconds?"
+        },
+        "conditionCastLast1Seconds": {
+            "var": "conditionCastLast1Seconds",
+            "label": "Have you Cast a Spell in the last second?"
+        },
+        "conditionSpawnedCorpseRecently": {
+            "var": "conditionSpawnedCorpseRecently",
+            "label": "Spawned a corpse Recently?"
+        },
+        "conditionConsumedCorpseInPast2Sec": {
+            "var": "conditionConsumedCorpseInPast2Sec",
+            "label": "Consumed a corpse in the past 2s?"
+        },
+        "multiplierWarcryUsedRecently": {
+            "var": "multiplierWarcryUsedRecently",
+            "label": "# of Warcries Used Recently:"
+        },
+        "conditionLostEnduranceChargeInPast8Sec": {
+            "var": "conditionLostEnduranceChargeInPast8Sec",
+            "label": "Lost an Endurance Charge in the past 8s?"
+        },
+        "multiplierFragileRegrowth": {
+            "var": "multiplierFragileRegrowth",
+            "label": "# of Fragile Regrowth Stacks:"
+        },
+        "conditionEnemyScorched": {
+            "var": "conditionEnemyScorched",
+            "label": "Is the enemy Scorched?"
+        },
+        "conditionScorchedEffect": {
+            "var": "conditionScorchedEffect",
+            "label": "Effect of Scorched:",
+            "ifOption": "conditionEnemyScorched"
+        },
+        "conditionEnemyChilledByYourHits": {
+            "var": "conditionEnemyChilledByYourHits",
+            "label": "Is the enemy Chilled by your Hits?"
+        },
+        "conditionEnemyBrittle": {
+            "var": "conditionEnemyBrittle",
+            "label": "Is the enemy Brittle?"
+        },
+        "conditionBrittleEffect": {
+            "var": "conditionBrittleEffect",
+            "label": "Effect of Brittle:",
+            "ifOption": "conditionEnemyBrittle"
+        },
+        "conditionEnemyOnShockedGround": {
+            "var": "conditionEnemyOnShockedGround",
+            "label": "Is the enemy on Shocked Ground?"
+        },
+        "conditionEnemySapped": {
+            "var": "conditionEnemySapped",
+            "label": "Is the enemy Sapped?"
+        },
+        "conditionEnemyOnProfaneGround": {
+            "var": "conditionEnemyOnProfaneGround",
+            "label": "Is the enemy on Profane Ground?"
         }
     }
 }
