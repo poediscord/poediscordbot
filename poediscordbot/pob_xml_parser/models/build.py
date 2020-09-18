@@ -61,7 +61,7 @@ class Build(JsonifyBuildSlotsWithConfig):
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
         stat_owner = StatOwner.from_string(stat_owner)
-        if not stat_owner in self.stats:
+        if not stat_owner.value in self.stats:
             self.stats[stat_owner.value] = {}
         self.stats[stat_owner.value][key] = float(val)
 

@@ -97,7 +97,7 @@ class PoBCog(commands.Cog):
             import json
             name = author.name if author.name else author.nick
 
-            paste = PobPaste(author.id, f"{name}#{author.discriminator}", build)
+            paste = PobPaste(author.id, f"{name}#{author.discriminator}", build, f"'https://pastebin.com/{paste_key}'")
             json_paste = json.dumps(paste, default=lambda o: o.json(), indent=2)
             print(json_paste)
             try:

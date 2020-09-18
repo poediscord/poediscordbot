@@ -12,15 +12,11 @@ class JsonifyBuildSlotsWithConfig:
                 d[key] = [val for val in conf_dict.values()]
             elif key == 'stats' and getattr(self, key, None) is not None:
                 stats_dict = getattr(self, key, None)
-                d[key] = [self.unpack_stat(key, val) for val in stats_dict.values()]
+                stats_list = []
+                for owner in stats_dict:
+                    stats_list += [{'owner': owner, 'name': key, 'value': value} for key, value in
+                                   stats_dict[owner].items()]
+                d[key] = stats_list
             elif getattr(self, key, None) is not None:
                 d[key] = getattr(self, key, None)
         return d
-
-    @staticmethod
-    def unpack_stat(owner: str, stat: {}):
-        print(f">> {stat}")
-        stats = []
-        for key, value in stat.items():
-            stats.append({'owner': owner, 'name': key, 'value': value})
-        return stats
