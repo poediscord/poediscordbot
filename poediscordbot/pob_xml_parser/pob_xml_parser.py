@@ -56,6 +56,7 @@ def parse_build(xml_root) -> Build:
     # keystones
     tree = poe_tree_codec.codec.decode_url(selected_tree)
     build.keystones = tree.get_keystones(poe_tree_codec.codec.keystones)
+
     return build
 
 
@@ -66,6 +67,10 @@ def _get_tree_link(tree):
         # when a tree was selected, get the corresponding url
         selected_tree = tree[int(tree_index) - 1].find('URL').text
         return selected_tree.strip()
+
+
+def translate_slot_name(raw_name):
+    return raw_name.lower().replace(' ', '_') if raw_name else None
 
 
 def _parse_item_slots(xml_items):
@@ -84,17 +89,20 @@ def _parse_item_slots(xml_items):
                 Item(entry.attrib['id'], entry.text, get_attrib_if_exists(entry, 'variant')))
         # todo: implement check if we need to parse the second weapon set instead of the normal one.
         if entry.tag.lower() == "slot":
+            slot_name=translate_slot_name(entry.attrib['name'])
             item_id = get_attrib_if_exists(entry, 'itemId')
             item = _parse_item_slot(entry, items, item_id)
             if item:
-                slots[entry.attrib['name']] = item
+                slots[slot_name] = item
 
         if entry.tag.lower() == "itemset" and get_attrib_if_exists(entry, 'id') == active_set:
             for slot in entry:
+                slot_name = translate_slot_name(slot.attrib['name'])
+
                 item_id = get_attrib_if_exists(slot, 'itemId')
                 item = _parse_item_slot(slot, items, item_id)
                 if item:
-                    slots[slot.attrib['name']] = item
+                    slots[slot_name] = item
     return slots
 
 
@@ -131,7 +139,7 @@ def _parse_skills(xml_skills):
                     is_minion_skill
                     )
             )
-        slot = get_attrib_if_exists(skill, 'slot')
+        slot = translate_slot_name(get_attrib_if_exists(skill, 'slot'))
         if slot:
             pass
         skills.append(Skill(gems, get_attrib_if_exists(skill, 'mainActiveSkill'), slot, skill.attrib['enabled']))
