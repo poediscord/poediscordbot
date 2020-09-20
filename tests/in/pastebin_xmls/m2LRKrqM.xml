@@ -1,0 +1,170 @@
+<PathOfBuilding>
+	<Build level="91" targetVersion="3_0" banditNormal="None" bandit="Alira" banditMerciless="None" className="Shadow" ascendClassName="Trickster" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageHit" value="7418.483625" />
+		<PlayerStat stat="AverageDamage" value="7418.483625" />
+		<PlayerStat stat="Speed" value="1.3333333333333" />
+		<PlayerStat stat="Speed" value="1.3333333333333" />
+		<PlayerStat stat="TrapThrowingTime" value="0.45454545454545" />
+		<PlayerStat stat="TrapCooldown" value="4" />
+		<PlayerStat stat="PreEffectiveCritChance" value="33.25" />
+		<PlayerStat stat="CritChance" value="33.25" />
+		<PlayerStat stat="CritMultiplier" value="3.64" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="9891.3115" />
+		<PlayerStat stat="TotalDot" value="4461.21684" />
+		<PlayerStat stat="WithPoisonAverageDamage" value="11879.700465" />
+		<PlayerStat stat="ManaCost" value="61" />
+		<PlayerStat stat="Str" value="64" />
+		<PlayerStat stat="ReqStr" value="0" />
+		<PlayerStat stat="Dex" value="63" />
+		<PlayerStat stat="ReqDex" value="111" />
+		<PlayerStat stat="Int" value="343" />
+		<PlayerStat stat="ReqInt" value="155" />
+		<PlayerStat stat="Life" value="1" />
+		<PlayerStat stat="Spec:LifeInc" value="32" />
+		<PlayerStat stat="LifeUnreserved" value="1" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="0" />
+		<PlayerStat stat="LifeLeechGainPerHit" value="0" />
+		<PlayerStat stat="Mana" value="1027" />
+		<PlayerStat stat="Spec:ManaInc" value="33" />
+		<PlayerStat stat="ManaUnreserved" value="1027" />
+		<PlayerStat stat="ManaUnreservedPercent" value="100" />
+		<PlayerStat stat="ManaRegen" value="27.6" />
+		<PlayerStat stat="ManaLeechGainPerHit" value="0" />
+		<PlayerStat stat="EnergyShield" value="109" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="172" />
+		<PlayerStat stat="EnergyShieldRegen" value="1.526" />
+		<PlayerStat stat="EnergyShieldLeechGainPerHit" value="0" />
+		<PlayerStat stat="Evasion" value="476" />
+		<PlayerStat stat="Spec:EvasionInc" value="33" />
+		<PlayerStat stat="MeleeEvadeChance" value="6" />
+		<PlayerStat stat="MeleeEvadeChance" value="6" />
+		<PlayerStat stat="ProjectileEvadeChance" value="6" />
+		<PlayerStat stat="Armour" value="0" />
+		<PlayerStat stat="Spec:ArmourInc" value="0" />
+		<PlayerStat stat="PhysicalDamageReduction" value="0" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1" />
+		<PlayerStat stat="BlockChance" value="0" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="-25" />
+		<PlayerStat stat="ColdResist" value="-25" />
+		<PlayerStat stat="LightningResist" value="-25" />
+		<PlayerStat stat="ChaosResist" value="100" />
+		<PlayerStat stat="FireResistOverCap" value="0" />
+		<PlayerStat stat="ColdResistOverCap" value="0" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="7" />
+		<PlayerStat stat="PowerChargesMax" value="7" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="4" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Calcs>
+		<Input name="skill_number" number="1" />
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Section collapsed="nil" id="SkillSelect" />
+		<Section collapsed="nil" id="HitDamage" />
+		<Section collapsed="nil" id="Dot" />
+		<Section collapsed="nil" id="Speed" />
+		<Section collapsed="nil" id="Crit" />
+		<Section collapsed="nil" id="HitChance" />
+		<Section collapsed="nil" id="SkillTypeStats" />
+		<Section collapsed="nil" id="Bleed" />
+		<Section collapsed="nil" id="Poison" />
+		<Section collapsed="nil" id="Ignite" />
+		<Section collapsed="nil" id="Decay" />
+		<Section collapsed="nil" id="LeechGain" />
+		<Section collapsed="nil" id="MiscEffects" />
+		<Section collapsed="nil" id="Attributes" />
+		<Section collapsed="nil" id="Life" />
+		<Section collapsed="nil" id="Mana" />
+		<Section collapsed="nil" id="EnergyShield" />
+		<Section collapsed="nil" id="Armour" />
+		<Section collapsed="nil" id="Evasion" />
+		<Section collapsed="nil" id="Resist" />
+		<Section collapsed="nil" id="DamageTaken" />
+		<Section collapsed="nil" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" mainActiveSkill="1">
+			<Gem level="20" skillId="FrostBoltNova" quality="0" enabled="true" nameSpec="Vortex" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="SupportTrap" quality="0" enabled="true" nameSpec="Trap" />
+			<Gem level="20" skillId="SupportColdPenetration" quality="0" enabled="true" nameSpec="Cold Penetration" />
+			<Gem level="20" skillId="SupportClusterTrap" quality="0" enabled="true" nameSpec="Cluster Traps" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAYCAJuh7hW3MGwI73x-WaOj99fQ9SlPtDinK--IWrnv66EvGyUTbR1PDkjaO4w2S67bXq6zSVHsGEV8FAm-in_Gl_SCm5eXc21QMGu3cFL60kcG98FRdGNDXfJSU8HzppkRL5MnHRTtPNDQEVAWQPDVMhiFfcHF6QIPxIsOlSCRR4CzZp6J09Wm8uE7fJo7J6kmiEyzLL9JsUGW8YqP-jW5rJi3ddhUl5X3pm0ZEQ-4yrb6XGvXz_D5cFGOZD1fV5SESBGWM6OO6VMxw22PRiBu-_X5N9AfKwp2b36wKguf3-UZswM8ttlboqPb5wjU
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="0" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="41263" itemId="0" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="trap" zoomY="233.52112170896" showHeatMap="nil" zoomLevel="5" showStatDifferences="true" zoomX="-203.96522754572" />
+	<Items activeItemSet="1" useSecondWeaponSet="nil">
+		<ItemSet useSecondWeaponSet="nil" id="1">
+			<Slot name="Gloves" itemId="0" />
+			<Slot name="Weapon 1" itemId="0" />
+			<Slot name="Flask 1" itemId="0" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="0" />
+			<Slot name="Body Armour" itemId="0" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="0" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="0" />
+			<Slot name="Ring 1" itemId="0" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="0" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="overridePowerCharges" number="0" />
+		<Input name="usePowerCharges" boolean="true" />
+	</Config>
+</PathOfBuilding>

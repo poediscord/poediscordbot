@@ -1,0 +1,356 @@
+<PathOfBuilding>
+  <Build level="93" targetVersion="3_0" className="Scion" ascendClassName="Ascendant" />
+  <Skills>
+    <Skill slot="Helmet" enabled="true">
+      <Gem level="20" quality="0" enabled="true" nameSpec="Increased Duration" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Cast when Damage Taken" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Immortal Call" />
+      <Gem level="1" quality="20" enabled="true" nameSpec="Flame Dash" />
+    </Skill>
+    <Skill slot="Gloves" enabled="true">
+      <Gem level="20" quality="0" enabled="true" nameSpec="Wrath" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Ancestral Protector" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Culling Strike" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Herald of Thunder" />
+    </Skill>
+    <Skill slot="Boots" enabled="true">
+      <Gem level="1" quality="13" enabled="true" nameSpec="Cast when Damage Taken" />
+      <Gem level="7" quality="20" enabled="true" nameSpec="Blood Rage" />
+      <Gem level="5" quality="20" enabled="true" nameSpec="Conductivity" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Increased Area of Effect" />
+    </Skill>
+    <Skill slot="Body Armour" enabled="true">
+      <Gem level="20" quality="0" enabled="true" nameSpec="Elemental Focus" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Lightning Penetration" />
+      <Gem level="20" quality="20" enabled="true" nameSpec="Elemental Damage with Attacks" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Damage on Full Life" />
+      <Gem level="20" quality="13" enabled="true" nameSpec="Blade Flurry" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Concentrated Effect" />
+    </Skill>
+    <Skill slot="Weapon 2" enabled="true">
+      <Gem level="20" quality="0" enabled="true" nameSpec="Cast when Damage Taken" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Summon Flame Golem" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Summon Lightning Golem" />
+    </Skill>
+    <Skill slot="Weapon 1" enabled="true">
+      <Gem level="20" quality="20" enabled="true" nameSpec="Faster Attacks" />
+      <Gem level="20" quality="0" enabled="true" nameSpec="Whirling Blades" />
+      <Gem level="1" quality="0" enabled="true" nameSpec="Fortify" />
+    </Skill>
+  </Skills>
+  <Tree>
+    <Spec>
+      <URL>https://www.pathofexile.com/passive-skill-tree/AAAABAABAADBBAcEswceCPQJ2QthDF8OSBEvEZYUIBZvFr8Z1xo4G8gcpxzcHRQfAh8YIFki9CaVJy8t0jBbMfsy0TWSNsU6WDrhPAU8LT1fPfxFR0WdSVFMs03jUEJQR1H7UlNTUlOlVUtVxlZIWGNZ813yXz9gs2HiYqxmVGaeZ5to8mpDbAtsjG0Zcg934n_Gg1-DzIPbhFOMNozPjxqPRpBVkyeUb5Uul5WX9Jrgm1idqp8-n9-hL6IAoi6ly6ZXpwinNK0zrj6vbLc-vOq-isBmxBXE9sauxtjKRs0Wz93QH9gk2L3ireNq44TkUevu7pDvDu987-vv_fAf8NXxivJF9kj60v4K_o8=</URL>
+      <Sockets>
+        <Socket nodeId="7960" itemId="16" />
+        <Socket nodeId="61834" itemId="17" />
+        <Socket nodeId="33631" itemId="18" />
+        <Socket nodeId="61419" itemId="19" />
+        <Socket nodeId="26196" itemId="20" />
+        <Socket nodeId="41263" itemId="21" />
+        <Socket nodeId="36634" itemId="22" />
+      </Sockets>
+    </Spec>
+  </Tree>
+  <Items>
+    <Item id="1">Rarity: UNIQUE
+Mask of the Stitched Demon
+Magistrate Crown
+Unique ID: 183e483266f93cc229819db52ed4a97418e731624297435ffb9343ddf81fec88
+Item Level: 78
+Quality: 20
+Sockets: R-R-R-B
+Implicits: 1
+{crafted}100% increased Effect of the Buff granted by your Chaos Golems
++47 to Intelligence
++175 to maximum Energy Shield
+Strength provides no bonus to Maximum Life
+Intelligence provides no bonus to Maximum Mana
++1 to Maximum Life per 2 Intelligence
+Your Energy Shield starts at zero
+Cannot gain Energy Shield
+1% of Life Regenerated per second per 500 Maximum Energy Shield
+</Item>
+    <Item id="2">Rarity: UNIQUE
+Cyclopean Coil
+Leather Belt
+Unique ID: 2b9e41f0da2bbbc0f45638b28b4d86b4fe47454603ae5abad1b6f7bca5911293
+Item Level: 82
+Implicits: 2
++14% to all Elemental Resistances
+11% increased Attack Speed during any Flask Effect
++80 to maximum Life
+14% increased Attributes
+Cannot be Frozen if Dexterity is higher than Intelligence
+Cannot be Ignited if Strength is higher than Dexterity
+Cannot be Shocked if Intelligence is higher than Strength
+1% increased Damage per 5 of your lowest Attribute
+</Item>
+    <Item id="3">Rarity: UNIQUE
+Shaper's Touch
+Crusader Gloves
+Unique ID: d58484cbc853b679edfa1dc05931bd37132bc1270d6ae2aef6f0ff72008f0efa
+Item Level: 86
+Quality: 20
+Sockets: B-R-G-B
+Implicits: 1
+{crafted}Trigger Commandment of the Grave when your Skills or Minions Kill
+117% increased Armour and Energy Shield
++4 Accuracy Rating per 2 Intelligence
++1 Life per 4 Dexterity
++2 Mana per 4 Strength
+2% increased Energy Shield per 10 Strength
+2% increased Evasion Rating per 10 Intelligence
+2% increased Melee Physical Damage per 10 Dexterity
+</Item>
+    <Item id="4">Rarity: RARE
+Gale Grasp
+Opal Ring
+Unique ID: d708e1e548f55a520789bdadf1f74939a1dfc9bb4522b15c32ad794b0eb39067
+Item Level: 84
+LevelReq: 80
+Implicits: 1
+18% increased Elemental Damage
++51 to Intelligence
++73 to maximum Life
++9% to Lightning Resistance
++26% to Chaos Resistance
+{crafted}Adds 1 to 38 Lightning Damage to Attacks
+</Item>
+    <Item id="5">Rarity: RARE
+Blight Goad
+Sorcerer Boots
+Unique ID: 04fd7a0d976f679a314f128f8147be3fd02f051ec019622b9ff34b57d75d97a0
+Item Level: 80
+Quality: 20
+LevelReq: 70
+Sockets: R-G-B-B
+Implicits: 1
+{crafted}10% chance to Freeze, Shock and Ignite if you haven't Crit Recently
++40 to Intelligence
++41% to Cold Resistance
++38% to Lightning Resistance
+30% increased Movement Speed
+{crafted}+63 to maximum Life
+</Item>
+    <Item id="6">Rarity: RARE
+Chimeric Turn
+Ruby Ring
+Unique ID: ea7a81364f48cf5a35f05c8cb6d64b7fb6f8faebac70bfba083dd1eef73252f7
+Item Level: 66
+LevelReq: 52
+Implicits: 1
++28% to Fire Resistance
++9 to Dexterity
++39 to Intelligence
++76 to maximum Life
++21 to maximum Mana
+{crafted}+24% to Cold Resistance
+</Item>
+    <Item id="7">Rarity: RARE
+Corruption Keep
+Occultist's Vestment
+Unique ID: aa6e26c158cdadfd58318a95a3a31d867fe7f3cc5edd19fd8a854642e9ca1e84
+Item Level: 83
+Quality: 20
+LevelReq: 70
+Sockets: B-B-R-R-G-B
+Implicits: 1
+3% increased Spell Damage
++111 to maximum Life
++19 to maximum Mana
++28% to Fire Resistance
++26% to Lightning Resistance
+8% of Physical Damage from Hits taken as Cold Damage
+12% increased Intelligence
+</Item>
+    <Item id="8">Rarity: RARE
+Wrath Blow
+Vaal Sceptre
+Unique ID: 2b226a9aaf6502051ae7db9757dd8fb61f1050edcb1f33c20e275b36ef2458ec
+Item Level: 77
+Quality: 20
+LevelReq: 70
+Sockets: R-R-B
+Implicits: 1
+32% increased Elemental Damage
++40 to Intelligence
+100% increased Lightning Damage
+Adds 7 to 112 Lightning Damage to Spells
+{crafted}+17% to Global Critical Strike Multiplier
+</Item>
+    <Item id="9">Rarity: UNIQUE
+Hand of Wisdom and Action
+Imperial Claw
+Unique ID: 492d1de7c291aff29a7fd9230a1f5908dbb668040478555ae44452c7fc54cefd
+Item Level: 72
+Quality: 20
+Sockets: G-G-R
+Implicits: 1
++46 Life gained for each Enemy hit by Attacks
+11% increased Dexterity
+11% increased Intelligence
+Adds 1 to 10 Lightning Damage to Attacks with this Weapon per 10 Intelligence
+1% increased Attack Speed per 25 Dexterity
+28% increased Elemental Damage with Attack Skills
+</Item>
+    <Item id="10">Rarity: UNIQUE
+Astramentis
+Onyx Amulet
+Unique ID: 6242c20837684bcca8e520a85fbd27bdeb78c9b7e444d605693807b71443d54d
+Item Level: 79
+Implicits: 1
++14 to all Attributes
++95 to all Attributes
+-4 Physical Damage taken from Attacks
+</Item>
+    <Item id="11">Rarity: UNIQUE
+Atziri's Promise
+Amethyst Flask
+Unique ID: 14206c88399f362f8cda67567bb0b507e2b102473b1e35746353db33ef2d6278
+Item Level: 72
+Quality: 20
+Implicits: 0
+2% of Chaos Damage Leeched as Life during Flask effect
+Gain 16% of Physical Damage as Extra Chaos Damage during effect
+Gain 15% of Elemental Damage as Extra Chaos Damage during effect
+</Item>
+    <Item id="12">Rarity: MAGIC
+Experimenter's Silver Flask of Heat
+Unique ID: d1b992bc7658ed16312b4870d4cf37ff8d87694ff80955c6b46f98f436d998f8
+Item Level: 42
+Quality: 20
+LevelReq: 22
+Implicits: 0
+Immunity to Freeze and Chill during Flask effect
+Removes Freeze and Chill on use
+35% increased Duration
+</Item>
+    <Item id="13">Rarity: MAGIC
+Bubbling Divine Life Flask of Staunching
+Unique ID: 58eb17f73fb58a6250d31222a1ba03914b5cb84fae4a0ac74074bc020c088f01
+Item Level: 62
+Quality: 20
+LevelReq: 60
+Implicits: 0
+50% reduced Amount Recovered
+135% increased Recovery rate
+50% of Recovery applied Instantly
+Immunity to Bleeding during Flask effect
+Removes Bleeding on use
+</Item>
+    <Item id="14">Rarity: UNIQUE
+The Wise Oak
+Bismuth Flask
+Unique ID: 9a1d3d3a9f90730e5a44eac2c344d91c66b9be15b936c8cd739019dbe9aff547
+Item Level: 75
+Quality: 2
+Implicits: 0
+During Flask Effect, 10% reduced Damage taken of each Element for which your Uncapped Elemental Resistance is lowest
+During Flask Effect, Damage Penetrates 14% Resistance of each Element for which your Uncapped Elemental Resistance is highest
+</Item>
+    <Item id="15">Rarity: UNIQUE
+Vessel of Vinktar
+Topaz Flask
+Unique ID: 8f6d4a60ef9f0c35f20a1f863d425f2d59fd92562cf6f8f8de7e9f55914a7728
+Item Level: 79
+Quality: 9
+Implicits: 0
+86% increased Charges used
+Shocks nearby Enemies during Flask effect, causing 10% increased Damage taken
+You are Shocked during Flask effect, causing 50% increased Damage taken
+Damage Penetrates 10% Lightning Resistance during Flask effect
+20% of Lightning Damage Leeched as Life during Flask effect
+</Item>
+    <Item id="16">Rarity: RARE
+Carrion Ornament
+Cobalt Jewel
+Unique ID: 7ed3577f454842092770d46c7cc2d88c86ac95f46194098f3ff81975b2a8f41a
+Item Level: 70
+Implicits: 0
+14% increased Lightning Damage
+6% increased maximum Life
++8 to Strength and Intelligence
++12% to Fire and Cold Resistances
+</Item>
+    <Item id="17">Rarity: UNIQUE
+Intuitive Leap
+Viridian Jewel
+Radius: Small
+Unique ID: 136ee36833a809d6c827e93d75aecf23360042688f8219f096a6d9a106d80a7f
+Item Level: 75
+Implicits: 0
+Passives in Radius can be Allocated without being connected to your tree
+</Item>
+    <Item id="18">Rarity: RARE
+Pandemonium Curio
+Crimson Jewel
+Unique ID: fddba19607b47ac1e4c7f9b3dedc6bac5813b15a832aa4fb8c63fc32dbbbd645
+Item Level: 71
+Implicits: 0
++13 to Intelligence
+16% increased Lightning Damage
+6% increased maximum Life
++11% to Fire and Lightning Resistances
+</Item>
+    <Item id="19">Rarity: RARE
+Gale Scar
+Viridian Jewel
+Unique ID: 2b22c360b8765d2e545a6c8932c815f100a9c6e23846e649a085ce1181b73014
+Item Level: 72
+Implicits: 0
+4% increased Attack Speed with One Handed Melee Weapons
+7% increased maximum Life
++8 to Dexterity and Intelligence
++10% to Fire and Lightning Resistances
+</Item>
+    <Item id="20">Rarity: RARE
+Brood Creed
+Viridian Jewel
+Unique ID: 88c3332d7ca290f6bbfd28f1c8e1255471f419a1b7428873f612ed1b322e5d1f
+Item Level: 78
+Implicits: 0
++7 to all Attributes
+6% increased Attack Speed while Dual Wielding
+7% increased maximum Life
++12% to Cold and Lightning Resistances
+</Item>
+    <Item id="21">Rarity: RARE
+Hypnotic Dream
+Viridian Jewel
+Unique ID: b6ef8969d9e6be3c9c8b254ae7a1e6af21be9b055ddd82e3ce5c70cba982355b
+Item Level: 76
+Implicits: 0
++8 to all Attributes
+4% increased Attack Speed while Dual Wielding
+5% increased maximum Life
++10% to all Elemental Resistances
+</Item>
+    <Item id="22">Rarity: RARE
+Loath Hope
+Viridian Jewel
+Unique ID: 1a8d6af8ec8cac35fc6a804ea238b9497a463a887d858a558604cdd1d7fb8ec8
+Item Level: 70
+Implicits: 0
+5% increased Attack Speed while Dual Wielding
+6% increased maximum Life
++8 to Strength and Intelligence
++11% to Fire and Cold Resistances
+</Item>
+    <Slot itemId="1" name="Helmet" />
+    <Slot itemId="2" name="Belt" />
+    <Slot itemId="3" name="Gloves" />
+    <Slot itemId="4" name="Ring 2" />
+    <Slot itemId="5" name="Boots" />
+    <Slot itemId="6" name="Ring 1" />
+    <Slot itemId="7" name="Body Armour" />
+    <Slot itemId="8" name="Weapon 2" />
+    <Slot itemId="9" name="Weapon 1" />
+    <Slot itemId="10" name="Amulet" />
+    <Slot itemId="11" name="Flask 1" />
+    <Slot itemId="12" name="Flask 3" />
+    <Slot itemId="13" name="Flask 4" />
+    <Slot itemId="14" name="Flask 2" />
+    <Slot itemId="15" name="Flask 5" />
+  </Items>
+</PathOfBuilding>

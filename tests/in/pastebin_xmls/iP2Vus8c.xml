@@ -1,0 +1,442 @@
+<PathOfBuilding>
+	<Build level="90" targetVersion="3_0" banditNormal="None" bandit="None" banditMerciless="None" className="Witch" ascendClassName="Necromancer" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="ActiveMinionLimit" value="11" />
+		<PlayerStat stat="AverageHit" value="0" />
+		<PlayerStat stat="AverageDamage" value="0" />
+		<PlayerStat stat="Speed" value="2.32" />
+		<PlayerStat stat="Speed" value="2.32" />
+		<PlayerStat stat="PreEffectiveCritChance" value="0" />
+		<PlayerStat stat="CritChance" value="0" />
+		<PlayerStat stat="CritMultiplier" value="1.5" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="0" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="WithPoisonDPS" value="0" />
+		<PlayerStat stat="ManaCost" value="39" />
+		<PlayerStat stat="Str" value="93" />
+		<PlayerStat stat="ReqStr" value="68" />
+		<PlayerStat stat="Dex" value="88" />
+		<PlayerStat stat="ReqDex" value="155" />
+		<PlayerStat stat="Int" value="634" />
+		<PlayerStat stat="ReqInt" value="194" />
+		<PlayerStat stat="Life" value="1" />
+		<PlayerStat stat="Spec:LifeInc" value="20" />
+		<PlayerStat stat="LifeUnreserved" value="1" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="0" />
+		<PlayerStat stat="LifeLeechGainRate" value="0" />
+		<PlayerStat stat="Mana" value="984" />
+		<PlayerStat stat="Spec:ManaInc" value="8" />
+		<PlayerStat stat="ManaUnreserved" value="76" />
+		<PlayerStat stat="ManaUnreservedPercent" value="7.7235772357724" />
+		<PlayerStat stat="ManaRegen" value="54.3" />
+		<PlayerStat stat="ManaLeechGainRate" value="0" />
+		<PlayerStat stat="EnergyShield" value="9060" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="199" />
+		<PlayerStat stat="EnergyShieldRegen" value="247.224" />
+		<PlayerStat stat="EnergyShieldLeechGainRate" value="0" />
+		<PlayerStat stat="Evasion" value="926" />
+		<PlayerStat stat="Spec:EvasionInc" value="0" />
+		<PlayerStat stat="MeleeEvadeChance" value="10" />
+		<PlayerStat stat="MeleeEvadeChance" value="10" />
+		<PlayerStat stat="ProjectileEvadeChance" value="10" />
+		<PlayerStat stat="Armour" value="0" />
+		<PlayerStat stat="Spec:ArmourInc" value="28" />
+		<PlayerStat stat="PhysicalDamageReduction" value="0" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.66" />
+		<PlayerStat stat="BlockChance" value="0" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="75" />
+		<PlayerStat stat="ColdResist" value="75" />
+		<PlayerStat stat="LightningResist" value="76" />
+		<PlayerStat stat="ChaosResist" value="100" />
+		<PlayerStat stat="FireResistOverCap" value="36" />
+		<PlayerStat stat="ColdResistOverCap" value="64" />
+		<PlayerStat stat="LightningResistOverCap" value="36" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+		<PlayerStat stat="ActiveMinionLimit" value="11" />
+		<MinionStat stat="AverageDamage" value="168840" />
+		<MinionStat stat="Speed" value="1.7" />
+		<MinionStat stat="TotalDPS" value="287028" />
+		<MinionStat stat="TotalDot" value="0" />
+		<MinionStat stat="IgniteDPS" value="21551.616" />
+		<MinionStat stat="Life" value="13273" />
+		<MinionStat stat="LifeRegen" value="398.19" />
+	</Build>
+	<Import />
+	<Calcs>
+		<Input name="showMinion" boolean="true" />
+		<Input name="skill_number" number="1" />
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Helmet" mainActiveSkill="1">
+			<Gem level="21" skillId="SummonSkeletons" skillMinionSkill="2" skillMinionSkillCalcs="2" quality="20" skillMinionCalcs="RaisedSkeleton" enabled="true" nameSpec="Summon Skeleton" skillMinion="RaisedSkeleton" />
+			<Gem level="20" skillId="SupportMinionLife" quality="20" enabled="true" nameSpec="Minion Life" />
+			<Gem level="20" skillId="SupportConcentratedEffect" quality="20" enabled="true" nameSpec="Concentrated Effect" />
+			<Gem level="20" skillId="SupportMinionDamage" quality="20" enabled="true" nameSpec="Minion Damage" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Boots" mainActiveSkill="1">
+			<Gem level="20" skillId="Flammability" quality="0" enabled="true" nameSpec="Flammability" />
+			<Gem level="20" skillId="ElementalWeakness" skillPart="1" quality="0" enabled="true" nameSpec="Elemental Weakness" />
+			<Gem level="20" skillId="SupportBlasphemy" quality="0" enabled="true" nameSpec="Blasphemy" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Weapon 1" mainActiveSkill="1">
+			<Gem level="20" skillId="Discipline" skillMinionItemSet="1" quality="0" enabled="true" nameSpec="Discipline" skillMinion="AnimatedWeapon" />
+			<Gem level="3" skillId="SupportAdditionalXP" quality="0" enabled="true" nameSpec="Enlighten" />
+			<Gem level="10" skillId="Clarity" quality="0" enabled="true" nameSpec="Clarity" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="false" slot="Gloves" mainActiveSkill="1">
+			<Gem level="20" skillId="FireBeam" skillPart="3" quality="0" enabled="true" nameSpec="Scorching Ray" />
+			<Gem level="20" skillId="SupportFasterCast" skillPart="1" quality="0" enabled="true" nameSpec="Faster Casting" />
+			<Gem level="20" skillId="SupportCastWhileChannelling" quality="0" enabled="true" nameSpec="Cast while Channelling" />
+			<Gem level="20" skillId="Arc" quality="0" enabled="true" nameSpec="Arc" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Weapon 2" mainActiveSkill="1">
+			<Gem level="7" skillId="SummonRockGolem" skillMinionSkill="1" skillMinionSkillCalcs="1" quality="0" enabled="true" nameSpec="Summon Stone Golem" skillMinion="SummonedStoneGolem" />
+			<Gem level="20" skillId="SupportMinionLife" quality="0" enabled="true" nameSpec="Minion Life" />
+			<Gem level="5" skillId="SupportCastOnDamageTaken" quality="0" enabled="true" nameSpec="Cast when Damage Taken" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="nil" label="" enabled="true" slot="Body Armour" mainActiveSkill="nil">
+			<Gem level="20" skillId="Desecrate" quality="0" enabled="true" nameSpec="Desecrate" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="FleshOffering" skillPart="1" quality="0" enabled="true" nameSpec="Flesh Offering" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="SupportFasterCast" skillPart="1" quality="0" enabled="true" nameSpec="Faster Casting" />
+			<Gem level="20" skillId="NewPhaseRun" quality="0" enabled="true" nameSpec="Phase Run" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="FlameDash" skillPart="1" quality="0" enabled="true" nameSpec="Flame Dash" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAMDABzcm6EdFHC7zRaPGlH7_kkBb9-K-egfGEZxVeB9GBhqGmzhiKcI6rr31xcv6QJI56crwcWYrYCkhWCUb2ZUE2wN4lha0_u4k6rEgsfsii9vSVFqrO_roS9LrhslfOWVLuL3FSdXyUiOJ6m3MYx2TLOP-iy_Zrr6gIt6tAzK02Tn7BhmntpiGFa-ijW5UikHHn_G049NudkLzLws4m0Z-tJyD52uNAoNfFxrWAfZE-yDqH1V1hFQsHePRkQEEJemrCqYHU8dqsNtrJhodPfB8h7QH4RIBklr24yxWpHZW3gvOw0o-r-XyT1sCxEPIvTw1ZMn
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="11" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="11" />
+				<Socket nodeId="36634" itemId="11" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="21984" itemId="11" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="11" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="41263" itemId="11" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="6230" itemId="11" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="" zoomY="781.67825555556" showHeatMap="false" zoomLevel="7" showStatDifferences="true" zoomX="576.69867572016" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<Item id="1">
+			Rarity: Unique
+Earendel's Embrace
+Grinning Fetish
+Requires Level 35
+18% increased Elemental Damage
++23 to all Attributes
+Minions deal 37% increased Damage
+Summoned Skeletons Cover Enemies in Ash on Hit
+Summoned Skeletons take 23.4% of their Maximum Life per second as Fire Damage
+Summoned Skeletons have Avatar of Fire
+		</Item>
+		<Item id="2">
+			Rarity: RARE
+Armour/Energy Shield Shield
+Archon Kite Shield
+Crafted: true
+Prefix: {range:1}ElementalDamagePercent5
+Prefix: {range:1}LocalBaseArmourAndLife3
+Prefix: {range:1}IncreasedLife10
+Suffix: {range:1}Strength9
+Suffix: None
+Suffix: None
+Quality: 20
+Sockets: B-B-B
+LevelReq: 68
+Implicits: 1
++12% to all Elemental Resistances
++55 to Strength
++95 to Armour
++142 to maximum Life
+34% increased Elemental Damage
+		</Item>
+		<Item id="3">
+			Rarity: RARE
+Energy Shield Chest
+Vaal Regalia
+Shaper Item
+Crafted: true
+Prefix: {range:1}LocalIncreasedEnergyShieldPercentAndStunRecovery6
+Prefix: {range:1}LocalIncreasedEnergyShieldPercent8
+Prefix: {range:1}LocalIncreasedEnergyShield11
+Suffix: {range:0.408}FireResist8
+Suffix: {range:0.211}ColdResist8
+Suffix: {range:0.493}Intelligence9
+Quality: 20
+Sockets: B-B-B-B-B-B
+LevelReq: 68
+Implicits: 0
++53 to Intelligence
++100 to maximum Energy Shield
+152% increased Energy Shield
++47% to Fire Resistance
++46% to Cold Resistance
+17% increased Stun and Block Recovery
+		</Item>
+		<Item id="4">
+			Rarity: RARE
+Energy Shield Helmet
+Hubris Circlet
+Elder Item
+Crafted: true
+Prefix: {range:1}LocalIncreaseSocketedMinionGemLevel3_
+Prefix: {range:0.535}LocalIncreasedEnergyShieldPercent6
+Prefix: {range:1}LocalIncreasedEnergyShield8
+Suffix: {range:1}IgniteDurationSupportedUber3
+Suffix: {range:1}LightningResist8
+Suffix: {range:1}ColdResist4
+Quality: 20
+Sockets: B-B-B-B
+LevelReq: 69
+Implicits: 1
+{crafted}Summon 2 additional Skeleton Warriors with Summon Skeletons
++3 to Level of Socketed Minion Gems
+Socketed Gems are Supported by Level 20 Immolate
++61 to maximum Energy Shield
+86% increased Energy Shield
++29% to Cold Resistance
++48% to Lightning Resistance
+20% increased Ignite Duration on Enemies
+		</Item>
+		<Item variant="3" id="5">
+			Rarity: UNIQUE
+Sin Trek
+Stealth Boots
+Variant: Pre 2.0.0
+Variant: Pre 2.6.0
+Variant: Current
+Selected Variant: 3
+Quality: 20
+Sockets: G-G-G-G
+LevelReq: 62
+Implicits: 0
+{range:0.5}+(20-30) to Dexterity
+{range:0.5}+(20-30) to Intelligence
+{range:0.5}(80-100)% increased Evasion Rating
+{variant:1}{range:0.5}+(50-70) to maximum Energy Shield
+{variant:2}{range:0.5}+(70-100) to maximum Energy Shield
+{variant:3}{range:1}+(100-160) to maximum Energy Shield
+30% increased Movement Speed
+Enemies Cannot Leech Life From You
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="1" id="6" />
+		</Item>
+		<Item id="6">
+			Rarity: UNIQUE
+Eye of Chayula
+Onyx Amulet
+LevelReq: 20
+Implicits: 1
+{range:1}+(10-16) to all Attributes
+20% reduced maximum Life
+30% increased Rarity of Items found
+Cannot be Stunned
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="7">
+			Rarity: RARE
+Ring
+Moonstone Ring
+Crafted: true
+Prefix: {range:1}IncreasedEnergyShield11
+Prefix: None
+Prefix: None
+Suffix: {range:1}Intelligence9
+Suffix: {range:1}FireResist8
+Suffix: {range:1}LightningResist8
+LevelReq: 67
+Implicits: 1
+{range:1}+(15-25) to maximum Energy Shield
++55 to Intelligence
++47 to maximum Energy Shield
++48% to Fire Resistance
++48% to Lightning Resistance
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="8">
+			Rarity: RARE
+Belt
+Crystal Belt
+Shaper Item
+Crafted: true
+Prefix: {range:1}GlobalEnergyShieldPercentBeltUber2
+Prefix: {range:1}IncreasedEnergyShield12
+Prefix: None
+Suffix: {range:1}ColdResist8
+Suffix: {range:1}IncreasedCooldownRecoveryUber2_
+Suffix: {range:1}EnergyShieldRecoveryRateUber2
+LevelReq: 79
+Implicits: 1
+{range:1}+(60-80) to maximum Energy Shield
++51 to maximum Energy Shield
+10% increased maximum Energy Shield
++48% to Cold Resistance
+20% increased Energy Shield Recovery rate
+20% increased Cooldown Recovery Speed
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="9">
+			Rarity: RARE
+Energy Shield Gloves
+Sorcerer Gloves
+Shaper Item
+Crafted: true
+Prefix: {range:1}LocalIncreasedEnergyShieldPercentAndStunRecovery6
+Prefix: {range:1}LocalIncreasedEnergyShieldPercent7_
+Prefix: {range:1}LocalIncreasedEnergyShield7
+Suffix: {range:1}Intelligence9
+Suffix: {range:1}ColdResist8
+Suffix: {range:1}IncreasedAttackSpeed4
+Quality: 20
+Sockets: B-B-B-B
+LevelReq: 69
+Implicits: 0
++55 to Intelligence
+16% increased Attack Speed
++49 to maximum Energy Shield
+142% increased Energy Shield
++48% to Cold Resistance
+17% increased Stun and Block Recovery
+		</Item>
+		<Item variant="2" id="10">
+			Rarity: UNIQUE
+Maligaro's Lens
+Compound Spiked Shield
+Variant: Pre 3.0.0
+Variant: Current
+Selected Variant: 2
+Quality: 20
+Sockets: G-G-G
+LevelReq: 45
+Implicits: 2
+{variant:1}{range:0.5}Reflects (51-70) Physical Damage to Melee Attackers
+{variant:2}2% chance to Dodge Spell Damage
+{range:1}(10-15)% increased Attack Speed
+{range:1}(10-20)% increased maximum Life
+-50% to all Elemental Resistances
+10% increased Area of Effect of Area Skills
+Nearby allies Recover 2% of your maximum Life when you Die
+			<ModRange range="0.5" id="1" />
+			<ModRange range="1" id="3" />
+			<ModRange range="1" id="4" />
+		</Item>
+		<Item id="11">
+			Rarity: RARE
+New Item
+Cobalt Jewel
+Crafted: true
+Prefix: {range:0.5}MinionDamageJewel
+Prefix: {range:0.5}MinionLifeJewel
+Suffix: None
+Suffix: None
+Quality: 0
+LevelReq: 0
+Implicits: 0
+Minions have 10% increased maximum Life
+Minions deal 15% increased Damage
+		</Item>
+		<Slot name="Gloves" itemId="9" />
+		<Slot name="Weapon 1" itemId="1" />
+		<Slot name="Amulet" itemId="6" />
+		<Slot name="Weapon 2" itemId="10" />
+		<Slot name="Body Armour" itemId="3" />
+		<Slot name="Belt" itemId="8" />
+		<Slot name="Ring 2" itemId="7" />
+		<Slot name="Boots" itemId="5" />
+		<Slot name="Ring 1" itemId="7" />
+		<Slot name="Helmet" itemId="4" />
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="9" />
+			<Slot name="Weapon 1" itemId="1" />
+			<Slot name="Flask 1" itemId="0" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="6" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="10" />
+			<Slot name="Body Armour" itemId="3" />
+			<Slot name="Belt" itemId="8" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="7" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="5" />
+			<Slot name="Ring 1" itemId="7" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="4" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="conditionMinionsKilledRecently" boolean="true" />
+		<Input name="conditionEnemyCoveredInAsh" boolean="true" />
+		<Input name="conditionUsedMinionSkillRecently" boolean="true" />
+		<Input name="enemyIsBoss" string="NONE" />
+		<Input name="enemyConditionHitByLightningDamage" boolean="true" />
+	</Config>
+</PathOfBuilding>

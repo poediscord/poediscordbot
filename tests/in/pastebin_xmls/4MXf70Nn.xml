@@ -1,0 +1,1667 @@
+<PathOfBuilding>
+	<Build level="95" targetVersion="3_0" banditNormal="None" bandit="None" banditMerciless="None" className="Witch" ascendClassName="Necromancer" mainSocketGroup="2" viewMode="IMPORT" banditCruel="None">
+		<Spectre id="Metadata/Monsters/Cannibal/CannibalMaleChampion" />
+		<Spectre id="Metadata/Monsters/Statue/DaressoStatueLargeMaleSpear" />
+		<Spectre id="Metadata/Monsters/BloodChieftain/MonkeyChiefBloodEnrage" />
+		<PlayerStat stat="ActiveMinionLimit" value="7" />
+		<PlayerStat stat="AverageHit" value="0" />
+		<PlayerStat stat="AverageDamage" value="0" />
+		<PlayerStat stat="Speed" value="1.5529411764706" />
+		<PlayerStat stat="Speed" value="1.5529411764706" />
+		<PlayerStat stat="PreEffectiveCritChance" value="0" />
+		<PlayerStat stat="CritChance" value="0" />
+		<PlayerStat stat="CritMultiplier" value="1.5" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="0" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="WithPoisonDPS" value="0" />
+		<PlayerStat stat="ManaCost" value="189" />
+		<PlayerStat stat="Str" value="1273" />
+		<PlayerStat stat="ReqStr" value="111" />
+		<PlayerStat stat="Dex" value="165" />
+		<PlayerStat stat="ReqDex" value="155" />
+		<PlayerStat stat="Int" value="196" />
+		<PlayerStat stat="ReqInt" value="159" />
+		<PlayerStat stat="Life" value="7152" />
+		<PlayerStat stat="Spec:LifeInc" value="220" />
+		<PlayerStat stat="LifeUnreserved" value="7152" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="0" />
+		<PlayerStat stat="LifeLeechGainRate" value="0" />
+		<PlayerStat stat="Mana" value="1783" />
+		<PlayerStat stat="Spec:ManaInc" value="28" />
+		<PlayerStat stat="ManaUnreserved" value="71" />
+		<PlayerStat stat="ManaUnreservedPercent" value="3.9820527201346" />
+		<PlayerStat stat="ManaRegen" value="51.5" />
+		<PlayerStat stat="ManaLeechGainRate" value="0" />
+		<PlayerStat stat="EnergyShield" value="5327" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="60" />
+		<PlayerStat stat="EnergyShieldRegen" value="466.772" />
+		<PlayerStat stat="EnergyShieldLeechGainRate" value="0" />
+		<PlayerStat stat="Evasion" value="578" />
+		<PlayerStat stat="Spec:EvasionInc" value="0" />
+		<PlayerStat stat="MeleeEvadeChance" value="7" />
+		<PlayerStat stat="MeleeEvadeChance" value="7" />
+		<PlayerStat stat="ProjectileEvadeChance" value="7" />
+		<PlayerStat stat="Armour" value="2696" />
+		<PlayerStat stat="Spec:ArmourInc" value="20" />
+		<PlayerStat stat="PhysicalDamageReduction" value="18" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.31" />
+		<PlayerStat stat="BlockChance" value="22" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="76" />
+		<PlayerStat stat="ColdResist" value="75" />
+		<PlayerStat stat="LightningResist" value="75" />
+		<PlayerStat stat="ChaosResist" value="-29" />
+		<PlayerStat stat="FireResistOverCap" value="65" />
+		<PlayerStat stat="ColdResistOverCap" value="30" />
+		<PlayerStat stat="LightningResistOverCap" value="16" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+		<PlayerStat stat="ActiveMinionLimit" value="7" />
+		<MinionStat stat="AverageDamage" value="72982.331625" />
+		<MinionStat stat="Speed" value="2.6752136752137" />
+		<MinionStat stat="TotalDPS" value="195243.33161218" />
+		<MinionStat stat="TotalDot" value="0" />
+		<MinionStat stat="WithPoisonDPS" value="195243.33161218" />
+		<MinionStat stat="Cooldown" value="1.6666666666667" />
+		<MinionStat stat="Life" value="31403" />
+		<MinionStat stat="LifeRegen" value="1432.385" />
+		<MinionStat stat="LifeLeechGainRate" value="1561.9466528974" />
+	</Build>
+	<Calcs>
+		<Input name="showMinion" boolean="true" />
+		<Input name="skill_number" number="3" />
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="20" defaultGemLevel="20" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Gloves" mainActiveSkill="1">
+			<Gem level="1" skillId="Convocation" quality="0" enabled="true" nameSpec="Convocation" skillMinion="SummonedPhantasm" />
+			<Gem level="1" skillId="SupportCastOnDamageTaken" quality="0" enabled="true" nameSpec="Cast when Damage Taken" />
+			<Gem level="1" skillId="Desecrate" quality="0" enabled="true" nameSpec="Desecrate" skillMinion="SummonedPhantasm" />
+			<Gem level="1" skillId="ImmortalCall" quality="0" enabled="true" nameSpec="Immortal Call" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Body Armour" mainActiveSkill="1">
+			<Gem level="21" skillId="RaiseZombie" skillMinionSkill="2" skillMinionSkillCalcs="1" quality="20" enabled="true" nameSpec="Raise Zombie" skillMinion="RaisedZombie" />
+			<Gem level="4" skillId="SupportAdditionalLevel" quality="0" enabled="true" nameSpec="Empower" />
+			<Gem level="20" skillId="SupportMeleePhysicalDamage" quality="20" enabled="true" nameSpec="Melee Physical Damage" />
+			<Gem level="20" skillId="SupportMinionDamage" quality="20" enabled="true" nameSpec="Minion Damage" />
+			<Gem level="20" skillId="SupportMinionSpeed" quality="20" enabled="true" nameSpec="Minion Speed" />
+			<Gem level="20" skillId="SupportMultistrike" quality="20" enabled="true" nameSpec="Multistrike" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Boots" mainActiveSkill="1">
+			<Gem level="20" skillId="Haste" quality="20" enabled="true" nameSpec="Haste" />
+			<Gem level="3" skillId="SupportAdditionalXP" quality="20" enabled="true" nameSpec="Enlighten" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Boots" mainActiveSkill="1">
+			<Gem level="20" skillId="Hatred" quality="20" enabled="true" nameSpec="Hatred" />
+			<Gem level="20" skillId="SupportGenerosity" quality="20" enabled="true" nameSpec="Generosity" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Weapon 1" mainActiveSkill="1">
+			<Gem level="1" skillId="NewShieldCharge" quality="0" enabled="true" nameSpec="Shield Charge" />
+			<Gem level="20" skillId="SupportFortify" quality="20" enabled="true" nameSpec="Fortify" />
+			<Gem level="20" skillId="SupportFasterAttack" quality="20" enabled="true" nameSpec="Faster Attacks" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Weapon 2" mainActiveSkill="1">
+			<Gem level="21" skillId="SummonRockGolem" skillMinionSkill="1" skillMinionSkillCalcs="1" quality="0" enabled="true" nameSpec="Summon Stone Golem" skillMinion="SummonedStoneGolem" />
+			<Gem level="2" skillId="SupportCastOnDamageTaken" quality="20" enabled="true" nameSpec="Cast when Damage Taken" />
+			<Gem level="8" skillId="SpiritOffering" quality="20" enabled="true" nameSpec="Spirit Offering" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Helmet" mainActiveSkill="1">
+			<Gem level="20" skillId="RaiseSpectre" skillMinionSkill="1" skillMinionSkillCalcs="1" quality="20" enabled="true" nameSpec="Raise Spectre" skillMinion="Metadata/Monsters/Cannibal/CannibalMaleChampion" />
+			<Gem level="20" skillId="SupportBloodMagic" quality="23" enabled="true" nameSpec="Blood Magic" />
+			<Gem level="20" skillId="SupportMinionLife" quality="20" enabled="true" nameSpec="Minion Life" />
+			<Gem level="20" skillId="AnimateArmour" skillMinionItemSet="1" skillMinionSkill="1" skillMinionSkillCalcs="1" quality="0" enabled="true" nameSpec="Animate Guardian" skillMinion="AnimatedArmour" />
+		</Skill>
+		<Skill source="Item:24:Shaper's Touch, Crusader Gloves" mainActiveSkillCalcs="1" label="" enabled="true" slot="Gloves" mainActiveSkill="1">
+			<Gem level="1" skillId="EnchantmentOfTheGraveOnKill4" skillMinionSkill="1" skillMinionSkillCalcs="1" quality="0" enabled="true" nameSpec="EnchantmentOfTheGraveOnKill4" skillMinion="IcyRagingSpirit" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAMDABzc2WGPGrzqaGUrUJuKhXv31xzOmK2FYK-nIvS4k6rEXz-hLwSzUEcGSfqAmuBUrtfPlS6-ikWdf8YaOM9-BAcqmBEtqH0y0ZBVRATjauRRr2ytjX3SKPrr7pMnFm_sOA3N34pqQ6IAvk8abHy7bAuQM8k9xq5Vxrc-LJzzm4LH7Io8LWqs7w49DxQgfIMnqUyzZ5t2rGjy1I-IQAce049NufIeCPQ6WDkL2L0n7TrYJKrT-4NfwGZJsScv_gpJUaasg9v-VBGWR4W_lxkuxYrsgxUnU1LMvPk30B_E9lcNa9uMsTbpRUesmIPMbRnv6_Af74hmVPDVWpHZCw==
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="29" />
+				<Socket nodeId="36634" itemId="2" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="65" />
+				<Socket nodeId="41263" itemId="86" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="33631" itemId="1" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="26725" itemId="66" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="" zoomY="220.27795130869" showHeatMap="false" zoomLevel="6" showStatDifferences="true" zoomX="220.56846247873" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<Item id="5">
+			Rarity: UNIQUE
+Primordial Eminence
+Viridian Jewel
+Unique ID: bc186babf2e08cb288c519db156c4e82e5f08f18dd0e4b5656716bfc9a59472b
+Item Level: 80
+Implicits: 0
+Golems have 16% increased Attack and Cast Speed
+30% increased Effect of Buffs granted by your Golems
+Golems have +957 to Armour
+Primordial
+		</Item>
+		<Item id="21">
+			Rarity: UNIQUE
+Clayshaper
+Rock Breaker
+Unique ID: 72e6049d9abd47ae208ac833be720df8e1ee5775988bb84b3525fca7c22d3475
+Item Level: 70
+Quality: 0
+Sockets: R-G-R
+Implicits: 1
+15% reduced Enemy Stun Threshold
+Grants level 12 Summon Stone Golem
+Adds 24 to 39 Physical Damage
+10% increased Attack Speed
+Minions have 29% increased maximum Life
+Minions' Attacks deal 6 to 16 additional Physical Damage
+Can Summon up to 1 additional Golem at a time
+		</Item>
+		<Item variant="2" id="26">
+			Rarity: Unique
+Dead Reckoning
+Cobalt Jewel
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Limited to: 3
+Radius: Medium
+Minions have +(7-10)% to all Elemental Resistances
+{variant:1}With at least 40 Intelligence in Radius, can summon up to 3 Skeleton Mages with Summon Skeletons
+{variant:2}With at least 40 Intelligence in Radius, can summon up to 5 Skeleton Mages with Summon Skeletons
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item variant="2" id="27">
+			Rarity: UNIQUE
+Femurs of the Saints
+Primordial Staff
+Variant: Pre 2.6.0
+Variant: Current
+Selected Variant: 2
+Quality: 20
+LevelReq: 58
+Implicits: 2
+{variant:1}12% Chance to Block
+{variant:2}18% Chance to Block
++2 to Level of Socketed Minion Gems
+{range:1}Minions Regenerate (1.5-2.5)% Life per Second
+2% increased Minion Attack and Cast Speed per Skeleton you own
+{range:0.5}2% increased Minion Duration per Zombie you own
+{range:0.5}(8-12)% increased Minion Damage per Spectre you own
+Minions have 20% increased Attack Speed
+minions have 20% increased cast speed
+			<ModRange range="1" id="4" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+		</Item>
+		<Item id="34">
+			Rarity: UNIQUE
+Femurs of the Saints
+Primordial Staff
+Unique ID: 5523b2f27256da823903668a768fbe435da8600b2ee9fc97a7975c96299b2e28
+Item Level: 69
+Quality: 20
+Sockets: B B-R-B-R-R
+Implicits: 1
+18% Chance to Block
++2 to Level of Socketed Minion Gems
+Minions Regenerate 2.5% Life per second
+2% increased Minion Attack and Cast Speed per Skeleton you own
+2% increased Minion Duration per Zombie you own
+11% increased Minion Damage per Spectre you own
+		</Item>
+		<Item id="8">
+			Rarity: UNIQUE
+Astramentis
+Onyx Amulet
+Unique ID: 8884c2c3353898bc53b03204b46b8595febfa499a7f59f269eaa657f9b445b70
+Item Level: 71
+LevelReq: 20
+Implicits: 1
++16 to all Attributes
++97 to all Attributes
+-4 Physical Damage taken from Attacks
+		</Item>
+		<Item id="12">
+			Rarity: RARE
+Mind Knuckle
+Two-Stone Ring
+Unique ID: 3ebe43795126146ce9e4ce622304cc8a7feb1dbee904ad751101f4ad6caf64f6
+Item Level: 83
+LevelReq: 59
+Implicits: 1
++15% to Fire and Cold Resistances
++50 to Strength
+Adds 1 to 5 Lightning Damage to Attacks
++43 to maximum Energy Shield
+15% increased Rarity of Items found
++16% to all Elemental Resistances
+{crafted}+39 to maximum Life
+		</Item>
+		<Item id="13">
+			Rarity: MAGIC
+Freezing Dragonbone Rapier
+Unique ID: f24e197c8d69e0f7382cddbefe60a3b73ff0d9bae6614cceafb7c084e78e8b8b
+Item Level: 67
+Quality: 9
+Sockets: B-B G
+Implicits: 1
++25% to Global Critical Strike Multiplier
+Adds 21 to 38 Cold Damage
+		</Item>
+		<Item id="14">
+			Rarity: MAGIC
+Bubbling Eternal Life Flask of Heat
+Unique ID: b1d2397236f64243a9f6cb03a28881b51bd3c17284923beaa45aa32328f7ccd3
+Item Level: 70
+Quality: 13
+LevelReq: 65
+Implicits: 0
+50% reduced Amount Recovered
+135% increased Recovery Speed
+50% of Recovery applied Instantly
+Immunity to Freeze and Chill during Flask effect
+Removes Freeze and Chill on use
+		</Item>
+		<Item id="16">
+			Rarity: UNIQUE
+Mon'tregul's Grasp
+Void Sceptre
+Unique ID: 21037832fb21d82a088e58b034d5d2f3ea30b9c163b411d02f79f83cddb60d74
+Item Level: 77
+Quality: 20
+Sockets: R-R-G
+Implicits: 1
+40% increased Elemental Damage
+50% reduced number of Zombies allowed
++5000 to Zombie maximum Life
+30% increased Zombie Resistances
+25% increased Zombie Size
+Enemies killed by Zombies explode dealing Fire Damage
+Zombies deal 95% more Physical Damage
+		</Item>
+		<Item id="17">
+			Rarity: MAGIC
+Experimenter's Silver Flask of Dousing
+Unique ID: d3980aa497a4f4eadeb498515bd17f4493ebb2dd78042facffe4d13399ff4af0
+Item Level: 69
+Quality: 20
+LevelReq: 22
+Implicits: 0
+Immunity to Ignite during Flask effect
+Removes Burning on use
+35% increased Duration
+		</Item>
+		<Item id="18">
+			Rarity: RARE
+Rage Locket
+Heavy Belt
+Unique ID: 37d5565b550cd8cbc6cbf6e31364924eeda2ea5905c5f3fe9f2b2a1beb3fa646
+Item Level: 79
+LevelReq: 57
+Implicits: 1
++34 to Strength
++42 to Strength
++22 to Armour
++11 to maximum Energy Shield
++42% to Cold Resistance
+{crafted}+58 to maximum Life
+		</Item>
+		<Item id="19">
+			Rarity: MAGIC
+Experimenter's Granite Flask of Iron Skin
+Unique ID: 763233bcfb2db8629faa47b59672e9c49fc95d689a01cf9f57e90de18c23480f
+Item Level: 77
+Quality: 20
+LevelReq: 27
+Implicits: 0
+95% increased Armour during Flask effect
+33% increased Duration
+		</Item>
+		<Item id="20">
+			Rarity: MAGIC
+Experimenter's Jade Flask of Staunching
+Unique ID: f3d0406c57184716d3e3f4de3f81ac45f5d633b131b75897ba0b224a26ced0a2
+Item Level: 77
+Quality: 0
+LevelReq: 27
+Implicits: 0
+Immunity to Bleeding during Flask effect
+Removes Bleeding on use
+30% increased Duration
+		</Item>
+		<Item id="22">
+			Rarity: UNIQUE
+The Baron
+Close Helmet
+Unique ID: 20ae655ebaf702b861a2b6bd2a1ac01911bcde41be87c87e4e482cc9cd212d29
+Item Level: 78
+Quality: 20
+Sockets: B-R-R-B
+Implicits: 1
+{crafted}100% increased Effect of the Buff granted by your Chaos Golems
++2 to Level of Socketed Minion Gems
++36 to Strength
+Minions have 20% increased maximum Life
+Your Strength is added to your Minions
++1 to maximum number of Zombies per 300 Strength
+With 1000 or more Strength, 2% of Damage dealt by your Zombies is Leeched to you as Life
+		</Item>
+		<Item id="23">
+			Rarity: UNIQUE
+Saffell's Frame
+Branded Kite Shield
+Unique ID: dc188b73daa578ec19b3506b855b61c736eca4924d3f08aae4f5033533bec420
+Item Level: 82
+Quality: 20
+Sockets: B-R-B
+Implicits: 1
++4% to all Elemental Resistances
+80% of Block Chance applied to Spells
+25% increased Spell Damage
++10% to all Elemental Resistances
++4% to all maximum Resistances
+Cannot Block Attacks
+		</Item>
+		<Item id="35">
+			Rarity: Unique
+Spreading Rot
+Cobalt Jewel
+Limited to: 2
+Radius: Medium
+(7-13)% increased Chaos Damage
+With at least 40 Intelligence in Radius, Blight has 50% increased Hinder Duration
+With at least 40 Intelligence in Radius, Enemies Hindered by Blight take 25% increased Chaos Damage
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item variant="3" id="36">
+			Rarity: Unique
+United in Dream
+Cutlass
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+League: Breach
+Requires Level 69, 55 Str, 79 Dex
+Implicits: 2
+{variant:1}18% increased Accuracy Rating
+{variant:2,3}40% increased Accuracy Rating
+Grants level 15 Envy Skill
+Minions deal (30-40)% increased Damage
+Minions have +29% to Chaos Resistance
+{variant:1,2}Minions Poison Enemies on Hit
+{variant:3}Minions have 60% chance to Poison Enemies on Hit
+Minions Leech 5% of Damage as Life against Poisoned Enemies
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="37">
+			Rarity: Unique
+The Scourge
+Terror Claw
+Requires Level 70, 113 Dex, 113 Int
+2% of Physical Attack Damage Leeched as Life
+Adds (35-50) to (100-125) Physical Damage
+(10-15)% increased Attack Speed
+Minions have (10-15)% increased Attack Speed
+10% Chance to Cast level 18 Summon Spectral Wolf on Kill
+Increases and Reductions to Minion Damage also affect you
+70% increased Minion Damage if you have Hit Recently
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="38">
+			Rarity: MAGIC
+Saturated Eternal Life Flask of Heat
+Unique ID: c99cb287af40eabe47f3daf25e28792d0d20af3c4d17dbfdcf3d7d921708c5fc
+Item Level: 80
+Quality: 0
+LevelReq: 65
+Implicits: 0
+50% increased Amount Recovered
+33% reduced Recovery Speed
+Immunity to Freeze and Chill during Flask effect
+Removes Freeze and Chill on use
+		</Item>
+		<Item id="39">
+			Rarity: MAGIC
+Experimenter's Sulphur Flask of Staunching
+Unique ID: 4f95085ccbd808e17f9d6525222f2e70ff94a9b8ac25580dc0cd26429f7110f7
+Item Level: 79
+Quality: 20
+LevelReq: 35
+Implicits: 1
+Creates Consecrated Ground on Use
+Immunity to Bleeding during Flask effect
+Removes Bleeding on use
+30% increased Duration
+		</Item>
+		<Item variant="2" id="42">
+			Rarity: Unique
+Victario's Charity
+Laminated Kite Shield
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 50, 64 Str, 64 Int
++8% to all Elemental Resistances
++(50-70) to maximum Life
++(20-30)% to Lightning Resistance
++11% to Chaos Resistance
+{variant:1}10% increased Radius of Aura Skills
+{variant:2}20% increased Area of Effect of Aura Skills
+10% chance to grant a Power Charge to nearby Allies on Kill
+5% chance to grant a Frenzy Charge to nearby Allies on Hit
+			<ModRange range="0.8780487804878" id="2" />
+			<ModRange range="1" id="3" />
+		</Item>
+		<Item id="43">
+			Rarity: RARE
+New Item
+Coral Ring
+Crafted: true
+Prefix: {range:1}IncreasedLife7
+Prefix: {range:1}IncreasedEnergyShield11
+Prefix: None
+Suffix: {range:0.986}Strength8
+Suffix: None
+Suffix: None
+Quality: 0
+LevelReq: 59
+Implicits: 1
+{range:1}+(20-30) to maximum Life
++50 to Strength
++79 to maximum Life
++47 to maximum Energy Shield
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="44">
+			Rarity: RARE
+New Item
+Moonstone Ring
+Crafted: true
+Prefix: {range:1}IncreasedLife7
+Prefix: {range:1}IncreasedEnergyShield11
+Prefix: None
+Suffix: {range:0.954}Strength8
+Suffix: None
+Suffix: None
+Quality: 0
+LevelReq: 59
+Implicits: 1
+{range:1}+(15-25) to maximum Energy Shield
++50 to Strength
++79 to maximum Life
++47 to maximum Energy Shield
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="45">
+			Rarity: RARE
+New Item
+Moonstone Ring
+Crafted: true
+Prefix: None
+Prefix: None
+Prefix: None
+Suffix: {range:0.099}ColdResist6
+Suffix: {range:0.423}LightningResist3
+Suffix: None
+Quality: 0
+LevelReq: 48
+Implicits: 1
+{range:0.5}+(15-25) to maximum Energy Shield
++36% to Cold Resistance
++20% to Lightning Resistance
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="46">
+			Rarity: UNIQUE
+Victario's Charity
+Laminated Kite Shield
+Unique ID: d77bbf6197e8d98724495af35b70f6a01f9f7f84746c68d9e98825d36896bd42
+Item Level: 70
+Quality: 20
+Sockets: B-R-G
+Implicits: 1
++8% to all Elemental Resistances
++68 to maximum Life
++30% to Lightning Resistance
++11% to Chaos Resistance
+20% increased Area of Effect of Aura Skills
+10% chance to grant a Power Charge to nearby Allies on Kill
+5% chance to grant a Frenzy Charge to nearby Allies on Hit
+		</Item>
+		<Item variant="2" id="47">
+			Rarity: Unique
+Ahn's Heritage
+Colossal Tower Shield
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 67, 159 Str
+Implicits: 1
+{variant:2}+(10-20) to maximum Life
+(50-100)% increased Armour
++(60-80) to maximum Life
+-1 to maximum Endurance Charges
+-10% to maximum Block Chance
++6% Chance to Block
++3% to all maximum Resistances while you have no Endurance Charges
+You have Onslaught while at maximum Endurance Charges
+			<ModRange range="1" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="1" id="3" />
+		</Item>
+		<Item variant="2" id="33">
+			Rarity: Unique
+Ahn's Heritage
+Colossal Tower Shield
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 67, 159 Str
+Implicits: 1
+{variant:2}+(10-20) to maximum Life
+(50-100)% increased Armour
++(60-80) to maximum Life
+-1 to maximum Endurance Charges
+-10% to maximum Block Chance
++6% Chance to Block
++3% to all maximum Resistances while you have no Endurance Charges
+You have Onslaught while at maximum Endurance Charges
+			<ModRange range="1" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="1" id="3" />
+		</Item>
+		<Item id="49">
+			Rarity: RARE
+New Item
+Glorious Plate
+Crafted: true
+Prefix: {range:0.887}IncreasedLife9
+Prefix: {range:0.353}LocalBaseArmourAndLife4
+Prefix: None
+Suffix: {range:0.511}Strength8
+Suffix: None
+Suffix: None
+Quality: 20
+LevelReq: 68
+Implicits: 0
++47 to Strength
++104 to Armour
++133 to maximum Life
+		</Item>
+		<Item id="50">
+			Rarity: Unique
+Belly of the Beast
+Full Wyrmscale
+Requires Level 46, 68 Str, 68 Dex
+(150-200)% increased Armour
+(30-40)% increased maximum Life
++(10-15)% to all Elemental Resistances
+50% increased Flask Life Recovery rate
+Extra Gore
+			<ModRange range="0.5" id="1" />
+			<ModRange range="1" id="2" />
+			<ModRange range="0.5" id="3" />
+		</Item>
+		<Item id="51">
+			Rarity: RARE
+New Item
+Spiked Gloves
+Crafted: true
+Prefix: {range:0.891}IncreasedLife7
+Prefix: None
+Prefix: None
+Suffix: {range:0.732}Strength8
+Suffix: None
+Suffix: None
+Quality: 20
+LevelReq: 73
+Implicits: 1
+{range:0.5}(16-20)% increased Melee Damage
++48 to Strength
++78 to maximum Life
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="3">
+			Rarity: UNIQUE
+From Dust
+Cobalt Jewel
+Unique ID: ada6882c27ae975052fd408367f701ef80f70c8a7dcaaef4020d620329c3bb01
+Item Level: 75
+Limited to: 1
+Implicits: 0
+Summon 2 additional Skeleton Warriors with Summon Skeleton
++1 second to Summon Skeleton Cooldown
+		</Item>
+		<Item id="52">
+			Rarity: RARE
+New Item
+Heavy Belt
+Crafted: true
+Prefix: {range:0.627}IncreasedLife8
+Prefix: None
+Prefix: None
+Suffix: {range:0.796}Strength8
+Suffix: None
+Suffix: None
+Quality: 0
+LevelReq: 59
+Implicits: 1
+{range:1}+(25-35) to Strength
++49 to Strength
++86 to maximum Life
+			<ModRange range="1" id="1" />
+		</Item>
+		<Item id="54">
+			Rarity: Unique
+Grip of the Council
+Arcanist Gloves
+Requires Level 60, 95 Int
++30 to Strength
++(30-50) to maximum Life
++(20-40)% to Cold Resistance
+Minions have 10% reduced Movement Speed
+Minions have +40% to Cold Resistance
+Minions gain 20% of Physical Damage as Extra Cold Damage
+			<ModRange range="1" id="2" />
+			<ModRange range="1" id="3" />
+		</Item>
+		<Item variant="3" id="55">
+			Rarity: Unique
+Midnight Bargain
+Engraved Wand
+Variant: Pre 2.3.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 40, 131 Int
+Implicits: 2
+{variant:1}(12-16)% increased Spell Damage
+{variant:2,3}(22-26)% increased Spell Damage
++(10-20) to Intelligence
+Minions have (10-20)% increased Movement Speed
+Minions deal (10-30)% increased Damage
++1 to Maximum number of Zombies
++1 to Maximum number of Spectres
+{variant:1,2}+2 to Maximum number of Skeletons
+{variant:3}+1 to Maximum number of Skeletons
+Reserves 30% of Life
+Cannot be used with Chaos Inoculation
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="1" id="5" />
+		</Item>
+		<Item variant="1" id="56">
+			Rarity: Unique
+To Dust
+Cobalt Jewel
+Variant: Current
+Minions deal (8-12)% increased Damage
+(10-20)% reduced Skeleton Duration
+(3-5)% increased Skeleton Movement Speed
+(7-10)% increased Skeleton Attack Speed
+(7-10)% increased Skeleton Cast speed
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item id="6">
+			Rarity: UNIQUE
+Primordial Eminence
+Viridian Jewel
+Unique ID: 37c3efd94eb01218241de9211b3f71738b7871e73fbb74ecf76e1a045aebd4fc
+Item Level: 79
+Implicits: 0
+Golems have 19% increased Attack and Cast Speed
+30% increased Effect of Buffs granted by your Golems
+Golems have +850 to Armour
+Primordial
+		</Item>
+		<Item id="7">
+			Rarity: UNIQUE
+Primordial Eminence
+Viridian Jewel
+Unique ID: 5953292b5e5903c86bc5fe9a9a47bb1b29b9ba2e0d8a61ea02d98b7c25c3b380
+Item Level: 80
+Implicits: 0
+Golems have 17% increased Attack and Cast Speed
+30% increased Effect of Buffs granted by your Golems
+Golems have +831 to Armour
+Primordial
+		</Item>
+		<Item id="32">
+			Rarity: RARE
+Bramble Locket
+Heavy Belt
+Unique ID: 3be0843d67949e7e5d6728f011bba8969fcc492d72bc981f87f5d5ded07c6210
+Item Level: 81
+LevelReq: 59
+Implicits: 1
++32 to Strength
++43 to Strength
++284 to Armour
++59 to maximum Life
++47 to maximum Energy Shield
+{crafted}+23% to Cold Resistance
+		</Item>
+		<Item id="53">
+			Rarity: Unique
+Primordial Might
+Crimson Jewel
+Implicits: 0
+(25-30)% increased Damage if you Summoned a Golem in the past 8 seconds
+Golems Summoned in the past 8 seconds deal (35-45)% increased Damage
+Golems have (18-22)% increased Maximum Life
+Your Golems are aggressive
+Primordial
+			<ModRange range="0.5" id="1" />
+			<ModRange range="1" id="3" />
+		</Item>
+		<Item id="4">
+			Rarity: UNIQUE
+Primordial Harmony
+Cobalt Jewel
+Unique ID: 3b4af7e96a50d6c6f16d91066463bba83d29bf0ec349f3ddb228a0d7e56a9865
+Item Level: 84
+Implicits: 0
+Golem Skills have 28% increased Cooldown Recovery Speed
+Golems have 12% increased Cooldown Recovery Speed
+18% increased Golem Damage for each Type of Golem you have Summoned
+Golems regenerate 2% of their Maximum Life per second
+Primordial
+		</Item>
+		<Item id="28">
+			Rarity: UNIQUE
+Primordial Harmony
+Cobalt Jewel
+Unique ID: 1db9f4734cdbfb9d948eebadd99a2224a270d1d6a171439a361b92722fd58469
+Item Level: 84
+Implicits: 0
+Golem Skills have 26% increased Cooldown Recovery Speed
+Golems have 12% increased Cooldown Recovery Speed
+18% increased Golem Damage for each Type of Golem you have Summoned
+Golems regenerate 2% of their Maximum Life per second
+Primordial
+		</Item>
+		<Item id="57">
+			Rarity: UNIQUE
+Primordial Harmony
+Cobalt Jewel
+Unique ID: 2ca356caf19a711887ecca5906327f38813863ab056536f9df2d7f3262ce8cbc
+Item Level: 75
+Implicits: 0
+Golem Skills have 26% increased Cooldown Recovery Speed
+Golems have 15% increased Cooldown Recovery Speed
+16% increased Golem Damage for each Type of Golem you have Summoned
+Golems regenerate 2% of their Maximum Life per second
+Primordial
+		</Item>
+		<Item variant="2" id="59">
+			Rarity: Unique
+Rise of the Phoenix
+Mosaic Kite Shield
+Variant: Pre 1.1.0
+Variant: Current
+Requires Level 65, 85 Str, 85 Int
+Implicits: 2
+{variant:1}+16% to all Elemental Resistances
+{variant:2}+8% to all Elemental Resistances
+(80-100)% increased Armour and Energy Shield
+6 Life Regenerated per second
++8% to maximum Fire Resistance
++(20-25)% to Fire Resistance
+25% increased Fire Resistance while on Low Life
+10% increased Movement Speed when on Low Life
+Cannot be Ignited while on Low Life
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item variant="2" id="60">
+			Rarity: Unique
+Dying Breath
+Coiled Staff
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 23, 43 Str, 43 Int
+Implicits: 2
+{variant:1}18% Chance to Block
+{variant:2}20% Chance to Block
+18% increased Cast Speed
+18% increased maximum Mana
+18% increased Area of Effect of Aura Skills
+18% increased Area of Effect of Curse Skills
+Nearby Enemies have 18% increased Effect of Curses on them
+Nearby allies gain 18% increased Damage
+18% increased effect of Non-Curse Auras you Cast
+		</Item>
+		<Item id="48">
+			Rarity: UNIQUE
+The Anima Stone
+Prismatic Jewel
+Unique ID: 126563ba94b7b23627dab605d3a6563353e187fb5a6e674d5f70ac84c551a6e6
+Item Level: 32
+Limited to: 1
+Implicits: 0
+Can Summon up to 1 additional Golem at a time
+If you have 3 Primordial Jewels, can Summon up to 1 additional Golem at a time
+		</Item>
+		<Item variant="4" id="61">
+			Rarity: Unique
+Mon'tregul's Grasp
+Void Sceptre
+Variant: Pre 1.2.0
+Variant: Pre 2.3.0
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 68, 104 Str, 122 Int
+Implicits: 2
+{variant:1,2}15% increased Elemental Damage
+{variant:3,4}40% increased Elemental Damage
+50% reduced number of Zombies allowed
+{variant:1}+500 to Zombie maximum Life
+{variant:2,3}+2000 to Zombie maximum Life
+{variant:4}+5000 to Zombie maximum Life
+(25-30)% increased Zombie Resistances
+25% increased Zombie Size
+{variant:1,2,3}Zombies deal (80-100)% increased Physical Damage
+{variant:4}Zombies deal (80-100)% more Physical Damage
+Enemies killed by Zombies explode dealing Fire Damage
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+			<ModRange range="0.5" id="9" />
+			<ModRange range="1" id="10" />
+		</Item>
+		<Item id="62">
+			Rarity: RARE
+New Item
+Cobalt Jewel
+Crafted: true
+Prefix: {range:1}PercentIncreasedLifeJewel
+Prefix: {range:1}MinionDamageJewel
+Suffix: None
+Suffix: None
+Quality: 0
+LevelReq: 0
+Implicits: 0
+7% increased maximum Life
+Minions deal 16% increased Damage
+		</Item>
+		<Item id="63">
+			Rarity: UNIQUE
+Violent Dead
+Cobalt Jewel
+Unique ID: 08f31e365b113d5aa637f5a99c6ad22d81eda4f9d98ca4324fe8a30c790339d6
+Item Level: 1
+Radius: Medium
+Limited to: 2
+Implicits: 0
+Minions deal 15% increased Damage
+With at least 40 Intelligence in Radius, Raised
+Zombies' Slam Attack has 100% increased Cooldown Recovery Speed
+With at least 40 Intelligence in Radius, Raised Zombies' Slam
+Attack deals 30% increased Damage
+		</Item>
+		<Item variant="3" id="69">
+			Rarity: Unique
+United in Dream
+Cutlass
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+League: Breach
+Requires Level 69, 55 Str, 79 Dex
+Implicits: 2
+{variant:1}18% increased Accuracy Rating
+{variant:2,3}40% increased Accuracy Rating
+Grants level 15 Envy Skill
+Minions deal (30-40)% increased Damage
+Minions have +29% to Chaos Resistance
+{variant:1,2}Minions Poison Enemies on Hit
+{variant:3}Minions have 60% chance to Poison Enemies on Hit
+Minions Leech 5% of Damage as Life against Poisoned Enemies
+			<ModRange range="1" id="4" />
+		</Item>
+		<Item id="71">
+			Rarity: UNIQUE
+The Overflowing Chalice
+Sulphur Flask
+Unique ID: 806b5142519d056af02abff5102bfa415e383b5f6d921b4aa3518b52b9d4dd29
+Item Level: 80
+Quality: 20
+LevelReq: 35
+Implicits: 1
+Creates Consecrated Ground on Use
+100% increased Charge Recovery
+10% increased Duration
+Gains no Charges during Effect of any Overflowing Chalice Flask
+100% increased Charges gained by Other Flasks during Flask Effect
+		</Item>
+		<Item variant="2" id="72">
+			Rarity: Unique
+Lycosidae
+Rawhide Tower Shield
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 11, 33 Str
+Implicits: 1
+{variant:2}+(10-20) to maximum Life
++(120-160) to Armour
++(30-40) to maximum Life
+Your hits can't be Evaded
++(3-5)% Chance to Block
+Adds 250 to 300 Cold Damage to Counterattacks
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item variant="3" id="73">
+			Rarity: Unique
+Meginord's Vise
+Steel Gauntlets
+Variant: Pre 1.1.0
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 35, 52 Str
+10% increased Physical Damage
++100 to Strength
+{variant:1}(5-15)% reduced Attack Speed
+(40-60)% increased Armour
+{variant:3}2% of Life Regenerated per second with at least 400 Strength
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="74">
+			Rarity: Unique
+Leer Cast
+Festival Mask
+Requires Level 28, 33 Dex, 33 Int
+30% reduced Damage
++(20-30) to Dexterity
++(20-30) to maximum Life
++(20-30) to maximum Mana
+You and nearby allies gain 15% increased Damage
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="2" id="75">
+			Rarity: Unique
+Victario's Flight
+Goathide Boots
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 12, 26 Dex
++15 to Dexterity
++15 to Intelligence
+(100-150)% increased Evasion Rating
+{variant:1}30% increased Movement Speed when on Low Life
+{variant:2}15% increased Movement Speed
+{variant:2}You and nearby allies have 10% increased Movement Speed
+(5-10)% of Damage taken Gained as Mana over 4 seconds when Hit
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="7" />
+		</Item>
+		<Item variant="4" id="76">
+			Rarity: Unique
+Ambu's Charge
+Crusader Chainmail
+Variant: Pre 1.0.0
+Variant: Pre 2.0.0
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 43, 64 Str, 64 Int
+{variant:1}(80-100)% increased Armour and Energy Shield
+{variant:2}(140-180)% increased Armour and Energy Shield
+{variant:3,4}(180-220)% increased Armour and Energy Shield
+{variant:4}+(60-80) to maximum Life
+{variant:1,2}+10% to all Elemental Resistances
+{variant:3,4}+15% to all Elemental Resistances
+Gain an Endurance Charge when you take a Critical Strike
+{variant:1,2,3}2% of Life Regenerated per Second while on Low Life
+{variant:4}2% of Life Regenerated per Second if you've been Hit Recently
+Share Endurance Charges with nearby party members
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="77">
+			Rarity: Unique
+Black Sun Crest
+Lacquered Helmet
+Requires Level 51, 57 Str, 57 Dex
++1 to Level of Socketed Gems
+(100-150)% increased Armour
+40% reduced Light Radius
+(5-15)% increased Dexterity
+(5-15)% increased Strength
+(5-15)% increased Intelligence
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="1" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item variant="2" id="78">
+			Rarity: Unique
+Pillar of the Caged God
+Long Staff
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 13, 27 Str, 27 Int
+Implicits: 2
+{variant:1}12% Chance to Block
+{variant:2}18% Chance to Block
+1% increased Area of Effect of Area Skills per 20 Intelligence
+1% increased Attack Speed per 10 Dexterity
+16% increased Physical Weapon Damage per 10 Strength
+		</Item>
+		<Item variant="4" id="79">
+			Rarity: Unique
+Brutus' Lead Sprinkler
+Ritual Sceptre
+League: Torment
+Variant: Pre 2.3.0
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 28, 51 Str, 51 Int
+Implicits: 2
+{variant:1}10% increased Elemental Damage
+{variant:2,3,4}16% increased Elemental Damage
+20% increased Physical Damage
+{variant:1,2}Adds 15 to 25 Fire Damage against Ignited Enemies
+Adds (8-13) to (26-31) Physical Damage
+{variant:3}Adds 2 to 4 Fire Damage to Attacks per 10 Strength
+{variant:4}Adds 4 to 7 Fire Damage to Attacks with this Weapon per 10 Strength
+30% increased Fire Damage
+(15-20)% increased Attack Speed
+(30-40)% increased Critical Strike Chance
+			<ModRange range="0.5" id="5" />
+			<ModRange range="1" id="9" />
+			<ModRange range="0.5" id="10" />
+		</Item>
+		<Item variant="2" id="80">
+			Rarity: Unique
+Doon Cuebiyari
+Vaal Sceptre
+Variant: Pre 2.3.0
+Variant: Current
+Requires Level 64, 113 Str, 113 Int
+Implicits: 2
+{variant:1}10% increased Elemental Damage
+{variant:2}32% increased Elemental Damage
++(50-70) to Strength
+(15-18)% increased Cast Speed
++(20-30) to maximum Mana
+Socketed Gems are Supported by level 30 Iron Will
+1% increased Damage per 8 Strength when in Main Hand
+1% increased Armour per 16 Strength when in Off Hand
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item id="81">
+			Rarity: Unique
+Starforge 
+Infernal Sword
+Requires Level 67, 113 Str, 113 Dex
+30% increased Accuracy Rating
+(400-500)% increased Physical Damage
+(5-8)% increased Attack Speed
++(90-100) to maximum Life
+20% increased Area of Effect for Attacks
+Deal no Elemental Damage
+Your Physical Damage can Shock
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="58">
+			Rarity: UNIQUE
+Brawn
+Crimson Jewel
+Unique ID: 3649ba9f97e18aeaaa4b9130e0ebe9ada3eee967f7b8e4c8985273b8967d29b1
+Item Level: 80
+Implicits: 0
+6% increased Dexterity
+6% increased Strength
+11% reduced Intelligence
+		</Item>
+		<Item id="25">
+			Rarity: UNIQUE
+Brawn
+Crimson Jewel
+Unique ID: d0ee0f0ee0ffc30ea78e7e58b5e7305d73c938761f75bc78ed75fec5eb5c767c
+Item Level: 71
+Implicits: 0
+6% increased Dexterity
+6% increased Strength
+10% reduced Intelligence
+		</Item>
+		<Item id="1">
+			Rarity: UNIQUE
+Brawn
+Crimson Jewel
+Unique ID: 69a26999fe58696a89378259fab215ae23f04c772590f7662fd492014ef2abd0
+Item Level: 56
+Implicits: 0
+6% increased Dexterity
+6% increased Strength
+10% reduced Intelligence
+		</Item>
+		<Item id="2">
+			Rarity: UNIQUE
+Efficient Training
+Crimson Jewel
+Unique ID: 9c02dd67712c006cecba84f685b5b416096d35e7cbf92173729246c2bd6b976e
+Item Level: 78
+Radius: Large
+Implicits: 0
++23 to Strength
+Intelligence from Passives in Radius is Transformed to Strength
+		</Item>
+		<Item id="29">
+			Rarity: UNIQUE
+Violent Dead
+Cobalt Jewel
+Unique ID: 984a3c29372cfc6ce36a9ff4c2f5805b10a43f8164b7b1b85b3ca325b6e82fba
+Item Level: 77
+Radius: Medium
+Limited to: 2
+Implicits: 0
+Minions deal 15% increased Damage
+With at least 40 Intelligence in Radius, Raised
+Zombies' Slam Attack has 100% increased Cooldown Recovery Speed
+With at least 40 Intelligence in Radius, Raised Zombies' Slam
+Attack deals 30% increased Damage
+		</Item>
+		<Item id="65">
+			Rarity: UNIQUE
+Efficient Training
+Crimson Jewel
+Unique ID: 69e0b91b8979de6760fcace034c362119f85331efe3f5515888d764f03c80e6a
+Item Level: 80
+Radius: Large
+Implicits: 0
++23 to Strength
+Intelligence from Passives in Radius is Transformed to Strength
+		</Item>
+		<Item id="66">
+			Rarity: UNIQUE
+Brawn
+Crimson Jewel
+Unique ID: da9ce9fd534e2cd5a87ca47ae36b37101de69a85c5b449218126078e0ef7670d
+Item Level: 35
+Implicits: 0
+6% increased Dexterity
+6% increased Strength
+10% reduced Intelligence
+		</Item>
+		<Item id="86">
+			Rarity: UNIQUE
+Efficient Training
+Crimson Jewel
+Unique ID: c4835f478073dca94164afc20818960753ce0c777f80629262d5889294e53352
+Item Level: 80
+Radius: Large
+Implicits: 0
++21 to Strength
+Intelligence from Passives in Radius is Transformed to Strength
+		</Item>
+		<Item id="9">
+			Rarity: UNIQUE
+Invictus Solaris
+Archon Kite Shield
+Unique ID: 84b321ab57c4c3f0ef2a89a8d85764486ed0c6346a06257f981208017bf585b1
+Item Level: 76
+Quality: 0
+Sockets: R-B-R
+Implicits: 1
++12% to all Elemental Resistances
++2 to Level of Socketed Gems
+Triggers Level 20 Fire Aegis when Equipped
+237% increased Armour and Energy Shield
++80 to maximum Life
+Cannot be Ignited
+		</Item>
+		<Item id="10">
+			Rarity: UNIQUE
+The Baron
+Close Helmet
+Unique ID: 9af2deb59170fdb0d99c1d03676db8c52ba548b7a6395358cc389276f71a189f
+Item Level: 84
+Quality: 0
+Sockets: B-R-B-R
+Implicits: 1
+{crafted}150% increased Effect of the Buff granted by your Stone Golems
++2 to Level of Socketed Minion Gems
++39 to Strength
+Minions have 20% increased maximum Life
+Half of your Strength is added to your Minions
++1 to maximum number of Zombies per 300 Strength
+With at least 1000 Strength, 2% of Damage dealt by your Zombies is Leeched to you as Life
+		</Item>
+		<Item id="11">
+			Rarity: MAGIC
+Chemist's Sulphur Flask of Warding
+Unique ID: 1e9764fa55626ba89a4cdc12cd656a87970c27d410ddad563fb6ad961b867a2e
+Item Level: 76
+Quality: 20
+LevelReq: 35
+Implicits: 1
+Creates Consecrated Ground on Use
+25% reduced Charges used
+Immune to Curses during Flask effect
+Removes Curses on use
+		</Item>
+		<Item id="15">
+			Rarity: RARE
+Blight Nail
+Breach Ring
+Unique ID: 4ea35fd4f42c0fd8a8bdb070d77dc8b09ddc7bf70f43bea00117bbc7e61f48b1
+Item Level: 83
+LevelReq: 65
+Implicits: 1
+Properties are doubled while in a Breach
++55 to Strength
++40 to maximum Energy Shield
++71 to maximum Life
++35 to maximum Mana
++36% to Cold Resistance
++20% to Lightning Resistance
+Corrupted
+		</Item>
+		<Item id="24">
+			Rarity: UNIQUE
+Shaper's Touch
+Crusader Gloves
+Unique ID: 3a5acc84249ebc073dc0ec6b491bf1bb60c5cb825b4b86ec2f6becbe2e273383
+Item Level: 86
+Quality: 20
+Sockets: B-R-B-G
+Implicits: 1
+{crafted}Trigger Commandment of the Grave when your Skills or Minions Kill
+116% increased Armour and Energy Shield
++4 Accuracy Rating per 2 Intelligence
++1 Life per 4 Dexterity
++2 Mana per 4 Strength
+2% increased Energy Shield per 10 Strength
+2% increased Evasion Rating per 10 Intelligence
+2% increased Melee Physical Damage per 10 Dexterity
+		</Item>
+		<Item id="30">
+			Rarity: UNIQUE
+Mon'tregul's Grasp
+Void Sceptre
+Unique ID: 9e0d9d658701e075c010919ae370e19514e8a7ef9e0ef22bfd0c08b6002c0a58
+Item Level: 80
+Quality: 0
+Sockets: R-R-G
+Implicits: 1
+40% increased Elemental Damage
+50% reduced number of Zombies allowed
++5000 to Zombie maximum Life
+29% increased Zombie Resistances
+25% increased Zombie Size
+Enemies killed by Zombies explode dealing Fire Damage
+Zombies deal 100% more Physical Damage
+		</Item>
+		<Item id="31">
+			Rarity: UNIQUE
+Astramentis
+Onyx Amulet
+Unique ID: 3013e66f4e4442967647f5890bd2825345adef4a0f27ec3b27cac56fcba9dbde
+Item Level: 75
+LevelReq: 20
+Implicits: 1
++16 to all Attributes
++97 to all Attributes
+-4 Physical Damage taken from Attacks
+		</Item>
+		<Item id="40">
+			Rarity: MAGIC
+Experimenter's Granite Flask of Iron Skin
+Unique ID: 76dfb7177aeb2c1730da129c8a317ceaae8e7b7f04360643115356df91e9381b
+Item Level: 78
+Quality: 20
+LevelReq: 27
+Implicits: 0
+100% increased Armour during Flask effect
+38% increased Duration
+		</Item>
+		<Item id="41">
+			Rarity: RARE
+Honour Grip
+Ruby Ring
+Unique ID: 9f0ca0363ca8fab32c100249f45e8d225ab2380cc77d266b6bc691c86c93a070
+Item Level: 79
+LevelReq: 59
+Implicits: 1
++30% to Fire Resistance
++50 to Strength
++31 to maximum Energy Shield
++23 to maximum Life
++30% to Fire Resistance
++42% to Lightning Resistance
+{crafted}Adds 4 to 39 Lightning Damage to Attacks
+		</Item>
+		<Item id="64">
+			Rarity: MAGIC
+Haku's Slaughter Knife
+Unique ID: 1e07f2bd7423ec8c5af322ab07cf994d160d5ab86e0f7fc98882c574368a87bb
+Item Level: 59
+Quality: 0
+Sockets: R B B
+Implicits: 1
+30% increased Global Critical Strike Chance
++6% to Quality of Socketed Support Gems
+		</Item>
+		<Item id="67">
+			Rarity: MAGIC
+Sapping Eternal Life Flask of Heat
+Unique ID: 0888d6a8c487d7bb083b2fa39c65b490015aae50c5a2cc5eb60c943611582375
+Item Level: 81
+Quality: 20
+LevelReq: 65
+Implicits: 0
+40% increased Life Recovered
+Removes 10% of Life Recovered from Mana when used
+Immunity to Freeze and Chill during Flask effect
+Removes Freeze and Chill on use
+		</Item>
+		<Item id="68">
+			Rarity: MAGIC
+Chemist's Quicksilver Flask of Adrenaline
+Unique ID: 8459397ca4390cf9644899dd65ee75a1dadce4c8ea9c73c76233fdb52dcafa41
+Item Level: 77
+Quality: 20
+LevelReq: 11
+Implicits: 0
+23% reduced Charges used
+30% increased Movement Speed during Flask effect
+		</Item>
+		<Item id="70">
+			Rarity: NORMAL
+Slaughter Knife
+Unique ID: 67345e56a4707d5f4922f234c2f7a89ba34e884232551db2b6e74af4ef8409b3
+Item Level: 67
+Quality: 0
+Sockets: B-B-R
+Implicits: 1
+30% increased Global Critical Strike Chance
+		</Item>
+		<Item id="82">
+			Rarity: MAGIC
+Experimenter's Silver Flask of Staunching
+Unique ID: ef001f75b64776ee246e6353896a4b200c3d583df525413f8f760ad19c08cd64
+Item Level: 76
+Quality: 20
+LevelReq: 22
+Implicits: 0
+Immunity to Bleeding during Flask effect
+Removes Bleeding on use
+32% increased Duration
+		</Item>
+		<Item id="83">
+			Rarity: RARE
+Armageddon Trap
+Heavy Belt
+Unique ID: 9156e00ad429638b169df666a72f6a3b3095ccd141735a965d249d161e3da3c5
+Item Level: 84
+LevelReq: 65
+Implicits: 1
++34 to Strength
++55 to Strength
++44 to maximum Energy Shield
++44% to Fire Resistance
++40% to Cold Resistance
+{crafted}+62 to maximum Life
+		</Item>
+		<Item id="84">
+			Rarity: UNIQUE
+Geofri's Sanctuary
+Elegant Ringmail
+Unique ID: b3c2c7d0d9383e6438f2d37ba5b3cbe845e91f222f3ee5a0ecc6db5d0d64cba5
+Item Level: 79
+Quality: 20
+Sockets: R-B-R-B-B-R
+Implicits: 0
+75% increased Armour and Energy Shield
++38 to maximum Energy Shield
++70 to maximum Life
++18% to all Elemental Resistances
++2 maximum Energy Shield per 5 Strength
+Zealot's Oath
+		</Item>
+		<Item id="85">
+			Rarity: UNIQUE
+Alberon's Warpath
+Soldier Boots
+Unique ID: 67fb9ae5cf7924d33800b27726d6383c4fbac846d85f7a869ca595bf9fd6a630
+Item Level: 82
+Quality: 20
+Sockets: G-B G-R
+Implicits: 1
+{crafted}10% increased Movement Speed if you haven't been Hit Recently
+Adds 1 to 80 Chaos Damage to Attacks
++216 to Armour
++11% to Chaos Resistance
+20% increased Movement Speed
++1 to maximum number of Skeletons
+18% increased Strength
+		</Item>
+		<Item id="87">
+			Rarity: RARE
+New Item
+Archon Kite Shield
+Crafted: true
+Prefix: {range:0.405}IncreasedLife8
+Prefix: {range:0.606}LocalBaseArmourAndEnergyShield5
+Prefix: {range:0.113}LocalIncreasedArmourAndEnergyShield7
+Suffix: {range:0.908}Strength7
+Suffix: {range:0.606}AllResistances5
+Suffix: None
+Quality: 20
+Sockets: B-B-B
+LevelReq: 68
+Implicits: 1
++12% to all Elemental Resistances
++42 to Strength
++187 to Armour
+93% increased Armour and Energy Shield
++63 to maximum Energy Shield
++84 to maximum Life
++16% to all Elemental Resistances
+		</Item>
+		<Item id="88">
+			Rarity: MAGIC
+Experimenter's Silver Flask of Warding
+Crafted: true
+Prefix: {range:1}FlaskIncreasedDuration2
+Suffix: {range:0.5}FlaskCurseImmunity1
+Quality: 20
+LevelReq: 22
+Implicits: 0
+Immune to Curses during Flask effect
+Removes Curses on use
+40% increased Duration
+		</Item>
+		<Item id="89">
+			Rarity: MAGIC
+Sapping Eternal Life Flask of Staunching
+Crafted: true
+Prefix: {range:0.5}FlaskExtraLifeCostsMana1
+Suffix: {range:0.5}FlaskRemovesBleeding1
+Quality: 20
+LevelReq: 65
+Implicits: 0
+40% increased Life Recovered
+Removes 10% of Life Recovered from Mana when used
+Immunity to Bleeding during Flask effect
+Removes Bleeding on use
+		</Item>
+		<Item id="90">
+			Rarity: MAGIC
+Experimenter's Quicksilver Flask of Adrenaline
+Crafted: true
+Prefix: {range:1}FlaskIncreasedDuration2
+Suffix: {range:1}FlaskBuffMovementSpeedWhileHealing
+Quality: 20
+LevelReq: 16
+Implicits: 0
+30% increased Movement Speed during Flask effect
+40% increased Duration
+		</Item>
+		<Item id="91">
+			Rarity: MAGIC
+Experimenter's Silver Flask of Warding
+Crafted: true
+Prefix: {range:1}FlaskIncreasedDuration2
+Suffix: {range:0.5}FlaskCurseImmunity1
+Quality: 20
+LevelReq: 22
+Implicits: 0
+Immune to Curses during Flask effect
+Removes Curses on use
+40% increased Duration
+		</Item>
+		<Slot name="Gloves" itemId="24" />
+		<Slot name="Weapon 1" itemId="30" />
+		<Slot name="Flask 1" itemId="90" />
+		<Slot name="Flask 3" itemId="91" />
+		<Slot name="Amulet" itemId="31" />
+		<Slot name="Flask 2" itemId="89" />
+		<Slot name="Weapon 2" itemId="87" />
+		<Slot name="Body Armour" itemId="84" />
+		<Slot name="Belt" itemId="83" />
+		<Slot name="Flask 5" itemId="71" />
+		<Slot name="Ring 2" itemId="41" />
+		<Slot name="Flask 4" itemId="40" />
+		<Slot name="Weapon 1 Swap" itemId="64" />
+		<Slot name="Boots" itemId="85" />
+		<Slot name="Ring 1" itemId="15" />
+		<Slot name="Weapon 2 Swap" itemId="70" />
+		<Slot name="Helmet" itemId="10" />
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="24" />
+			<Slot name="Weapon 1" itemId="30" />
+			<Slot name="Flask 1" itemId="90" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="91" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="31" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="89" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="87" />
+			<Slot name="Body Armour" itemId="84" />
+			<Slot name="Belt" itemId="83" />
+			<Slot name="Flask 5" itemId="71" />
+			<Slot name="Ring 2" itemId="41" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="40" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="64" />
+			<Slot name="Boots" itemId="85" />
+			<Slot name="Ring 1" itemId="15" />
+			<Slot name="Weapon 2 Swap" itemId="70" />
+			<Slot name="Helmet" itemId="10" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+		<ItemSet useSecondWeaponSet="false" title="guardian" id="2">
+			<Slot name="Gloves" itemId="73" />
+			<Slot name="Weapon 1" itemId="60" />
+			<Slot name="Flask 1" itemId="0" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="0" />
+			<Slot name="Body Armour" itemId="76" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="0" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="75" />
+			<Slot name="Ring 1" itemId="0" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="74" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="conditionEnemyMaimed" boolean="true" />
+		<Input name="enemyIsBoss" string="SHAPER" />
+		<Input name="minionsUseFrenzyCharges" boolean="true" />
+		<Input name="conditionHitRecently" boolean="true" />
+		<Input name="conditionEnemyPoisoned" boolean="true" />
+		<Input name="enemyConditionHitByLightningDamage" boolean="true" />
+	</Config>
+</PathOfBuilding>

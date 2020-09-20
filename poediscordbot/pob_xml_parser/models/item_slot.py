@@ -36,7 +36,7 @@ class Item:
         try:
             name = matches[0]
         except IndexError as err:
-            log.warning(f"Name could not be retrieved. Trying string split method Err={err}")
+            log.warning(f"Item parsing: Name could not be retrieved. Trying string split method Err={err}")
             name = self.raw_content.split('\n')[0]
 
         return name

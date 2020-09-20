@@ -25,7 +25,7 @@ class TestBot(unittest.TestCase):
             with self.subTest(i=json_build['name']):
                 # load data from pastebin if needed
                 if 'data' not in json_build:
-                    build_embed = PoBCog._parse_pob(demo_author, json_build['pastebin'])
+                    build_embed = PoBCog._fetch_xml(demo_author, json_build['pastebin'])
                 # load data locally from the 'data' value
                 else:
                     xml = pastebin.decode_to_xml(json_build['data'])
