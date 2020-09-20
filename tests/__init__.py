@@ -11,3 +11,6 @@ def load_file_as_string(path):
 
 def load_json_file(path):
     return json.loads(load_file_as_string(path))
+
+def get_test_path(file):
+    return os.path.join(TEST_DIR, file)
