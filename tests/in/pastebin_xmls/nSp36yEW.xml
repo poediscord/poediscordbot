@@ -1,0 +1,195 @@
+<PathOfBuilding>
+	<Build level="100" targetVersion="3_0" banditNormal="None" bandit="Alira" banditMerciless="None" className="Shadow" ascendClassName="Saboteur" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageHit" value="5362.05087" />
+		<PlayerStat stat="AverageDamage" value="5362.05087" />
+		<PlayerStat stat="Speed" value="1.13" />
+		<PlayerStat stat="Speed" value="1.13" />
+		<PlayerStat stat="TrapThrowingTime" value="0.36231884057971" />
+		<PlayerStat stat="TrapCooldown" value="2.4" />
+		<PlayerStat stat="PreEffectiveCritChance" value="26.1" />
+		<PlayerStat stat="CritChance" value="26.1" />
+		<PlayerStat stat="CritMultiplier" value="2.8" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="6059.1174831" />
+		<PlayerStat stat="TotalDot" value="3155.4" />
+		<PlayerStat stat="IgniteDPS" value="1475.9559657661" />
+		<PlayerStat stat="WithPoisonAverageDamage" value="8517.45087" />
+		<PlayerStat stat="AreaOfEffectRadius" value="26" />
+		<PlayerStat stat="ManaCost" value="12" />
+		<PlayerStat stat="Str" value="174" />
+		<PlayerStat stat="ReqStr" value="0" />
+		<PlayerStat stat="Dex" value="73" />
+		<PlayerStat stat="ReqDex" value="98" />
+		<PlayerStat stat="Int" value="323" />
+		<PlayerStat stat="ReqInt" value="68" />
+		<PlayerStat stat="Life" value="3808" />
+		<PlayerStat stat="Spec:LifeInc" value="181" />
+		<PlayerStat stat="LifeUnreserved" value="3808" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="68.544" />
+		<PlayerStat stat="LifeLeechGainPerHit" value="0" />
+		<PlayerStat stat="Mana" value="1170" />
+		<PlayerStat stat="Spec:ManaInc" value="47" />
+		<PlayerStat stat="ManaUnreserved" value="1170" />
+		<PlayerStat stat="ManaUnreservedPercent" value="100" />
+		<PlayerStat stat="ManaRegen" value="40.8" />
+		<PlayerStat stat="ManaLeechGainPerHit" value="0" />
+		<PlayerStat stat="EnergyShield" value="31" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="35" />
+		<PlayerStat stat="EnergyShieldRegen" value="0" />
+		<PlayerStat stat="EnergyShieldLeechGainPerHit" value="0" />
+		<PlayerStat stat="Evasion" value="406" />
+		<PlayerStat stat="Spec:EvasionInc" value="0" />
+		<PlayerStat stat="MeleeEvadeChance" value="5" />
+		<PlayerStat stat="MeleeEvadeChance" value="5" />
+		<PlayerStat stat="ProjectileEvadeChance" value="5" />
+		<PlayerStat stat="Armour" value="0" />
+		<PlayerStat stat="Spec:ArmourInc" value="20" />
+		<PlayerStat stat="PhysicalDamageReduction" value="0" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.08" />
+		<PlayerStat stat="BlockChance" value="0" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="40" />
+		<PlayerStat stat="SpellDodgeChance" value="30" />
+		<PlayerStat stat="FireResist" value="-28" />
+		<PlayerStat stat="ColdResist" value="-28" />
+		<PlayerStat stat="LightningResist" value="-28" />
+		<PlayerStat stat="ChaosResist" value="-40" />
+		<PlayerStat stat="FireResistOverCap" value="0" />
+		<PlayerStat stat="ColdResistOverCap" value="0" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Import />
+	<Calcs>
+		<Input name="skill_number" number="1" />
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" mainActiveSkill="1">
+			<Gem level="20" skillId="FireTrap" skillPart="1" quality="0" skillPartCalcs="1" enabled="true" nameSpec="Fire Trap" skillMinion="SummonedPhantasm" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec title="Fire Trap Shadow">
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAYDABzcjxpnTkIsbAi86u98mAaFe9D1bIzAZsMJJpU6Qq-nZlS5k_Id7-sEsw5IVUuMNq6ze19JUd2ooHmVLv1KRZ1_xp2qgptvdwQHna4RLZBVcFJh4kt4A2XopDwFMHFSU8Hz6-6D8RZv7DgNze080NCNv6cIYqwyGFXGwuwsnNhU-JfwH5UgidPVpj0PfIOaOy0fTLNBlgZ35CLr9fDVBx6ioxpsogCXlT1fXfKD2zpYHM5o8m06JKp8u_J10B8rUAVCcFGWdP5URwbjahGW8YoT33xLUzE62HZvlPG3dVNS1COa4I_6BbV-sLTFn9826bMDJy97DR7wKgvb5wZAakM=
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="0" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="41263" itemId="0" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+			</Sockets>
+		</Spec>
+		<Spec title="Fire Trap Scion">
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAABABzcCNRBh48abAj56O98K1Cio2yMAwQe8MMJOkKvp7mT8h2pSADBBLMOSFVLjDZ7X5rg3ajaYkWdf8adqho4lnS3dZ2uc20DdZBVcFJh4kt46KSmMjwFMHGmV03jwfPyRevug_EWb-w4Dc2RK-08lPGNvzWSpwh8uzIYxq63PsLs2FT4l_AfPC2UoInT1abe3D0PmjvYvWjy8YrS6CoLhFPAZrFb_o_b5-Qi6_WiAP4KXwQ64VNSXfLE9u_9fEuVLrjKD8RtOiSq2E3ydTt8SVHw-XBRdm_-VAZ3Bx4RluNqYqxTMfDVOtiCmzbpJy_UI2h0j_rQ0AW1frC0xZ_fg8yzA-XLew0czhpsRwYGQINf
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="0" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="41263" itemId="0" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="Trap" zoomY="412.06554553156" showHeatMap="false" zoomLevel="5" showStatDifferences="true" zoomX="-396.96015051898" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="0" />
+			<Slot name="Weapon 1" itemId="0" />
+			<Slot name="Flask 1" itemId="0" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="0" />
+			<Slot name="Body Armour" itemId="0" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="0" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="0" />
+			<Slot name="Ring 1" itemId="0" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="0" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config />
+</PathOfBuilding>

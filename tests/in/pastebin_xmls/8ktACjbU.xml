@@ -1,0 +1,880 @@
+<PathOfBuilding>
+	<Build level="90" targetVersion="3_0" banditNormal="None" bandit="None" banditMerciless="None" className="Witch" ascendClassName="Elementalist" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageDamage" value="74350.1304" />
+		<PlayerStat stat="Speed" value="2.4716" />
+		<PlayerStat stat="Speed" value="2.4716" />
+		<PlayerStat stat="PreEffectiveCritChance" value="8.75" />
+		<PlayerStat stat="CritChance" value="7.35" />
+		<PlayerStat stat="CritMultiplier" value="1" />
+		<PlayerStat stat="HitChance" value="84" />
+		<PlayerStat stat="TotalDPS" value="183763.78229664" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="IgniteDPS" value="22258.62" />
+		<PlayerStat stat="WithPoisonDPS" value="183763.78229664" />
+		<PlayerStat stat="ManaCost" value="21" />
+		<PlayerStat stat="Str" value="369" />
+		<PlayerStat stat="ReqStr" value="98" />
+		<PlayerStat stat="Dex" value="276" />
+		<PlayerStat stat="ReqDex" value="116" />
+		<PlayerStat stat="Int" value="262" />
+		<PlayerStat stat="ReqInt" value="212" />
+		<PlayerStat stat="Life" value="4816" />
+		<PlayerStat stat="Spec:LifeInc" value="186" />
+		<PlayerStat stat="LifeUnreserved" value="4816" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="125.216" />
+		<PlayerStat stat="LifeLeechGainRate" value="1107.68" />
+		<PlayerStat stat="Mana" value="705" />
+		<PlayerStat stat="Spec:ManaInc" value="0" />
+		<PlayerStat stat="ManaUnreserved" value="571" />
+		<PlayerStat stat="ManaUnreservedPercent" value="80.992907801418" />
+		<PlayerStat stat="ManaRegen" value="27.1" />
+		<PlayerStat stat="ManaLeechGainRate" value="141" />
+		<PlayerStat stat="EnergyShield" value="21" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="0" />
+		<PlayerStat stat="EnergyShieldRegen" value="0" />
+		<PlayerStat stat="EnergyShieldLeechGainRate" value="0" />
+		<PlayerStat stat="Evasion" value="4326" />
+		<PlayerStat stat="Spec:EvasionInc" value="24" />
+		<PlayerStat stat="MeleeEvadeChance" value="27" />
+		<PlayerStat stat="MeleeEvadeChance" value="27" />
+		<PlayerStat stat="ProjectileEvadeChance" value="27" />
+		<PlayerStat stat="Armour" value="1819" />
+		<PlayerStat stat="Spec:ArmourInc" value="56" />
+		<PlayerStat stat="PhysicalDamageReduction" value="16" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.3" />
+		<PlayerStat stat="BlockChance" value="15" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="76" />
+		<PlayerStat stat="ColdResist" value="75" />
+		<PlayerStat stat="LightningResist" value="14" />
+		<PlayerStat stat="ChaosResist" value="-48" />
+		<PlayerStat stat="FireResistOverCap" value="42" />
+		<PlayerStat stat="ColdResistOverCap" value="11" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Import />
+	<Calcs>
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Input name="skill_number" number="1" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="DF:EleHit" enabled="true" slot="Helmet" mainActiveSkill="1">
+			<Gem level="20" skillId="SupportWeaponElementalDamage" quality="0" enabled="true" nameSpec="Elemental Damage with Attacks" />
+			<Gem level="20" skillId="SupportDamageAgainstChilled" skillPart="1" quality="0" enabled="true" nameSpec="Hypothermia" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" skillId="SupportGreaterMultipleProjectiles" quality="0" enabled="true" nameSpec="Greater Multiple Projectiles" />
+			<Gem level="1" skillId="ElementalHit" skillPart="1" quality="0" skillPartCalcs="1" enabled="true" nameSpec="Elemental Hit" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="SupportFirePenetration" skillPart="1" quality="0" enabled="false" nameSpec="Fire Penetration" skillMinion="SummonedChaosGolem" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Boots" mainActiveSkill="1">
+			<Gem level="20" skillId="HeraldOfAsh" skillPart="1" quality="0" enabled="true" nameSpec="Herald of Ash" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" quality="0" enabled="false" nameSpec="" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAMCANlhm6EUdfMJAefxbFnz_EuUbxiRaGXfbY9gBS3318UoTIsyifZbyL864U4qhmAj0yL0GlUJ9nfldufE9ryfNuh07b6nVK5XDWaeGjiezQQHLlOQVY9G42rqYkkbr43yQa2NpldN4_JFeu_sVR0UFE0Wb9sC34oGDqTCRlL-j8auQzG3PvObvTY8LVm870vTb9i9NtgtHzhTZlTPfu_rUWx90pUgTLPawdIhW6_8TPnIrJhlTSqNOlinCJpqJ-062KyqjX5WSGEhcg_UfP4KaxenMBku-tKQ-oNfTP-D2ycv0B9retgkR35yqYIHdcvZfIPMVcZvJzWSIq-3toTv
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="0" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="41263" itemId="2" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="26725" itemId="2" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="" zoomY="2252.1222241991" showHeatMap="true" zoomLevel="10" showStatDifferences="true" zoomX="355.2602856306" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<Item variant="4" id="1">
+			Rarity: Unique
+Doomfletch's Prism
+Royal Bow
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Pre 3.1.0
+Variant: Current
+Requires Level 40, 95 Dex
+Implicits: 3
+{variant:1}(6-12)% increased Elemental Damage with Weapons
+{variant:2}(20-24)% increased Elemental Damage with Weapons
+{variant:3,4}(20-24)% increased Elemental Damage with Attack Skills
+{variant:1,2,3}Adds (8-12) to (16-20) Physical Damage
+{variant:4}Adds (12-16) to (20-24) Physical Damage
+(10-14)% increased Attack Speed
+{variant:1,2,3}(30-40)% increased Critical Strike Chance
+60% increased Mana Regeneration Rate
+{variant:1,2,3}Gain 110% of Bow Physical Damage as Extra Damage of each Element
+{variant:4}Gain 100% of Bow Physical Damage as Extra Damage of each Element
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+		</Item>
+		<Item id="2">
+			Rarity: RARE
+Elemental Hit Wand Jewel (use with level 19 power siphon)
+Cobalt Jewel
+Quality: 0
+Limited to: 1
+Implicits: 0
+49% chance to ignite
+10% more damage
+Adds 590 to 1096 fire damage to attacks
+Adds 483 to 896 cold damage to attacks
+Adds 95 to 1802 lightning damage to attacks
+Deal no physical damage
+100% less chaos damage
+Deal no non-fire damage
+		</Item>
+		<Item id="3">
+			Rarity: Unique
+Xoph's Blood
+Amber Amulet
+League: Breach
+Requires Level 64
++(20-30) to Strength
+10% increased maximum Life
++(20-40)% to Fire Resistance
+10% increased Strength
+Damage Penetrates 10% Fire Resistance
+Cover Enemies in Ash when they Hit you
+Avatar of Fire
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="3" />
+		</Item>
+		<Item variant="2" id="4">
+			Rarity: Unique
+Call of the Brotherhood
+Two-Stone Ring
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 20
++(12-16)% to Cold and Lightning Resistances
++(15-25) to Intelligence
+(15-25)% increased Lightning Damage
+(30-40)% increased Mana Regeneration Rate
+{variant:1}50% of Lightning Damage Converted to Cold Damage
+{variant:2}40% of Lightning Damage Converted to Cold Damage
+Your spells have 100% chance to Shock against Frozen enemies
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="3" id="5">
+			Rarity: Unique
+Pyre
+Sapphire Ring
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 11
++(20-30)% to Cold Resistance
++(25-35)% to Fire Resistance
+{variant:1,2}(25-35)% increased Burning Damage
+{variant:3}(60-80)% increased Burning Damage
+{variant:1}100% of Cold Damage Converted to Fire Damage
+{variant:2,3}40% of Cold Damage Converted to Fire Damage
+10% increased Light Radius
+Ignited Enemies you hit are destroyed on Kill
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item id="6">
+			Rarity: Unique
+The Signal Fire
+Fire Arrow Quiver
+Requires Level 24
+Adds 4 to 8 Fire Damage to Attacks with Bows
+10% increased Attack Speed
++(80-100) to Evasion Rating
++(10-30) to maximum Mana
+Gain (25-35)% of Physical Damage as Extra Fire Damage
+50% of Physical Damage Converted to Fire Damage
+Adds 5 to 10 Fire Damage to Attacks with Bows
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item variant="3" id="7">
+			Rarity: Unique
+Abyssus
+Ezomyte Burgonet
+Variant: Pre 2.2.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 60, 138 Str
+Adds 40 to 60 Physical Damage to Attacks
++(20-25) to all Attributes
+{variant:1}+(100-150)% to Melee Critical Strike Multiplier
+{variant:2}+(150-225)% to Melee Critical Strike Multiplier
+{variant:3}+(100-125)% to Melee Critical Strike Multiplier
+(100-120)% increased Armour
+(40-50)% increased Physical Damage taken
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+		</Item>
+		<Item id="9">
+			Rarity: RARE
+Armour/Evasion Boots
+Two-Toned Boots (Armour/Evasion)
+Crafted: true
+Prefix: LocalIncreasedArmourAndEvasion5
+Prefix: IncreasedLife6
+Prefix: MovementVelocity5
+Suffix: {range:1}ColdResist4
+Suffix: {range:1}LightningResist4
+Suffix: {range:0.5}Dexterity5
+Quality: 20
+Sockets: G-G-G-G
+LevelReq: 70
+Implicits: 1
+{range:0.5}+(15-20)% to Fire and Cold Resistances
++30 to Dexterity
+74% increased Armour and Evasion
++65 to maximum Life
++29% to Cold Resistance
++29% to Lightning Resistance
+30% increased Movement Speed
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="10">
+			Rarity: Unique
+Obscurantis 
+Lion Pelt
+Requires Level 70, 150 Dex
++(300-500) to Accuracy Rating
+(100-120)% increased Evasion Rating
++(50-80) to maximum Life
+1% increased Projectile Attack Damage per 200 Accuracy Rating
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+		</Item>
+		<Item variant="2" id="11">
+			Rarity: Unique
+Queen of the Forest
+Destiny Leather
+Variant: {2_6}Pre 3.1.0
+Variant: Current
+Requires Level 59, 160 Dex
+{variant:1}(240-380)% increased Evasion Rating
+{variant:2}(200-240)% increased Evasion Rating
++(60-70) to maximum Life
++(6-10)% to Fire Resistance
++(26-40)% to Cold Resistance
++(11-25)% to Lightning Resistance
+25% reduced Movement Speed
+1% increased Movement Speed per 450 Evasion Rating, up to 100%
+-(50-40) Physical Damage taken when hit by Animals
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="9" />
+		</Item>
+		<Item variant="2" id="12">
+			Rarity: Unique
+Storm Cloud
+Long Bow
+Variant: Pre 2.0.0
+Variant: Current
+Requires Level 9, 38 Dex
+No Physical Damage
+{variant:1}Adds 1 to 75 Lightning Damage
+{variant:2}Adds 1 to 85 Lightning Damage
+(36-50)% increased Attack Speed
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="4" id="13">
+			Rarity: Unique
+Windripper
+Imperial Bow
+Variant: Pre 2.0.0
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 66, 212 Dex
+Implicits: 3
+{variant:2}(6-12)% increased Elemental Damage with Weapons
+{variant:3}(20-24)% increased Elemental Damage with Weapons
+{variant:4}(20-24)% increased Elemental Damage with Attack Skills
+Adds (32-40) to (48-60) Cold Damage
+Adds 1 to (80-100) Lightning Damage
+(10-15)% increased Attack Speed
+{variant:1}(80-100)% increased Critical Strike Chance
+{variant:2,3,4}(60-80)% increased Critical Strike Chance
+{variant:1}25% increased Quantity of Items Dropped by Slain Frozen enemies
+{variant:2,3,4}15% increased Quantity of Items Dropped by Slain Frozen Enemies
+{variant:1}50% increased Rarity of Items Dropped by Slain Shocked enemies
+{variant:2,3,4}30% increased Rarity of Items Dropped by Slain Shocked Enemies
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+		</Item>
+		<Item id="14">
+			Rarity: RARE
++3 Bow
+Thicket Bow
+Crafted: true
+Prefix: LocalIncreaseSocketedGemLevel1
+Prefix: {range:1}LocalIncreaseSocketedBowGemLevel2
+Prefix: {range:1}WeaponElementalDamageOnWeapons5_
+Suffix: {range:1}LocalIncreasedAttackSpeed4
+Suffix: {range:1}LocalCriticalStrikeChance6
+Suffix: {range:1}LocalCriticalMultiplier6
+Quality: 20
+Sockets: G-G-G-G-G-G
+LevelReq: 64
+Implicits: 0
++1 to Level of Socketed Gems
++2 to Level of Socketed Bow Gems
+16% increased Attack Speed
+38% increased Critical Strike Chance
++38% to Global Critical Strike Multiplier
+42% increased Elemental Damage with Attack Skills
+		</Item>
+		<Item id="15">
+			Rarity: RARE
+Armour/Evasion Chest
+Triumphant Lamellar
+Crafted: true
+Prefix: {range:1}LocalBaseArmourAndLife3
+Prefix: LocalIncreasedArmourAndEvasion5
+Prefix: IncreasedLife9
+Suffix: {range:0.5}Dexterity5
+Suffix: {range:1}ColdResist4
+Suffix: {range:0.31}ReducedPhysicalDamageTaken2_
+Quality: 20
+Sockets: G-G-G-G-G-G
+LevelReq: 69
+Implicits: 0
++30 to Dexterity
++95 to Armour
+74% increased Armour and Evasion
++128 to maximum Life
++29% to Cold Resistance
+3% additional Physical Damage Reduction
+		</Item>
+		<Item id="16">
+			Rarity: Unique
+The Nomad
+Studded Belt
+Requires Level 48
+(20-30)% increased Stun Duration on Enemies
+(25-40)% increased Global Physical Damage
++(40-50) to Strength
++(40-50) to Dexterity
++(20-25)% to all Elemental Resistances while you have at least 200 Strength
+(40-50)% increased Projectile Attack Damage while you have at least 200 Dexterity
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item id="17">
+			Rarity: Unique
+Devoto's Devotion
+Nightmare Bascinet
+Requires Level 67, 62 Str, 85 Dex
+10% reduced Physical Damage
++(50-65) to Dexterity
+16% increased Attack Speed
+(150-200)% increased Armour and Evasion
++(15-25)% to Chaos Resistance
+20% increased Movement Speed
+Mercury Footprints
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item variant="2" id="18">
+			Rarity: Unique
+Drillneck
+Penetrating Arrow Quiver
+Requires Level 36
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Implicits: 2
+{variant:1}10% chance of Arrows Piercing
+{variant:2}Arrows Pierce an additional Target
+(8-12)% increased Attack Speed
++350 to Evasion Rating
++(40-50) to maximum Life
+Adds (10-14) to (19-24) Physical Damage to Attacks with Bows
+{variant:1}Projectile Damage increased by 50% of Arrow Pierce Chance
+{variant:2}Arrows deal 50% increased Damage with Hits and Ailments to Targets they Pierce
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item id="19">
+			Rarity: Unique
+Yoke of Suffering
+Onyx Amulet
+Requires Level: 25
++(10-16) to all Attributes 
++(10-20)% to Fire Resistance 
++(10-20)% to Cold Resistance 
++(20-40)% to Lightning Resistance 
+30% reduced Duration of Ailments on Enemies 
+(5-10)% chance to Shock 
+Enemies take 5% increased Damage for each type of Ailment you have inflicted on them 
+Your Elemental Damage can Shock
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item variant="2" id="20">
+			Rarity: UNIQUE
+Kaom's Heart
+Glorious Plate
+Variant: Pre 1.0.0
+Variant: Current
+Selected Variant: 2
+Quality: 20
+LevelReq: 68
+Implicits: 0
+Has no Sockets
+{variant:1}+1000 to maximum Life
+{variant:2}+500 to maximum Life
+{variant:2}{range:0.512}(20-40)% increased Fire Damage
+			<ModRange range="0.512" id="4" />
+		</Item>
+		<Item variant="2" id="21">
+			Rarity: Unique
+The Wise Oak
+Bismuth Flask
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 8
+Implicits: 0
+During Flask Effect, 10% reduced Damage taken of each Element for which your Uncapped
+Elemental Resistance is lowest
+{variant:1}During Flask Effect, Damage Penetrates 20% Resistance of each Element for which your
+Uncapped Elemental Resistance is highest
+{variant:2}During Flask Effect, Damage Penetrates (10-15)% Resistance of each Element for which your 
+Uncapped Elemental Resistance is highest
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="2" id="22">
+			Rarity: Unique
+Quill Rain
+Short Bow
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 5, 26 Dex
++(10-20) to Dexterity
+{variant:2}100% increased Physical Damage
+100% increased Attack Speed
++(25-50) to Accuracy Rating
+(50-100)% increased Projectile Speed
+{variant:1}50% less Weapon Damage
+{variant:2}40% less Weapon Damage
+{variant:2}+2 Mana gained for each Enemy hit by Attacks
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+		</Item>
+		<Item id="23">
+			Rarity: RARE
+Evasion Gloves
+Gripped Gloves
+Crafted: true
+Prefix: LocalIncreasedEvasionRating2
+Prefix: {range:0.286}LocalBaseEvasionRatingAndLife2
+Prefix: IncreasedLife6
+Suffix: {range:1}IncreasedAttackSpeed2
+Suffix: {range:1}FireResist8
+Suffix: {range:1}Dexterity5
+Quality: 20
+Sockets: G-G-G-G
+LevelReq: 70
+Implicits: 1
+{range:0.5}(14-18)% increased Projectile Attack Damage
++32 to Dexterity
+10% increased Attack Speed
++50 to Evasion Rating
++90 to maximum Life
++48% to Fire Resistance
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item variant="3" id="8">
+			Rarity: Unique
+Prismweave
+Rustic Sash
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 25
+(12-24)% increased Physical Damage
+{variant:1,2}10% increased Elemental Damage with Weapons
+{variant:3}10% increased Elemental Damage with Attack Skills
+{variant:1}Adds (3-4) to (7-8) Fire Damage to Attacks
+{variant:2,3}Adds (7-8) to (15-16) Fire Damage to Attacks
+{variant:1}Adds (2-3) to (5-7) Cold Damage to Attacks
+{variant:2,3}Adds (5-6) to (12-14) Cold Damage to Attacks
+{variant:1}Adds 1 to (13-17) Lightning Damage to Attacks
+{variant:2,3}Adds 1 to (30-34) Lightning Damage to Attacks
++(6-8)% to all Elemental Resistances
+{variant:1,2}30% increased Elemental Damage with Weapons while using a Flask
+{variant:3}30% increased Elemental Damage with Attack Skills while using a Flask
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+			<ModRange range="0.5" id="9" />
+			<ModRange range="0.5" id="10" />
+		</Item>
+		<Item id="24">
+			Rarity: Unique
+The Nomad
+Studded Belt
+Requires Level 48
+(20-30)% increased Stun Duration on Enemies
+(25-40)% increased Global Physical Damage
++(40-50) to Strength
++(40-50) to Dexterity
++(20-25)% to all Elemental Resistances while you have at least 200 Strength
+(40-50)% increased Projectile Attack Damage while you have at least 200 Dexterity
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item id="25">
+			Rarity: Unique
+Silverbough
+Crude Bow
+Requires Level 36
++1 to Level of Socketed Gems
++1 to Level of Socketed Bow Gems
+(80-100)% increased Physical Damage
+Adds (15-25) to (50-60) Physical Damage
+10% increased Attack Speed
++30 to Accuracy Rating
++10 Mana gained on Kill
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="3" id="26">
+			Rarity: UNIQUE
+Piscator's Vigil
+Tornado Wand
+Variant: Pre 2.3.0
+Variant: Pre 2.6.0
+Variant: Current
+Selected Variant: 3
+Quality: 20
+Sockets: B-B-B
+LevelReq: 65
+Implicits: 2
+{variant:1}{range:0.5}(16-19)% increased Spell Damage
+{variant:2,3}{range:0.5}(35-39)% increased Spell Damage
+No Physical Damage
+{range:0.5}(10-18)% increased Attack Speed
+{range:0.5}+(340-400) to Accuracy Rating
+{range:0.5}(20-30)% increased Critical Strike Chance
+{range:1}Attacks with this Weapon have (100-115)% increased Elemental Damage
+{variant:3}Attacks with this Weapon Penetrate 5% Elemental Resistances
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="1" id="7" />
+		</Item>
+		<Item id="27">
+			Rarity: Unique
+Frostferno
+Leather Hood
+Requires Level 60
++2 to Level of Socketed Fire Gems
++2 to Level of Socketed Cold Gems
+Socketed Gems are Supported by Level 30 Cold to Fire
+(450-500)% increased Evasion Rating
+60% increased Mana Regeneration Rate
++(20-30)% to Fire and Cold Resistances
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item variant="19" id="28">
+			Rarity: UNIQUE
+Skin of the Lords
+Simple Robe
+League: Breach
+Variant: Acrobatics
+Variant: Ancestral Bond
+Variant: Arrow Dancing
+Variant: Avatar of Fire
+Variant: Blood Magic
+Variant: Conduit
+Variant: Crimson Dance
+Variant: Eldritch Battery
+Variant: Elemental Equilibrium
+Variant: Elemental Overload
+Variant: Ghost Reaver
+Variant: Iron Grip
+Variant: Iron Reflexes
+Variant: Mind Over Matter
+Variant: Minion Instability
+Variant: Pain Attunement
+Variant: Perfect Agony
+Variant: Phase Acrobatics
+Variant: Point Blank
+Variant: Resolute Technique
+Variant: Unwavering Stance
+Variant: Vaal Pact
+Variant: Zealot's Oath
+Selected Variant: 19
+Quality: 0
+Sockets: B-B-B-B-B-B
+Implicits: 0
+Sockets cannot be modified
++1 to Level of Socketed Gems
+100% increased Global Defences
+You can only Socket Corrupted Gems in this item
+{variant:1}Acrobatics
+{variant:2}Ancestral Bond
+{variant:3}Arrow Dancing
+{variant:4}Avatar of Fire
+{variant:5}Blood Magic
+{variant:6}Conduit
+{variant:7}Crimson Dance
+{variant:8}Eldritch Battery
+{variant:9}Elemental Equilibrium
+{variant:10}Elemental Overload
+{variant:11}Ghost Reaver
+{variant:12}Iron Grip
+{variant:13}Iron Reflexes
+{variant:14}Mind Over Matter
+{variant:15}Minion Instability
+{variant:16}Pain Attunement
+{variant:17}Perfect Agony
+{variant:18}Phase Acrobatics
+{variant:19}Point Blank
+{variant:20}Resolute Technique
+{variant:21}Unwavering Stance
+{variant:22}Vaal Pact
+{variant:23}Zealot's Oath
+Corrupted
+		</Item>
+		<Item variant="3" id="29">
+			Rarity: Unique
+Prismweave
+Rustic Sash
+Variant: Pre 2.6.0
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 25
+(12-24)% increased Physical Damage
+{variant:1,2}10% increased Elemental Damage with Weapons
+{variant:3}10% increased Elemental Damage with Attack Skills
+{variant:1}Adds (3-4) to (7-8) Fire Damage to Attacks
+{variant:2,3}Adds (7-8) to (15-16) Fire Damage to Attacks
+{variant:1}Adds (2-3) to (5-7) Cold Damage to Attacks
+{variant:2,3}Adds (5-6) to (12-14) Cold Damage to Attacks
+{variant:1}Adds 1 to (13-17) Lightning Damage to Attacks
+{variant:2,3}Adds 1 to (30-34) Lightning Damage to Attacks
++(6-8)% to all Elemental Resistances
+{variant:1,2}30% increased Elemental Damage with Weapons while using a Flask
+{variant:3}30% increased Elemental Damage with Attack Skills while using a Flask
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+			<ModRange range="0.5" id="9" />
+			<ModRange range="0.5" id="10" />
+		</Item>
+		<Item id="30">
+			Rarity: RARE
+Ring
+Opal Ring
+Crafted: true
+Prefix: {range:1}IncreasedLife7
+Prefix: {range:0.359}WeaponElementalDamage3
+Prefix: {range:1}AddedColdDamage9
+Suffix: {range:1}Dexterity9
+Suffix: {range:1}FireDamagePercent4
+Suffix: {range:1}FireResist8
+LevelReq: 80
+Implicits: 1
+{range:0.5}(15-25)% increased Elemental Damage
++55 to Dexterity
+22% increased Fire Damage
+Adds 22 to 40 Cold Damage to Attacks
++79 to maximum Life
++48% to Fire Resistance
+24% increased Elemental Damage with Attack Skills
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="31">
+			Rarity: UNIQUE
+Loreweave
+Elegant Ringmail
+Quality: 20
+Sockets: B-B-B-B-B-B
+LevelReq: 64
+Implicits: 0
+Has 6 Sockets
+{range:0.5}Adds (4-10) to (14-36) Physical Damage to Attacks
+{range:0.5}+(8-24) to all Attributes
+{range:1}(20-60)% increased Global Critical Strike Chance
+{range:0.5}+(15-50) to maximum Energy Shield
+{range:0.5}+(20-60) to maximum Life
+{range:0.5}+(20-50) to maximum Mana
+{range:0.5}(6-30)% increased Rarity of Items found
+{range:1}(15-50)% increased Elemental Damage
+{range:0.5}Your Maximum Resistances are (76-80)%
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+			<ModRange range="1" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+			<ModRange range="1" id="9" />
+			<ModRange range="0.5" id="10" />
+		</Item>
+		<Item id="32">
+			Rarity: Unique
+Frostferno
+Leather Hood
+Requires Level 60
++2 to Level of Socketed Fire Gems
++2 to Level of Socketed Cold Gems
+Socketed Gems are Supported by Level 30 Cold to Fire
+(450-500)% increased Evasion Rating
+60% increased Mana Regeneration Rate
++(20-30)% to Fire and Cold Resistances
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Slot name="Gloves" itemId="23" />
+		<Slot name="Weapon 1" itemId="26" />
+		<Slot name="Flask 1" itemId="21" />
+		<Slot name="Weapon 2" itemId="26" />
+		<Slot name="Body Armour" itemId="15" />
+		<Slot name="Belt" itemId="16" />
+		<Slot name="Ring 2" itemId="30" />
+		<Slot name="Boots" itemId="9" />
+		<Slot name="Ring 1" itemId="4" />
+		<Slot name="Helmet" itemId="27" />
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="23" />
+			<Slot name="Weapon 1" itemId="26" />
+			<Slot name="Flask 1" itemId="21" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="26" />
+			<Slot name="Body Armour" itemId="15" />
+			<Slot name="Belt" itemId="16" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="30" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="9" />
+			<Slot name="Ring 1" itemId="4" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="27" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="buffPendulum" string="DAMAGE" />
+		<Input name="conditionEnemyChilled" boolean="true" />
+		<Input name="enemyIsBoss" string="SHAPER" />
+		<Input name="multiplierFreezeShockIgniteOnEnemy" number="0" />
+		<Input name="buffConflux" string="ALL" />
+		<Input name="conditionEnemyIgnited" boolean="true" />
+		<Input name="conditionEnemyShocked" boolean="true" />
+	</Config>
+</PathOfBuilding>

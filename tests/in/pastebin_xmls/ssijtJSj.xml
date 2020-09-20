@@ -1,0 +1,290 @@
+<PathOfBuilding>
+	<Build level="92" targetVersion="3_0" banditNormal="None" bandit="Alira" banditMerciless="None" className="Templar" ascendClassName="Inquisitor" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageHit" value="117221.92036523" />
+		<PlayerStat stat="AverageDamage" value="117221.92036523" />
+		<PlayerStat stat="Speed" value="5.6857142857143" />
+		<PlayerStat stat="Speed" value="5.6857142857143" />
+		<PlayerStat stat="PreEffectiveCritChance" value="61.617" />
+		<PlayerStat stat="CritChance" value="86.02511311" />
+		<PlayerStat stat="CritMultiplier" value="4.58" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="666490.34721942" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="WithPoisonDPS" value="666490.34721942" />
+		<PlayerStat stat="ManaCost" value="82" />
+		<PlayerStat stat="Str" value="133" />
+		<PlayerStat stat="ReqStr" value="111" />
+		<PlayerStat stat="Dex" value="112" />
+		<PlayerStat stat="ReqDex" value="111" />
+		<PlayerStat stat="Int" value="343" />
+		<PlayerStat stat="ReqInt" value="155" />
+		<PlayerStat stat="Life" value="3083" />
+		<PlayerStat stat="Spec:LifeInc" value="149" />
+		<PlayerStat stat="LifeUnreserved" value="3083" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="55.494" />
+		<PlayerStat stat="LifeLeechGainRate" value="0" />
+		<PlayerStat stat="Mana" value="1415" />
+		<PlayerStat stat="Spec:ManaInc" value="81" />
+		<PlayerStat stat="ManaUnreserved" value="721" />
+		<PlayerStat stat="ManaUnreservedPercent" value="50.95406360424" />
+		<PlayerStat stat="ManaRegen" value="70.3" />
+		<PlayerStat stat="ManaLeechGainRate" value="0" />
+		<PlayerStat stat="TotalDegen" value="123.32" />
+		<PlayerStat stat="NetLifeRegen" value="-67.826" />
+		<PlayerStat stat="EnergyShield" value="0" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="50" />
+		<PlayerStat stat="EnergyShieldRegen" value="0" />
+		<PlayerStat stat="EnergyShieldLeechGainRate" value="0" />
+		<PlayerStat stat="Evasion" value="484" />
+		<PlayerStat stat="Spec:EvasionInc" value="25" />
+		<PlayerStat stat="MeleeEvadeChance" value="6" />
+		<PlayerStat stat="MeleeEvadeChance" value="6" />
+		<PlayerStat stat="ProjectileEvadeChance" value="6" />
+		<PlayerStat stat="Armour" value="0" />
+		<PlayerStat stat="Spec:ArmourInc" value="20" />
+		<PlayerStat stat="PhysicalDamageReduction" value="0" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.27" />
+		<PlayerStat stat="BlockChance" value="15" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="1" />
+		<PlayerStat stat="ColdResist" value="-14" />
+		<PlayerStat stat="LightningResist" value="-14" />
+		<PlayerStat stat="ChaosResist" value="-48" />
+		<PlayerStat stat="FireResistOverCap" value="0" />
+		<PlayerStat stat="ColdResistOverCap" value="0" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="3" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="3" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Import />
+	<Calcs>
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Input name="skill_number" number="1" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="slower proj/gmp" enabled="true" mainActiveSkill="1">
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SkillGemMagmaOrb" enableGlobal2="false" quality="20" skillId="MagmaOrb" enabled="true" nameSpec="Magma Orb" skillMinion="SummonedPhantasm" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemMulticast" enableGlobal2="false" quality="20" skillId="SupportMulticast" enabled="true" nameSpec="Spell Echo" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemElementalFocus" enableGlobal2="false" quality="20" skillPart="1" skillId="SupportElementalFocus" enabled="true" nameSpec="Elemental Focus" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemSlowerProjectiles" enableGlobal2="false" quality="20" skillPart="1" skillId="SupportSlowerProjectiles" enabled="true" nameSpec="Slower Projectiles" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemIncreasedCriticalStrikes" enableGlobal2="false" quality="20" skillPart="1" skillId="SupportIncreasedCriticalStrikes" enabled="true" nameSpec="Increased Critical Strikes" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemConcentratedEffect" enableGlobal2="false" quality="20" skillId="SupportConcentratedEffect" enabled="true" nameSpec="Concentrated Effect" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="MAYBE USE JAWS OF AGONY cluster trap multitrap" enabled="true" mainActiveSkill="1">
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SkillGemOrbOfStorms" enableGlobal2="false" quality="0" skillPart="1" skillId="OrbOfStorms" enabled="true" nameSpec="Orb of Storms" skillMinion="SummonedPhantasm" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemArcaneSurge" enableGlobal2="false" quality="0" skillPart="1" skillId="SupportArcaneSurge" enabled="true" nameSpec="Arcane Surge" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemIncreasedDuration" enableGlobal2="false" quality="0" skillId="SupportIncreasedDuration" enabled="true" nameSpec="Increased Duration" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="ADD INC AOE IF NOT GETTING CHARGES" enabled="true" mainActiveSkill="1">
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SkillGemCriticalWeakness" enableGlobal2="false" quality="0" skillPart="1" skillId="AssassinsMark" enabled="true" nameSpec="Assassin's Mark" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemBlasphemy" enableGlobal2="false" quality="0" skillId="SupportBlasphemy" enabled="true" nameSpec="Blasphemy" />
+			<Gem level="6" enableGlobal1="true" gemId="Metadata/Items/Gems/SkillGemBloodRage" enableGlobal2="false" quality="0" skillPart="1" skillId="BloodRage" enabled="true" nameSpec="Blood Rage" skillMinion="SummonedChaosGolem" />
+			<Gem level="20" enableGlobal1="true" gemId="Metadata/Items/Gems/SupportGemIncreasedAreaOfEffect" enableGlobal2="false" quality="0" skillPart="1" skillId="SupportIncreasedAreaOfEffect" enabled="true" nameSpec="Increased Area of Effect" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAUBABzcEFgHYx0UCPTAmlnzjxqUb7zqakMWv0lR6-4Rlsu9pwgWb9D1tvqOZPDV42rAZmHiogDDCSaVVcaf3w_EZlQsnCoLL525k_AflSBTUj1f7-uJ0wmq7WFBlpx7H0EEsw5I-d3foO08DFJMsycv0nyuswVCmuAYXZo7g9s8BVVLgpuVLjpYj_rr9RbzBx6SbmaeBAeXlZZ0ApZ8SysKuMqoudn8jDZFR71dES0mPHIPMtGQVY9G1aZwUvrSO3yLjLxWGjh_xkWdW9MagVF00B-HZS0fAx58g2jyXfJSU_emPO_yHaKjwfOmme98ES-TJw==
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="1" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="2" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="41263" itemId="0" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="life" zoomY="1600.4691351122" showHeatMap="false" zoomLevel="12" showStatDifferences="true" zoomX="-4420.4619305861" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<Item id="1">
+			Rarity: Unique
+Inevitability
+Cobalt Jewel
+Limited to: 2
+Radius: Medium
+(10-15)% increased Fire Damage
+With at least 40 Intelligence in Radius, Magma Orb fires an additional Projectile
+With at least 40 Intelligence in Radius, Magma Orb
+has 10% increased Area of Effect per Chain
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="2">
+			Rarity: Unique
+Inevitability
+Cobalt Jewel
+Limited to: 2
+Radius: Medium
+(10-15)% increased Fire Damage
+With at least 40 Intelligence in Radius, Magma Orb fires an additional Projectile
+With at least 40 Intelligence in Radius, Magma Orb
+has 10% increased Area of Effect per Chain
+			<ModRange range="0.5" id="1" />
+		</Item>
+		<Item id="3">
+			Rarity: RARE
+New Item
+Platinum Kris
+Crafted: true
+Prefix: {range:0.085}SpellDamageOnWeapon7
+Prefix: {range:0.433}SpellAddedFireDamage7
+Prefix: None
+Suffix: {range:0.327}Dexterity4
+Suffix: {range:0.507}LocalCriticalMultiplier4
+Suffix: None
+Quality: 20
+Sockets: B-B-B
+LevelReq: 64
+Implicits: 1
+50% increased Global Critical Strike Chance
+70% increased Spell Damage
++24 to Dexterity
+Adds 29 to 54 Fire Damage to Spells
++27% to Global Critical Strike Multiplier
+		</Item>
+		<Item variant="2" id="4">
+			Rarity: Unique
+Atziri's Promise
+Amethyst Flask
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 68
+2% of Chaos Damage Leeched as Life during Flask effect
+{variant:1}Gain (22-25)% of Physical Damage as Extra Chaos Damage during effect
+{variant:2}Gain (15-20)% of Physical Damage as Extra Chaos Damage during effect
+{variant:1}Gain (13-15)% of Elemental Damage as Extra Chaos Damage during effect
+{variant:2}Gain (10-15)% of Elemental Damage as Extra Chaos Damage during effect
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Item id="5">
+			Rarity: MAGIC
+Diamond Flask
+Crafted: true
+Quality: 20
+Implicits: 0
+		</Item>
+		<Item id="6">
+			Rarity: MAGIC
+Eternal Life Flask
+Crafted: true
+Quality: 20
+Implicits: 0
+		</Item>
+		<Item id="7">
+			Rarity: MAGIC
+Eternal Mana Flask
+Crafted: true
+Quality: 20
+Implicits: 0
+		</Item>
+		<Item id="8">
+			Rarity: MAGIC
+Silver Flask
+Crafted: true
+Quality: 20
+Implicits: 0
+		</Item>
+		<Slot name="Weapon 1" itemId="3" />
+		<Slot name="Flask 1" itemId="4" />
+		<Slot name="Flask 3" itemId="6" />
+		<Slot name="Flask 2" itemId="5" />
+		<Slot name="Weapon 2" itemId="3" />
+		<Slot name="Flask 5" itemId="8" />
+		<Slot name="Flask 4" itemId="7" />
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="0" />
+			<Slot name="Weapon 1" itemId="3" />
+			<Slot name="Flask 1" itemId="4" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="6" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="5" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="3" />
+			<Slot name="Body Armour" itemId="0" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="8" />
+			<Slot name="Ring 2" itemId="0" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="7" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="0" />
+			<Slot name="Ring 1" itemId="0" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="0" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="multiplierPoisonOnEnemy" number="0" />
+		<Input name="useFrenzyCharges" boolean="true" />
+		<Input name="enemyIsBoss" string="SHAPER" />
+		<Input name="critChanceLucky" boolean="true" />
+		<Input name="conditionEnemyMoving" boolean="true" />
+		<Input name="projectileDistance" number="1" />
+		<Input name="buffOnslaught" boolean="true" />
+		<Input name="conditionAttackedRecently" boolean="true" />
+		<Input name="usePowerCharges" boolean="true" />
+		<Input name="igniteMode" string="AVERAGE" />
+		<Input name="skillChainCount" number="2" />
+	</Config>
+</PathOfBuilding>

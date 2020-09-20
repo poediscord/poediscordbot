@@ -1,0 +1,203 @@
+<PathOfBuilding>
+	<Build level="90" targetVersion="3_0" banditNormal="None" bandit="None" banditMerciless="None" className="Shadow" ascendClassName="Saboteur" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageHit" value="76695.7989824" />
+		<PlayerStat stat="AverageDamage" value="76695.7989824" />
+		<PlayerStat stat="Speed" value="2.54" />
+		<PlayerStat stat="Speed" value="2.54" />
+		<PlayerStat stat="TrapThrowingTime" value="0.33112582781457" />
+		<PlayerStat stat="TrapCooldown" value="2.2222222222222" />
+		<PlayerStat stat="PreEffectiveCritChance" value="39.3" />
+		<PlayerStat stat="CritChance" value="39.3" />
+		<PlayerStat stat="CritMultiplier" value="4.54" />
+		<PlayerStat stat="HitChance" value="100" />
+		<PlayerStat stat="TotalDPS" value="194807.3294153" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="WithPoisonAverageDamage" value="76695.7989824" />
+		<PlayerStat stat="ManaCost" value="78" />
+		<PlayerStat stat="Str" value="44" />
+		<PlayerStat stat="ReqStr" value="113" />
+		<PlayerStat stat="Dex" value="133" />
+		<PlayerStat stat="ReqDex" value="111" />
+		<PlayerStat stat="Int" value="283" />
+		<PlayerStat stat="ReqInt" value="155" />
+		<PlayerStat stat="Life" value="1824" />
+		<PlayerStat stat="Spec:LifeInc" value="60" />
+		<PlayerStat stat="LifeUnreserved" value="1824" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="0" />
+		<PlayerStat stat="LifeLeechGainPerHit" value="0" />
+		<PlayerStat stat="Mana" value="716" />
+		<PlayerStat stat="Spec:ManaInc" value="0" />
+		<PlayerStat stat="ManaUnreserved" value="537" />
+		<PlayerStat stat="ManaUnreservedPercent" value="75" />
+		<PlayerStat stat="ManaRegen" value="15" />
+		<PlayerStat stat="ManaLeechGainPerHit" value="0" />
+		<PlayerStat stat="EnergyShield" value="22" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="25" />
+		<PlayerStat stat="EnergyShieldRegen" value="0" />
+		<PlayerStat stat="EnergyShieldLeechGainPerHit" value="0" />
+		<PlayerStat stat="Evasion" value="410" />
+		<PlayerStat stat="Spec:EvasionInc" value="0" />
+		<PlayerStat stat="MeleeEvadeChance" value="5" />
+		<PlayerStat stat="MeleeEvadeChance" value="5" />
+		<PlayerStat stat="ProjectileEvadeChance" value="5" />
+		<PlayerStat stat="Armour" value="0" />
+		<PlayerStat stat="Spec:ArmourInc" value="0" />
+		<PlayerStat stat="PhysicalDamageReduction" value="0" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.04" />
+		<PlayerStat stat="BlockChance" value="20" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="-54" />
+		<PlayerStat stat="ColdResist" value="-54" />
+		<PlayerStat stat="LightningResist" value="-54" />
+		<PlayerStat stat="ChaosResist" value="-60" />
+		<PlayerStat stat="FireResistOverCap" value="0" />
+		<PlayerStat stat="ColdResistOverCap" value="0" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="3" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Calcs>
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Input name="skill_number" number="1" />
+		<Section collapsed="false" id="SkillSelect" />
+		<Section collapsed="false" id="HitDamage" />
+		<Section collapsed="false" id="Dot" />
+		<Section collapsed="false" id="Speed" />
+		<Section collapsed="false" id="Crit" />
+		<Section collapsed="false" id="HitChance" />
+		<Section collapsed="false" id="SkillTypeStats" />
+		<Section collapsed="false" id="Bleed" />
+		<Section collapsed="false" id="Poison" />
+		<Section collapsed="false" id="Ignite" />
+		<Section collapsed="false" id="Decay" />
+		<Section collapsed="false" id="LeechGain" />
+		<Section collapsed="false" id="MiscEffects" />
+		<Section collapsed="false" id="Attributes" />
+		<Section collapsed="false" id="Life" />
+		<Section collapsed="false" id="Mana" />
+		<Section collapsed="false" id="EnergyShield" />
+		<Section collapsed="false" id="Armour" />
+		<Section collapsed="false" id="Evasion" />
+		<Section collapsed="false" id="Resist" />
+		<Section collapsed="false" id="DamageTaken" />
+		<Section collapsed="false" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="20" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" slot="Weapon 1" mainActiveSkill="1">
+			<Gem level="20" skillId="FrostBomb" quality="20" enabled="true" nameSpec="Frost Bomb" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="SupportTrap" quality="20" enabled="true" nameSpec="Trap" />
+			<Gem level="20" skillId="SupportAddedColdDamage" quality="20" enabled="true" nameSpec="Added Cold Damage" />
+			<Gem level="20" skillId="SupportClusterTrap" quality="20" enabled="true" nameSpec="Cluster Traps" />
+			<Gem level="20" skillId="SupportTrapAndMineDamage" quality="20" enabled="true" nameSpec="Trap and Mine Damage" />
+			<Gem level="20" skillId="SupportColdPenetration" quality="20" enabled="true" nameSpec="Cold Penetration" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" mainActiveSkill="1">
+			<Gem level="20" skillId="Frostbite" quality="20" enabled="true" nameSpec="Frostbite" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="nil" label="" enabled="true" mainActiveSkill="nil">
+			<Gem level="20" skillId="HeraldOfIce" quality="20" enabled="true" nameSpec="Herald of Ice" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAYDAFb6CNQdFO4VlS4HHvemLR-CHmdON4GmmWKs0NCNv1iumAa2-jN4swPw1aKj99cyGGyMjmTC7OTrwcW0xV3ywwkmlTcXPV8PxEwt8h3YVLmTlSBSslF051SJ05uhEQ9Ms7Q4RwYOSI7pUUdWSow241ZBlq6zBUJJUQZ3ZJ1VS4hC7BigeUV8j0aP-o48MHysmF6lnaqQDZeVcFG3dR9bl5e4yooGbToigW93c21qNkIs8Pk2Pev1fysXVHBSYeIUsANl6KRTMeOEHvDlGfv1O3wb4CT9G8j2nwW1E3EqC1JT_95kqtD1ew3B856h5zrb55uG
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="61834" itemId="0" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="0" />
+				<Socket nodeId="61419" itemId="0" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="41263" itemId="0" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="60735" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="32763" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		note that frost bomb is getting like a 90% dmg buff for 3.3
+	</Notes>
+	<TreeView searchStr="" zoomY="190.27369751714" showHeatMap="true" zoomLevel="5" showStatDifferences="true" zoomX="-210.10804847737" />
+	<Items activeItemSet="1" useSecondWeaponSet="false">
+		<Item variant="3" id="3">
+			Rarity: Unique
+Taryn's Shiver
+Maelstrom Staff
+Variant: Pre 2.0.0
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 64, 113 Str, 113 Int
+Implicits: 2
+{variant:1,2}18% Chance to Block
+{variant:3}20% Chance to Block
+{variant:1,2}+1 to Level of Socketed Cold Gems
+{variant:3}+2 to Level of Socketed Cold Gems
+{variant:1}(40-50)% increased Spell Damage
+{variant:2,3}(50-60)% increased Spell Damage
+(40-50)% increased Cold Damage
+(10-20)% increased Cast Speed
+8% chance to Freeze
+Enemies Frozen by you take 20% increased Damage
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+			<ModRange range="0.5" id="8" />
+		</Item>
+		<Slot name="Weapon 1" itemId="3" />
+		<ItemSet useSecondWeaponSet="false" id="1">
+			<Slot name="Gloves" itemId="0" />
+			<Slot name="Weapon 1" itemId="3" />
+			<Slot name="Flask 1" itemId="0" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="0" />
+			<Slot name="Body Armour" itemId="0" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="0" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="0" />
+			<Slot name="Ring 1" itemId="0" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="0" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="useFrenzyCharges" boolean="true" />
+		<Input name="enemyIsBoss" string="NONE" />
+	</Config>
+</PathOfBuilding>

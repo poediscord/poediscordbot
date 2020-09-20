@@ -1,0 +1,278 @@
+<PathOfBuilding>
+	<Build level="1" targetVersion="3_0" banditNormal="None" bandit="Alira" banditMerciless="None" className="Ranger" ascendClassName="Deadeye" mainSocketGroup="1" viewMode="IMPORT" banditCruel="None">
+		<PlayerStat stat="AverageDamage" value="31463.435080268" />
+		<PlayerStat stat="Speed" value="1.554" />
+		<PlayerStat stat="Speed" value="1.554" />
+		<PlayerStat stat="TrapThrowingTime" value="0.49019607843137" />
+		<PlayerStat stat="TrapCooldown" value="4" />
+		<PlayerStat stat="PreEffectiveCritChance" value="38.5" />
+		<PlayerStat stat="CritChance" value="36.575" />
+		<PlayerStat stat="CritMultiplier" value="4.13" />
+		<PlayerStat stat="HitChance" value="95" />
+		<PlayerStat stat="TotalDPS" value="48894.178114736" />
+		<PlayerStat stat="TotalDot" value="0" />
+		<PlayerStat stat="WithPoisonAverageDamage" value="31463.435080268" />
+		<PlayerStat stat="AreaOfEffectRadius" value="18" />
+		<PlayerStat stat="ManaCost" value="79" />
+		<PlayerStat stat="Str" value="34" />
+		<PlayerStat stat="ReqStr" value="70" />
+		<PlayerStat stat="Dex" value="242" />
+		<PlayerStat stat="ReqDex" value="111" />
+		<PlayerStat stat="Int" value="134" />
+		<PlayerStat stat="ReqInt" value="212" />
+		<PlayerStat stat="Life" value="540" />
+		<PlayerStat stat="Spec:LifeInc" value="126" />
+		<PlayerStat stat="LifeUnreserved" value="540" />
+		<PlayerStat stat="LifeUnreservedPercent" value="100" />
+		<PlayerStat stat="LifeRegen" value="0" />
+		<PlayerStat stat="LifeLeechGainPerHit" value="0" />
+		<PlayerStat stat="Mana" value="107" />
+		<PlayerStat stat="Spec:ManaInc" value="0" />
+		<PlayerStat stat="ManaUnreserved" value="0" />
+		<PlayerStat stat="ManaUnreservedPercent" value="0" />
+		<PlayerStat stat="ManaRegen" value="8.2" />
+		<PlayerStat stat="ManaLeechGainPerHit" value="0" />
+		<PlayerStat stat="EnergyShield" value="28" />
+		<PlayerStat stat="Spec:EnergyShieldInc" value="45" />
+		<PlayerStat stat="EnergyShieldRegen" value="0" />
+		<PlayerStat stat="EnergyShieldLeechGainPerHit" value="0" />
+		<PlayerStat stat="Evasion" value="150" />
+		<PlayerStat stat="Spec:EvasionInc" value="119" />
+		<PlayerStat stat="MeleeEvadeChance" value="50" />
+		<PlayerStat stat="MeleeEvadeChance" value="50" />
+		<PlayerStat stat="ProjectileEvadeChance" value="50" />
+		<PlayerStat stat="Armour" value="82" />
+		<PlayerStat stat="Spec:ArmourInc" value="0" />
+		<PlayerStat stat="PhysicalDamageReduction" value="52" />
+		<PlayerStat stat="EffectiveMovementSpeedMod" value="1.15" />
+		<PlayerStat stat="BlockChance" value="0" />
+		<PlayerStat stat="SpellBlockChance" value="0" />
+		<PlayerStat stat="AttackDodgeChance" value="0" />
+		<PlayerStat stat="SpellDodgeChance" value="0" />
+		<PlayerStat stat="FireResist" value="-9" />
+		<PlayerStat stat="ColdResist" value="-37" />
+		<PlayerStat stat="LightningResist" value="-9" />
+		<PlayerStat stat="ChaosResist" value="-25" />
+		<PlayerStat stat="FireResistOverCap" value="0" />
+		<PlayerStat stat="ColdResistOverCap" value="0" />
+		<PlayerStat stat="LightningResistOverCap" value="0" />
+		<PlayerStat stat="ChaosResistOverCap" value="0" />
+		<PlayerStat stat="PowerCharges" value="0" />
+		<PlayerStat stat="PowerChargesMax" value="3" />
+		<PlayerStat stat="FrenzyCharges" value="0" />
+		<PlayerStat stat="FrenzyChargesMax" value="3" />
+		<PlayerStat stat="EnduranceCharges" value="0" />
+		<PlayerStat stat="EnduranceChargesMax" value="3" />
+	</Build>
+	<Import />
+	<Calcs>
+		<Input name="skill_number" number="1" />
+		<Input name="misc_buffMode" string="EFFECTIVE" />
+		<Section collapsed="nil" id="SkillSelect" />
+		<Section collapsed="nil" id="HitDamage" />
+		<Section collapsed="nil" id="Dot" />
+		<Section collapsed="nil" id="Speed" />
+		<Section collapsed="nil" id="Crit" />
+		<Section collapsed="nil" id="HitChance" />
+		<Section collapsed="nil" id="SkillTypeStats" />
+		<Section collapsed="nil" id="Bleed" />
+		<Section collapsed="nil" id="Poison" />
+		<Section collapsed="nil" id="Ignite" />
+		<Section collapsed="nil" id="Decay" />
+		<Section collapsed="nil" id="LeechGain" />
+		<Section collapsed="nil" id="MiscEffects" />
+		<Section collapsed="nil" id="Attributes" />
+		<Section collapsed="nil" id="Life" />
+		<Section collapsed="nil" id="Mana" />
+		<Section collapsed="nil" id="EnergyShield" />
+		<Section collapsed="nil" id="Armour" />
+		<Section collapsed="nil" id="Evasion" />
+		<Section collapsed="nil" id="Resist" />
+		<Section collapsed="nil" id="DamageTaken" />
+		<Section collapsed="nil" id="MiscDefences" />
+	</Calcs>
+	<Skills defaultGemQuality="nil" defaultGemLevel="nil" sortGemsByDPS="true">
+		<Skill mainActiveSkillCalcs="1" label="" enabled="true" mainActiveSkill="1">
+			<Gem level="20" skillId="SupportTrap" quality="0" enabled="true" nameSpec="Trap" />
+			<Gem level="20" skillId="ClusterBurst" skillPart="1" quality="0" skillPartCalcs="1" enabled="true" nameSpec="Kinetic Blast" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="SupportWeaponElementalDamage" quality="0" enabled="true" nameSpec="Elemental Damage with Attacks" />
+			<Gem level="20" skillId="SupportIncreasedCriticalDamage" quality="0" enabled="true" nameSpec="Increased Critical Damage" />
+			<Gem level="20" skillId="SupportClusterTrap" quality="0" enabled="true" nameSpec="Cluster Traps" />
+			<Gem level="20" skillId="SupportTrapAndMineDamage" quality="0" enabled="true" nameSpec="Trap and Mine Damage" />
+		</Skill>
+		<Skill mainActiveSkillCalcs="nil" label="" enabled="true" mainActiveSkill="nil">
+			<Gem level="20" skillId="HeraldOfIce" skillPart="1" quality="0" enabled="true" nameSpec="Herald of Ice" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="Wrath" quality="0" enabled="true" nameSpec="Wrath" skillMinion="SummonedPhantasm" />
+			<Gem level="20" skillId="HeraldOfThunder" quality="0" enabled="true" nameSpec="Herald of Thunder" />
+		</Skill>
+	</Skills>
+	<Tree activeSpec="1">
+		<Spec>
+			<URL>
+				https://www.pathofexile.com/passive-skill-tree/AAAABAICAGOnW6_dRhR1jbmcxGHrrJd6UxPaefZsjB7wJpWjin7d74hDE1RHoS9pTlVLjDYj9q0z18--is96myZ_xnZv5ea3dem9c20zklPPAbx_K3BSYeK3IiT9Kltd8v_esQHIzBEv_MWD8aa-jX3vetvnjb-kwjfUEYEzeGKs328yGLIZf_vYVHFDGo2v61smUuznVOtjgaw2PU2S7g4rCmwI8YrOqO-PoqNJsQZ3MFtnoOOfePn9bjB8UUcOSJANh3btPyoLkyebjWXTHYPC7PD5cFEfWzIB8LsRlsHzUzHo1p2qGdf5NxvgBbV-sLTFswMNjQjUSn2J0w==
+			</URL>
+			<Sockets>
+				<Socket nodeId="7960" itemId="0" />
+				<Socket nodeId="32763" itemId="3" />
+				<Socket nodeId="28475" itemId="0" />
+				<Socket nodeId="26196" itemId="0" />
+				<Socket nodeId="36634" itemId="0" />
+				<Socket nodeId="34483" itemId="0" />
+				<Socket nodeId="21984" itemId="0" />
+				<Socket nodeId="46882" itemId="3" />
+				<Socket nodeId="61419" itemId="3" />
+				<Socket nodeId="54127" itemId="0" />
+				<Socket nodeId="60735" itemId="3" />
+				<Socket nodeId="55190" itemId="0" />
+				<Socket nodeId="48768" itemId="0" />
+				<Socket nodeId="2491" itemId="0" />
+				<Socket nodeId="6230" itemId="0" />
+				<Socket nodeId="61834" itemId="3" />
+				<Socket nodeId="41263" itemId="3" />
+				<Socket nodeId="33631" itemId="0" />
+				<Socket nodeId="33989" itemId="0" />
+				<Socket nodeId="26725" itemId="0" />
+				<Socket nodeId="31683" itemId="0" />
+			</Sockets>
+		</Spec>
+	</Tree>
+	<Notes>
+		
+	</Notes>
+	<TreeView searchStr="trap" zoomY="-153.78798583467" showHeatMap="nil" zoomLevel="10" showStatDifferences="true" zoomX="-2785.85901824" />
+	<Items activeItemSet="1" useSecondWeaponSet="nil">
+		<Item variant="3" id="1">
+			Rarity: Unique
+Piscator's Vigil
+Tornado Wand
+Variant: Pre 2.3.0
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 65, 212 Int
+Implicits: 2
+{variant:1}(16-19)% increased Spell Damage
+{variant:2,3}(35-39)% increased Spell Damage
+No Physical Damage
+(10-18)% increased Attack Speed
++(340-400) to Accuracy Rating
+(20-30)% increased Critical Strike Chance
+Attacks with this Weapon have (100-115)% increased Elemental Damage
+{variant:3}Attacks with this Weapon Penetrate 5% Elemental Resistances
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+			<ModRange range="0.5" id="7" />
+		</Item>
+		<Item variant="3" id="2">
+			Rarity: RARE
+Ring
+Two-Stone Ring
+Crafted: true
+Prefix: {range:0.817}AddedColdDamage5
+Prefix: {range:0.5}WeaponElementalDamage3
+Prefix: {range:0.5}AddedLightningDamage5
+Suffix: None
+Suffix: None
+Suffix: None
+Variant: Fire and Cold
+Variant: Cold and Lightning
+Variant: Fire and Lightning
+Selected Variant: 3
+LevelReq: 28
+Implicits: 3
+{variant:1}{range:0.5}+(12 to 16)% to Fire and Cold Resistances
+{variant:2}{range:0.5}+(12 to 16)% to Cold and Lightning Resistances
+{variant:3}{range:0.5}+(12 to 16)% to Fire and Lightning Resistances
+Adds 10 to 18 Cold Damage to Attacks
+Adds 2 to 34 Lightning Damage to Attacks
+26% increased Elemental Damage with Attack Skills
+			<ModRange range="0.5" id="1" />
+			<ModRange range="0.5" id="2" />
+			<ModRange range="0.5" id="3" />
+		</Item>
+		<Item id="3">
+			Rarity: RARE
+Ancient Prism
+Searching Eye Jewel
+Unique ID: aa96c350c00f94c06041d2a00c6d0a2993d3e244622c58214ed606827fd85e76
+Item Level: 72
+LevelReq: 56
+Implicits: 0
+Adds 16 to 29 Cold Damage to Attacks
++32 to maximum Life
+Adds 5 to 61 Lightning Damage to Wand Attacks
+8% increased Attack Speed if you've dealt a Critical Strike Recently
+		</Item>
+		<Item variant="2" id="4">
+			Rarity: Unique
+Wake of Destruction
+Mesh Boots
+Variant: Pre 2.6.0
+Variant: Current
+Requires Level 28, 28 Str, 28 Int
+{variant:2}15% increased Movement Speed
+Adds 1 to 120 Lightning Damage to Attacks
++(10-20) Life gained on Kill
+(20-60)% increased Armour and Energy Shield
+10% Chance to Cause Monsters to Flee
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+		</Item>
+		<Item variant="2" id="5">
+			Rarity: Unique
+Atziri's Promise
+Amethyst Flask
+Variant: {2_6}Pre 3.0.0
+Variant: Current
+Requires Level 68
+2% of Chaos Damage Leeched as Life during Flask effect
+{variant:1}Gain (22-25)% of Physical Damage as Extra Chaos Damage during effect
+{variant:2}Gain (15-20)% of Physical Damage as Extra Chaos Damage during effect
+{variant:1}Gain (13-15)% of Elemental Damage as Extra Chaos Damage during effect
+{variant:2}Gain (10-15)% of Elemental Damage as Extra Chaos Damage during effect
+			<ModRange range="0.5" id="3" />
+			<ModRange range="0.5" id="4" />
+			<ModRange range="0.5" id="5" />
+			<ModRange range="0.5" id="6" />
+		</Item>
+		<Slot name="Weapon 1" itemId="1" />
+		<Slot active="true" name="Flask 1" itemId="5" />
+		<Slot name="Ring 2" itemId="2" />
+		<Slot name="Boots" itemId="4" />
+		<Slot name="Ring 1" itemId="2" />
+		<ItemSet useSecondWeaponSet="nil" id="1">
+			<Slot name="Gloves" itemId="0" />
+			<Slot name="Weapon 1" itemId="1" />
+			<Slot active="true" name="Flask 1" itemId="5" />
+			<Slot name="Belt Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 3" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 2" itemId="0" />
+			<Slot name="Amulet" itemId="0" />
+			<Slot name="Belt Abyssal Socket 1" itemId="0" />
+			<Slot name="Flask 2" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 2" itemId="0" />
+			<Slot name="Weapon 2" itemId="0" />
+			<Slot name="Body Armour" itemId="0" />
+			<Slot name="Belt" itemId="0" />
+			<Slot name="Flask 5" itemId="0" />
+			<Slot name="Ring 2" itemId="2" />
+			<Slot name="Boots Abyssal Socket 2" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 2" itemId="0" />
+			<Slot name="Flask 4" itemId="0" />
+			<Slot name="Gloves Abyssal Socket 1" itemId="0" />
+			<Slot name="Helmet Abyssal Socket 1" itemId="0" />
+			<Slot name="Body Armour Abyssal Socket 1" itemId="0" />
+			<Slot name="Weapon 1 Swap" itemId="0" />
+			<Slot name="Boots" itemId="4" />
+			<Slot name="Ring 1" itemId="2" />
+			<Slot name="Weapon 2 Swap" itemId="0" />
+			<Slot name="Helmet" itemId="0" />
+			<Slot name="Boots Abyssal Socket 1" itemId="0" />
+		</ItemSet>
+	</Items>
+	<Config>
+		<Input name="enemyIsBoss" string="SHAPER" />
+	</Config>
+</PathOfBuilding>
