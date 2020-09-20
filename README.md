@@ -1,4 +1,4 @@
-# poediscordbot [![Build Status](https://travis-ci.org/poediscord/poediscordbot.svg?branch=master)](https://travis-ci.org/poediscord/poediscordbot)
+# poediscordbot ![Build Status](https://github.com/poediscord/poediscordbot/workflows/Python%20application/badge.svg)
 built with discordpy rewrite / python 3.7; supports pypy 3.6
 
 ## Docker
