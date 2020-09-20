@@ -1,5 +1,6 @@
 from enum import Enum
 
+from poediscordbot.cogs.pob.poe_data.poe_consts import show_avg_dps_skills
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.skill import Skill
 
