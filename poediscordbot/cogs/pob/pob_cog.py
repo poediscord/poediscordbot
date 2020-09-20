@@ -49,7 +49,7 @@ class PoBCog(commands.Cog):
             try:
                 xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
                 if xml and web_poe_token:
-                    embed = self._generate_embed(web_poe_token, xml, message.author, minify=True)
+                    embed = self._generate_embed(web_poe_token, xml, message.author, paste_key, minify=True)
                     if embed:
                         await message.channel.send(embed=embed)
             except HTTPError as err:

@@ -62,7 +62,10 @@ class TestBot(unittest.TestCase):
         """
         demo_profile_link = 'https://pastebin.com/X8XNW4EU'
         demo_author = None
-        build_embed = PoBCog._fetch_xml(demo_author, demo_profile_link)
+        xml, web_poe_token, paste_key = PoBCog._fetch_xml(demo_author, demo_profile_link)
+        if xml and web_poe_token:
+            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author,paste_key, minify=True)
+
         self.assertTrue(isinstance(build_embed, Embed))
         fields = build_embed._fields
         for field in fields:
