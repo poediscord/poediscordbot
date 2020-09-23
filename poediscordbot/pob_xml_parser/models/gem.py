@@ -56,15 +56,12 @@ class Gem:
 
     @staticmethod
     def translate_name(skill_id):
-        name = None
-        if skill_id == 'UniqueAnimateWeapon':
-            name = 'Manifest Dancing Dervish'
-        if skill_id == 'ChaosDegenAuraUnique':
-            name = "Death Aura"
-        if skill_id == 'IcestormUniqueStaff12':
-            name = "Ice Storm"
-        if skill_id == 'TriggeredMoltenStrike':
-            name = "Molten Burst"
-        if skill_id == 'TriggeredSummonSpider':
-            name = "Raise Spiders"
-        return name
+        special_names = {
+            'UniqueAnimateWeapon': 'Manifest Dancing Dervish',
+            'ChaosDegenAuraUnique': "Death Aura",
+            'IcestormUniqueStaff12': "Ice Storm",
+            'TriggeredMoltenStrike': "Molten Burst",
+            'TriggeredSummonSpider': "Raise Spiders",
+            'AvianTornado': "Tornado"
+        }
+        return special_names.get(skill_id, None)

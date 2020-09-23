@@ -31,18 +31,18 @@ class TestBot(unittest.TestCase):
         xml_keys = [xml.split(".xml")[0] for xml in xml_file_paths]
 
         for link in links:
-            if link.startswith("pastebin"):
+            if "https://pastebin.com/" in link:
                 key = link.split("/")[-1]
                 if key not in xml_keys:
                     log.warning(f"Downloading xml from pastebin for key={key}")
                     PastebinHelper.fetch_pastebin(key)
 
+        xml_file_paths = get_files_in_directory(folder_path)
         for file_path in xml_file_paths:
             test_path = get_test_path(os.path.join(folder_path, file_path))
             with open(test_path, "r") as f:
                 demo_author = None
                 log.info(f"Testing whether we can parse '{test_path}'")
-                # element tree = xyz
                 xml_tree = ET.fromstring(f.read())
 
                 build_embed = PoBCog._generate_embed(None, xml_tree, demo_author,
