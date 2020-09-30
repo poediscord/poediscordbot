@@ -24,7 +24,6 @@ Do not forget to re-do your config.py every time you pull. Breaking changes may 
 - Support for Auras from Items (check if they're active)
 - Add support for "Notable" Uniques that are displayed in the extended version
 - !pob `manually input build name here` <pob link>
-- Split auras into def and supporting auras
 
 ### Usage
 - Bot reacts to `!pob <pastebin (not raw!) link>` in all configured passive channels on the invited server or to pastebin links it can parse in active channels.
