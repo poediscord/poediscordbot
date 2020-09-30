@@ -20,8 +20,7 @@ Do not forget to re-do your config.py every time you pull. Breaking changes may 
         - Balls
         - Arrows
 - Start/Stop script: https://wolfpaulus.com/technology/pythonlauncher/
-- Add support for Keystones
-    - Number of totems
+- Number of totems
 - Support for Auras from Items (check if they're active)
 - Add support for "Notable" Uniques that are displayed in the extended version
 - !pob `manually input build name here` <pob link>
