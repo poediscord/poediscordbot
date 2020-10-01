@@ -1,9 +1,9 @@
 class Gem:
     __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active', \
-                'selected_minion', 'minion_skill'
+                'selected_minion', 'minion_skill', 'quality_type', 'base_name'
 
-    def __init__(self, gem_id, name, level, quality, skill_part, enabled='', selected_minion=None, minion_skill=False):
-        self.name = self.translate_name(gem_id) if name == "" else name
+    def __init__(self, gem_id, name, level, quality, skill_part, enabled='', selected_minion=None, minion_skill=False,
+                 quality_id='Default'):
         self.level = int(level)
         self.quality = int(quality)
         self.id = gem_id
@@ -18,6 +18,13 @@ class Gem:
         self.selected_minion = selected_minion
         self.minion_skill = minion_skill
         self.is_active = self.determine_active()
+        self.quality_type = self.translate_pob_quality_id(quality_id)
+        self.base_name = self.translate_name(gem_id) if name == "" else name
+        full_name = ''
+        if self.quality_type:
+            full_name += f"{self.quality_type} "
+        full_name += self.base_name
+        self.name = full_name
 
     def __repr__(self) -> str:
         return f"Gem [{self.build_gem_string()}]"
@@ -64,4 +71,13 @@ class Gem:
             'TriggeredSummonSpider': "Raise Spiders",
             'AvianTornado': "Tornado"
         }
-        return special_names.get(skill_id, None)
+        return special_names.get(skill_id, '')
+
+    @staticmethod
+    def translate_pob_quality_id(qualityId: str):
+        alternate_quality_ids = {
+            'Alternate1': 'Anomalous',
+            'Alternate2': 'Divergent',
+            'Alternate3': 'Phantasmal',
+        }
+        return alternate_quality_ids.get(qualityId, None)
