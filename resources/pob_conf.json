@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-09-18T17:12:11.942427",
+    "utc-date": "2020-10-01T15:30:25.338723",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -63,10 +63,10 @@
         },
         "innervateInnervation": {
             "var": "innervateInnervation",
-            "label": "Is Innervation active?",
+            "label": "Is Physical Aegis depleted?",
             "category": "player",
             "abbreviation": "Innervation",
-            "ifSkill": "Innervate"
+            "ifSkill": "Physical Aegis"
         },
         "vortexCastOnFrostbolt": {
             "var": "vortexCastOnFrostbolt",
@@ -864,10 +864,10 @@
         },
         "deathmarkDeathmarkActive": {
             "var": "deathmarkDeathmarkActive",
-            "label": "Is the enemy Deathmarked?",
+            "label": "Is the enemy marked with Signal Prey?",
             "category": "enemy",
             "abbreviation": "Deathmarked",
-            "ifSkill": "Deathmark"
+            "ifSkill": "Predator"
         },
         "feedingFrenzyFeedingFrenzyActive": {
             "var": "feedingFrenzyFeedingFrenzyActive",
@@ -1291,14 +1291,12 @@
             "label": "Are skills targeting the Branded enemy?",
             "ifSkill": "Arcanist Brand",
             "abbreviation": "Lucky (Vaal Arc)"
-
         },
         "BrandsInLastQuarter": {
             "var": "BrandsInLastQuarter",
             "label": "Last 25% of Attached Duration?",
             "category": "player",
             "abbreviation": "25% duration of brands"
-
         },
         "greaterHarbingerOfTimeSlipstream": {
             "var": "greaterHarbingerOfTimeSlipstream",
@@ -1477,6 +1475,53 @@
             "label": "Is the enemy on Profane Ground?",
             "category": "enemy",
             "abbreviation": "On Profane Ground"
+        },
+        "physMode": {
+            "var": "physMode",
+            "label": "Random element mode:"
+        },
+        "channellingCycloneCheck": {
+            "var": "channellingCycloneCheck",
+            "label": "Are you Channelling Cyclone?",
+            "ifSkill": "Cyclone"
+        },
+        "flameWallAddedDamage": {
+            "var": "flameWallAddedDamage",
+            "label": "Projectile Travelled through Flame Wall?",
+            "ifSkill": "Flame Wall"
+        },
+        "animateWeaponLingeringBlade": {
+            "var": "animateWeaponLingeringBlade",
+            "label": "Are you animating Lingering Blades?",
+            "ifSkill": "Animate Weapon"
+        },
+        "conditionSummonedGolemInPast8Sec": {
+            "var": "conditionSummonedGolemInPast8Sec",
+            "label": "Summoned a Golem in the past 8 Seconds?"
+        },
+        "conditionSummonedGolemInPast10Sec": {
+            "var": "conditionSummonedGolemInPast10Sec",
+            "label": "Summoned a Golem in the past 10 Seconds?"
+        },
+        "conditionHitRecentlyWithWeapon": {
+            "var": "conditionHitRecentlyWithWeapon",
+            "label": "Have you Hit Recently with Your Weapon?"
+        },
+        "conditionGainedPowerChargeRecently": {
+            "var": "conditionGainedPowerChargeRecently",
+            "label": "Gained a Power Charge Recently?"
+        },
+        "conditionEnemyFireExposure": {
+            "var": "conditionEnemyFireExposure",
+            "label": "Is the enemy Exposed to Fire?"
+        },
+        "conditionEnemyColdExposure": {
+            "var": "conditionEnemyColdExposure",
+            "label": "Is the enemy Exposed to Cold?"
+        },
+        "conditionEnemyLightningExposure": {
+            "var": "conditionEnemyLightningExposure",
+            "label": "Is the enemy Exposed to Lightning?"
         }
     }
 }

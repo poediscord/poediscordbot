@@ -128,7 +128,8 @@ def _parse_skills(xml_skills):
                     get_attrib_if_exists(gem, 'skillPart'),
                     gem.attrib['enabled'],
                     get_attrib_if_exists(gem, 'skillMinion'),
-                    is_minion_skill
+                    is_minion_skill,
+                    get_attrib_if_exists(gem, 'qualityId'),
                     )
             )
         slot = get_attrib_if_exists(skill, 'slot')
