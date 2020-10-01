@@ -20,7 +20,6 @@ class Gem:
         self.is_active = self.determine_active()
         self.quality_type = self.translate_pob_quality_id(quality_id)
         self.base_name = self.translate_name(gem_id) if name == "" else name
-
         full_name = ''
         if self.quality_type:
             full_name += f"{self.quality_type} "
@@ -63,7 +62,7 @@ class Gem:
         return self.name and self.enabled and self.name != '' and 'jewel' not in self.name.lower()
 
     @staticmethod
-    def translate_name(skill_id, quality_type: str):
+    def translate_name(skill_id):
         special_names = {
             'UniqueAnimateWeapon': 'Manifest Dancing Dervish',
             'ChaosDegenAuraUnique': "Death Aura",
@@ -72,7 +71,7 @@ class Gem:
             'TriggeredSummonSpider': "Raise Spiders",
             'AvianTornado': "Tornado"
         }
-        return f"{quality_type} {special_names.get(skill_id, None)}"
+        return special_names.get(skill_id, '')
 
     @staticmethod
     def translate_pob_quality_id(qualityId: str):
