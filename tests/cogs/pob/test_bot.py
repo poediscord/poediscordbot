@@ -7,6 +7,7 @@ from discord import Embed
 from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util.logging import log
 from tests import load_file_as_string, get_test_path
+from tests.cogs import file_loader
 from tests.cogs.pastebin_downloadhelper import PastebinHelper
 
 
@@ -14,21 +15,14 @@ def get_links(path="in/pastebins.txt"):
     return [line.rstrip() for line in load_file_as_string(path).split("\n") if "#" not in line]
 
 
-def get_files_in_directory(path):
-    path = get_test_path(path)
-    xml_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f)) and f.endswith('.xml')]
-    return xml_files
-
 
 class TestBot(unittest.TestCase):
     def test_bot_parse_routine(self):
         """
         Tests whether all links inside of the file can be successfully parsed
         """
-        folder_path = "in/pastebin_xmls"
-        xml_file_paths = get_files_in_directory(folder_path)
         links = get_links()
-        xml_keys = [xml.split(".xml")[0] for xml in xml_file_paths]
+        xml_keys = file_loader.get_pastebin_keys()
 
         for link in links:
             if "https://pastebin.com/" in link:
@@ -37,9 +31,9 @@ class TestBot(unittest.TestCase):
                     log.warning(f"Downloading xml from pastebin for key={key}")
                     PastebinHelper.fetch_pastebin(key)
 
-        xml_file_paths = get_files_in_directory(folder_path)
+        xml_file_paths = file_loader.get_pastebin_file_dir_files()
         for file_path in xml_file_paths:
-            test_path = get_test_path(os.path.join(folder_path, file_path))
+            test_path = get_test_path(os.path.join(file_loader.pastebin_xmls_file, file_path))
             with open(test_path, "r") as f:
                 demo_author = None
                 log.info(f"Testing whether we can parse '{test_path}'")
