@@ -5,10 +5,8 @@ from discord import Embed
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.pob_xml_parser import pob_xml_parser
-from poediscordbot.util.logging import log
 from tests import load_json_file
 from tests.cogs import file_loader
-from tests.cogs.pastebin_downloadhelper import PastebinHelper
 
 
 class TestBot(unittest.TestCase):
@@ -59,27 +57,13 @@ class TestBot(unittest.TestCase):
 
     def fetch_build(self, demo_author, json_build):
         link = json_build['pastebin']
-        key = link.split("/")[-1]
-        xml_keys = file_loader.get_pastebin_keys()
 
-        if key not in xml_keys:
-            log.warning(f"Downloading xml from pastebin for key={key}")
-            PastebinHelper.fetch_pastebin(key)
+        xml_tree = file_loader.load_xml_by_pastebin_key(link)
 
-        matches = [file for file in file_loader.get_pastebin_file_dir_files() if key in file]
-        build_xml_file = matches[0] if len(matches) > 0 else None
-        path_to_build_xml = file_loader.get_pastebin_file(build_xml_file)
-
-        with open(path_to_build_xml, "r") as f:
-            demo_author = None
-            log.info(f"Testing whether we can parse '{build_xml_file}'")
-            import defusedxml.ElementTree as ET
-
-            xml_tree = ET.fromstring(f.read())
-            build = pob_xml_parser.parse_build(xml_tree)
-            build_embed = pob_output.generate_response(demo_author, build, minified=False, pastebin_key=None,
-                                                       non_dps_skills=poe_consts, web_poe_token=None)
-            return build_embed
+        build = pob_xml_parser.parse_build(xml_tree)
+        build_embed = pob_output.generate_response(demo_author, build, minified=False, pastebin_key=None,
+                                                   non_dps_skills=poe_consts, web_poe_token=None)
+        return build_embed
 
     def single_assert(self, field, term, value, negated):
         """
