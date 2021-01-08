@@ -1,5 +1,5 @@
 {
-    "utc-date": "2020-10-01T15:30:25.338723",
+    "utc-date": "2021-01-08T12:30:32.227763",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1478,50 +1478,78 @@
         },
         "physMode": {
             "var": "physMode",
-            "label": "Random element mode:"
+            "label": "Random element mode:",
+            "category": "player",
+            "abbreviation": "Random Element"
         },
         "channellingCycloneCheck": {
             "var": "channellingCycloneCheck",
             "label": "Are you Channelling Cyclone?",
-            "ifSkill": "Cyclone"
+            "ifSkill": "Cyclone",
+            "category": "player",
+            "abbreviation": "Cycloning"
         },
         "flameWallAddedDamage": {
             "var": "flameWallAddedDamage",
             "label": "Projectile Travelled through Flame Wall?",
-            "ifSkill": "Flame Wall"
+            "ifSkill": "Flame Wall",
+            "category": "player",
+            "abbreviation": "Flame Wall Projectile"
         },
         "animateWeaponLingeringBlade": {
             "var": "animateWeaponLingeringBlade",
             "label": "Are you animating Lingering Blades?",
-            "ifSkill": "Animate Weapon"
+            "ifSkill": "Animate Weapon",
+            "category": "player",
+            "abbreviation": "Animating Weapons"
         },
         "conditionSummonedGolemInPast8Sec": {
             "var": "conditionSummonedGolemInPast8Sec",
-            "label": "Summoned a Golem in the past 8 Seconds?"
+            "label": "Summoned a Golem in the past 8 Seconds?",
+            "category": "playerRecently",
+            "abbreviation": "Golem summoned (8s)"
         },
         "conditionSummonedGolemInPast10Sec": {
             "var": "conditionSummonedGolemInPast10Sec",
-            "label": "Summoned a Golem in the past 10 Seconds?"
+            "label": "Summoned a Golem in the past 10 Seconds?",
+            "category": "playerRecently",
+            "abbreviation": "Golem summoned (10s)"
         },
         "conditionHitRecentlyWithWeapon": {
             "var": "conditionHitRecentlyWithWeapon",
-            "label": "Have you Hit Recently with Your Weapon?"
+            "label": "Have you Hit Recently with Your Weapon?",
+            "category": "playerRecently",
+            "abbreviation": "Hit with weapon recently"
         },
         "conditionGainedPowerChargeRecently": {
             "var": "conditionGainedPowerChargeRecently",
-            "label": "Gained a Power Charge Recently?"
+            "label": "Gained a Power Charge Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Gained PC"
         },
         "conditionEnemyFireExposure": {
             "var": "conditionEnemyFireExposure",
-            "label": "Is the enemy Exposed to Fire?"
+            "label": "Is the enemy Exposed to Fire?",
+            "category": "enemy",
+            "abbreviation": "Fire Exposure"
         },
         "conditionEnemyColdExposure": {
             "var": "conditionEnemyColdExposure",
-            "label": "Is the enemy Exposed to Cold?"
+            "label": "Is the enemy Exposed to Cold?",
+            "category": "enemy",
+            "abbreviation": "Cold Exposure"
         },
         "conditionEnemyLightningExposure": {
             "var": "conditionEnemyLightningExposure",
-            "label": "Is the enemy Exposed to Lightning?"
+            "label": "Is the enemy Exposed to Lightning?",
+            "category": "enemy",
+            "abbreviation": "Lightning Exposure"
+        },
+        "EEIgnoreHitDamage": {
+            "var": "EEIgnoreHitDamage",
+            "label": "Ignore Skill Hit Damage?",
+            "category": "Player",
+            "abbreviation": "Ignore Hit Damage (EE)"
         }
     }
 }

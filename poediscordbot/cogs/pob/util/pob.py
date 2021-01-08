@@ -13,6 +13,8 @@ POB_SPECTRES = 'resources/pob_spectres.json'
 
 
 class PobConfig:
+    COMMUNITY_POB_RAW_GITHUB_URL = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/"
+
     def __init__(self, path_to_pob_conf=POB_CONF_JSON):
         self.config = self.get_config(path_to_pob_conf)
 
@@ -56,8 +58,7 @@ class PobConfig:
         """
         Read the current PoB master branch configoptions and create a json file for it.
         """
-        url = "https://raw.githubusercontent.com/Openarl/PathOfBuilding/master/Modules/ConfigOptions.lua"
-        url = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/Modules/ConfigOptions.lua"
+        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}Modules/ConfigOptions.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
         conditions = [line.strip() for line in content.split('{ var') if
@@ -141,7 +142,7 @@ class PobMinionLookup(object):
         """
         Read the current PoB master branch 3_0 spectre file  and create a json file for it.
         """
-        url = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/Data/3_0/Spectres.lua"
+        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}Data/Spectres.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
 
