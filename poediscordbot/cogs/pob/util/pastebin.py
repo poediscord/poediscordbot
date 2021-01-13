@@ -22,6 +22,8 @@ def fetch_paste_key(content):
     :param content: message.content
     :return: paste key to retrieve pastebin content
     """
+    content=re.sub('[<>]', '', content)
+
     if 'raw' in content:
         content = content.replace('raw/', '')
     regex = r"pastebin.com\/(\S+)"
