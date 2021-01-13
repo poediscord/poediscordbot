@@ -1,5 +1,5 @@
 {
-    "utc-date": "2021-01-08T12:30:32.227763",
+    "utc-date": "2021-01-13T16:11:48.259149",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1544,6 +1544,36 @@
             "label": "Is the enemy Exposed to Lightning?",
             "category": "enemy",
             "abbreviation": "Lightning Exposure"
+        },
+        "multiplierGaleForce": {
+            "var": "multiplierGaleForce",
+            "label": "# of Gale Force:",
+            "category": "player",
+            "abbreviation": "Gale Force #"
+        },
+        "conditionConvergence": {
+            "var": "conditionConvergence",
+            "label": "Do you have Convergence?",
+            "category": "player",
+            "abbreviation": "Convergence"
+        },
+        "multiplierCastLast8Seconds": {
+            "var": "multiplierCastLast8Seconds",
+            "label": "How many spells cast in the last 8 seconds?",
+            "category": "player",
+            "abbreviation": "Spells cast # (8s)"
+        },
+        "buffFanaticism": {
+            "var": "buffFanaticism",
+            "label": "Do you have Fanaticism?",
+            "category": "player",
+            "abbreviation": "Fanaticism"
+        },
+        "multiplierRuptureStacks": {
+            "var": "multiplierRuptureStacks",
+            "label": "# of Rupture stacks?",
+            "category": "player",
+            "abbreviation": "Rapture #"
         },
         "EEIgnoreHitDamage": {
             "var": "EEIgnoreHitDamage",
