@@ -12,7 +12,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         super().__init__(build)
         self.non_dps_skills = non_dps_skills
         self.player_dps_list = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
-                                build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS')]
+                                build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS'), build.get_player_stat("CombinedDPS")]
         self.minion_dps_list = [build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS'),
                                 build.get_minion_stat('WithImpaleDPS')]
         self.comparison_avg = [self.build.get_player_stat('WithPoisonAverageDamage'),

@@ -219,7 +219,7 @@
       ]
     },
     {
-      "name": "Penance Avg DPS",
+      "name": "Penance Avg Hit",
       "description": "ensure that penance brand uses avg dmg",
       "pastebin": "https://pastebin.com/bs3nX8LT",
       "assertions": [
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "name": "BF/BB Avg DPS",
+      "name": "BF/BB Avg Hit",
       "description": "ensure that penance brand uses avg dmg",
       "pastebin": "https://pastebin.com/WuJDJZKK",
       "assertions": [
@@ -249,6 +249,21 @@
         {
           "key": "Offense",
           "value": "4,025"
+        }
+      ]
+    },
+    {
+      "name": "DO Dps",
+      "description": "ensure that penance brand uses avg dmg",
+      "pastebin": "https://pastebin.com/83AYNipG",
+      "assertions": [
+        {
+          "key": "ascendancy",
+          "value": "Occultist"
+        },
+        {
+          "key": "Offense",
+          "value": "1,292,142"
         }
       ]
     }
