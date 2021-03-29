@@ -16,7 +16,8 @@ class OffenseAggregatorV2(AbstractAggregator):
         self.minion_dps_list = [build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS'),
                                 build.get_minion_stat('WithImpaleDPS')]
         self.comparison_avg = [self.build.get_player_stat('WithPoisonAverageDamage'),
-                               self.build.get_player_stat('AverageDamage')]
+                               self.build.get_player_stat('AverageDamage'),
+                               self.build.get_player_stat('CombinedAvg')]
 
         self.ignite_dps = build.get_player_stat('IgniteDPS')
 

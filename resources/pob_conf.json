@@ -1,5 +1,5 @@
 {
-    "utc-date": "2021-01-13T16:11:48.259149",
+    "utc-date": "2021-03-29T17:39:56.046086",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1361,6 +1361,7 @@
             "label": "# of Summoned Totems (if not maximum):",
             "ifSkillList": [
                 "Spell Totem",
+                "Searing Bond",
                 "Ballista Totem",
                 "Siege Ballista",
                 "Artillery Ballista",
@@ -1580,6 +1581,22 @@
             "label": "Ignore Skill Hit Damage?",
             "category": "Player",
             "abbreviation": "Ignore Hit Damage (EE)"
+        },
+        "conditionInsane": {
+            "var": "conditionInsane",
+            "label": "Are you insane?"
+        },
+        "conditionGainedFrenzyChargeRecently": {
+            "var": "conditionGainedFrenzyChargeRecently",
+            "label": "Gained a Frenzy Charge Recently?"
+        },
+        "skillPierceCount": {
+            "var": "skillPierceCount",
+            "label": "# of times Skill has Pierced:"
+        },
+        "conditionEnemyOnScorchedGround": {
+            "var": "conditionEnemyOnScorchedGround",
+            "label": "Is the enemy on Scorched Ground?"
         }
     }
 }

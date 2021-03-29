@@ -217,6 +217,40 @@
           "value": "Phantasmal Haste"
         }
       ]
+    },
+    {
+      "name": "Penance Avg DPS",
+      "description": "ensure that penance brand uses avg dmg",
+      "pastebin": "https://pastebin.com/bs3nX8LT",
+      "assertions": [
+        {
+          "key": "ascendancy",
+          "value": "Assassin"
+        },
+        {
+          "key": "Offense",
+          "value": "AVG"
+        }
+      ]
+    },
+    {
+      "name": "BF/BB Avg DPS",
+      "description": "ensure that penance brand uses avg dmg",
+      "pastebin": "https://pastebin.com/WuJDJZKK",
+      "assertions": [
+        {
+          "key": "ascendancy",
+          "value": "Assassin"
+        },
+        {
+          "key": "Offense",
+          "value": "AVG"
+        },
+        {
+          "key": "Offense",
+          "value": "4,025"
+        }
+      ]
     }
   ]
 }
