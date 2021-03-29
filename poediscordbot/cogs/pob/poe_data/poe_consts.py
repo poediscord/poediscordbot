@@ -71,5 +71,7 @@ show_avg_dps_skills = [
     "ball lightning",
     "storm call",
     "volatile dead",
-    "detonate dead"
+    "detonate dead",
+    "penance brand",
+    "blade blast"
 ]
