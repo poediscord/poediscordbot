@@ -1584,19 +1584,27 @@
         },
         "conditionInsane": {
             "var": "conditionInsane",
-            "label": "Are you insane?"
+            "label": "Are you insane?",
+            "category": "player",
+            "abbreviation": "Insane"
         },
         "conditionGainedFrenzyChargeRecently": {
             "var": "conditionGainedFrenzyChargeRecently",
-            "label": "Gained a Frenzy Charge Recently?"
+            "label": "Gained a Frenzy Charge Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Gained FC"
         },
         "skillPierceCount": {
             "var": "skillPierceCount",
-            "label": "# of times Skill has Pierced:"
+            "label": "# of times Skill has Pierced:",
+            "category": "player",
+            "abbreviation": "# of Pierces"
         },
         "conditionEnemyOnScorchedGround": {
             "var": "conditionEnemyOnScorchedGround",
-            "label": "Is the enemy on Scorched Ground?"
+            "label": "Is the enemy on Scorched Ground?",
+            "category": "enemy",
+            "abbreviation": "On Scorched Ground"
         }
     }
 }
