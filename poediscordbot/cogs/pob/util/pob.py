@@ -58,7 +58,7 @@ class PobConfig:
         """
         Read the current PoB master branch configoptions and create a json file for it.
         """
-        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}Modules/ConfigOptions.lua"
+        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}src/Modules/ConfigOptions.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
         conditions = [line.strip() for line in content.split('{ var') if
@@ -142,7 +142,7 @@ class PobMinionLookup(object):
         """
         Read the current PoB master branch 3_0 spectre file  and create a json file for it.
         """
-        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}Data/Spectres.lua"
+        url = f"{PobConfig.COMMUNITY_POB_RAW_GITHUB_URL}src/Data/Spectres.lua"
         url = request.urlopen(url)
         content = url.read().decode('utf-8')
 
