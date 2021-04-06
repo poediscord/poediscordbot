@@ -4,6 +4,7 @@ from typing import Optional
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.cogs.pob.util.pob import pob_conf
 from poediscordbot.pob_xml_parser.models.skill import Skill
+from poediscordbot.util.logging import log
 
 
 class StatOwner(Enum):
@@ -64,7 +65,10 @@ class Build:
         stat_owner = StatOwner.from_string(stat_owner)
         if not stat_owner in self.stats:
             self.stats[stat_owner] = {}
-        self.stats[stat_owner][key] = float(val)
+        try:
+            self.stats[stat_owner][key] = float(val)
+        except ValueError:
+            log.info(f"Unable to convert '{val}' to float.")
 
     def append_conf(self, key, val):
         conf_entry = pob_conf.fetch_config_entry(key)
