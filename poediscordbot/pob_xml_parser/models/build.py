@@ -1,4 +1,5 @@
 from enum import Enum
+from functools import reduce
 from typing import Optional
 
 from poediscordbot.cogs.pob.poe_data import poe_consts
@@ -20,8 +21,6 @@ class StatOwner(Enum):
             return StatOwner.PLAYER
         if StatOwner.MINION.value in stat_owner:
             return StatOwner.MINION
-
-
 
 
 class Build:
@@ -107,6 +106,15 @@ class Build:
         if len(self.skills) < 1 or self.active_skill_id is None or self.active_skill_id < 1:
             return None
         return self.skills[self.active_skill_id - 1]
+
+    def get_active_gem_from_included_skills(self) -> [Skill]:
+        """
+        get all active gems that are included in full dps breakdown with a count above 0
+        :return: list of matching gems
+        """
+        included_skills = [skill.get_active_gems() for skill in self.skills if skill.included_in_full_dps]
+        flatmap_included_skills = reduce(lambda a, b: a + b, included_skills) if included_skills else []
+        return [gem for gem in flatmap_included_skills if gem.is_active and gem.instance_count > 0]
 
     def get_player_stat(self, stat_name, threshold=0):
         """

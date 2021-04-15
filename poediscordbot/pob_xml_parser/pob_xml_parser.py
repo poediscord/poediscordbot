@@ -127,6 +127,7 @@ def _parse_skills(xml_skills):
                     gem.attrib['quality'],
                     get_attrib_if_exists(gem, 'skillPart'),
                     gem.attrib['enabled'],
+                    get_attrib_if_exists(gem, 'count'),
                     get_attrib_if_exists(gem, 'skillMinion'),
                     is_minion_skill,
                     get_attrib_if_exists(gem, 'qualityId'),
@@ -135,5 +136,6 @@ def _parse_skills(xml_skills):
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:
             pass
-        skills.append(Skill(gems, get_attrib_if_exists(skill, 'mainActiveSkill'), slot, skill.attrib['enabled']))
+        skills.append(Skill(gems, get_attrib_if_exists(skill, 'mainActiveSkill'), slot, skill.attrib['enabled'],
+                            get_attrib_if_exists(skill, 'includeInFullDPS') == 'true'))
     return skills

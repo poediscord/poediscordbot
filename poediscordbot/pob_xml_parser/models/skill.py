@@ -2,9 +2,9 @@ from poediscordbot.pob_xml_parser.models.gem import Gem
 
 
 class Skill:
-    __slots__ = 'gems', 'main_active_skill', 'slot', 'enabled', 'links'
+    __slots__ = 'gems', 'main_active_skill', 'slot', 'enabled', 'links', 'included_in_full_dps'
 
-    def __init__(self, gems, main_active_skill, slot=None, enabled=False):
+    def __init__(self, gems: [Gem], main_active_skill, slot=None, enabled=False, included_in_full_dps=False):
         self.slot = slot
         self.gems = gems
         self.enabled = True if enabled == 'true' else False
@@ -14,10 +14,11 @@ class Skill:
             self.main_active_skill = int(main_active_skill)
 
         self.links = len(gems)
+        self.included_in_full_dps = included_in_full_dps
 
     def __repr__(self) -> str:
         return f"Skill [slot={self.slot}; gems={self.gems}; links={self.links}; selected={self.main_active_skill}; " \
-            f"enabled={self.enabled}] "
+               f"enabled={self.enabled}] "
 
     def get_active_gems(self):
         return [gem for gem in self.gems if gem.is_active]

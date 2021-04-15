@@ -254,7 +254,7 @@
     },
     {
       "name": "DO Dps",
-      "description": "ensure that penance brand uses avg dmg",
+      "description": "ensure that DO shows dps",
       "pastebin": "https://pastebin.com/83AYNipG",
       "assertions": [
         {
@@ -264,6 +264,36 @@
         {
           "key": "Offense",
           "value": "1,292,142"
+        }
+      ]
+    },
+    {
+      "name": "Full DPS breakdown Single Skill",
+      "description": "ensure that the count of the single skill is correct and we show combined dps",
+      "pastebin": "https://pastebin.com/19phNaBC",
+      "assertions": [
+        {
+          "key": "Offense",
+          "value": "Shrapnel Ballista × 18"
+        },
+        {
+          "key": "Offense",
+          "value": "Combined DPS: 5,605,539"
+        }
+      ]
+    },
+    {
+      "name": "Full DPS breakdown Two Skills",
+      "description": "ensure that the count of the brand and hydrosphere is correct and we show combined dps",
+      "pastebin": "https://pastebin.com/QkRAKZyq",
+      "assertions": [
+        {
+          "key": "Offense",
+          "value": "Storm Brand × 2, Hydrosphere × 1"
+        },
+        {
+          "key": "Offense",
+          "value": "Combined DPS: 8,421,536"
         }
       ]
     }

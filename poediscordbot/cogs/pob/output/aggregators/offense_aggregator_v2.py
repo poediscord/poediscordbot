@@ -11,8 +11,12 @@ class OffenseAggregatorV2(AbstractAggregator):
     def __init__(self, build: Build, non_dps_skills):
         super().__init__(build)
         self.non_dps_skills = non_dps_skills
+
+        self.full_dps_list = [build.get_minion_stat('FullDPS'), build.get_player_stat("FullDPS")]
+
         self.player_dps_list = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
-                                build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS'), build.get_player_stat("CombinedDPS")]
+                                build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS'),
+                                build.get_player_stat("CombinedDPS")]
         self.minion_dps_list = [build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS'),
                                 build.get_minion_stat('WithImpaleDPS')]
         self.comparison_avg = [self.build.get_player_stat('WithPoisonAverageDamage'),
@@ -24,6 +28,9 @@ class OffenseAggregatorV2(AbstractAggregator):
         self.max_player_dps = max([dps if dps else 0 for dps in self.player_dps_list])
         self.max_minion_dps = max([dps if dps else 0 for dps in self.minion_dps_list])
         self.max_avg_dps = max([dps if dps else 0 for dps in self.comparison_avg])
+        self.full_dps = max([dps if dps else 0 for dps in self.full_dps_list])
+
+        self.included_skills = build.get_active_gem_from_included_skills()
 
     def get_max_dps(self):
         return max(self.max_player_dps, self.max_minion_dps, self.ignite_dps or 0)
@@ -36,6 +43,7 @@ class OffenseAggregatorV2(AbstractAggregator):
             return 'None', None
 
         avg_dps = self.show_avg_damage(self.build.get_active_skill())
+        full_dps = self.full_dps > self.max_player_dps and self.full_dps > self.max_player_dps
         minion = self.max_minion_dps > self.max_player_dps
         player_dps = self.max_player_dps > self.max_minion_dps
 
@@ -44,6 +52,8 @@ class OffenseAggregatorV2(AbstractAggregator):
             return 'Support', self._get_support_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
+        elif full_dps:
+            return 'Full DPS', self._generate_full_dps_output()
         elif minion:
             return 'Minion Offense', self._generate_minion_output()
         elif player_dps:
@@ -107,6 +117,15 @@ class OffenseAggregatorV2(AbstractAggregator):
         return self.__generate_dps_string(total_dps, speed, impale_dps, self.ignite_dps) \
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
+    def _generate_full_dps_output(self):
+        crit_chance = self.build.get_player_stat('CritChance', )
+        crit_multi = self.build.get_player_stat('CritMultiplier')
+        acc = self.build.get_player_stat('HitChance')
+        gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
+
+        return f'**Combined DPS**: {self.full_dps:,.0f}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi, acc) \
+               + f'**Sources**: {gem_breakdown}'
+
     def _generate_player_ignite_output(self):
         return f'**Ignite DPS**: {self.ignite_dps:,.0f}'
 
@@ -115,7 +134,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         output = ''
         output += f'**Total DPS**: {total_dps:,.0f}'
         if speed and speed > 0:
-            output += f'@ {round(speed, 2) if speed else 0}/s\n'
+            output += f' @ {round(speed, 2) if speed else 0}/s\n'
         if impale_dps and impale_dps > total_dps * OutputThresholds.IMPALE_DPS_RATIO.value:
             output += f'**Impale DPS**: {impale_dps:,.0f}\n'
         if ignite_dps and ignite_dps > total_dps:
