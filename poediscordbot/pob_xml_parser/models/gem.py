@@ -1,8 +1,9 @@
 class Gem:
     __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active', \
-                'selected_minion', 'minion_skill', 'quality_type', 'base_name'
+                'selected_minion', 'minion_skill', 'quality_type', 'base_name', 'instance_count'
 
-    def __init__(self, gem_id, name, level, quality, skill_part, enabled='', selected_minion=None, minion_skill=False,
+    def __init__(self, gem_id, name, level, quality, skill_part, enabled='', instance_count=1, selected_minion=None,
+                 minion_skill=False,
                  quality_id='Default'):
         self.level = int(level)
         self.quality = int(quality)
@@ -25,6 +26,10 @@ class Gem:
             full_name += f"{self.quality_type} "
         full_name += self.base_name
         self.name = full_name
+        try:
+            self.instance_count = int(instance_count) if instance_count else 1
+        except ValueError:
+            self.instance_count = 1
 
     def __repr__(self) -> str:
         return f"Gem [{self.build_gem_string()}]"

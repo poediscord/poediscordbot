@@ -1,5 +1,5 @@
 {
-    "utc-date": "2021-03-29T17:39:56.046086",
+    "utc-date": "2021-04-15T17:10:29.739454",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1605,6 +1605,10 @@
             "label": "Is the enemy on Scorched Ground?",
             "category": "enemy",
             "abbreviation": "On Scorched Ground"
+        },
+        "multiplierDefiance": {
+            "var": "multiplierDefiance",
+            "label": "Defiance:"
         }
     }
 }
