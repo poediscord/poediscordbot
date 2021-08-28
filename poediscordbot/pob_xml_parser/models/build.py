@@ -84,13 +84,13 @@ class Build:
         if item_slot:
             return item_slot.item
 
-    def _get_stat(self, owner: StatOwner, key, threshold=0):
+    def _get_stat(self, owner: StatOwner, key, threshold=0, default_val=None):
         if owner in self.stats and key in self.stats[owner]:
             val = self.stats[owner][key]
             return val if val >= threshold \
-                else None
+                else default_val
         else:
-            return None
+            return default_val
 
     def to_string(self):
         ret = ""
@@ -116,14 +116,14 @@ class Build:
         flatmap_included_skills = reduce(lambda a, b: a + b, included_skills) if included_skills else []
         return [gem for gem in flatmap_included_skills if gem.is_active and gem.instance_count > 0]
 
-    def get_player_stat(self, stat_name, threshold=0):
+    def get_player_stat(self, stat_name, threshold=0, default_val=None):
         """
         Wrapper method for the internal get stat method, that only reads player stats
         :param stat_name: name of the stat in Pob XMLs such as "Str", "Int", ...
         :param threshold: optional threshold which is the comparison base for this stat
         :return: value if found (and above threshold) else None
         """
-        return self._get_stat(StatOwner.PLAYER, stat_name, threshold=threshold)
+        return self._get_stat(StatOwner.PLAYER, stat_name, threshold=threshold, default_val=default_val)
 
-    def get_minion_stat(self, stat_name, threshold=0):
-        return self._get_stat(StatOwner.MINION, stat_name, threshold=threshold)
+    def get_minion_stat(self, stat_name, threshold=0, default_val=None):
+        return self._get_stat(StatOwner.MINION, stat_name, threshold=threshold, default_val=default_val)

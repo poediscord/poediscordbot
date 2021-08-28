@@ -12,23 +12,27 @@ class OffenseAggregatorV2(AbstractAggregator):
         super().__init__(build)
         self.non_dps_skills = non_dps_skills
 
-        self.full_dps_list = [build.get_minion_stat('FullDPS'), build.get_player_stat("FullDPS")]
+        self.full_dps_list = [build.get_minion_stat('FullDPS', default_val=0),
+                              build.get_player_stat("FullDPS", default_val=0)]
 
-        self.player_dps_list = [build.get_player_stat('TotalDPS'), build.get_player_stat('WithPoisonDPS'),
-                                build.get_player_stat('WithImpaleDPS'), build.get_player_stat('BleedDPS'),
-                                build.get_player_stat("CombinedDPS")]
-        self.minion_dps_list = [build.get_minion_stat('TotalDPS'), build.get_minion_stat('WithPoisonDPS'),
-                                build.get_minion_stat('WithImpaleDPS')]
-        self.comparison_avg = [self.build.get_player_stat('WithPoisonAverageDamage'),
-                               self.build.get_player_stat('AverageDamage'),
-                               self.build.get_player_stat('CombinedAvg')]
+        self.player_dps_list = [build.get_player_stat('TotalDPS', default_val=0),
+                                build.get_player_stat('WithPoisonDPS', default_val=0),
+                                build.get_player_stat('WithImpaleDPS', default_val=0),
+                                build.get_player_stat('BleedDPS', default_val=0),
+                                build.get_player_stat('CombinedDPS', default_val=0)]
+        self.minion_dps_list = [build.get_minion_stat('TotalDPS', default_val=0),
+                                build.get_minion_stat('WithPoisonDPS', default_val=0),
+                                build.get_minion_stat('WithImpaleDPS', default_val=0)]
+        self.comparison_avg = [build.get_player_stat('WithPoisonAverageDamage', default_val=0),
+                               build.get_player_stat('AverageDamage', default_val=0),
+                               build.get_player_stat('CombinedAvg', default_val=0)]
 
         self.ignite_dps = build.get_player_stat('IgniteDPS')
 
-        self.max_player_dps = max([dps if dps else 0 for dps in self.player_dps_list])
-        self.max_minion_dps = max([dps if dps else 0 for dps in self.minion_dps_list])
-        self.max_avg_dps = max([dps if dps else 0 for dps in self.comparison_avg])
-        self.full_dps = max([dps if dps else 0 for dps in self.full_dps_list])
+        self.max_player_dps = max(self.player_dps_list)
+        self.max_minion_dps = max(self.minion_dps_list)
+        self.max_avg_dps = max(self.comparison_avg)
+        self.full_dps = max(self.full_dps_list)
 
         self.included_skills = build.get_active_gem_from_included_skills()
 
@@ -53,7 +57,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
         elif full_dps:
-            return 'Full DPS', self._generate_full_dps_output()
+            return 'Full DPS', self._generate_full_dps_output(minion)
         elif minion:
             return 'Minion Offense', self._generate_minion_output()
         elif player_dps:
@@ -98,7 +102,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         speed = self.build.get_minion_stat('Speed')
         impale_dps = self.build.get_minion_stat('ImpaleDPS')
         total_dps = self.max_minion_dps
-        crit_chance = self.build.get_minion_stat('CritChance', )
+        crit_chance = self.build.get_minion_stat('CritChance')
         crit_multi = self.build.get_minion_stat('CritMultiplier')
         acc = self.build.get_minion_stat('HitChance')
         ignite_dps = self.build.get_minion_stat('IgniteDPS')
@@ -117,14 +121,15 @@ class OffenseAggregatorV2(AbstractAggregator):
         return self.__generate_dps_string(total_dps, speed, impale_dps, self.ignite_dps) \
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
-    def _generate_full_dps_output(self):
-        crit_chance = self.build.get_player_stat('CritChance', )
-        crit_multi = self.build.get_player_stat('CritMultiplier')
-        acc = self.build.get_player_stat('HitChance')
+    def _generate_full_dps_output(self, minion_stats=False):
+        crit_chance = self.build.get_player_stat('CritChance') if not minion_stats else self.build.get_minion_stat('CritChance')
+        crit_multi = self.build.get_player_stat('CritMultiplier') if not minion_stats else self.build.get_minion_stat('CritMultiplier')
+        acc = self.build.get_player_stat('HitChance') if not minion_stats else self.build.get_minion_stat('HitChance')
         gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
 
-        return f'**Combined DPS**: {self.full_dps:,.0f}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi, acc) \
-               + f'**Sources**: {gem_breakdown}'
+        return f'**Combined DPS**: {self.full_dps:,.0f}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi,
+                                                                                              acc) \
+               + f' **Sources**: {gem_breakdown}'
 
     def _generate_player_ignite_output(self):
         return f'**Ignite DPS**: {self.ignite_dps:,.0f}'
@@ -146,7 +151,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         output = ''
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
             output += f'**Crit**: Chance {crit_chance:,.2f}%' \
-                      f' | Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n'
+                      f', Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n'
         if accuracy and accuracy < OutputThresholds.ACCURACY.value:
-            output += f'**Hit Chance**: {accuracy:.2f}%'
+            output += f' **Hit Chance**: {accuracy:.2f}%'
         return output
