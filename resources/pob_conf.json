@@ -1,5 +1,5 @@
 {
-    "utc-date": "2021-04-15T17:10:29.739454",
+    "utc-date": "2021-08-28T12:39:40.222575",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -63,10 +63,10 @@
         },
         "innervateInnervation": {
             "var": "innervateInnervation",
-            "label": "Is Physical Aegis depleted?",
+            "label": "Is Innervation active?",
             "category": "player",
             "abbreviation": "Innervation",
-            "ifSkill": "Physical Aegis"
+            "ifSkill": "Innervate"
         },
         "vortexCastOnFrostbolt": {
             "var": "vortexCastOnFrostbolt",
@@ -1279,7 +1279,8 @@
                 "General's Cry",
                 "Intimidating Cry",
                 "Rallying Cry",
-                "Seismic Cry"
+                "Seismic Cry",
+                "Battlemage's Cry"
             ]
         },
         "EVBypass": {
@@ -1368,7 +1369,8 @@
                 "Shrapnel Ballista",
                 "Ancestral Protector",
                 "Ancestral Warchief",
-                "Vaal Ancestral Warchief"
+                "Vaal Ancestral Warchief",
+                "Earthbreaker"
             ],
             "category": "player",
             "abbreviation": "# of Totems"
@@ -1609,6 +1611,57 @@
         "multiplierDefiance": {
             "var": "multiplierDefiance",
             "label": "Defiance:"
+        },
+        "boneshatterTraumaStacks": {
+            "var": "boneshatterTraumaStacks",
+            "label": "# of Trauma Stacks:",
+            "ifSkill": "Boneshatter",
+            "category": "player",
+            "abbreviation": "Trauma"
+        },
+        "closeCombatCombatRush": {
+            "var": "closeCombatCombatRush",
+            "label": "Is Combat Rush active?",
+            "ifSkill": "Close Combat",
+            "category": "player",
+            "abbreviation": "Close Combat"
+        },
+        "physicalAegisDepleted": {
+            "var": "physicalAegisDepleted",
+            "label": "Is Physical Aegis depleted?",
+            "ifSkill": "Physical Aegis",
+            "category": "player",
+            "abbreviation": "Phys Aegis"
+        },
+        "waitForMaxSeals": {
+            "var": "waitForMaxSeals",
+            "label": "Do you wait for Maximum Unleash Seals?"
+        },
+        "overrideBloodCharges": {
+            "var": "overrideBloodCharges",
+            "label": "# of Blood Charges (if not maximum):"
+        },
+        "buffLifetap": {
+            "var": "buffLifetap",
+            "label": "Do you have Lifetap?",
+            "category": "player",
+            "abbreviation": "Lifetap Active"
+        },
+        "multiplierLifeSpentRecently": {
+            "var": "multiplierLifeSpentRecently",
+            "label": "# of Life spent Recently:",
+            "category": "playerRecently",
+            "abbreviation": "Life Spent"
+        },
+        "conditionConsumed12SteelShardsRecently": {
+            "var": "conditionConsumed12SteelShardsRecently",
+            "label": "Consumed 12 Steel Shards Recently?"
+        },
+        "conditionUsedDashRecently": {
+            "var": "conditionUsedDashRecently",
+            "label": "Have you cast Dash Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Dashed"
         }
     }
 }
