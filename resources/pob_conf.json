@@ -1655,7 +1655,7 @@
         },
         "conditionConsumed12SteelShardsRecently": {
             "var": "conditionConsumed12SteelShardsRecently",
-            "label": "Consumed 12 Steel Shards Recently?",
+            "label": "Consumed 12 Steel Shards Recently?"
         },
         "conditionUsedDashRecently": {
             "var": "conditionUsedDashRecently",
