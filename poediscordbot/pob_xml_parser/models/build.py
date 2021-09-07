@@ -67,7 +67,7 @@ class Build:
         try:
             self.stats[stat_owner][key] = float(val)
         except ValueError:
-            log.info(f"Unable to convert '{val}' to float.")
+            log.info(f"Unable to convert '{key}'='{val}' to float.")
 
     def append_conf(self, key, val):
         conf_entry = pob_conf.fetch_config_entry(key)
