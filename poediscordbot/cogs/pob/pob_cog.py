@@ -48,7 +48,7 @@ class PoBCog(commands.Cog):
             log.debug(f"A| {message.channel}: {message.content}")
             try:
                 xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
-                if xml and web_poe_token:
+                if xml:
                     embed = self._generate_embed(web_poe_token, xml, message.author, paste_key, minify=True)
                     if embed:
                         await message.channel.send(embed=embed)
@@ -63,7 +63,7 @@ class PoBCog(commands.Cog):
         if not self.allow_pming and ctx.message.channel.is_private:
             return
         xml, web_poe_token, paste_key = self._fetch_xml(ctx.message.author, ctx.message.content)
-        if xml and web_poe_token:
+        if xml:
             embed = self._generate_embed(web_poe_token, xml, ctx.message.author, paste_key)
             try:
                 if embed:
