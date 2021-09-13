@@ -17,8 +17,12 @@ class SecondaryDefenseAggregator(AbstractAggregator):
         """
         output = ""
         stats = []
-        effective_life = max(
-            filter(None.__ne__, [build.get_player_stat('Life'), build.get_player_stat('EnergyShield'), 0]))
+
+        es = build.get_player_stat('EnergyShield')
+        life = build.get_player_stat('Life')
+        effective_life = life if life else 0
+        if es and es > effective_life:
+            effective_life = es
 
         armour = build.get_player_stat('Armour', min(OutputThresholds.ARMOUR.value, effective_life))
         stats.append(f"Armour: {armour:,.0f}") if armour and armour else None
