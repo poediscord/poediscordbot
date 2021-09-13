@@ -296,6 +296,17 @@
           "value": "Combined DPS: 8,421,536"
         }
       ]
+    },
+    {
+      "name": "Ward",
+      "description": "ensure that ward is displayed",
+      "pastebin": "https://pastebin.com/CXwUJD7g",
+      "assertions": [
+        {
+          "key": "Defenses",
+          "value": "**Ward**: 3,106"
+        }
+      ]
     }
   ]
 }

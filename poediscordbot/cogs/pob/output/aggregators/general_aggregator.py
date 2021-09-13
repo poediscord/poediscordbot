@@ -9,7 +9,7 @@ class GeneralAggregator(AbstractAggregator):
         return 'Defenses', self._get_defense_string(self.build)
 
     @staticmethod
-    def _get_basic_line(name, stat, stat_percent, stat_unreserved=0, stat_regen=0, stat_leech_rate=0):
+    def _get_basic_line(name, stat, stat_percent, stat_unreserved=0, stat_regen=0, stat_leech_rate=0) -> str:
         output = None
         if isinstance(stat, float) and stat > 0 and isinstance(stat_percent, float):
             output = "**" + name + "**: "
@@ -55,12 +55,13 @@ class GeneralAggregator(AbstractAggregator):
         life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                      OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
         life_flat = build.get_player_stat('Life')
+        life_leech_rate = build.get_player_stat('LifeLeechGainRate',
+                                                life_flat * OutputThresholds.LEECH.value if life_flat else 0)
         life_string = self._get_basic_line("Life", life_flat,
                                            build.get_player_stat('Spec:LifeInc', life_percent_threshold),
                                            stat_regen=build.get_player_stat('LifeRegen'),
                                            stat_unreserved=build.get_player_stat('LifeUnreserved'),
-                                           stat_leech_rate=build.get_player_stat('LifeLeechGainRate',
-                                                                                 life_flat * OutputThresholds.LEECH.value if life_flat else 0))
+                                           stat_leech_rate=life_leech_rate)
         if life_string:
             output += life_string
 
@@ -72,24 +73,29 @@ class GeneralAggregator(AbstractAggregator):
         if harold_es_override:
             es_percent_threshold = 0
 
+        es_leech_rate = build.get_player_stat('EnergyShieldLeechGainRate',
+                                              es_flat * OutputThresholds.LEECH.value if es_flat else 0)
         es_string = self._get_basic_line("Energy Shield", es_flat,
                                          build.get_player_stat('Spec:EnergyShieldInc', es_percent_threshold),
                                          stat_regen=build.get_player_stat('EnergyShieldRegen'),
-                                         stat_leech_rate=build.get_player_stat('EnergyShieldLeechGainRate',
-                                                                               es_flat * OutputThresholds.LEECH.value if es_flat else 0))
+                                         stat_leech_rate=es_leech_rate)
         if es_string:
             output += es_string
+
+        ward = build.get_player_stat("Ward")
+        if ward and ward > OutputThresholds.WARD.value:
+            output += f"**Ward**: {ward:,.0f}\n"
 
         net_regen = build.get_player_stat('NetLifeRegen')
 
         if net_regen:
             output += f"**Net Regen**: {net_regen:,.0f}/s\n"
         mana_flat = build.get_player_stat('Mana')
+        mana_leech_rate = build.get_player_stat('ManaLeechGainRate', mana_flat * OutputThresholds.LEECH.value if mana_flat else 0)
         mana_string = self._get_basic_line("Mana", mana_flat, build.get_player_stat('Spec:ManaInc'),
                                            stat_regen=build.get_player_stat('ManaRegen'),
                                            stat_unreserved=build.get_player_stat('ManaUnreserved'),
-                                           stat_leech_rate=build.get_player_stat('ManaLeechGainRate',
-                                                                                 mana_flat * OutputThresholds.LEECH.value if mana_flat else 0))
+                                           stat_leech_rate=mana_leech_rate)
         if mana_string:
             output += mana_string
 
