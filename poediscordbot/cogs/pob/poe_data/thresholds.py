@@ -17,6 +17,7 @@ class OutputThresholds(Enum):
     ES_PERCENT_PER_LEVEL = 1.5
     ES_REGEN = 100
 
+    WARD = 500
     # Show ele res bigger than the 75 cap
     ELE_RES = 76
     # Show all positive chaos res
