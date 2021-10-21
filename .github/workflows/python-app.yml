@@ -41,11 +41,9 @@ jobs:
   docker-test:
     runs-on: ubuntu-latest
     steps:
-      - name: ls
-        run: ls -la
       - name: Buildah Action
         uses: redhat-actions/buildah-build@v2
         with:
           image: pobdiscord-tester
           tags: ${{ github.sha }}
-          containerfiles: Dockerfile
+          containerfiles: ../Dockerfile
