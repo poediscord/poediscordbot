@@ -41,6 +41,8 @@ jobs:
   docker-test:
     runs-on: ubuntu-latest
     steps:
+      - name: ls
+        run: ls -la
       - name: Buildah Action
         uses: redhat-actions/buildah-build@v2
         with:
