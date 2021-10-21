@@ -46,4 +46,4 @@ jobs:
         with:
           image: pobdiscord-tester
           tags: ${{ github.sha }}
-          containerfiles: ../Dockerfile
+          containerfiles: ..
