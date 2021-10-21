@@ -37,3 +37,14 @@ jobs:
         run: |
           cp instance/config.example.py instance/config.py
           pytest
+
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: pobdiscord-tester
+          tags: ${{ github.sha }}
+          containerfiles: |
+            ./Dockerfile
