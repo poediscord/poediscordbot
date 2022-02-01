@@ -61,7 +61,7 @@ class TestBot(unittest.TestCase):
         xml_tree = file_loader.load_xml_by_pastebin_key(link)
 
         build = pob_xml_parser.parse_build(xml_tree)
-        build_embed = pob_output.generate_response(demo_author, build, minified=False, pastebin_key=None,
+        build_embed = pob_output.generate_response(demo_author, build, minified=False, paste_data=None,
                                                    non_dps_skills=poe_consts, web_poe_token=None)
         return build_embed
 

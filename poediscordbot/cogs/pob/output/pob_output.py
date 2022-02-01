@@ -1,6 +1,7 @@
 from discord import Embed
 from instance import config
 
+from poediscordbot.cogs.pob.importers import PasteData
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.output.aggregators.config_aggregator import ConfigAggregator
@@ -65,10 +66,10 @@ def _fetch_displayed_skill(gem_name, main_skill):
         return gem_name
 
 
-def _generate_info_text(tree, pastebin_key, web_poe_token):
+def _generate_info_text(tree, paste_data, web_poe_token):
     info_text = ""
-    if pastebin_key:
-        info_text += f"[Pastebin](https://pastebin.com/{pastebin_key}) | "
+    if paste_data:
+        info_text += f"[Build Link]({paste_data.source_url}) | "
     if tree and len(tree) < 600:
         info_text += f"[Web Tree]({tree}) "
     if web_poe_token:
@@ -84,13 +85,15 @@ def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
         embed.add_field(name=key, value=val, inline=inline)
 
 
-def generate_response(author, build: Build, minified=False, pastebin_key=None, non_dps_skills=None, web_poe_token=None):
+def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None,
+                      web_poe_token=None):
     """
     Build an embed to respond to the user.
     :param non_dps_skills: poe constants - skill info
     :param author: name of the person triggering the action
     :param build: poe_data to parse an embed from
-    :param minified (bool): whether to get a minified version or the full one
+    :param minified: (bool) whether to get a minified version or the full one
+    :param paste_data: data about paste source
     :return: Filled embed for discord
     """
 
@@ -120,7 +123,7 @@ def generate_response(author, build: Build, minified=False, pastebin_key=None, n
         [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
 
     # output
-    embed.add_field(name='Info:', value=_generate_info_text(build.tree, pastebin_key, web_poe_token))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data, web_poe_token))
 
     if minified:
         embed.add_field(name='Hint:', value='Use `!pob <link to pastebin>` for even more build info!')

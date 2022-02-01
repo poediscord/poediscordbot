@@ -6,11 +6,12 @@ from discord.ext import commands
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
+from poediscordbot.cogs.pob.importers import pastebin, pob_xml_decoder, PasteData
 from poediscordbot.cogs.pob.importers.pastebin import PastebinImporter
 from poediscordbot.cogs.pob.importers.pobbin import PobBinImporter
+from poediscordbot.cogs.pob.importers.poeninja import PoeNinjaImporter
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
-from poediscordbot.cogs.pob.importers import pastebin, pob_xml_decoder
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 
@@ -24,6 +25,14 @@ class PoBCog(commands.Cog):
         self.bot = bot
         self.active_channels = active_channels
         self.allow_pming = allow_pming
+
+    def _contains_supported_url(self, content):
+        """
+        Filter message content for supported urls
+        :param content: message content
+        :return: true if any supported site is found
+        """
+        return "https://pobb.in/" in content or "https://pastebin.com/" in content or "https://poe.ninja/pob" in content
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -74,7 +83,7 @@ class PoBCog(commands.Cog):
                 log.info("Tried pasting in channel without access.")
 
     @staticmethod
-    def _fetch_xml(author, content):
+    def _fetch_xml(author, content) -> (str, str, PasteData):
         """
         Trigger the parsing of the pastebin link, pass it to the output creating object and send a message back
         :param minify: show minified version of the embed
@@ -82,15 +91,17 @@ class PoBCog(commands.Cog):
         :param author: user sending the message
         :return: Embed
         """
-        paste_key = PoBCog._detect_paste_key(content, author)
         importer = None
         if 'pastebin.com' in content:
             importer = PastebinImporter(content)
         if 'pobb.in' in content:
             importer = PobBinImporter(content)
+        if 'poe.ninja' in content:
+            importer = PoeNinjaImporter(content)
 
         if importer and importer.keys:
-            paste_key=random.choice(importer.keys)
+            paste_key = random.choice(importer.keys)
+            log.info(f"Parsing pob from {author} for key={paste_key}, using {importer.__class__}")
             raw_data = importer.fetch_data(paste_key)
             if not raw_data:
                 log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
@@ -101,36 +112,20 @@ class PoBCog(commands.Cog):
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
-            return xml, web_poe_token, paste_key
+            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key))
         else:
             log.error(f"No Paste key found")
             return
 
     @staticmethod
-    def _detect_paste_key(content: str, author):
-        paste_keys = []
-
-        if 'pastebin.com' in content:
-            paste_keys.extend(PastebinImporter(content).keys)
-        if 'pobb.in' in content:
-            paste_keys.extend(PobBinImporter(content).keys)
-        paste_key = random.choice(paste_keys)
-
-        log.info(f"Parsing pastebin with key={paste_key} from author={author}")
-        return paste_key
-
-    @staticmethod
-    def _generate_embed(web_poe_token, xml, author, paste_key, minify=False):
+    def _generate_embed(web_poe_token, xml, author, paste_data: PasteData, minify=False):
         if xml:
             build = pob_xml_parser.parse_build(xml)
             try:
-                embed = pob_output.generate_response(author, build, minified=minify, pastebin_key=paste_key,
+                embed = pob_output.generate_response(author, build, minified=minify, paste_data=paste_data,
                                                      non_dps_skills=poe_consts, web_poe_token=web_poe_token)
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
-                log.error(f"Could not parse pastebin={paste_key} - Exception={ex_msg}")
-
-    def _contains_supported_url(self, content):
-        return "https://pobb.in/" in content or "https://pastebin.com/" in content
+                log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")

@@ -7,13 +7,13 @@ from poediscordbot.cogs.pob.importers.abstract_importer import AbstractImporter
 from poediscordbot.util.logging import log
 
 
-class PobBinImporter(AbstractImporter):
-
-    def _get_raw_url(self, paste_key) -> str:
-        return f'https://pobb.in/{paste_key}/raw'
+class PoeNinjaImporter(AbstractImporter):
 
     def get_source_url(self, paste_key) -> str:
-        return f'https://pobb.in/{paste_key}'
+        return f'https://poe.ninja/pob/{paste_key}'
+
+    def _get_raw_url(self, paste_key) -> str:
+        return f'https://poe.ninja/pob/raw/{paste_key}'
 
     def fetch_data(self, paste_key):
         raw_url = self._get_raw_url(paste_key)
@@ -24,7 +24,7 @@ class PobBinImporter(AbstractImporter):
     def _parse_url(self, url) -> [str]:
         if 'raw' in url:
             url = url.replace('/raw', '')
-        regex = r"pobb.in\/(\S+)"
+        regex = r"poe.ninja\/pob\/(\S+)"
         results = re.findall(regex, url)
         return results
 

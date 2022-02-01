@@ -15,9 +15,14 @@ Original from: https://github.com/aggixx/PoBPreviewBot/blob/master/util.py
 
 
 class PastebinImporter(AbstractImporter):
+    def get_source_url(self, paste_key) -> str:
+        return f'https://pastebin.com/{paste_key}'
 
-    def fetch_data(self, key):
-        raw_url = f'https://pastebin.com/raw/{key}'
+    def _get_raw_url(self, paste_key) -> str:
+        return f'https://pastebin.com/raw/{paste_key}'
+
+    def fetch_data(self, paste_key):
+        raw_url = self._get_raw_url(paste_key)
         log.debug(f"Retrieved from raw_url={raw_url}")
         data = self.__get_raw_data(raw_url)
         return data
