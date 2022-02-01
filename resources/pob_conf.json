@@ -1,9 +1,9 @@
 {
-    "utc-date": "2021-08-28T12:39:40.222575",
+    "utc-date": "2022-02-01T17:52:14.976910",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
-            "label": "Are you stationary?",
+            "label": "Time spent stationary",
             "category": "player",
             "suppress": "conditionMoving",
             "abbreviation": "Stationary"
@@ -835,7 +835,8 @@
             "abbreviation": "Banner planted",
             "ifSkillList": [
                 "Dread Banner",
-                "War Banner"
+                "War Banner",
+                "Defiance Banner"
             ]
         },
         "bladestormInBloodstorm": {
@@ -958,7 +959,7 @@
         },
         "conditionFocused": {
             "var": "conditionFocused",
-            "label": "Are you Focussed?",
+            "label": "Are you Focused?",
             "category": "player",
             "abbreviation": "Focussed"
         },
@@ -1662,6 +1663,61 @@
             "label": "Have you cast Dash Recently?",
             "category": "playerRecently",
             "abbreviation": "Dashed"
+        },
+        "conditionLowMana": {
+            "var": "conditionLowMana",
+            "label": "Are you always on Low Mana?"
+        },
+        "conditionLowEnergyShield": {
+            "var": "conditionLowEnergyShield",
+            "label": "Are you always on Low Energy Shield?"
+        },
+        "armourCalculationMode": {
+            "var": "armourCalculationMode",
+            "label": "Armour calculation mode:"
+        },
+        "overrideCruelty": {
+            "var": "overrideCruelty",
+            "label": "Damage % (if not maximum):",
+            "ifSkill": "Cruelty"
+        },
+        "plagueBearerState": {
+            "var": "plagueBearerState",
+            "label": "State:",
+            "ifSkill": "Plague Bearer"
+        },
+        "minionBuffOnslaught": {
+            "var": "minionBuffOnslaught",
+            "label": "Do your minions have Onslaught?"
+        },
+        "minionbuffUnholyMight": {
+            "var": "minionbuffUnholyMight",
+            "label": "Do your minions have Unholy Might?"
+        },
+        "multiplierFortification": {
+            "var": "multiplierFortification",
+            "label": "# of Fortification Stacks:"
+        },
+        "conditionBeenHitByAttackRecently": {
+            "var": "conditionBeenHitByAttackRecently",
+            "label": "Have you been Hit by an Attack Recently?"
+        },
+        "conditionCastMarkRecently": {
+            "var": "conditionCastMarkRecently",
+            "label": "Have you cast a Mark Spell Recently?"
+        },
+        "overrideBuffBlinded": {
+            "var": "overrideBuffBlinded",
+            "label": "Effect of Blind (if not maximum):",
+            "ifOption": "conditionEnemyBlinded"
+        },
+        "conditionEnemyCrushed": {
+            "var": "conditionEnemyCrushed",
+            "label": "Is the enemy Crushed?"
+        },
+        "conditionNearLinkedTarget": {
+            "var": "conditionNearLinkedTarget",
+            "label": "Is the enemy near you Linked target?"
         }
     }
 }

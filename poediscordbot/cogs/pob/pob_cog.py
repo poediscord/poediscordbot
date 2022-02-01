@@ -6,9 +6,11 @@ from discord.ext import commands
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
+from poediscordbot.cogs.pob.importers.pastebin import PastebinImporter
+from poediscordbot.cogs.pob.importers.pobbin import PobBinImporter
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
-from poediscordbot.cogs.pob.util import pastebin
+from poediscordbot.cogs.pob.importers import pastebin, pob_xml_decoder
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 
@@ -42,7 +44,7 @@ class PoBCog(commands.Cog):
 
         if (react_to_dms or message.channel.name in self.active_channels) \
                 and not util.starts_with("!pob", message.content[:4]) \
-                and "pastebin.com/" in message.content:
+                and self._contains_supported_url(message.content):
             # check if valid xml
             # send message
             log.debug(f"A| {message.channel}: {message.content}")
@@ -81,13 +83,20 @@ class PoBCog(commands.Cog):
         :return: Embed
         """
         paste_key = PoBCog._detect_paste_key(content, author)
-        if paste_key:
-            raw_data = pastebin.get_as_xml(paste_key)
+        importer = None
+        if 'pastebin.com' in content:
+            importer = PastebinImporter(content)
+        if 'pobb.in' in content:
+            importer = PobBinImporter(content)
+
+        if importer and importer.keys:
+            paste_key=random.choice(importer.keys)
+            raw_data = importer.fetch_data(paste_key)
             if not raw_data:
                 log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
                 return
 
-            xml = pastebin.decode_to_xml(raw_data)
+            xml = pob_xml_decoder.decode_to_xml(raw_data)
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return
@@ -99,11 +108,15 @@ class PoBCog(commands.Cog):
 
     @staticmethod
     def _detect_paste_key(content: str, author):
-        paste_key = None
-        paste_keys = pastebin.fetch_paste_key(content)
-        if paste_keys:
-            paste_key = random.choice(paste_keys)
-            log.info(f"Parsing pastebin with key={paste_key} from author={author}")
+        paste_keys = []
+
+        if 'pastebin.com' in content:
+            paste_keys.extend(PastebinImporter(content).keys)
+        if 'pobb.in' in content:
+            paste_keys.extend(PobBinImporter(content).keys)
+        paste_key = random.choice(paste_keys)
+
+        log.info(f"Parsing pastebin with key={paste_key} from author={author}")
         return paste_key
 
     @staticmethod
@@ -118,3 +131,6 @@ class PoBCog(commands.Cog):
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse pastebin={paste_key} - Exception={ex_msg}")
+
+    def _contains_supported_url(self, content):
+        return "https://pobb.in/" in content or "https://pastebin.com/" in content
