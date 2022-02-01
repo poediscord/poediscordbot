@@ -1666,11 +1666,15 @@
         },
         "conditionLowMana": {
             "var": "conditionLowMana",
-            "label": "Are you always on Low Mana?"
+            "label": "Are you always on Low Mana?",
+            "category": "player",
+            "abbreviation": "Low Mana"
         },
         "conditionLowEnergyShield": {
             "var": "conditionLowEnergyShield",
-            "label": "Are you always on Low Energy Shield?"
+            "label": "Are you always on Low Energy Shield?",
+            "category": "player",
+            "abbreviation": "Low ES"
         },
         "armourCalculationMode": {
             "var": "armourCalculationMode",
@@ -1688,23 +1692,33 @@
         },
         "minionBuffOnslaught": {
             "var": "minionBuffOnslaught",
-            "label": "Do your minions have Onslaught?"
+            "label": "Do your minions have Onslaught?",
+            "category": "minion",
+            "abbreviation": "Onslaught"
         },
         "minionbuffUnholyMight": {
             "var": "minionbuffUnholyMight",
-            "label": "Do your minions have Unholy Might?"
+            "label": "Do your minions have Unholy Might?",
+            "category": "minion",
+            "abbreviation": "Unholy might"
         },
         "multiplierFortification": {
             "var": "multiplierFortification",
-            "label": "# of Fortification Stacks:"
+            "label": "# of Fortification Stacks:",
+            "category": "player",
+            "abbreviation": "# fortitication"
         },
         "conditionBeenHitByAttackRecently": {
             "var": "conditionBeenHitByAttackRecently",
-            "label": "Have you been Hit by an Attack Recently?"
+            "label": "Have you been Hit by an Attack Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Hit by attack"
         },
         "conditionCastMarkRecently": {
             "var": "conditionCastMarkRecently",
-            "label": "Have you cast a Mark Spell Recently?"
+            "label": "Have you cast a Mark Spell Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Cast mark"
         },
         "overrideBuffBlinded": {
             "var": "overrideBuffBlinded",
@@ -1713,11 +1727,15 @@
         },
         "conditionEnemyCrushed": {
             "var": "conditionEnemyCrushed",
-            "label": "Is the enemy Crushed?"
+            "label": "Is the enemy Crushed?",
+            "category": "enemy",
+            "abbreviation": "Crushed"
         },
         "conditionNearLinkedTarget": {
             "var": "conditionNearLinkedTarget",
-            "label": "Is the enemy near you Linked target?"
+            "label": "Is the enemy near you Linked target?",
+            "category": "enemy",
+            "abbreviation": "near linked target"
         }
     }
 }

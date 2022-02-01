@@ -6,6 +6,7 @@ from retrying import retry
 from poediscordbot.cogs.pob.importers.abstract_importer import AbstractImporter
 from poediscordbot.util.logging import log
 
+
 class PobBinImporter(AbstractImporter):
     def fetch_data(self, paste_key):
         raw_url = f'https://pobb.in/{paste_key}/raw'
@@ -24,7 +25,10 @@ class PobBinImporter(AbstractImporter):
            stop_max_attempt_number=2,
            wait_func=AbstractImporter._backoff_wait_fn)
     def __get_raw_data(self, url):
-        response = requests.get(url)
+        headers = {
+            'User-Agent': 'pob discord bot (https://github.com/poediscord/poediscordbot)'
+        }
+        response = requests.get(url, headers=headers)
         if response.status_code != 200:
             print(response.text)
             return None
