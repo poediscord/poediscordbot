@@ -92,12 +92,16 @@ class PoBCog(commands.Cog):
         :return: Embed
         """
         importer = None
+        source_site = None
         if 'pastebin.com' in content:
             importer = PastebinImporter(content)
+            source_site='pastebin'
         if 'pobb.in' in content:
             importer = PobBinImporter(content)
+            source_site='pobbin'
         if 'poe.ninja' in content:
             importer = PoeNinjaImporter(content)
+            source_site='poeninja'
 
         if importer and importer.keys:
             paste_key = random.choice(importer.keys)
@@ -112,7 +116,7 @@ class PoBCog(commands.Cog):
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
-            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key))
+            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
             return

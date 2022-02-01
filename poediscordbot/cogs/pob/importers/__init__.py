@@ -7,3 +7,4 @@ from poediscordbot.cogs.pob.importers.abstract_importer import AbstractImporter
 class PasteData:
     key: str
     source_url: str
+    source_site: str
