@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 
-from poediscordbot.cogs.pob.importers import pastebin
+from poediscordbot.cogs.pob.importers import pob_xml_decoder
+from poediscordbot.cogs.pob.importers.pastebin import PastebinImporter
 from poediscordbot.util.logging import log
 from tests import get_test_path
 
@@ -24,13 +25,13 @@ class PastebinHelper:
             if "pastebin.com" in line:
                 key = line.split("/")[-1]
                 log.debug(f"Writing content for '{line}'")
-                xml = pastebin.decode_to_xml(pastebin.get_raw(key))
+                xml = pob_xml_decoder.decode_to_xml(PastebinImporter(line).fetch_data(key))
                 tree = ET.ElementTree(xml)
                 tree.write(open(get_test_path(f"in/pastebin_xmls/{PastebinHelper.to_file_name(key)}.xml"), "wb"))
 
     @staticmethod
     def fetch_pastebin(key: str):
-                xml = pastebin.decode_to_xml(pastebin.get_raw(key))
+                xml = pob_xml_decoder.decode_to_xml(PastebinImporter(line).fetch_data(key))
                 tree = ET.ElementTree(xml)
                 file = open(get_test_path(f"in/pastebin_xmls/{PastebinHelper.to_file_name(key)}.xml"), "wb")
                 tree.write(file)
