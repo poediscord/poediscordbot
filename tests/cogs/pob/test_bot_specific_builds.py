@@ -2,6 +2,7 @@ import unittest
 
 from discord import Embed
 
+from poediscordbot.cogs.pob.importers import PasteData
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
 from poediscordbot.pob_xml_parser import pob_xml_parser
@@ -61,7 +62,8 @@ class TestBot(unittest.TestCase):
         xml_tree = file_loader.load_xml_by_pastebin_key(link)
 
         build = pob_xml_parser.parse_build(xml_tree)
-        build_embed = pob_output.generate_response(demo_author, build, minified=False, paste_data=None,
+        build_embed = pob_output.generate_response(demo_author, build, minified=False,
+                                                   paste_data=PasteData('x', 'y', 'z'),
                                                    non_dps_skills=poe_consts, web_poe_token=None)
         return build_embed
 
