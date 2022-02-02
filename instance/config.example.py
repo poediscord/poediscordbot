@@ -36,6 +36,5 @@ dm_poll_rate_seconds = 60 * 60 * 60
 ## -- Additionl Information at the bottom of the bot output
 # text/configuration for the bottom
 web_pob_text = "**Web PoB**"
-
-poe_technology_enabled = True
-poe_technology_text = "**Web Viewer"
+# enable the new feature to redirect to a pob:// link via static github page
+enable_open_in_pob_feature = True

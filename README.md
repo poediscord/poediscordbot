@@ -1,6 +1,10 @@
 # poediscordbot ![Build Status](https://github.com/poediscord/poediscordbot/workflows/Python%20application/badge.svg)
 built with discordpy rewrite / python 3.7; supports pypy 3.6
 
+## Changelog
+- 2022-02-02: reworked importers, added flag `enable_open_in_pob_feature = True` which will use a static site to redirect to a `pob://` link
+  - support pobbin and poe.ninja as sites to parse builds from, examples: https://pobb.in/qO1_QpuQLeDd & https://poe.ninja/pob/19
+  - example Link: https://fwidm.github.io/pob-redirect/index.html?pobbin=qO1_QpuQLeDd will open the link in pob if you have the [handlers setup (reddit infopost)](https://www.reddit.com/r/pathofexile/comments/siao2j/poblink_quickload_links_for_path_of_building/).
 ## Docker
 - `docker compose up` - start the container
     - add `--build` to rebuild the image

@@ -13,7 +13,7 @@ POB_SPECTRES = 'resources/pob_spectres.json'
 
 
 class PobConfig:
-    COMMUNITY_POB_RAW_GITHUB_URL = "https://raw.githubusercontent.com/LocalIdentity/PathOfBuilding/master/"
+    COMMUNITY_POB_RAW_GITHUB_URL = "https://raw.githubusercontent.com/PathOfBuildingCommunity/PathOfBuilding/master/"
 
     def __init__(self, path_to_pob_conf=POB_CONF_JSON):
         self.config = self.get_config(path_to_pob_conf)

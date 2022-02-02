@@ -4,6 +4,7 @@ import unittest
 import defusedxml.ElementTree as ET
 from discord import Embed
 
+from poediscordbot.cogs.pob.importers import PasteData
 from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util.logging import log
 from tests import load_file_as_string, get_test_path
@@ -13,7 +14,6 @@ from tests.cogs.pastebin_downloadhelper import PastebinHelper
 
 def get_links(path="in/pastebins.txt"):
     return [line.rstrip() for line in load_file_as_string(path).split("\n") if "#" not in line]
-
 
 
 class TestBot(unittest.TestCase):
@@ -39,14 +39,17 @@ class TestBot(unittest.TestCase):
                 log.info(f"Testing whether we can parse '{test_path}'")
                 xml_tree = ET.fromstring(f.read())
 
+                paste_key = file_path.split('.xml')[0]
                 build_embed = PoBCog._generate_embed(None, xml_tree, demo_author,
-                                                     f"https://pastebin.com/{file_path.split('.xml')[0]}")
+                                                     PasteData(paste_key, f"https://pastebin.com/{paste_key}",
+                                                               "pastebin"))
                 self.assertTrue(isinstance(build_embed, Embed))
 
     def test_illegal_url(self):
-        demo_profile_link = 'https://pastebin.com/404URLNOTFOUND'
+        paste_key = '404URLNOTFOUND'
         demo_author = None
-        build_embed = PoBCog._generate_embed(None, None, demo_author, demo_profile_link)
+        build_embed = PoBCog._generate_embed(None, None, demo_author,
+                                             PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin"))
         self.assertFalse(isinstance(build_embed, Embed))
 
     def test_empty_embed_field(self):
@@ -58,7 +61,7 @@ class TestBot(unittest.TestCase):
         demo_author = None
         xml, web_poe_token, paste_key = PoBCog._fetch_xml(demo_author, demo_profile_link)
         if xml and web_poe_token:
-            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author,paste_key, minify=True)
+            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author, paste_key, minify=True)
 
         self.assertTrue(isinstance(build_embed, Embed))
         fields = build_embed._fields
