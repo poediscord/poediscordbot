@@ -31,7 +31,7 @@ class PastebinHelper:
 
     @staticmethod
     def fetch_pastebin(key: str):
-                xml = pob_xml_decoder.decode_to_xml(PastebinImporter(line).fetch_data(key))
+                xml = pob_xml_decoder.decode_to_xml(PastebinImporter("").fetch_data(key))
                 tree = ET.ElementTree(xml)
                 file = open(get_test_path(f"in/pastebin_xmls/{PastebinHelper.to_file_name(key)}.xml"), "wb")
                 tree.write(file)
