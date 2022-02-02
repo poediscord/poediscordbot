@@ -16,7 +16,6 @@ def get_links(path="in/pastebins.txt"):
     return [line.rstrip() for line in load_file_as_string(path).split("\n") if "#" not in line]
 
 
-
 class TestBot(unittest.TestCase):
     def test_bot_parse_routine(self):
         """
@@ -41,13 +40,16 @@ class TestBot(unittest.TestCase):
                 xml_tree = ET.fromstring(f.read())
 
                 paste_key = file_path.split('.xml')[0]
-                build_embed = PoBCog._generate_embed(None, xml_tree, demo_author, PasteData(paste_key, f"https://pastebin.com/{paste_key}"))
+                build_embed = PoBCog._generate_embed(None, xml_tree, demo_author,
+                                                     PasteData(paste_key, f"https://pastebin.com/{paste_key}",
+                                                               "pastebin"))
                 self.assertTrue(isinstance(build_embed, Embed))
 
     def test_illegal_url(self):
-        paste_key='404URLNOTFOUND'
+        paste_key = '404URLNOTFOUND'
         demo_author = None
-        build_embed = PoBCog._generate_embed(None, None, demo_author, PasteData(paste_key, f"https://pastebin.com/{paste_key}"))
+        build_embed = PoBCog._generate_embed(None, None, demo_author,
+                                             PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin"))
         self.assertFalse(isinstance(build_embed, Embed))
 
     def test_empty_embed_field(self):
@@ -59,7 +61,7 @@ class TestBot(unittest.TestCase):
         demo_author = None
         xml, web_poe_token, paste_key = PoBCog._fetch_xml(demo_author, demo_profile_link)
         if xml and web_poe_token:
-            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author,paste_key, minify=True)
+            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author, paste_key, minify=True)
 
         self.assertTrue(isinstance(build_embed, Embed))
         fields = build_embed._fields
