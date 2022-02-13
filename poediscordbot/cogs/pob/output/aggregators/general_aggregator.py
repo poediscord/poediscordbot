@@ -52,6 +52,12 @@ class GeneralAggregator(AbstractAggregator):
 
     def _get_defense_string(self, build: Build):
         output = ""
+
+        ehp = build.get_player_stat('TotalEHP', 0)
+        second_minimal_maxhit = build.get_player_stat('SecondMinimalMaximumHitTaken', 0)
+        if ehp:
+            output += f"**EHP**: {ehp:,.0f} | Effective Maximum hit Taken: {second_minimal_maxhit:,.0f}\n"
+
         life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                      OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
         life_flat = build.get_player_stat('Life')

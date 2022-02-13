@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-02-01T17:52:14.976910",
+    "utc-date": "2022-02-13T15:07:07.089942",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -17,34 +17,34 @@
         },
         "conditionFullLife": {
             "var": "conditionFullLife",
-            "label": "Are you always on Full Life?",
+            "label": "Are you always on Full ^xE05030Life?",
             "category": "player",
             "suppress": "conditionLowLife",
             "abbreviation": "Full Life"
         },
         "conditionLowLife": {
             "var": "conditionLowLife",
-            "label": "Are you always on Low Life?",
+            "label": "Are you always on Low ^xE05030Life?",
             "suppress": "conditionFullLife",
             "category": "player",
             "abbreviation": "Low Life"
         },
         "conditionFullEnergyShield": {
             "var": "conditionFullEnergyShield",
-            "label": "Are you always on Full Energy Shield?",
+            "label": "Are you always on Full ^x88FFFFEnergy Shield?",
             "suppress": "conditionHaveEnergyShield",
             "category": "player",
             "abbreviation": "Full ES"
         },
         "conditionHaveEnergyShield": {
             "var": "conditionHaveEnergyShield",
-            "label": "Do you always have Energy Shield?",
+            "label": "Do you always have ^x88FFFFEnergy Shield?",
             "category": "player",
             "abbreviation": "Has ES"
         },
         "minionsConditionFullLife": {
             "var": "minionsConditionFullLife",
-            "label": "Are your Minions always on Full Life?",
+            "label": "Are your Minions always on Full ^xE05030Life?",
             "category": "playerSkill",
             "abbreviation": "Minions Full Life"
         },
@@ -185,43 +185,43 @@
         },
         "conditionOnBurningGround": {
             "var": "conditionOnBurningGround",
-            "label": "Are you on Burning Ground?",
+            "label": "Are you on ^xB97123Burning ^7Ground?",
             "category": "playerAilment",
             "abbreviation": "Burning Ground"
         },
         "conditionOnChilledGround": {
             "var": "conditionOnChilledGround",
-            "label": "Are you on Chilled Ground?",
+            "label": "Are you on ^x3F6DB3Chilled ^7Ground?",
             "category": "playerAilment",
             "abbreviation": "Chilled Ground"
         },
         "conditionOnShockedGround": {
             "var": "conditionOnShockedGround",
-            "label": "Are you on Shocked Ground?",
+            "label": "Are you on ^xADAA47Shocked ^7Ground?",
             "category": "playerAilment",
             "abbreviation": "Shocked Ground"
         },
         "conditionIgnited": {
             "var": "conditionIgnited",
-            "label": "Are you Ignited?",
+            "label": "Are you ^xB97123Ignited?",
             "category": "playerAilment",
             "abbreviation": "Ignited"
         },
         "conditionChilled": {
             "var": "conditionChilled",
-            "label": "Are you Chilled?",
+            "label": "Are you ^x3F6DB3Chilled?",
             "category": "playerAilment",
             "abbreviation": "Chilled"
         },
         "conditionFrozen": {
             "var": "conditionFrozen",
-            "label": "Are you Frozen?",
+            "label": "Are you ^x3F6DB3Frozen?",
             "category": "playerAilment",
             "abbreviation": "Frozen"
         },
         "conditionShocked": {
             "var": "conditionShocked",
-            "label": "Are you Shocked?",
+            "label": "Are you ^xADAA47Shocked?",
             "category": "playerAilment",
             "abbreviation": "Shocked"
         },
@@ -320,32 +320,32 @@
         },
         "multiplierShockedEnemyKilledRecently": {
             "var": "multiplierShockedEnemyKilledRecently",
-            "label": "# of Shocked Enemies Killed Recently:",
+            "label": "# of ^xADAA47Shocked ^7Enemies Killed Recently:",
             "category": "playerRecently",
             "suppress": "conditionKilledRecently",
             "abbreviation": "Killed Shocked Enemies"
         },
         "conditionFrozenEnemyRecently": {
             "var": "conditionFrozenEnemyRecently",
-            "label": "Have you Frozen an enemy Recently?",
+            "label": "Have you ^x3F6DB3Frozen ^7an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Frozen Enemy"
         },
         "conditionChilledEnemyRecently": {
             "var": "conditionChilledEnemyRecently",
-            "label": "Have you Chilled an enemy Recently?",
+            "label": "Have you ^x3F6DB3Chilled ^7an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Chilled"
         },
         "conditionIgnitedEnemyRecently": {
             "var": "conditionIgnitedEnemyRecently",
-            "label": "Have you Ignited an enemy Recently?",
+            "label": "Have you ^xB97123Ignited ^7an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Ignited Enemy"
         },
         "conditionShockedEnemyRecently": {
             "var": "conditionShockedEnemyRecently",
-            "label": "Have you Shocked an enemy Recently?",
+            "label": "Have you ^xADAA47Shocked ^7an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Shocked Enemy"
         },
@@ -363,7 +363,7 @@
         },
         "multiplierManaSpentRecently": {
             "var": "multiplierManaSpentRecently",
-            "label": "# of Mana spent Recently:",
+            "label": "# of ^x7070FFMana ^7spent Recently:",
             "category": "playerRecently",
             "abbreviation": "Mana Spent"
         },
@@ -387,19 +387,19 @@
         },
         "conditionHitByFireDamageRecently": {
             "var": "conditionHitByFireDamageRecently",
-            "label": "Have you been hit by Fire Recently?",
+            "label": "Have you been hit by ^xB97123Fire ^7Recently?",
             "category": "playerRecently",
             "abbreviation": "Hit by Fire"
         },
         "conditionHitByColdDamageRecently": {
             "var": "conditionHitByColdDamageRecently",
-            "label": "Have you been hit by Cold Recently?",
+            "label": "Have you been hit by ^x3F6DB3Cold ^7Recently?",
             "category": "playerRecently",
             "abbreviation": "Hit by Cold"
         },
         "conditionHitByLightningDamageRecently": {
             "var": "conditionHitByLightningDamageRecently",
-            "label": "Have you been hit by Light. Recently?",
+            "label": "Have you been hit by ^xADAA47Light. ^7Recently?",
             "category": "playerRecently",
             "abbreviation": "Hit by Lightning"
         },
@@ -513,13 +513,13 @@
         },
         "conditionUsedFireSkillRecently": {
             "var": "conditionUsedFireSkillRecently",
-            "label": "Have you used a Fire Skill Recently?",
+            "label": "Have you used a ^xB97123Fire ^7Skill Recently?",
             "category": "playerRecently",
             "abbreviation": "Used Fire Skill"
         },
         "conditionUsedColdSkillRecently": {
             "var": "conditionUsedColdSkillRecently",
-            "label": "Have you used a Cold Skill Recently?",
+            "label": "Have you used a ^x3F6DB3Cold ^7Skill Recently?",
             "category": "playerRecently",
             "abbreviation": "Used Cold Skill"
         },
@@ -587,14 +587,14 @@
         },
         "conditionEnemyFullLife": {
             "var": "conditionEnemyFullLife",
-            "label": "Is the enemy on Full Life?",
+            "label": "Is the enemy on Full ^xE05030Life?",
             "suppress": "conditionEnemyFullLife",
             "category": "enemy",
             "abbreviation": "Full Life"
         },
         "conditionEnemyLowLife": {
             "var": "conditionEnemyLowLife",
-            "label": "Is the enemy on Low Life?",
+            "label": "Is the enemy on Low ^xE05030Life?",
             "suppress": "conditionEnemyFullLife",
             "category": "enemy",
             "abbreviation": "Low Life"
@@ -655,37 +655,37 @@
         },
         "conditionEnemyBurning": {
             "var": "conditionEnemyBurning",
-            "label": "Is the enemy Burning?",
+            "label": "Is the enemy ^xB97123Burning?",
             "category": "enemy",
             "abbreviation": "Burning"
         },
         "conditionEnemyIgnited": {
             "var": "conditionEnemyIgnited",
-            "label": "Is the enemy Ignited?",
+            "label": "Is the enemy ^xB97123Ignited?",
             "category": "enemy",
             "abbreviation": "Ignited"
         },
         "conditionEnemyChilled": {
             "var": "conditionEnemyChilled",
-            "label": "Is the enemy Chilled?",
+            "label": "Is the enemy ^x3F6DB3Chilled?",
             "category": "enemy",
             "abbreviation": "Chilled"
         },
         "conditionEnemyFrozen": {
             "var": "conditionEnemyFrozen",
-            "label": "Is the enemy Frozen?",
+            "label": "Is the enemy ^x3F6DB3Frozen?",
             "category": "enemy",
             "abbreviation": "Frozen"
         },
         "conditionEnemyShocked": {
             "var": "conditionEnemyShocked",
-            "label": "Is the enemy Shocked?",
+            "label": "Is the enemy ^xADAA47Shocked?",
             "category": "enemy",
             "abbreviation": "Shocked"
         },
         "multiplierFreezeShockIgniteOnEnemy": {
             "var": "multiplierFreezeShockIgniteOnEnemy",
-            "label": "# of Freeze/Shock/Ignite on enemy:",
+            "label": "# of ^x3F6DB3Freeze ^7/ ^xADAA47Shock ^7/ ^xB97123Ignite ^7on enemy:",
             "category": "enemy",
             "abbreviation": "Ele. Ailments on Enemy"
         },
@@ -709,7 +709,7 @@
         },
         "conditionEnemyInChillingArea": {
             "var": "conditionEnemyInChillingArea",
-            "label": "Is the enemy in a Chilling area?"
+            "label": "Is the enemy in a ^x3F6DB3Chilling ^7area?"
         },
         "conditionEnemyRareOrUnique": {
             "var": "conditionEnemyRareOrUnique",
@@ -725,19 +725,19 @@
         },
         "enemyConditionHitByFireDamage": {
             "var": "enemyConditionHitByFireDamage",
-            "label": "Enemy was Hit by Fire Damage?",
+            "label": "Enemy was Hit by ^xB97123Fire ^7Damage?",
             "category": "enemy",
             "abbreviation": "EE (Fire)"
         },
         "enemyConditionHitByColdDamage": {
             "var": "enemyConditionHitByColdDamage",
-            "label": "Enemy was Hit by Cold Damage?",
+            "label": "Enemy was Hit by ^x3F6DB3Cold ^7Damage?",
             "category": "enemy",
             "abbreviation": "EE (Cold)"
         },
         "enemyConditionHitByLightningDamage": {
             "var": "enemyConditionHitByLightningDamage",
-            "label": "Enemy was Hit by Light. Damage?",
+            "label": "Enemy was Hit by ^xADAA47Light. ^7Damage?",
             "category": "enemy",
             "abbreviation": "EE (Light)"
         },
@@ -806,7 +806,7 @@
         },
         "conditionBurning": {
             "var": "conditionBurning",
-            "label": "Are you Burning?",
+            "label": "Are you ^xB97123Burning?",
             "category": "player",
             "abbreviation": "Burning"
         },
@@ -818,7 +818,7 @@
         },
         "conditionEnergyShieldRechargeRecently": {
             "var": "conditionEnergyShieldRechargeRecently",
-            "label": "Energy Shield Recharge started Recently?",
+            "label": "^x88FFFFEnergy Shield ^7Recharge started Recently?",
             "category": "playerRecently",
             "abbreviation": "ES Recharged recently"
         },
@@ -971,19 +971,19 @@
         },
         "conditionLeechingLife": {
             "var": "conditionLeechingLife",
-            "label": "Are you Leeching Life?",
+            "label": "Are you Leeching ^xE05030Life?",
             "category": "player",
             "abbreviation": "Leeching Life"
         },
         "conditionLeechingEnergyShield": {
             "var": "conditionLeechingEnergyShield",
-            "label": "Are you Leeching Energy Shield?",
+            "label": "Are you Leeching ^x88FFFFEnergy Shield?",
             "category": "player",
             "abbreviation": "Leeching ES"
         },
         "conditionLeechingMana": {
             "var": "conditionLeechingMana",
-            "label": "Are you Leeching Mana?",
+            "label": "Are you Leeching ^x7070FFMana?",
             "category": "player",
             "abbreviation": "Leeching Mana"
         },
@@ -1031,7 +1031,7 @@
         },
         "conditionShatteredEnemyRecently": {
             "var": "conditionShatteredEnemyRecently",
-            "label": "Have you Shattered an enemy Recently?",
+            "label": "Have you ^x3F6DB3Shattered ^7an enemy Recently?",
             "category": "playerRecently",
             "abbreviation": "Enemy shattered"
         },
@@ -1097,7 +1097,7 @@
         },
         "conditionShockEffect": {
             "var": "conditionShockEffect",
-            "label": "Effect of Shock:",
+            "label": "Effect of ^xADAA47Shock:",
             "category": "enemy",
             "abbreviation": "Shock Effect",
             "ifOption": "conditionEnemyShocked"
@@ -1140,7 +1140,7 @@
         },
         "conditionHaveManaStorm": {
             "var": "conditionHaveManaStorm",
-            "label": "Do you have Manastorm's Lightning Buff?",
+            "label": "Do you have Manastorm's ^xADAA47Lightning ^7Buff?",
             "category": "player",
             "abbreviation": "Manastorm Buff"
         },
@@ -1195,7 +1195,7 @@
         },
         "conditionTakenFireDamageFromEnemyHitRecently": {
             "var": "conditionTakenFireDamageFromEnemyHitRecently",
-            "label": "Taken Fire Damage from enemy Hit Recently?",
+            "label": "Taken ^xB97123Fire ^7Damage from enemy Hit Recently?",
             "category": "playerRecently",
             "suppress": "conditionHitByFireDamageRecently",
             "abbreviation": "Hit by Fire"
@@ -1238,7 +1238,7 @@
         },
         "lifeRegenMode": {
             "var": "lifeRegenMode",
-            "label": "Life regen calculation mode:"
+            "label": "^xE05030Life ^7regen calculation mode:"
         },
         "skillForkCount": {
             "var": "skillForkCount",
@@ -1432,45 +1432,45 @@
         },
         "conditionEnemyScorched": {
             "var": "conditionEnemyScorched",
-            "label": "Is the enemy Scorched?",
+            "label": "Is the enemy ^xB97123Scorched?",
             "category": "enemy",
             "abbreviation": "Scorched"
         },
         "conditionScorchedEffect": {
             "var": "conditionScorchedEffect",
-            "label": "Effect of Scorched:",
+            "label": "Effect of ^xB97123Scorched:",
             "ifOption": "conditionEnemyScorched",
             "category": "player",
             "abbreviation": "Scorched Effect"
         },
         "conditionEnemyChilledByYourHits": {
             "var": "conditionEnemyChilledByYourHits",
-            "label": "Is the enemy Chilled by your Hits?",
+            "label": "Is the enemy ^x3F6DB3Chilled ^7by your Hits?",
             "category": "enemy",
             "abbreviation": "Chilled from hits"
         },
         "conditionEnemyBrittle": {
             "var": "conditionEnemyBrittle",
-            "label": "Is the enemy Brittle?",
+            "label": "Is the enemy ^x3F6DB3Brittle?",
             "category": "enemy",
             "abbreviation": "Brittle"
         },
         "conditionBrittleEffect": {
             "var": "conditionBrittleEffect",
-            "label": "Effect of Brittle:",
+            "label": "Effect of ^x3F6DB3Brittle:",
             "ifOption": "conditionEnemyBrittle",
             "category": "player",
             "abbreviation": "Brittle effect"
         },
         "conditionEnemyOnShockedGround": {
             "var": "conditionEnemyOnShockedGround",
-            "label": "Is the enemy on Shocked Ground?",
+            "label": "Is the enemy on ^xADAA47Shocked ^7Ground?",
             "category": "enemy",
             "abbreviation": "On Shocked Ground"
         },
         "conditionEnemySapped": {
             "var": "conditionEnemySapped",
-            "label": "Is the enemy Sapped?",
+            "label": "Is the enemy ^xADAA47Sapped?",
             "category": "enemy",
             "abbreviation": "sapped"
         },
@@ -1533,19 +1533,19 @@
         },
         "conditionEnemyFireExposure": {
             "var": "conditionEnemyFireExposure",
-            "label": "Is the enemy Exposed to Fire?",
+            "label": "Is the enemy Exposed to ^xB97123Fire?",
             "category": "enemy",
             "abbreviation": "Fire Exposure"
         },
         "conditionEnemyColdExposure": {
             "var": "conditionEnemyColdExposure",
-            "label": "Is the enemy Exposed to Cold?",
+            "label": "Is the enemy Exposed to ^x3F6DB3Cold?",
             "category": "enemy",
             "abbreviation": "Cold Exposure"
         },
         "conditionEnemyLightningExposure": {
             "var": "conditionEnemyLightningExposure",
-            "label": "Is the enemy Exposed to Lightning?",
+            "label": "Is the enemy Exposed to ^xADAA47Lightning?",
             "category": "enemy",
             "abbreviation": "Lightning Exposure"
         },
@@ -1605,7 +1605,7 @@
         },
         "conditionEnemyOnScorchedGround": {
             "var": "conditionEnemyOnScorchedGround",
-            "label": "Is the enemy on Scorched Ground?",
+            "label": "Is the enemy on ^xB97123Scorched ^7Ground?",
             "category": "enemy",
             "abbreviation": "On Scorched Ground"
         },
@@ -1636,7 +1636,7 @@
         },
         "waitForMaxSeals": {
             "var": "waitForMaxSeals",
-            "label": "Do you wait for Maximum Unleash Seals?"
+            "label": "Do you wait for Max Unleash Seals?"
         },
         "overrideBloodCharges": {
             "var": "overrideBloodCharges",
@@ -1650,7 +1650,7 @@
         },
         "multiplierLifeSpentRecently": {
             "var": "multiplierLifeSpentRecently",
-            "label": "# of Life spent Recently:",
+            "label": "# of ^xE05030Life ^7spent Recently:",
             "category": "playerRecently",
             "abbreviation": "Life Spent"
         },
@@ -1666,13 +1666,13 @@
         },
         "conditionLowMana": {
             "var": "conditionLowMana",
-            "label": "Are you always on Low Mana?",
+            "label": "Are you always on Low ^x7070FFMana?",
             "category": "player",
             "abbreviation": "Low Mana"
         },
         "conditionLowEnergyShield": {
             "var": "conditionLowEnergyShield",
-            "label": "Are you always on Low Energy Shield?",
+            "label": "Are you always on Low ^x88FFFFEnergy Shield?",
             "category": "player",
             "abbreviation": "Low ES"
         },
@@ -1736,6 +1736,60 @@
             "label": "Is the enemy near you Linked target?",
             "category": "enemy",
             "abbreviation": "near linked target"
+        },
+        "bonechillEffect": {
+            "var": "bonechillEffect",
+            "label": "Effect of Chill:",
+            "ifSkill": "Bonechill"
+        },
+        "energyBladeActive": {
+            "var": "energyBladeActive",
+            "label": "Is Energy Blade active?",
+            "ifSkill": "Energy Blade"
+        },
+        "embraceMadnessActive": {
+            "var": "embraceMadnessActive",
+            "label": "Is Embrace Madness active?",
+            "ifSkill": "Embrace Madness"
+        },
+        "buffFortification": {
+            "var": "buffFortification",
+            "label": "Are you Fortified?"
+        },
+        "overrideFortification": {
+            "var": "overrideFortification",
+            "label": "# of Fortification Stacks (if not maximum):"
+        },
+        "conditionChilledEffect": {
+            "var": "conditionChilledEffect",
+            "label": "Effect of ^x3F6DB3Chill:",
+            "ifOption": "conditionChilled"
+        },
+        "conditionSelfChill": {
+            "var": "conditionSelfChill",
+            "label": "Did you ^x3F6DB3Chill ^7yourself?",
+            "ifOption": "conditionChilled"
+        },
+        "multiplierCorrosionStackCount": {
+            "var": "multiplierCorrosionStackCount",
+            "label": "# of Corrosion Stacks:"
+        },
+        "conditionSapEffect": {
+            "var": "conditionSapEffect",
+            "label": "Effect of ^xADAA47Sap:",
+            "ifOption": "conditionEnemySapped"
+        },
+        "conditionEnemyCoveredInFrost": {
+            "var": "conditionEnemyCoveredInFrost",
+            "label": "Is the enemy covered in Frost?"
+        },
+        "multiplierEnemyAffectedByGraspingVines": {
+            "var": "multiplierEnemyAffectedByGraspingVines",
+            "label": "# of Grasping Vines affecting enemy:"
+        },
+        "conditionEnemyInFrostGlobe": {
+            "var": "conditionEnemyInFrostGlobe",
+            "label": "Is the enemy in the Frost Shield area?"
         }
     }
 }
