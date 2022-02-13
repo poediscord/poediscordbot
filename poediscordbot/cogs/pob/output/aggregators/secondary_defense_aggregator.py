@@ -25,10 +25,15 @@ class SecondaryDefenseAggregator(AbstractAggregator):
             effective_life = es
 
         armour = build.get_player_stat('Armour', min(OutputThresholds.ARMOUR.value, effective_life))
-        stats.append(f"Armour: {armour:,.0f}") if armour and armour else None
+        armour_inc = build.get_player_stat('Spec:ArmourInc', 0)
+        stats.append(f"Armour: {armour:,.0f} ({armour_inc}%)") if armour and armour else None
 
         evasion = build.get_player_stat('Evasion', min(OutputThresholds.EVASION.value, effective_life))
-        stats.append(f"Evasion: {evasion:,.0f}") if evasion else None
+        evasion_inc = build.get_player_stat('Spec:EvasionInc', 0)
+        stats.append(f"Evasion: {evasion:,.0f} ({evasion_inc}%)") if evasion else None
+
+        suppression = build.get_player_stat('SpellSuppressionChance', OutputThresholds.DODGE.value)
+        stats.append(f"Spell Suppression: {suppression:,.0f}%") if suppression else None
 
         dodge = build.get_player_stat('AttackDodgeChance', OutputThresholds.DODGE.value)
         stats.append(f"Dodge: {dodge:,.0f}%") if dodge else None
