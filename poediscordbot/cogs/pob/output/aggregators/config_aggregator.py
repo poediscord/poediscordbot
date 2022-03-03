@@ -75,18 +75,19 @@ class ConfigAggregator(AbstractAggregator):
             if if_skill:
                 if_skill_list.append(if_skill)
 
-            config_line = ConfigAggregator.prepare_config_line(abbrev if abbrev else key, value)
-            if category and config_line:
-                if if_skill_list and not ConfigAggregator.has_gem_precondition(skills, if_skill_list):
-                    continue
+            if value and value.lower() != 'false':
+                config_line = ConfigAggregator.prepare_config_line(abbrev if abbrev else key, value)
+                if category and config_line:
+                    if if_skill_list and not ConfigAggregator.has_gem_precondition(skills, if_skill_list):
+                        continue
 
-                configs.setdefault(category.capitalize(), []).append(config_line)
-            else:
-                log.warn(
-                    f"Category='{category}' or config_line='{config_line}' not set or unknown, check 'pob_conf.json'"
-                    f"for entries with mixing categories and abbreviations. "
-                    f"This happens after pob introduces new values. If one of the values is `None` you need to "
-                    f"update the json file similarly to the existing entries.")
+                    configs.setdefault(category.capitalize(), []).append(config_line)
+                else:
+                    log.warn(
+                        f"Category='{category}' or config_line='{config_line}' not set or unknown, check 'pob_conf.json'"
+                        f"for entries with mixing categories and abbreviations. "
+                        f"This happens after pob introduces new values. If one of the values is `None` you need to "
+                        f"update the json file similarly to the existing entries.")
         out = ''
         for category in configs:
             if len(configs[category]) > 0:
