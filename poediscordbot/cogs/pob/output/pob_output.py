@@ -76,7 +76,7 @@ def _generate_info_text(tree, paste_data, web_poe_token):
         info_text += f"| [{config.web_pob_text}](https://pob.party/share/{web_poe_token}) "
     if paste_data and config.enable_open_in_pob_feature:
         info_text += f"| [Click to open in POB](https://fwidm.github.io/pob-redirect/index.html?{paste_data.source_site}={paste_data.key}). "
-    info_text += f"\nCreated in [Path of Building](https://github.com/Openarl/PathOfBuilding). "
+    info_text += f"\nCreated in [Path of Building: Community Fork](https://github.com/PathOfBuildingCommunity/PathOfBuilding). "
     return info_text
 
 
