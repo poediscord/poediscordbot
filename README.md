@@ -1,6 +1,11 @@
 # poediscordbot ![Build Status](https://github.com/poediscord/poediscordbot/workflows/Python%20application/badge.svg)
 built with discordpy rewrite / python 3.7; supports pypy 3.6
 
+## Running the bot
+Currently, there's no way to just invite an instance of the bot. You can run it on your own machine or in the cloud though and do so. Follow the [wiki installation guide](https://github.com/poediscord/poediscordbot/wiki/Installation) if you need directions.
+
+If you encounter issues or need more support feel free to open an issue or visit the [Reddit PoE Discord](https://discord.com/invite/pathofexile) and post in `#tooldev-general`
+
 ## Changelog
 - 2022-02-02: reworked importers, added flag `enable_open_in_pob_feature = True` which will use a static site to redirect to a `pob://` link
   - support pobbin and poe.ninja as sites to parse builds from, examples: https://pobb.in/qO1_QpuQLeDd & https://poe.ninja/pob/19
