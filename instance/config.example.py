@@ -7,7 +7,7 @@ import os
 ## --  Main
 # Enter discord token from https://discordapp.com/developers/applications/me/
 # expected format: `token = 'supersecrettoken'`
-token = None
+token = 'supersecrettoken'
 
 # reacts to pastebin posts with pob info in these channels
 active_channels = ['active-pob']
