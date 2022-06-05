@@ -26,27 +26,25 @@ class GeneralAggregator(AbstractAggregator):
         return output
 
     @staticmethod
-    def _get_resistances(build: Build):
+    def _get_max_hits(build: Build) -> str:
         """
-        Creates the resistance string
+        Creates the max hit + resistance string
         :param build: poe_data we want to output
-        :return: string containing all resistances or and empty string if nothing is noteworthy
+        :return: string containing all max hits and resistances and empty string if nothing is noteworthy
         """
-        output = "**Resistances**: "
-        resistances = ['Fire', 'Cold', 'Lightning', 'Chaos']
-        emojis = [':fire:', ':snowflake:', ':zap:', ':skull:']
+        output = "**Max Hit + Resists**: "
+        stats = ['Physical', 'Fire', 'Cold', 'Lightning', 'Chaos']
+        emojis = [':drop_of_blood:', ':fire:', ':snowflake:', ':zap:', ':skull:']
         show = False
-        for i, res in enumerate(resistances):
-            res_val = build.get_player_stat(res + 'Resist', OutputThresholds.CHAOS_RES.value if res == 'Chaos'
-            else OutputThresholds.ELE_RES.value)
-            res_over_cap = build.get_player_stat(res + 'ResistOverCap')
-
+        for i, stat in enumerate(stats):
+            max_hit_key = stat + 'MaximumHitTaken'
+            max_hit_val = build.get_player_stat(max_hit_key, 0, 0)
+            res_key = stat + 'DamageReduction' if stat == 'Physical' else stat + 'Resist'
+            res_threshold = OutputThresholds.CHAOS_RES.value if stat == 'Chaos' else OutputThresholds.ELE_RES.value
+            res_val = build.get_player_stat(res_key, res_threshold)
             if res_val:
-                output += emojis[i] + f" {res_val:.0f}"
-                show = True
-                if res_over_cap and res_over_cap > 0:
-                    output += f"(+{res_over_cap:.0f}) "
-                output += " "
+                output += "\n" + emojis[i] + f" {max_hit_val:,.0f} ({res_val:.0f}%)"
+            show = True
         output += "\n"
         return output if show else ""
 
@@ -54,9 +52,9 @@ class GeneralAggregator(AbstractAggregator):
         output = ""
 
         ehp = build.get_player_stat('TotalEHP', 0)
-        second_minimal_maxhit = build.get_player_stat('SecondMinimalMaximumHitTaken', 0)
         if ehp:
-            output += f"**EHP**: {ehp:,.0f} | Effective Maximum hit Taken: {second_minimal_maxhit:,.0f}\n"
+            output += f"**EHP**: {ehp:,.0f}\n"
+        output += self._get_max_hits(build)
 
         life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                      OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
@@ -105,5 +103,4 @@ class GeneralAggregator(AbstractAggregator):
         if mana_string:
             output += mana_string
 
-        output += self._get_resistances(build)
         return output
