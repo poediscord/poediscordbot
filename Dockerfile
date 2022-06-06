@@ -1,9 +1,12 @@
-FROM pypy:3.7-slim-buster
-
-WORKDIR /app
-ADD . /app
+FROM python:alpine
 ## Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN apk add linux-headers gcc libc-dev
 
-CMD [ "pypy3", "main.py" ]
-#CMD [ "python", "main.py" ]
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
+WORKDIR /home/appuser/app
+ADD --chown=appuser:appgroup . /home/appuser/app
+
+RUN pip install --upgrade pip --trusted-host pypi.python.org -r requirements.txt
+CMD [ "python", "main.py" ]
