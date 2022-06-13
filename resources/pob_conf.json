@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-05-22T15:58:00.204333",
+    "utc-date": "2022-06-10T15:35:42.941526",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1791,6 +1791,16 @@
         "conditionEnemyInFrostGlobe": {
             "var": "conditionEnemyInFrostGlobe",
             "label": "Is the enemy in the Frost Shield area?"
+        },
+        "summonHolyRelicEnableHolyRelicBoon": {
+            "var": "summonHolyRelicEnableHolyRelicBoon",
+            "label": "Enable Holy Relic's Boon Aura:",
+            "ifSkill": "Summon Holy Relic"
+        },
+        "conditionEnemyChilledEffect": {
+            "var": "conditionEnemyChilledEffect",
+            "label": "Effect of ^x3F6DB3Chill:",
+            "ifOption": "conditionEnemyChilled"
         }
     }
 }
