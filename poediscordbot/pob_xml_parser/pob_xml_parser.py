@@ -30,7 +30,7 @@ def parse_build(xml_root) -> Build:
 
     # parse items
     item_slots = _parse_item_slots(xml_items)
-    skills = _parse_skills(xml_skills)
+    skills = _parse_skillset(xml_skills)
     active_skill = get_attrib_if_exists(xml_build, 'mainSocketGroup')
 
     build = Build(xml_build.attrib['level'], xml_build.attrib['targetVersion'],
@@ -108,16 +108,11 @@ def _parse_item_slot(entry, items, item_id):
             slot = ItemSlot(entry.attrib['name'], item_id, item, get_attrib_if_exists(entry, 'active'))
             return slot
 
-
-def _parse_skills(xml_skills):
-    """
-    Parse all active skill setups from the given xml
-    :param xml_skills: root node containing the skills
-    :return: list of skills
-    """
+def _parse_skill(xml_skills):
     skills = []
+
     # parse skills and the supported gems
-    for skill in xml_skills:
+    for skill in xml_skills.findall('Skill'):
         gems = []
         for gem in skill:
             skill_minion_skill = get_attrib_if_exists(gem, 'skillMinionSkill')
@@ -138,4 +133,26 @@ def _parse_skills(xml_skills):
             pass
         skills.append(Skill(gems, get_attrib_if_exists(skill, 'mainActiveSkill'), slot, skill.attrib['enabled'],
                             get_attrib_if_exists(skill, 'includeInFullDPS') == 'true'))
+
+    return skills
+
+def _parse_skillset(xml_skills):
+    """
+    Parse all active skill setups from the given xml
+    :param xml_skills: root node containing the skills
+    :return: list of skills
+    """
+    skills = []
+    activeSkillSet = int(get_attrib_if_exists(xml_skills, 'activeSkillSet') or 1)
+
+    for skillSet in xml_skills.findall('SkillSet'):
+        id = int(get_attrib_if_exists(skillSet, 'id') or 1)
+
+        if activeSkillSet != id:
+            continue
+
+        skills = skills + _parse_skill(skillSet)
+
+    # Old format
+    skills = skills + _parse_skill(xml_skills)
     return skills
