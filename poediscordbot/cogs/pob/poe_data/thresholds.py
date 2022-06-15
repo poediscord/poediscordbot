@@ -18,10 +18,6 @@ class OutputThresholds(Enum):
     ES_REGEN = 100
 
     WARD = 500
-    # Show ele res bigger than the 75 cap
-    ELE_RES = 76
-    # Show all positive chaos res
-    CHAOS_RES = 0
 
     # The amount below specifies the ratio of life to ev/ar: 100 life <> 80+ AR/EV is displayed
     AR_EV_THRESHOLD_PERCENTAGE = 0.8

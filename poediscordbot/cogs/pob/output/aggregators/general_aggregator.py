@@ -40,8 +40,7 @@ class GeneralAggregator(AbstractAggregator):
             max_hit_key = stat + 'MaximumHitTaken'
             max_hit_val = build.get_player_stat(max_hit_key, 0, 0)
             res_key = stat + 'DamageReduction' if stat == 'Physical' else stat + 'Resist'
-            res_threshold = OutputThresholds.CHAOS_RES.value if stat == 'Chaos' else OutputThresholds.ELE_RES.value
-            res_val = build.get_player_stat(res_key, res_threshold)
+            res_val = build.get_player_stat(res_key)
             if res_val:
                 output += "\n" + emojis[i] + f" {max_hit_val:,.0f} ({res_val:.0f}%)"
             show = True
