@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-06-10T15:35:42.941526",
+    "utc-date": "2022-07-13T15:08:09.862953",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1801,6 +1801,18 @@
             "var": "conditionEnemyChilledEffect",
             "label": "Effect of ^x3F6DB3Chill:",
             "ifOption": "conditionEnemyChilled"
+        },
+        "conditionFullMana": {
+            "var": "conditionFullMana",
+            "label": "Are you always on Full ^x7070FFMana?"
+        },
+        "conditionEnemyOnBrittleGround": {
+            "var": "conditionEnemyOnBrittleGround",
+            "label": "Is the enemy on ^xADAA47Brittle ^7Ground?"
+        },
+        "conditionEnemyOnSappedGround": {
+            "var": "conditionEnemyOnSappedGround",
+            "label": "Is the enemy on ^xADAA47Sapped ^7Ground?"
         }
     }
 }
