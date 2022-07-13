@@ -2,6 +2,8 @@ import re
 
 import requests
 
+from poediscordbot.util.logging import log
+
 
 def starts_with(prefix, string):
     return bool(re.match(prefix, string, re.I))
@@ -18,3 +20,5 @@ def fetch_xyz_pob_token(payload, version="latest"):
     response = requests.post(url, data=payload)
     if response.status_code == 200:
         return response.json()['url']
+    else:
+        log.error(f"error while fetching pob party token: {response.status_code}: {response.text}")
