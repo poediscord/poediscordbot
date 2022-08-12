@@ -25,6 +25,7 @@ class OffenseAggregatorV2(AbstractAggregator):
                                 build.get_minion_stat('WithImpaleDPS', default_val=0)]
         self.comparison_avg = [build.get_player_stat('WithPoisonAverageDamage', default_val=0),
                                build.get_player_stat('AverageDamage', default_val=0),
+                               build.get_player_stat('AverageHit', default_val=0),
                                build.get_player_stat('CombinedAvg', default_val=0)]
 
         self.ignite_dps = build.get_player_stat('IgniteDPS')
@@ -54,6 +55,8 @@ class OffenseAggregatorV2(AbstractAggregator):
         if build_checker.is_support(self.build, self.get_max_dps(),
                                     self.get_avg_dps()):
             return 'Support', self._get_support_output()
+        elif self.ignite_dps and self.ignite_dps > self.max_avg_dps :
+            return 'Ignite', self._generate_player_ignite_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
         elif full_dps:
@@ -62,8 +65,6 @@ class OffenseAggregatorV2(AbstractAggregator):
             return 'Minion Offense', self._generate_minion_output()
         elif player_dps:
             return 'DPS', self._generate_player_dps_output()
-        elif self.ignite_dps:
-            return 'Ignite', self._generate_player_ignite_output()
         else:
             return 'DPS', None
 
