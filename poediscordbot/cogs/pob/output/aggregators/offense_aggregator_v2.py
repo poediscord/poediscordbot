@@ -55,7 +55,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         if build_checker.is_support(self.build, self.get_max_dps(),
                                     self.get_avg_dps()):
             return 'Support', self._get_support_output()
-        elif self.ignite_dps > self.max_avg_dps :
+        elif self.ignite_dps and self.ignite_dps > self.max_avg_dps :
             return 'Ignite', self._generate_player_ignite_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
