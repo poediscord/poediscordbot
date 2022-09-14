@@ -8,7 +8,9 @@ from poediscordbot.cogs.pob.pob_cog import PoBCog
 from poediscordbot.util import chat_logging
 from poediscordbot.util.logging import log
 
-bot = commands.Bot(command_prefix='!', description="x", max_messages=101, guild_subscriptions=False, fetch_offline_members=False)
+intents = discord.Intents(message_content=True, messages=True, guilds=True)
+bot = commands.Bot(command_prefix='!', description="x",
+                   max_messages=101, guild_subscriptions=False, fetch_offline_members=False, intents=intents)
 bot.remove_command('help')
 
 
@@ -41,12 +43,13 @@ if config.dm_auto_log:
 
 @bot.event
 async def on_ready():
-    bot.add_cog(PoBCog(bot, config.active_channels, config.allow_pming))
+    await bot.add_cog(PoBCog(bot, config.active_channels, config.allow_pming))
     log.info(f'Logged in: uname={bot.user.name}, id={bot.user.id}')
     if config.presence_message:
         await bot.change_presence(activity=discord.Activity(name=config.presence_message))
+    await bot.tree.sync()
 
 
 @bot.command()
-async def export_logs():
+async def export_logs(ctx):
     await export_dm_logs()

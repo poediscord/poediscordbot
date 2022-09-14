@@ -9,8 +9,8 @@ import os
 # expected format: `token = 'supersecrettoken'`
 token = 'supersecrettoken'
 
-# reacts to pastebin posts with pob info in these channels
-active_channels = ['active-pob']
+# reacts to pastebin posts with pob info in these channels (get the id via right click)
+active_channels = [111]
 # debug level
 debug_level = logging.INFO
 # This is your Project Root (fixme: remove the dirty .. workaround!)
