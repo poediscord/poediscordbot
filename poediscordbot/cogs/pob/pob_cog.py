@@ -21,7 +21,6 @@ def setup(bot, active_channels, allow_pming=True):
     bot.add_cog(PoBCog(bot, active_channels, allow_pming))
 
 
-
 class PoBCog(commands.Cog):
     def __init__(self, bot, active_channels, allow_pming=True):
         self.bot = bot
@@ -38,7 +37,6 @@ class PoBCog(commands.Cog):
         """
         return "https://pobb.in/" in content or "https://pastebin.com/" in content or "https://poe.ninja/pob" in content
 
-
     def in_allowed_channel(self, channel):
         return channel.id in self.active_channels or (channel.parent and channel.parent.id in self.active_channels)
 
@@ -49,7 +47,6 @@ class PoBCog(commands.Cog):
         :param message: received
         :return: None
         """
-        log.info(message)
         react_to_dms = isinstance(message.channel, discord.abc.PrivateChannel) and self.allow_pming
 
         if message.author.bot:
@@ -79,8 +76,8 @@ class PoBCog(commands.Cog):
                 await message.channel.send(err.message)
 
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
-    async def pob(self, interaction: discord.Interaction, paste_url:str) -> None:
-        log.info("called pob")
+    async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
+        log.info(f"{interaction.user} called pob with url={paste_url}")
         await interaction.response.defer(ephemeral=False)
 
         if not self.allow_pming and interaction.message.channel.is_private:
@@ -90,7 +87,8 @@ class PoBCog(commands.Cog):
             embed = self._generate_embed(web_poe_token, xml, interaction.user, paste_key)
             try:
                 if embed:
-                    await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False, embed=embed)
+                    await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
+                                                    embed=embed)
             except discord.Forbidden:
                 log.info("Tried pasting in channel without access.")
 
