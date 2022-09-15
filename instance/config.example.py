@@ -9,8 +9,8 @@ import os
 # expected format: `token = 'supersecrettoken'`
 token = 'supersecrettoken'
 
-# reacts to pastebin posts with pob info in these channels
-active_channels = ['active-pob']
+# reacts to pastebin posts with pob info in these channels (get the id via right click)
+active_channels = [111]
 # debug level
 debug_level = logging.INFO
 # This is your Project Root (fixme: remove the dirty .. workaround!)
@@ -25,8 +25,8 @@ presence_message = 'with pastebins'
 color = 0x859900
 
 ## -- Logging
-# Owners of the bot that can use the advanced/admin commands to export logs.
-owners = ['Owner#1337']
+# Owner of the bot that can use the advanced/admin commands to export logs (id)
+owners = [111]
 dm_auto_log = True
 # required vars: {ts}=timestamp, {u}=username, {uid} = user id, {content} = message content
 dm_log_format = '{ts} <{u}({uid})>: {content}'

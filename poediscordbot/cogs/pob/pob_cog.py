@@ -2,6 +2,7 @@ import random
 import traceback
 
 import discord
+from discord import app_commands
 from discord.ext import commands
 from requests import HTTPError
 
@@ -25,8 +26,10 @@ class PoBCog(commands.Cog):
         self.bot = bot
         self.active_channels = active_channels
         self.allow_pming = allow_pming
+        log.info("Pob cog loaded")
 
-    def _contains_supported_url(self, content):
+    @staticmethod
+    def _contains_supported_url(content):
         """
         Filter message content for supported urls
         :param content: message content
@@ -34,8 +37,11 @@ class PoBCog(commands.Cog):
         """
         return "https://pobb.in/" in content or "https://pastebin.com/" in content or "https://poe.ninja/pob" in content
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
+    def in_allowed_channel(self, channel):
+        return channel.id in self.active_channels or (channel.parent and channel.parent.id in self.active_channels)
+
+    @commands.Cog.listener(name="on_message")
+    async def paste_message_parser(self, message: discord.Message):
         """
         Handle message events
         :param message: received
@@ -51,7 +57,7 @@ class PoBCog(commands.Cog):
                                        "detailed response.")
             return
 
-        if (react_to_dms or message.channel.name in self.active_channels) \
+        if react_to_dms or self.in_allowed_channel(message.channel) \
                 and not util.starts_with("!pob", message.content[:4]) \
                 and self._contains_supported_url(message.content):
             # check if valid xml
@@ -69,16 +75,20 @@ class PoBCog(commands.Cog):
                 log.error(f"Pastebin: Marked as spam msg={err}")
                 await message.channel.send(err.message)
 
-    @commands.command(pass_context=True)
-    async def pob(self, ctx, *, key):
-        if not self.allow_pming and ctx.message.channel.is_private:
+    @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
+    async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
+        log.info(f"{interaction.user} called pob with url={paste_url}")
+        await interaction.response.defer(ephemeral=False)
+
+        if not self.allow_pming and interaction.message.channel.is_private:
             return
-        xml, web_poe_token, paste_key = self._fetch_xml(ctx.message.author, ctx.message.content)
+        xml, web_poe_token, paste_key = self._fetch_xml(interaction.user, paste_url)
         if xml:
-            embed = self._generate_embed(web_poe_token, xml, ctx.message.author, paste_key)
+            embed = self._generate_embed(web_poe_token, xml, interaction.user, paste_key)
             try:
                 if embed:
-                    await ctx.message.channel.send(embed=embed)
+                    await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
+                                                    embed=embed)
             except discord.Forbidden:
                 log.info("Tried pasting in channel without access.")
 
@@ -95,13 +105,13 @@ class PoBCog(commands.Cog):
         source_site = None
         if 'pastebin.com' in content:
             importer = PastebinImporter(content)
-            source_site='pastebin'
+            source_site = 'pastebin'
         if 'pobb.in' in content:
             importer = PobBinImporter(content)
-            source_site='pobbin'
+            source_site = 'pobbin'
         if 'poe.ninja' in content:
             importer = PoeNinjaImporter(content)
-            source_site='poeninja'
+            source_site = 'poeninja'
 
         if importer and importer.keys:
             paste_key = random.choice(importer.keys)

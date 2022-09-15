@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-08-10T09:37:56.878907",
+    "utc-date": "2022-09-14T17:04:22.099283",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1813,6 +1813,38 @@
         "conditionEnemyOnSappedGround": {
             "var": "conditionEnemyOnSappedGround",
             "label": "Is the enemy on ^xADAA47Sapped ^7Ground?"
+        },
+        "multiplierSoulEater": {
+            "var": "multiplierSoulEater",
+            "label": "# of Soul Eater Stacks:"
+        },
+        "conditionKilledPoisonedLast2Seconds": {
+            "var": "conditionKilledPoisonedLast2Seconds",
+            "label": "Killed a poisoned enemy in the last 2 Seconds?"
+        },
+        "highestDamageType": {
+            "var": "highestDamageType",
+            "label": "Highest damage type Override:"
+        },
+        "buffHeartstopper": {
+            "var": "buffHeartstopper",
+            "label": "Heartstopper Mode:"
+        },
+        "multiplierPvpTvalueOverride": {
+            "var": "multiplierPvpTvalueOverride",
+            "label": "PvP Tvalue override (ms):"
+        },
+        "multiplierPvpDamage": {
+            "var": "multiplierPvpDamage",
+            "label": "Custom PvP Damage multiplier percent:"
+        },
+        "conditionEnemyDebilitated": {
+            "var": "conditionEnemyDebilitated",
+            "label": "Is the enemy Debilitated?"
+        },
+        "enemyMultiplierPvpDamage": {
+            "var": "enemyMultiplierPvpDamage",
+            "label": "Custom PvP Damage multiplier percent:"
         }
     }
 }

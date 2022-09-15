@@ -1,10 +1,10 @@
 from instance import config
 
-from poediscordbot.discord_bot import bot
+from poediscordbot.discord_bot import PobBot
 from poediscordbot.util.logging import log
 
 if __name__ == '__main__':
-
+    bot = PobBot("!")
     token = config.token
     if token and token != 'supersecrettoken':
         log.info("Starting pob discord bot...")
