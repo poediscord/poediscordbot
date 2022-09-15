@@ -78,7 +78,9 @@ class PoBCog(commands.Cog):
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
         log.info(f"{interaction.user} called pob with url={paste_url}")
-        await interaction.response.defer(ephemeral=False)
+        await interaction.response.defer(ephemeral=True)
+        # first followup ignores ephemeral, still set to true if this changes -> further followups can change it
+        await interaction.followup.send(f"Parsing your pastebin now...", ephemeral=True)
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
@@ -89,8 +91,12 @@ class PoBCog(commands.Cog):
                 if embed:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
                                                     embed=embed)
+                else:
+                    await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
             except discord.Forbidden:
                 log.info("Tried pasting in channel without access.")
+        else:
+            await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
 
     @staticmethod
     def _fetch_xml(author, content) -> (str, str, PasteData):
@@ -119,17 +125,17 @@ class PoBCog(commands.Cog):
             raw_data = importer.fetch_data(paste_key)
             if not raw_data:
                 log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
-                return
+                return None, None, None
 
             xml = pob_xml_decoder.decode_to_xml(raw_data)
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
-                return
+                return None, None, None
             web_poe_token = util.fetch_xyz_pob_token(raw_data)
             return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
-            return
+            return None, None, None
 
     @staticmethod
     def _generate_embed(web_poe_token, xml, author, paste_data: PasteData, minify=False):
