@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-09-14T17:04:22.099283",
+    "utc-date": "2022-10-01T08:09:59.926017",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1684,6 +1684,7 @@
         "overrideCruelty": {
             "var": "overrideCruelty",
             "label": "Damage % (if not maximum):",
+            "category": "player",
             "ifSkill": "Cruelty"
         },
         "plagueBearerState": {
