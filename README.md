@@ -1,4 +1,4 @@
-# poediscordbot ![Build Status](https://github.com/poediscord/poediscordbot/workflows/Python%20application/badge.svg)
+# poediscordbot [![Discord POB](https://github.com/poediscord/poediscordbot/actions/workflows/python-app.yml/badge.svg)](https://github.com/poediscord/poediscordbot/actions/workflows/python-app.yml)
 built with discordpy rewrite / python 3.7; supports pypy 3.6
 
 ## Running the bot

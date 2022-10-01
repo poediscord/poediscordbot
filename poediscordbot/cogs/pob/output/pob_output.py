@@ -128,6 +128,6 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
     embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data, web_poe_token))
 
     if minified:
-        embed.add_field(name='Hint:', value='Use `!pob <link to pastebin>` for even more build info!')
+        embed.add_field(name='Hint:', value='Use `/pob <link to pastebin>` for even more detailled build info!')
 
     return embed
