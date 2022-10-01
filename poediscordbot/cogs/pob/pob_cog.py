@@ -53,7 +53,7 @@ class PoBCog(commands.Cog):
             return
 
         if 'help' in message.content.lower() and react_to_dms:
-            await message.channel.send("Paste your pastebin here for a quick overview or use '!pob <pastebin>' for a "
+            await message.channel.send("Paste your pastebin here for a quick overview or use /pob <pastebin>' for a "
                                        "detailed response.")
             return
 
