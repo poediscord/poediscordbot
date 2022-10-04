@@ -25,7 +25,7 @@ class StatOwner(Enum):
 
 class Build:
     __slots__ = 'level', 'version', 'bandit', 'class_name', 'ascendancy_name', 'stats', 'config', 'tree', 'skills', \
-                'active_skill_id', 'item_slots', 'aura_count', 'curse_count', 'keystones'
+                'active_skill_id', 'item_slots', 'aura_count', 'curse_count', 'keystones', 'tree_nodes'
 
     def __init__(self, level, version, bandit, class_name, ascendancy_name, tree, skills, active_skill, item_slots):
         self.level = int(level)
@@ -41,6 +41,7 @@ class Build:
         self.item_slots = item_slots
         self.aura_count, self.curse_count = self.count_curses_auras()
         self.keystones = []
+        self.tree_nodes = []
 
     def count_curses_auras(self):
         """

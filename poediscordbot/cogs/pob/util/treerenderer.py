@@ -3,7 +3,7 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
-from instance import config
+from cairosvg import svg2png
 
 
 @dataclass
@@ -79,7 +79,7 @@ class TreeRenderer:
         self.orbit_radius_list, skills_per_orbit_list = self._parse_orbits(content)
         self.orbit_angles = [self.calc_orbit_angles(n) for n in skills_per_orbit_list]
 
-    def parse_nodes(self, content: dict) -> dict[str, Node]:
+    def parse_nodes(self, content: dict) -> dict[int, Node]:
         nodes = {}
         for n, data in content.get('nodes', None).items():
             if n == "root" or data.get('name', '') == 'Position Proxy':
@@ -97,13 +97,14 @@ class TreeRenderer:
         data.pos_x = group_x + x_offset + math.sin(angle) * distance
         data.pos_y = -1 * (group_y + y_offset + math.cos(angle) * distance)
 
-    def __build_svg(self, ascendancy, edges, selected, x_min, x_max, y_min, y_max, file_name: str = None, render_size: int = 500):
+    def __build_svg(self, ascendancy, edges, selected, x_min, x_max, y_min, y_max, file_name: str = None,
+                    render_size: int = 500):
         internal_radius = 12000
-        viewbox_crop = internal_radius - 1000
+        viewbox_crop = internal_radius
 
         import svgwrite
 
-        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, render_size))
+        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, int(render_size / 1.5)))
         svg_document.viewbox(x_min + viewbox_crop, y_min + viewbox_crop,
                              x_max + viewbox_crop, y_max + viewbox_crop)
 
@@ -129,7 +130,7 @@ class TreeRenderer:
             color = active_color if is_active else inactive_color
             if node.is_mastery or node.is_large_cluster_socket or node.is_medium_cluster_socket or node.is_small_cluster_socket:
                 continue
-            if node.group:
+            if node.group and self._show_node(node, x_min, x_max, y_min, y_max, is_active):
                 opacity = 1 if is_active else .1
                 radius = line_width + 16 if node.is_keystone or node.is_notable else line_width + 8
                 svg_document.add(
@@ -198,13 +199,15 @@ class TreeRenderer:
                         edges.add(Edge(node, target, active))
         return self.__build_svg(ascendancy, edges, chosen_nodes, x_min, x_max, y_min, y_max, file_name, render_size)
 
-    def _parse_orbits(self, content: dict):
+    @staticmethod
+    def _parse_orbits(content: dict):
         constants = content.get('constants', None)
         orbit_radius_list = constants.get("orbitRadii", None)
         skills_per_orbit = constants["skillsPerOrbit"]
         return orbit_radius_list, skills_per_orbit
 
-    def calc_orbit_angles(self, nodes_in_orbit):
+    @staticmethod
+    def calc_orbit_angles(nodes_in_orbit):
         if nodes_in_orbit == 16:  # Every 30 and 45 degrees, per https://github.com/grindinggear/skilltree-export/blob/3.17.0/README.md
             return [math.radians(x) for x in [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330]]
         if nodes_in_orbit == 40:  # Every 10 and 45 degrees
@@ -217,30 +220,12 @@ class TreeRenderer:
 
         return orbit_angles
 
+    @staticmethod
+    def to_png(svg_string: str, output_file: str) -> Path:
+        svg2png(bytestring=svg_string, write_to=output_file)
+        return Path(output_file)
 
-if __name__ == '__main__':
-    selected_nodes1 = [7388, 2292, 15167, 23027, 9392, 12613, 48362, 34423, 26481, 34171, 49254, 45558, 26196, 49080,
-                       48118, 61419, 37569, 47197, 14057, 29353, 55332, 29712, 26270, 36542, 11730, 11924, 10904, 57264,
-                       26712, 4397, 36949, 36678, 58218, 5916, 37403, 27323, 44169, 44202, 15117, 34506, 24872, 4367,
-                       60398, 7444, 19103, 60472, 52502, 27203, 4177, 25970, 55190, 42760, 5935, 36915, 12125, 53123,
-                       7960, 21958, 19501, 11420, 61471, 2474, 26393, 31875, 22088, 35958, 19635, 13559, 34880, 46897,
-                       44184, 43061, 14936, 32932, 5743, 58998, 9386, 31462, 6770, 6712, 26866, 29049, 41190, 13009,
-                       21974, 4713, 34927, 27038, 25831, 54279, 37114, 41472, 64210, 12246, 53279, 12738, 56461, 27611,
-                       11505, 61259, 17735, 55804, 36634, 35260, 46340, 1203, 35288, 61804, 60554, 9408, 20987, 4100,
-                       5632, 41472, 43520, 4100, 4096, 8192, 6404, 6400, 38400, 8704, 10752, 4868, 4864, 39168, 36864,
-                       40966, 30612, 45558, 34383, 47197, 47642, 12125, 43400, 26393, 24180, 34927, 6216, 11505]
-    selected_nodes2 = [49820, 27656, 9393, 64265, 33310, 27788, 49929, 9877, 14400, 39861, 47507, 41420, 12143, 23225,
-                       61419, 22748, 16882, 20807, 55867, 35894, 56158, 18769, 60440, 59606, 33753, 59866, 26528, 62744,
-                       22535, 29454, 20528, 45272, 28754, 18182, 25411, 9469, 30767, 65502, 35255, 4367, 8640, 22266,
-                       28859, 8833, 53615, 5823, 63251, 18436, 6250, 61653, 25260, 45593, 21958, 6797, 6538, 6570,
-                       59220,
-                       6910, 5296, 22090, 61834, 49978, 18770, 48999, 36858, 60405, 6799, 44184, 32555, 34678, 56295,
-                       14936, 53456, 8938, 29825, 2336, 15117, 36287, 21835, 36412, 4011, 63861, 63194, 12801, 9355,
-                       5972, 55571, 65528, 13219, 3042, 23334, 35598, 12412, 53114, 4656, 19501, 35283, 45838, 30679,
-                       1461, 31973, 46277, 25058, 32763, 61981, 33989, 49605, 49900, 40609, 19587, 19069, 58271, 4097,
-                       1,
-                       4101, 4097, 6149, 6145, 8193, 513, 4613, 4609, 6661, 6657, 8705, 10753, 1029, 5121, 5127, 58447,
-                       49820, 40906, 9393, 61097, 53615, 18130, 6570, 2987, 63861, 57074, 65528, 47642, 3042]
-    renderer = TreeRenderer(config.ROOT_DIR + 'resources/tree_3_19.min.json')
-    svg = renderer.parse_tree(selected_nodes1, file_name="mybuild1.svg", render_size=500)
-    svg2 = renderer.parse_tree(selected_nodes2, file_name="mybuild2.svg", render_size=500)
+    @staticmethod
+    def _show_node(node: Node, x_min: int, x_max: int, y_min: int, y_max: int, active: bool):
+        return x_min < node.pos_x < x_max and y_min < node.pos_y < y_max and (
+                    not node.ascendancy or node.ascendancy and active)

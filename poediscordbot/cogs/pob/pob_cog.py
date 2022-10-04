@@ -1,9 +1,11 @@
 import random
 import traceback
+from pathlib import Path
 
 import discord
-from discord import app_commands
+from discord import app_commands, Embed
 from discord.ext import commands
+from instance import config
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
@@ -13,6 +15,7 @@ from poediscordbot.cogs.pob.importers.pobbin import PobBinImporter
 from poediscordbot.cogs.pob.importers.poeninja import PoeNinjaImporter
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
+from poediscordbot.cogs.pob.util.treerenderer import TreeRenderer
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 
@@ -26,6 +29,7 @@ class PoBCog(commands.Cog):
         self.bot = bot
         self.active_channels = active_channels
         self.allow_pming = allow_pming
+        self.renderer = TreeRenderer(config.ROOT_DIR + 'resources/tree_3_19.min.json')
         log.info("Pob cog loaded")
 
     @staticmethod
@@ -66,9 +70,10 @@ class PoBCog(commands.Cog):
             try:
                 xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
                 if xml:
-                    embed = self._generate_embed(web_poe_token, xml, message.author, paste_key, minify=True)
+                    embed, file = self._generate_embed(paste_key, web_poe_token, xml, message.author, paste_key, minify=True)
+
                     if embed:
-                        await message.channel.send(embed=embed)
+                        await message.channel.send(embed=embed, file=file)
             except HTTPError as err:
                 log.error(f"Pastebin: Invalid pastebin-url msg={err}")
             except pastebin.CaptchaError as err:
@@ -86,11 +91,11 @@ class PoBCog(commands.Cog):
             return
         xml, web_poe_token, paste_key = self._fetch_xml(interaction.user, paste_url)
         if xml:
-            embed = self._generate_embed(web_poe_token, xml, interaction.user, paste_key)
+            embed, file = self._generate_embed(paste_key, web_poe_token, xml, interaction.user, paste_key)
             try:
                 if embed:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
-                                                    embed=embed)
+                                                    embed=embed, file=file)
                 else:
                     await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
             except discord.Forbidden:
@@ -137,15 +142,25 @@ class PoBCog(commands.Cog):
             log.error(f"No Paste key found")
             return None, None, None
 
-    @staticmethod
-    def _generate_embed(web_poe_token, xml, author, paste_data: PasteData, minify=False):
+    def _generate_embed(self, paste_key:PasteData, web_poe_token, xml, author, paste_data: PasteData, minify=False) -> (Embed, discord.File):
         if xml:
             build = pob_xml_parser.parse_build(xml)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, paste_data=paste_data,
                                                      non_dps_skills=poe_consts, web_poe_token=web_poe_token)
+
+                if config.render_image:
+                    path = Path(config.ROOT_DIR) / "tmp/img"
+                    path.mkdir(exist_ok=True, parents=True)
+                    expected_filename=f"{path}/{paste_data.source_site}_{paste_key.key}.png"
+                    if expected_filename and not Path(expected_filename).exists():
+                        svg = self.renderer.parse_tree(build.tree_nodes, file_name=f"{path}/{paste_data.source_site}_{paste_key.key}.svg", render_size=1500)
+                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_key.key}.png")
+                    file = discord.File(f"{path}/{paste_data.source_site}_{paste_key.key}.png", filename="tree.png")
+                    embed.set_image(url=f"attachment://tree.png")
+
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
-                return embed
+                return embed, file
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")

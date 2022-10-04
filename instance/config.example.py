@@ -38,3 +38,5 @@ dm_poll_rate_seconds = 60 * 60 * 60
 web_pob_text = "**Web PoB**"
 # enable the new feature to redirect to a pob:// link via static github page
 enable_open_in_pob_feature = True
+
+render_image=True
