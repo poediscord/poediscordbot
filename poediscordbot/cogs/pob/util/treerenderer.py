@@ -3,6 +3,7 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
+import svgwrite
 from cairosvg import svg2png
 
 from poediscordbot.util.logging import log
@@ -105,7 +106,6 @@ class TreeRenderer:
         internal_radius = 12000
         viewbox_crop = internal_radius
 
-        import svgwrite
 
         svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, int(render_size / 1.5)))
         svg_document.viewbox(x_min + viewbox_crop, y_min + viewbox_crop,

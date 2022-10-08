@@ -4,3 +4,4 @@ defusedxml==0.7.1
 requests==2.21.0
 discord.py==2.0.1
 cairosvg
+svgwrite
