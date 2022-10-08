@@ -99,6 +99,7 @@ class TreeRenderer:
 
     def __build_svg(self, ascendancy, edges, selected, x_min, x_max, y_min, y_max, file_name: str = None,
                     render_size: int = 500):
+        log.debug("building svg...")
         internal_radius = 12000
         viewbox_crop = internal_radius
 
@@ -112,6 +113,8 @@ class TreeRenderer:
         inactive_color = 'grey'
         active_color = "darkgoldenrod"
         mastery_color = "papayawhip"
+
+        log.debug("building edges...")
         for edge in edges:
             if edge.active:
                 svg_document.add(
@@ -120,6 +123,7 @@ class TreeRenderer:
                                       stroke_width=line_width,
                                       stroke=active_color if edge.active else inactive_color,
                                       ))
+        log.debug("building nodes...")
 
         masteries = [n for _, n in self.nodes.items() if n.is_mastery]
         jewels = [n for _, n in self.nodes.items() if
@@ -139,6 +143,7 @@ class TreeRenderer:
                                         fill=color,
                                         opacity=opacity
                                         ))
+        log.debug("building masteries...")
         for node in masteries:
             if node.pos_x and node.pos_y:
                 is_active = int(node.node_id) in selected
@@ -152,6 +157,7 @@ class TreeRenderer:
                                         opacity=opacity,
                                         # fill_opacity=0
                                         ))
+        log.debug("building jewels...")
         for node in jewels:
             if node.pos_x and node.pos_y:
                 is_active = int(node.node_id) in selected
@@ -170,6 +176,7 @@ class TreeRenderer:
                                         ))
 
         if file_name:
+            log.debug("saving svg...")
             svg_document.save()
         return svg_document.tostring()
 
@@ -180,6 +187,7 @@ class TreeRenderer:
         y_min = 25000
         y_max = 0
         ascendancy = ''
+        log.debug("Parsing selected nodes...")
         for n, node in self.nodes.items():
             if node.group:
                 self.calculate_node_pos(node, self.groups[str(node.group)], self.orbit_radius_list, self.orbit_angles)
