@@ -40,5 +40,4 @@ web_pob_text = "**Web PoB**"
 enable_open_in_pob_feature = True
 
 # enable image rendering for peoples trees - resulting images are stored under tmp/img/<pastesourcename>_<key>.[svg & png] - e.g. pobbin_ATMRSryREQej.png
-# this is currently slow (~3s on a desktop machine)
-render_image=True
+render_tree_image=True

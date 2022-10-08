@@ -85,7 +85,7 @@ class PoBCog(commands.Cog):
         log.info(f"{interaction.user} called pob with url={paste_url}")
         await interaction.response.defer(ephemeral=True)
         # first followup ignores ephemeral, still set to true if this changes -> further followups can change it
-        await interaction.followup.send(f"Parsing your pastebin now...", ephemeral=True)
+        await interaction.followup.send(f"Parsing your pob paste now...", ephemeral=True)
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
@@ -93,9 +93,12 @@ class PoBCog(commands.Cog):
         if xml:
             embed, file = self._generate_embed(paste_key, web_poe_token, xml, interaction.user, paste_key)
             try:
-                if embed:
+                if embed and file:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
                                                     embed=embed, file=file)
+                elif embed:
+                    await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
+                                                    embed=embed)
                 else:
                     await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
             except discord.Forbidden:
@@ -148,8 +151,8 @@ class PoBCog(commands.Cog):
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, paste_data=paste_data,
                                                      non_dps_skills=poe_consts, web_poe_token=web_poe_token)
-
-                if config.render_image:
+                file = None
+                if config.render_tree_image:
                     path = Path(config.ROOT_DIR) / "tmp/img"
                     path.mkdir(exist_ok=True, parents=True)
                     expected_filename=f"{path}/{paste_data.source_site}_{paste_key.key}.png"

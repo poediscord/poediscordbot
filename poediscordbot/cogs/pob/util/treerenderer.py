@@ -109,7 +109,7 @@ class TreeRenderer:
                              x_max + viewbox_crop, y_max + viewbox_crop)
 
         line_width = 64
-        inactive_color = 'lightgrey'
+        inactive_color = 'grey'
         active_color = "darkgoldenrod"
         mastery_color = "papayawhip"
         for edge in edges:
