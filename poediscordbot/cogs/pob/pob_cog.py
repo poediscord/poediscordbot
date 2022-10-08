@@ -153,12 +153,14 @@ class PoBCog(commands.Cog):
                                                      non_dps_skills=poe_consts, web_poe_token=web_poe_token)
                 file = None
                 if config.render_tree_image:
+                    log.debug("starting to render tree...")
                     path = Path(config.ROOT_DIR) / "tmp/img"
                     path.mkdir(exist_ok=True, parents=True)
                     expected_filename=f"{path}/{paste_data.source_site}_{paste_key.key}.png"
                     if expected_filename and not Path(expected_filename).exists():
                         svg = self.renderer.parse_tree(build.tree_nodes, file_name=f"{path}/{paste_data.source_site}_{paste_key.key}.svg", render_size=1500)
                         self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_key.key}.png")
+                        log.debug(f"built svg and rendered png file to {path}/{paste_data.source_site}_{paste_key.key}(.svg|.png)")
                     file = discord.File(f"{path}/{paste_data.source_site}_{paste_key.key}.png", filename="tree.png")
                     embed.set_image(url=f"attachment://tree.png")
 
