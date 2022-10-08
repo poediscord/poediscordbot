@@ -5,6 +5,8 @@ from pathlib import Path
 
 from cairosvg import svg2png
 
+from poediscordbot.util.logging import log
+
 
 @dataclass
 class Node:
