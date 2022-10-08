@@ -38,3 +38,6 @@ dm_poll_rate_seconds = 60 * 60 * 60
 web_pob_text = "**Web PoB**"
 # enable the new feature to redirect to a pob:// link via static github page
 enable_open_in_pob_feature = True
+
+# enable image rendering for peoples trees - resulting images are stored under tmp/img/<pastesourcename>_<key>.[svg & png] - e.g. pobbin_ATMRSryREQej.png
+render_tree_image=True
