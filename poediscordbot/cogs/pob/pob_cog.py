@@ -1,10 +1,11 @@
 import random
 import traceback
+from datetime import datetime
 from pathlib import Path
 
 import discord
 from discord import app_commands, Embed
-from discord.ext import commands
+from discord.ext import commands, tasks
 from instance import config
 from requests import HTTPError
 
@@ -31,6 +32,7 @@ class PoBCog(commands.Cog):
         self.allow_pming = allow_pming
         self.renderer = TreeRenderer(config.ROOT_DIR + 'resources/tree_3_19.min.json')
         log.info("Pob cog loaded")
+        self.cleanup_imgs.start()
 
     @staticmethod
     def _contains_supported_url(content):
@@ -70,7 +72,8 @@ class PoBCog(commands.Cog):
             try:
                 xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
                 if xml:
-                    embed, file = self._generate_embed(paste_key, web_poe_token, xml, message.author, paste_key, minify=True)
+                    embed, file = self._generate_embed(paste_key, web_poe_token, xml, message.author, paste_key,
+                                                       minify=True)
 
                     if embed:
                         await message.channel.send(embed=embed, file=file)
@@ -79,6 +82,21 @@ class PoBCog(commands.Cog):
             except pastebin.CaptchaError as err:
                 log.error(f"Pastebin: Marked as spam msg={err}")
                 await message.channel.send(err.message)
+
+    @tasks.loop(minutes=config.tree_image_cleanup_minute_cycle)
+    async def cleanup_imgs(self):
+        path = Path(config.tree_image_dir)
+        log.info(f"Cleaning up image dir '{path}'")
+        for file in path.iterdir():
+            creation_time = file.stat().st_ctime
+            if creation_time and creation_time > 0:
+                created = datetime.fromtimestamp(creation_time)
+                log.info(f"checking {file}: created: {created.isoformat()}")
+                delta = datetime.now() - created
+                deletable = delta.seconds > config.tree_image_delete_threshold_seconds
+                if file.is_file() and deletable:
+                    file.unlink(missing_ok=True)
+                    log.info(f"Deleted {file}")
 
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
@@ -139,13 +157,13 @@ class PoBCog(commands.Cog):
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return None, None, None
-            web_poe_token = util.fetch_xyz_pob_token(raw_data)
-            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
+            return xml, None, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
             return None, None, None
 
-    def _generate_embed(self, paste_key:PasteData, web_poe_token, xml, author, paste_data: PasteData, minify=False) -> (Embed, discord.File):
+    def _generate_embed(self, paste_key: PasteData, web_poe_token, xml, author, paste_data: PasteData,
+                        minify=False) -> (Embed, discord.File):
         if xml:
             build = pob_xml_parser.parse_build(xml)
             try:
@@ -156,11 +174,14 @@ class PoBCog(commands.Cog):
                     log.debug("starting to render tree...")
                     path = Path(config.ROOT_DIR) / "tmp/img"
                     path.mkdir(exist_ok=True, parents=True)
-                    expected_filename=f"{path}/{paste_data.source_site}_{paste_key.key}.png"
+                    expected_filename = f"{path}/{paste_data.source_site}_{paste_key.key}.png"
                     if expected_filename and not Path(expected_filename).exists():
-                        svg = self.renderer.parse_tree(build.tree_nodes, file_name=f"{path}/{paste_data.source_site}_{paste_key.key}.svg", render_size=1500)
+                        svg = self.renderer.parse_tree(build.tree_nodes,
+                                                       file_name=f"{path}/{paste_data.source_site}_{paste_key.key}.svg",
+                                                       render_size=1500)
                         self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_key.key}.png")
-                        log.debug(f"built svg and rendered png file to {path}/{paste_data.source_site}_{paste_key.key}(.svg|.png)")
+                        log.debug(
+                            f"built svg and rendered png file to {path}/{paste_data.source_site}_{paste_key.key}(.svg|.png)")
                     file = discord.File(f"{path}/{paste_data.source_site}_{paste_key.key}.png", filename="tree.png")
                     embed.set_image(url=f"attachment://tree.png")
 
