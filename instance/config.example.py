@@ -42,7 +42,7 @@ enable_open_in_pob_feature = True
 # enable image rendering for peoples trees - resulting images are stored under tmp/img/<pastesourcename>_<key>.[svg & png] - e.g. pobbin_ATMRSryREQej.png
 render_tree_image=True
 # deletion "scheduler" timer - runs every 20min by default
-tree_image_cleanup_minute_cycle = 1
+tree_image_cleanup_minute_cycle = 20
 # folder within the root dir containing the images - leave as is if you don't need to change it
 tree_image_dir = ROOT_DIR + "tmp/img"
 # delete files where the diff between now and the creation date is bigger than this amount (in seconds)

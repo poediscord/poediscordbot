@@ -87,16 +87,19 @@ class PoBCog(commands.Cog):
     async def cleanup_imgs(self):
         path = Path(config.tree_image_dir)
         log.info(f"Cleaning up image dir '{path}'")
-        for file in path.iterdir():
-            creation_time = file.stat().st_ctime
-            if creation_time and creation_time > 0:
-                created = datetime.fromtimestamp(creation_time)
-                log.info(f"checking {file}: created: {created.isoformat()}")
-                delta = datetime.now() - created
-                deletable = delta.seconds > config.tree_image_delete_threshold_seconds
-                if file.is_file() and deletable:
-                    file.unlink(missing_ok=True)
-                    log.info(f"Deleted {file}")
+        try:
+            for file in path.iterdir():
+                creation_time = file.stat().st_ctime
+                if creation_time and creation_time > 0:
+                    created = datetime.fromtimestamp(creation_time)
+                    log.info(f"checking {file}: created: {created.isoformat()}")
+                    delta = datetime.now() - created
+                    deletable = delta.seconds > config.tree_image_delete_threshold_seconds
+                    if file.is_file() and deletable:
+                        file.unlink(missing_ok=True)
+                        log.info(f"Deleted {file}")
+        except Exception as e:
+            log.error(e)
 
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
