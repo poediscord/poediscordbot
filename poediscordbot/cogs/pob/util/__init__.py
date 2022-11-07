@@ -17,8 +17,12 @@ def fetch_xyz_pob_token(payload, version="latest"):
     :return:
     """
     url = f"https://pob.party/kv/put?ver={version}"
-    response = requests.post(url, data=payload)
-    if response.status_code == 200:
-        return response.json()['url']
-    else:
-        log.error(f"error while fetching pob party token: {response.status_code}: {response.text}")
+    try:
+        response = requests.post(url, data=payload, timeout=10)
+        if response.status_code == 200:
+            return response.json()['url']
+        else:
+            log.error(f"error while fetching pob party token: {response.status_code}: {response.text}")
+    except Exception as err:
+        log.error(f"error while fetching pob party token  {err}, {type(err)}")
+    return ""
