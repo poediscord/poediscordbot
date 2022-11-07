@@ -85,6 +85,7 @@ class PoBCog(commands.Cog):
 
     @tasks.loop(minutes=config.tree_image_cleanup_minute_cycle)
     async def cleanup_imgs(self):
+        self.make_tmp_dir()
         path = Path(config.tree_image_dir)
         log.info(f"Cleaning up image dir '{path}'")
         try:
@@ -175,8 +176,7 @@ class PoBCog(commands.Cog):
                 file = None
                 if config.render_tree_image:
                     log.debug("starting to render tree...")
-                    path = Path(config.ROOT_DIR) / "tmp/img"
-                    path.mkdir(exist_ok=True, parents=True)
+                    path = self.make_tmp_dir()
                     expected_filename = f"{path}/{paste_data.source_site}_{paste_key.key}.png"
                     if expected_filename and not Path(expected_filename).exists():
                         svg = self.renderer.parse_tree(build.tree_nodes,
@@ -193,3 +193,9 @@ class PoBCog(commands.Cog):
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")
+
+    @staticmethod
+    def make_tmp_dir():
+        path = Path(config.ROOT_DIR) / "tmp/img"
+        path.mkdir(exist_ok=True, parents=True)
+        return path
