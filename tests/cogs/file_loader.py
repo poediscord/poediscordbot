@@ -41,7 +41,6 @@ def load_xml_by_pastebin_key(pastebin_url) -> ET:
     build_xml_file = matches[0] if len(matches) > 0 else None
     path_to_build_xml = get_pastebin_file(build_xml_file)
     with open(path_to_build_xml, "r") as f:
-        demo_author = None
         log.info(f"Testing whether we can parse '{build_xml_file}'")
 
         xml_tree = ET.fromstring(f.read())

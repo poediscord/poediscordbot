@@ -30,9 +30,12 @@ class PoBCog(commands.Cog):
         self.bot = bot
         self.active_channels = active_channels
         self.allow_pming = allow_pming
-        self.renderer = TreeRenderer(config.ROOT_DIR + 'resources/tree_3_19.min.json')
+        self.__root_dir, self.__enable_tree_renderer, self.__tree_renderer_deletion_threshold_minutes, \
+            self.__tree_img_dir = self.read_conf()
         log.info("Pob cog loaded")
-        self.cleanup_imgs.start()
+        if self.__enable_tree_renderer:
+            self.renderer = TreeRenderer(self.__root_dir + 'resources/tree_3_19.min.json')
+            self.cleanup_imgs.start()
 
     @staticmethod
     def _contains_supported_url(content):
@@ -70,9 +73,9 @@ class PoBCog(commands.Cog):
             # send message
             log.debug(f"A| {message.channel}: {message.content}")
             try:
-                xml, paste_key = self._fetch_xml(message.author, message.content)
+                xml, paste_data = self._fetch_xml(message.author, message.content)
                 if xml:
-                    embed, file = self._generate_embed(xml, message.author, paste_key, minify=True)
+                    embed, file = self._generate_embed(paste_data, xml, message.author, minify=True)
                     if embed:
                         await message.channel.send(embed=embed, file=file)
             except HTTPError as err:
@@ -83,7 +86,7 @@ class PoBCog(commands.Cog):
 
     @tasks.loop(minutes=config.tree_image_cleanup_minute_cycle)
     async def cleanup_imgs(self):
-        path = Path(config.tree_image_dir)
+        path = Path(self.__tree_img_dir)
         log.info(f"Cleaning up image dir '{path}'")
         self.make_tmp_dir()
         try:
@@ -93,7 +96,7 @@ class PoBCog(commands.Cog):
                     created = datetime.fromtimestamp(creation_time)
                     log.info(f"checking {file}: created: {created.isoformat()}")
                     delta = datetime.now() - created
-                    deletable = delta.seconds > config.tree_image_delete_threshold_seconds
+                    deletable = delta.seconds > self.__tree_renderer_deletion_threshold_minutes
                     if file.is_file() and deletable:
                         file.unlink(missing_ok=True)
                         log.info(f"Deleted {file}")
@@ -111,7 +114,7 @@ class PoBCog(commands.Cog):
             return
         xml, paste_key = self._fetch_xml(interaction.user, paste_url)
         if xml:
-            embed, file = self._generate_embed(paste_key, xml, interaction.user, paste_key)
+            embed, file = self._generate_embed(paste_key, xml, interaction.user)
             try:
                 if embed and file:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
@@ -164,21 +167,23 @@ class PoBCog(commands.Cog):
             log.error(f"No Paste key found")
             return None, None, None
 
-    def _generate_embed(self, paste_key:PasteData, web_poe_token, xml, author, paste_data: PasteData, minify=False) -> (Embed, discord.File):
+    def _generate_embed(self, paste_data: PasteData, xml, author, minify=False) -> (Embed, discord.File):
         if xml:
             build = pob_xml_parser.parse_build(xml)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, paste_data=paste_data,
-                                                     non_dps_skills=poe_consts, web_poe_token=web_poe_token)
+                                                     non_dps_skills=poe_consts)
                 file = None
-                if config.render_tree_image:
-                    path = Path(config.ROOT_DIR) / "tmp/img"
+                if self.__enable_tree_renderer:
+                    path = Path(self.__tree_img_dir)
                     path.mkdir(exist_ok=True, parents=True)
-                    expected_filename=f"{path}/{paste_data.source_site}_{paste_key.key}.png"
+                    expected_filename = f"{path}/{paste_data.source_site}_{paste_data.key}.png"
                     if expected_filename and not Path(expected_filename).exists():
-                        svg = self.renderer.parse_tree(build.tree_nodes, file_name=f"{path}/{paste_data.source_site}_{paste_key.key}.svg", render_size=1500)
-                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_key.key}.png")
-                    file = discord.File(f"{path}/{paste_data.source_site}_{paste_key.key}.png", filename="tree.png")
+                        svg = self.renderer.parse_tree(build.tree_nodes,
+                                                       file_name=f"{path}/{paste_data.source_site}_{paste_data.key}.svg",
+                                                       render_size=1500)
+                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_data.key}.png")
+                    file = discord.File(f"{path}/{paste_data.source_site}_{paste_data.key}.png", filename="tree.png")
                     embed.set_image(url=f"attachment://tree.png")
 
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
@@ -187,8 +192,10 @@ class PoBCog(commands.Cog):
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")
 
-    @staticmethod
-    def make_tmp_dir():
-        path = Path(config.ROOT_DIR) / "tmp/img"
+    def make_tmp_dir(self):
+        path = Path(self.__root_dir) / "tmp/img"
         path.mkdir(exist_ok=True, parents=True)
         return path
+
+    def read_conf(self):
+        return config.ROOT_DIR, config.render_tree_image, config.tree_image_delete_threshold_seconds, config.tree_image_dir
