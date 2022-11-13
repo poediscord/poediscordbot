@@ -1,10 +1,11 @@
 import random
 import traceback
+from datetime import datetime
 from pathlib import Path
 
 import discord
 from discord import app_commands, Embed
-from discord.ext import commands
+from discord.ext import commands, tasks
 from instance import config
 from requests import HTTPError
 
@@ -31,6 +32,7 @@ class PoBCog(commands.Cog):
         self.allow_pming = allow_pming
         self.renderer = TreeRenderer(config.ROOT_DIR + 'resources/tree_3_19.min.json')
         log.info("Pob cog loaded")
+        self.cleanup_imgs.start()
 
     @staticmethod
     def _contains_supported_url(content):
@@ -78,6 +80,25 @@ class PoBCog(commands.Cog):
             except pastebin.CaptchaError as err:
                 log.error(f"Pastebin: Marked as spam msg={err}")
                 await message.channel.send(err.message)
+
+    @tasks.loop(minutes=config.tree_image_cleanup_minute_cycle)
+    async def cleanup_imgs(self):
+        path = Path(config.tree_image_dir)
+        log.info(f"Cleaning up image dir '{path}'")
+        self.make_tmp_dir()
+        try:
+            for file in path.iterdir():
+                creation_time = file.stat().st_ctime
+                if creation_time and creation_time > 0:
+                    created = datetime.fromtimestamp(creation_time)
+                    log.info(f"checking {file}: created: {created.isoformat()}")
+                    delta = datetime.now() - created
+                    deletable = delta.seconds > config.tree_image_delete_threshold_seconds
+                    if file.is_file() and deletable:
+                        file.unlink(missing_ok=True)
+                        log.info(f"Deleted {file}")
+        except Exception as e:
+            log.error(e)
 
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
@@ -165,3 +186,9 @@ class PoBCog(commands.Cog):
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")
+
+    @staticmethod
+    def make_tmp_dir():
+        path = Path(config.ROOT_DIR) / "tmp/img"
+        path.mkdir(exist_ok=True, parents=True)
+        return path
