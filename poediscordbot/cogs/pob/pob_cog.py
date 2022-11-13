@@ -68,10 +68,9 @@ class PoBCog(commands.Cog):
             # send message
             log.debug(f"A| {message.channel}: {message.content}")
             try:
-                xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
+                xml, paste_key = self._fetch_xml(message.author, message.content)
                 if xml:
-                    embed, file = self._generate_embed(paste_key, web_poe_token, xml, message.author, paste_key, minify=True)
-
+                    embed, file = self._generate_embed(xml, message.author, paste_key, minify=True)
                     if embed:
                         await message.channel.send(embed=embed, file=file)
             except HTTPError as err:
@@ -89,9 +88,9 @@ class PoBCog(commands.Cog):
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
-        xml, web_poe_token, paste_key = self._fetch_xml(interaction.user, paste_url)
+        xml, paste_key = self._fetch_xml(interaction.user, paste_url)
         if xml:
-            embed, file = self._generate_embed(paste_key, web_poe_token, xml, interaction.user, paste_key)
+            embed, file = self._generate_embed(paste_key, xml, interaction.user, paste_key)
             try:
                 if embed and file:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
@@ -139,8 +138,7 @@ class PoBCog(commands.Cog):
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return None, None, None
-            web_poe_token = util.fetch_xyz_pob_token(raw_data)
-            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
+            return xml, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
             return None, None, None

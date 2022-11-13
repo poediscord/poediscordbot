@@ -66,14 +66,12 @@ def _fetch_displayed_skill(gem_name, main_skill):
         return gem_name
 
 
-def _generate_info_text(tree, paste_data, web_poe_token):
+def _generate_info_text(tree, paste_data):
     info_text = ""
     if paste_data:
         info_text += f"[Build Link]({paste_data.source_url}) | "
     if tree and len(tree) < 600:
         info_text += f"[Web Tree]({tree}) "
-    if web_poe_token:
-        info_text += f"| [{config.web_pob_text}](https://pob.party/share/{web_poe_token}) "
     if paste_data and config.enable_open_in_pob_feature:
         info_text += f"| [Click to open in POB](https://fwidm.github.io/pob-redirect/index.html?{paste_data.source_site}={paste_data.key}). "
     info_text += f"\nCreated in [Path of Building: Community Fork](https://github.com/PathOfBuildingCommunity/PathOfBuilding). "
@@ -87,8 +85,7 @@ def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
         embed.add_field(name=key, value=val, inline=inline)
 
 
-def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None,
-                      web_poe_token=None):
+def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None):
     """
     Build an embed to respond to the user.
     :param non_dps_skills: poe constants - skill info
@@ -125,7 +122,7 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
         [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
 
     # output
-    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data, web_poe_token))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data))
 
     if minified:
         embed.add_field(name='Hint:', value='Use `/pob <link to pastebin>` for even more detailed build info!')

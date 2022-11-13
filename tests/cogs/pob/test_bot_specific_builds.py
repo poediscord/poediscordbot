@@ -63,8 +63,7 @@ class TestBot(unittest.TestCase):
 
         build = pob_xml_parser.parse_build(xml_tree)
         build_embed = pob_output.generate_response(demo_author, build, minified=False,
-                                                   paste_data=PasteData('x', 'y', 'z'),
-                                                   non_dps_skills=poe_consts, web_poe_token=None)
+                                                   paste_data=PasteData('x', 'y', 'z'), non_dps_skills=poe_consts)
         return build_embed
 
     def single_assert(self, field, term, value, negated):
