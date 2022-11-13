@@ -1,9 +1,12 @@
 import random
 import traceback
+from datetime import datetime
+from pathlib import Path
 
 import discord
-from discord import app_commands
-from discord.ext import commands
+from discord import app_commands, Embed
+from discord.ext import commands, tasks
+from instance import config
 from requests import HTTPError
 
 from poediscordbot.cogs.pob import util
@@ -13,6 +16,7 @@ from poediscordbot.cogs.pob.importers.pobbin import PobBinImporter
 from poediscordbot.cogs.pob.importers.poeninja import PoeNinjaImporter
 from poediscordbot.cogs.pob.output import pob_output
 from poediscordbot.cogs.pob.poe_data import poe_consts
+from poediscordbot.cogs.pob.util.treerenderer import TreeRenderer
 from poediscordbot.pob_xml_parser import pob_xml_parser
 from poediscordbot.util.logging import log
 
@@ -26,7 +30,12 @@ class PoBCog(commands.Cog):
         self.bot = bot
         self.active_channels = active_channels
         self.allow_pming = allow_pming
+        self.__root_dir, self.__enable_tree_renderer, self.__tree_renderer_deletion_threshold_minutes, \
+            self.__tree_img_dir = self.read_conf()
         log.info("Pob cog loaded")
+        if self.__enable_tree_renderer:
+            self.renderer = TreeRenderer(self.__root_dir + 'resources/tree_3_19.min.json')
+            self.cleanup_imgs.start()
 
     @staticmethod
     def _contains_supported_url(content):
@@ -64,31 +73,53 @@ class PoBCog(commands.Cog):
             # send message
             log.debug(f"A| {message.channel}: {message.content}")
             try:
-                xml, web_poe_token, paste_key = self._fetch_xml(message.author, message.content)
+                xml, paste_data = self._fetch_xml(message.author, message.content)
                 if xml:
-                    embed = self._generate_embed(web_poe_token, xml, message.author, paste_key, minify=True)
+                    embed, file = self._generate_embed(paste_data, xml, message.author, minify=True)
                     if embed:
-                        await message.channel.send(embed=embed)
+                        await message.channel.send(embed=embed, file=file)
             except HTTPError as err:
                 log.error(f"Pastebin: Invalid pastebin-url msg={err}")
             except pastebin.CaptchaError as err:
                 log.error(f"Pastebin: Marked as spam msg={err}")
                 await message.channel.send(err.message)
 
+    @tasks.loop(minutes=config.tree_image_cleanup_minute_cycle)
+    async def cleanup_imgs(self):
+        path = Path(self.__tree_img_dir)
+        log.info(f"Cleaning up image dir '{path}'")
+        self.make_tmp_dir()
+        try:
+            for file in path.iterdir():
+                creation_time = file.stat().st_ctime
+                if creation_time and creation_time > 0:
+                    created = datetime.fromtimestamp(creation_time)
+                    log.info(f"checking {file}: created: {created.isoformat()}")
+                    delta = datetime.now() - created
+                    deletable = delta.seconds > self.__tree_renderer_deletion_threshold_minutes
+                    if file.is_file() and deletable:
+                        file.unlink(missing_ok=True)
+                        log.info(f"Deleted {file}")
+        except Exception as e:
+            log.error(e)
+
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
         log.info(f"{interaction.user} called pob with url={paste_url}")
         await interaction.response.defer(ephemeral=True)
         # first followup ignores ephemeral, still set to true if this changes -> further followups can change it
-        await interaction.followup.send(f"Parsing your pastebin now...", ephemeral=True)
+        await interaction.followup.send(f"Parsing your pob paste now...", ephemeral=True)
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
-        xml, web_poe_token, paste_key = self._fetch_xml(interaction.user, paste_url)
+        xml, paste_key = self._fetch_xml(interaction.user, paste_url)
         if xml:
-            embed = self._generate_embed(web_poe_token, xml, interaction.user, paste_key)
+            embed, file = self._generate_embed(paste_key, xml, interaction.user)
             try:
-                if embed:
+                if embed and file:
+                    await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
+                                                    embed=embed, file=file)
+                elif embed:
                     await interaction.followup.send(f"parsing result for url: {paste_url}", ephemeral=False,
                                                     embed=embed)
                 else:
@@ -131,21 +162,40 @@ class PoBCog(commands.Cog):
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
                 return None, None, None
-            web_poe_token = util.fetch_xyz_pob_token(raw_data)
-            return xml, web_poe_token, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
+            return xml, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
             return None, None, None
 
-    @staticmethod
-    def _generate_embed(web_poe_token, xml, author, paste_data: PasteData, minify=False):
+    def _generate_embed(self, paste_data: PasteData, xml, author, minify=False) -> (Embed, discord.File):
         if xml:
             build = pob_xml_parser.parse_build(xml)
             try:
                 embed = pob_output.generate_response(author, build, minified=minify, paste_data=paste_data,
-                                                     non_dps_skills=poe_consts, web_poe_token=web_poe_token)
+                                                     non_dps_skills=poe_consts)
+                file = None
+                if self.__enable_tree_renderer:
+                    path = Path(self.__tree_img_dir)
+                    path.mkdir(exist_ok=True, parents=True)
+                    expected_filename = f"{path}/{paste_data.source_site}_{paste_data.key}.png"
+                    if expected_filename and not Path(expected_filename).exists():
+                        svg = self.renderer.parse_tree(build.tree_nodes,
+                                                       file_name=f"{path}/{paste_data.source_site}_{paste_data.key}.svg",
+                                                       render_size=1500)
+                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_data.key}.png")
+                    file = discord.File(f"{path}/{paste_data.source_site}_{paste_data.key}.png", filename="tree.png")
+                    embed.set_image(url=f"attachment://tree.png")
+
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
-                return embed
+                return embed, file
             except Exception as e:
                 ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
                 log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")
+
+    def make_tmp_dir(self):
+        path = Path(self.__root_dir) / "tmp/img"
+        path.mkdir(exist_ok=True, parents=True)
+        return path
+
+    def read_conf(self):
+        return config.ROOT_DIR, config.render_tree_image, config.tree_image_delete_threshold_seconds, config.tree_image_dir

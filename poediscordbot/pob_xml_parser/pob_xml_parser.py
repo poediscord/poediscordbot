@@ -56,6 +56,7 @@ def parse_build(xml_root) -> Build:
     # keystones
     tree = poe_tree_codec.codec.decode_url(selected_tree)
     build.keystones = tree.get_keystones(poe_tree_codec.codec.keystones)
+    build.tree_nodes = tree.nodes
     return build
 
 

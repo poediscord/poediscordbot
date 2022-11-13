@@ -7,6 +7,19 @@ Currently, there's no way to just invite an instance of the bot. You can run it 
 If you encounter issues or need more support feel free to open an issue or visit the [Reddit PoE Discord](https://discord.com/invite/pathofexile) and post in `#tooldev-general`
 
 ## Changelog
+- 2022-11-13: add tree renderer
+  - the bot will now embed a small preview of the tree if you enable the function in the config:
+    ```python
+    render_tree_image = True
+    # deletion "scheduler" timer - runs every 20min by default
+    tree_image_cleanup_minute_cycle = 20
+    # folder within the root dir containing the images - leave as is if you don't need to change it
+    tree_image_dir = ROOT_DIR + "tmp/img"
+    # delete files where the diff between now and the creation date is bigger than this amount (in seconds)
+    tree_image_delete_threshold_seconds = 60 * 20
+    ```
+    - images are stored as svg and pngs in the directory you have this bot in the subfolder `tmp/img`
+    - generated images are cleaned up routinely (every 20 minutes)
 - 2022-09-15: update to discord.py 2.0.x
   - configuration updated
     - `owner` is now expecting user ids, not `nick#number` 

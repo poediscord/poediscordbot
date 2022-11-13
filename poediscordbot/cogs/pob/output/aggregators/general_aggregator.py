@@ -35,6 +35,8 @@ class GeneralAggregator(AbstractAggregator):
         output = "**Max Hit + Resists**: "
         stats = ['Physical', 'Fire', 'Cold', 'Lightning', 'Chaos']
         emojis = [':drop_of_blood:', ':fire:', ':snowflake:', ':zap:', ':skull:']
+        lines = []
+
         show = False
         for i, stat in enumerate(stats):
             max_hit_key = stat + 'MaximumHitTaken'
@@ -42,8 +44,10 @@ class GeneralAggregator(AbstractAggregator):
             res_key = stat + 'DamageReduction' if stat == 'Physical' else stat + 'Resist'
             res_val = build.get_player_stat(res_key)
             if res_val:
-                output += "\n" + emojis[i] + f" {max_hit_val:,.0f} ({res_val:.0f}%)"
+                lines.append(f"{emojis[i]} {max_hit_val:,.0f} ({res_val:.0f}%)")
             show = True
+
+        output = ' | '.join(lines)
         output += "\n"
         return output if show else ""
 

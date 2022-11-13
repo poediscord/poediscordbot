@@ -1,5 +1,6 @@
 # config
 config.py
+tmp
 
 /instance/config.py
 /instance/*.log

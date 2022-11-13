@@ -1,8 +1,10 @@
 import os
 import unittest
+from unittest.mock import patch
 
 import defusedxml.ElementTree as ET
 from discord import Embed
+from instance import config
 
 from poediscordbot.cogs.pob.importers import PasteData
 from poediscordbot.cogs.pob.pob_cog import PoBCog
@@ -17,6 +19,24 @@ def get_links(path="in/pastebins.txt"):
 
 
 class TestBot(unittest.TestCase):
+    @staticmethod
+    def conf_disable_tree_renderer():
+        # return config.ROOT_DIR, config.render_tree_image, config.tree_image_delete_threshold_seconds, config.tree_image_dir
+        return config.ROOT_DIR, False, 60 * 10, ''
+
+    @patch.object(PoBCog, 'cleanup_imgs')
+    def test_tree_renderer_setup(self, mock):
+        paste_key = "0AHp5hgd"
+        xml_tree = file_loader.load_xml_by_pastebin_key(paste_key)
+        demo_author = None
+        data = PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin")
+
+        build_embed, _ = PoBCog(None, [], True)._generate_embed(data, xml_tree, demo_author)
+        self.assertTrue(isinstance(build_embed, Embed))
+        # ensure self cleaning is triggered on creation
+        self.assertTrue(mock.start.called)
+
+    @patch.object(PoBCog, 'read_conf', conf_disable_tree_renderer)
     def test_bot_parse_routine(self):
         """
         Tests whether all links inside of the file can be successfully parsed
@@ -40,18 +60,20 @@ class TestBot(unittest.TestCase):
                 xml_tree = ET.fromstring(f.read())
 
                 paste_key = file_path.split('.xml')[0]
-                build_embed = PoBCog._generate_embed(None, xml_tree, demo_author,
-                                                     PasteData(paste_key, f"https://pastebin.com/{paste_key}",
-                                                               "pastebin"))
+                data = PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin")
+
+                build_embed, _ = PoBCog(None, [], True)._generate_embed(data, xml_tree, demo_author)
                 self.assertTrue(isinstance(build_embed, Embed))
 
+    @patch.object(PoBCog, 'read_conf', conf_disable_tree_renderer)
     def test_illegal_url(self):
         paste_key = '404URLNOTFOUND'
         demo_author = None
-        build_embed = PoBCog._generate_embed(None, None, demo_author,
-                                             PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin"))
+        data = PasteData(paste_key, f"https://pastebin.com/{paste_key}", "pastebin")
+        build_embed = PoBCog(None, [], True)._generate_embed(data, None, demo_author)
         self.assertFalse(isinstance(build_embed, Embed))
 
+    @patch.object(PoBCog, 'read_conf', conf_disable_tree_renderer)
     def test_empty_embed_field(self):
         """
         Empty names or values should not be carried into the embed. The pastebin has no secondary defense value
@@ -59,9 +81,8 @@ class TestBot(unittest.TestCase):
         """
         demo_profile_link = 'https://pastebin.com/X8XNW4EU'
         demo_author = None
-        xml, web_poe_token, paste_key = PoBCog._fetch_xml(demo_author, demo_profile_link)
-        if xml:
-            build_embed = PoBCog._generate_embed(web_poe_token, xml, demo_author, paste_key, minify=True)
+        xml, data = PoBCog._fetch_xml(demo_author, demo_profile_link)
+        build_embed, _ = PoBCog(None, [], True)._generate_embed(data, xml, demo_author, minify=True)
 
         self.assertTrue(isinstance(build_embed, Embed))
         fields = build_embed._fields
