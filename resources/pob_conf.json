@@ -1,5 +1,5 @@
 {
-    "utc-date": "2022-11-07T15:53:56.665265",
+    "utc-date": "2022-12-19T14:51:55.525103",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -78,43 +78,43 @@
         "usePowerCharges": {
             "var": "usePowerCharges",
             "label": "Do you use Power Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "PC"
         },
         "useFrenzyCharges": {
             "var": "useFrenzyCharges",
             "label": "Do you use Frenzy Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "FC"
         },
         "useEnduranceCharges": {
             "var": "useEnduranceCharges",
             "label": "Do you use Endurance Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "EC"
         },
         "useSiphoningCharges": {
             "var": "useSiphoningCharges",
             "label": "Do you use Siphoning Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Siphoning Charges"
         },
         "minionsUsePowerCharges": {
             "var": "minionsUsePowerCharges",
             "label": "Do your Minions use Power Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Minion PC"
         },
         "minionsUseFrenzyCharges": {
             "var": "minionsUseFrenzyCharges",
             "label": "Do your Minions use Frenzy Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Minion FC"
         },
         "minionsUseEnduranceCharges": {
             "var": "minionsUseEnduranceCharges",
             "label": "Do your Minions use Endur. Charges?",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Minion EC"
         },
         "buffOnslaught": {
@@ -247,14 +247,14 @@
             "var": "conditionHitRecently",
             "label": "Have you Hit Recently?",
             "category": "playerRecently",
-            "abbreviation": "Hit"
+            "abbreviation": "Got hit"
         },
         "conditionCritRecently": {
             "var": "conditionCritRecently",
             "label": "Have you Crit Recently?",
             "category": "playerRecently",
             "suppress": "conditionHitRecently",
-            "abbreviation": "Crit"
+            "abbreviation": "Got Crit"
         },
         "conditionCritWithHeraldSkillRecently": {
             "var": "conditionCritWithHeraldSkillRecently",
@@ -273,7 +273,7 @@
             "label": "Have you dealt a Non-Crit Recently?",
             "suppress": "conditionHitRecently",
             "category": "playerRecently",
-            "abbreviation": "Non-Crit"
+            "abbreviation": "dealt Non-Crit"
         },
         "conditionKilledRecently": {
             "var": "conditionKilledRecently",
@@ -1337,14 +1337,14 @@
             "var": "minionsOverrideFrenzyCharges",
             "label": "# of Frenzy Charges (if not maximum):",
             "ifOption": "minionsUseFrenzyCharges",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Minion FC"
         },
         "minionsOverrideEnduranceCharges": {
             "var": "minionsOverrideEnduranceCharges",
             "label": "# of Endurance Charges (if not maximum):",
             "ifOption": "minionsUseEnduranceCharges",
-            "category": "playerCharge",
+            "category": "Player",
             "abbreviation": "Minion EC"
         },
         "buffAlchemistsGenius": {
@@ -1846,6 +1846,31 @@
         "enemyMultiplierPvpDamage": {
             "var": "enemyMultiplierPvpDamage",
             "label": "Custom PvP Damage multiplier percent:"
+        },
+        "absolutionSkillDamageCountedOnce": {
+            "var": "absolutionSkillDamageCountedOnce",
+            "label": "Absolution: Count skill damage once",
+            "ifSkill": "Absolution"
+        },
+        "conditionCanBeCurseImmune": {
+            "var": "conditionCanBeCurseImmune",
+            "label": "Are you Immune to Curses?"
+        },
+        "multiplierShockedNonShockedEnemyRecently": {
+            "var": "multiplierShockedNonShockedEnemyRecently",
+            "label": "# of Non-^xADAA47Shocked ^7Enemies ^xADAA47Shocked ^7 Recently:"
+        },
+        "conditionSinglePoison": {
+            "var": "conditionSinglePoison",
+            "label": "Cap to Single Poison on enemy?"
+        },
+        "multiplierCurseExpiredOnEnemy": {
+            "var": "multiplierCurseExpiredOnEnemy",
+            "label": "#% of Curse Expired on enemy:"
+        },
+        "multiplierCurseDurationExpiredOnEnemy": {
+            "var": "multiplierCurseDurationExpiredOnEnemy",
+            "label": "Curse Duration Expired on enemy:"
         }
     }
 }

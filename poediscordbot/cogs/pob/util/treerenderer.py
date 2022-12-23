@@ -3,6 +3,7 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
+import svgwrite
 from cairosvg import svg2png
 
 
@@ -73,13 +74,20 @@ class Edge:
 class TreeRenderer:
     def __init__(self, tree_json):
         tree_path = Path(tree_json)
-        content = json.load(tree_path.open('r'))
+        file = tree_path.open('r')
+        content = json.load(file)
+        file.close()
+
         self.groups = content.get('groups')
         self.nodes = self.parse_nodes(content)
         self.orbit_radius_list, skills_per_orbit_list = self._parse_orbits(content)
         self.orbit_angles = [self.calc_orbit_angles(n) for n in skills_per_orbit_list]
+        self.inactive_color = 'grey'
+        self.active_color = 'darkgoldenrod'
+        self.mastery_color = 'papayawhip'
 
-    def parse_nodes(self, content: dict) -> dict[int, Node]:
+    @staticmethod
+    def parse_nodes(content: dict) -> dict[int, Node]:
         nodes = {}
         for n, data in content.get('nodes', None).items():
             if n == "root" or data.get('name', '') == 'Position Proxy':
@@ -87,7 +95,8 @@ class TreeRenderer:
             nodes[int(n)] = Node.create_from_dict(n, data)
         return nodes
 
-    def calculate_node_pos(self, data, group: dict, orbit_radius_list, orbit_angles):
+    @staticmethod
+    def calculate_node_pos(data, group: dict, orbit_radius_list, orbit_angles):
         angle = orbit_angles[data.orbit][data.orbit_index]
         distance = orbit_radius_list[data.orbit]
         group_x = group.get('x')
@@ -99,27 +108,29 @@ class TreeRenderer:
 
     def __build_svg(self, ascendancy, edges, selected, x_min, x_max, y_min, y_max, file_name: str = None,
                     render_size: int = 500):
-        internal_radius = 12000
-        viewbox_crop = internal_radius
 
-        import svgwrite
-
-        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, int(render_size / 1.5)))
-        svg_document.viewbox(x_min + viewbox_crop, y_min + viewbox_crop,
-                             x_max + viewbox_crop, y_max + viewbox_crop)
-
+        # 0,0 point for drawing all nodes so we avoid negative vals
+        internal_radius = 12500
         line_width = 64
-        inactive_color = 'grey'
-        active_color = "darkgoldenrod"
-        mastery_color = "papayawhip"
+
+        #calc better crop
+        x0 = x_min + internal_radius
+        y0 = y_min + internal_radius
+        x1 = x_max + internal_radius - x0
+        y1 = y_max + internal_radius - y0
+
+        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, render_size))
+
+        svg_document.viewbox(x0 - line_width * 2, y0 - line_width * 2,
+                             x1 + line_width * 2, y1 + line_width * 2)
+
         for edge in edges:
-            if edge.active:
-                svg_document.add(
-                    svg_document.line(start=(edge.parent.pos_x + internal_radius, edge.parent.pos_y + internal_radius),
-                                      end=(edge.child.pos_x + internal_radius, edge.child.pos_y + internal_radius),
-                                      stroke_width=line_width,
-                                      stroke=active_color if edge.active else inactive_color,
-                                      ))
+            svg_document.add(
+                svg_document.line(start=(edge.parent.pos_x + internal_radius, edge.parent.pos_y + internal_radius),
+                                  end=(edge.child.pos_x + internal_radius, edge.child.pos_y + internal_radius),
+                                  stroke_width=line_width,
+                                  stroke=self.active_color if edge.active else self.inactive_color,
+                                  ))
 
         masteries = [n for _, n in self.nodes.items() if n.is_mastery]
         jewels = [n for _, n in self.nodes.items() if
@@ -127,7 +138,7 @@ class TreeRenderer:
 
         for _, node in self.nodes.items():
             is_active = int(node.node_id) in selected or node.label == ascendancy
-            color = active_color if is_active else inactive_color
+            color = self.active_color if is_active else self.inactive_color
             if node.is_mastery or node.is_large_cluster_socket or node.is_medium_cluster_socket or node.is_small_cluster_socket:
                 continue
             if node.group and self._show_node(node, x_min, x_max, y_min, y_max, is_active):
@@ -148,7 +159,7 @@ class TreeRenderer:
                                         r=line_width,
                                         # stroke_width=32,
                                         # stroke=active_color,
-                                        fill=mastery_color,
+                                        fill=self.mastery_color,
                                         opacity=opacity,
                                         # fill_opacity=0
                                         ))
@@ -165,7 +176,7 @@ class TreeRenderer:
                 svg_document.add(
                     svg_document.circle(center=(node.pos_x + internal_radius, node.pos_y + internal_radius),
                                         r=radius,
-                                        fill=active_color,
+                                        fill=self.active_color,
                                         opacity=opacity,
                                         ))
 
@@ -194,10 +205,19 @@ class TreeRenderer:
                 for t in node.children_ids:
                     target = self.nodes.get(t, None)
                     active = (node.is_ascendancy_start or int(node.node_id) in chosen_nodes) and int(t) in chosen_nodes
-                    if self.nodes.get(t, None) is not None and not node.label.startswith('Seven') and \
-                            not self.nodes[t].label.endswith('Mastery') and not node.label.endswith('Mastery'):
+                    if active and target is not None and not node.label.startswith('Seven') and \
+                            not self.connect_masteries(node, target) \
+                            and not self.is_scion_starting_position_ascendancy(node):
                         edges.add(Edge(node, target, active))
         return self.__build_svg(ascendancy, edges, chosen_nodes, x_min, x_max, y_min, y_max, file_name, render_size)
+
+    @staticmethod
+    def is_scion_starting_position_ascendancy(node):
+        return node.ascendancy == 'Ascendant' and node.label.startswith("Path of the")
+
+    @staticmethod
+    def connect_masteries(node, target):
+        return target.label.endswith('Mastery') and not node.label.endswith('Mastery')
 
     @staticmethod
     def _parse_orbits(content: dict):
@@ -227,5 +247,5 @@ class TreeRenderer:
 
     @staticmethod
     def _show_node(node: Node, x_min: int, x_max: int, y_min: int, y_max: int, active: bool):
-        return x_min < node.pos_x < x_max and y_min < node.pos_y < y_max and (
-                    not node.ascendancy or node.ascendancy and active)
+        return active or (x_min < node.pos_x < x_max and y_min < node.pos_y < y_max and (
+                not node.ascendancy or node.ascendancy))
