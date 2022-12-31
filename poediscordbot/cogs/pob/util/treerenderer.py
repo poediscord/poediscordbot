@@ -83,10 +83,11 @@ class TreeRenderer:
         self.nodes = self.parse_nodes(content)
         self.orbit_radius_list, skills_per_orbit_list = self._parse_orbits(content)
         self.orbit_angles = [self.calc_orbit_angles(n) for n in skills_per_orbit_list]
-        self.inactive_color = config.renderer_inactive_color if config.renderer_inactive_color else 'grey'
-        self.active_color = config.renderer_active_color if config.renderer_active_color else 'darkgoldenrod'
-        self.mastery_color = config.renderer_mastery_color if config.renderer_mastery_color else 'papayawhip'
-        self.keystone_color = config.renderer_keystone_color if config.renderer_keystone_color else 'peru'
+
+        self.inactive_color = config.renderer_inactive_color if hasattr(config, 'renderer_inactive_color') else 'grey'
+        self.active_color = config.renderer_active_color if hasattr(config, 'renderer_active_color') else 'darkgoldenrod'
+        self.mastery_color = config.renderer_mastery_color if hasattr(config, 'renderer_mastery_color') else 'papayawhip'
+        self.keystone_color = config.renderer_keystone_color if hasattr(config, 'renderer_keystone_color') else 'peru'
 
     @staticmethod
     def parse_nodes(content: dict) -> dict[int, Node]:
