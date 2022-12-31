@@ -46,3 +46,14 @@ tree_image_cleanup_minute_cycle = 20
 tree_image_dir = ROOT_DIR + "tmp/img"
 # delete files where the diff between now and the creation date is bigger than this amount (in seconds)
 tree_image_delete_threshold_seconds = 60 * 15
+
+# here you can change the colors used for tree rendering. Currently we only support named colors for svgs:
+# https://www.december.com/html/spec/colorsvg.html
+# any inactive elements are colored like this and are transparent
+renderer_inactive_color = 'grey'
+# any active elements are colored like this unless they are defined below
+renderer_active_color = 'darkgoldenrod'
+# any masteries are colored like this
+renderer_mastery_color = 'papayawhip'
+# keystone colors
+renderer_keystone_color = 'peru'
