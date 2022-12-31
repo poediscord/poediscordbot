@@ -5,6 +5,7 @@ from pathlib import Path
 
 import svgwrite
 from cairosvg import svg2png
+from instance import config
 
 
 @dataclass
@@ -82,9 +83,10 @@ class TreeRenderer:
         self.nodes = self.parse_nodes(content)
         self.orbit_radius_list, skills_per_orbit_list = self._parse_orbits(content)
         self.orbit_angles = [self.calc_orbit_angles(n) for n in skills_per_orbit_list]
-        self.inactive_color = 'grey'
-        self.active_color = 'darkgoldenrod'
-        self.mastery_color = 'papayawhip'
+        self.inactive_color = config.renderer_inactive_color if config.renderer_inactive_color else 'grey'
+        self.active_color = config.renderer_active_color if config.renderer_active_color else 'darkgoldenrod'
+        self.mastery_color = config.renderer_mastery_color if config.renderer_mastery_color else 'papayawhip'
+        self.keystone_color = config.renderer_keystone_color if config.renderer_keystone_color else 'peru'
 
     @staticmethod
     def parse_nodes(content: dict) -> dict[int, Node]:
@@ -113,7 +115,7 @@ class TreeRenderer:
         internal_radius = 12500
         line_width = 64
 
-        #calc better crop
+        # calc better crop
         x0 = x_min + internal_radius
         y0 = y_min + internal_radius
         x1 = x_max + internal_radius - x0
@@ -121,8 +123,11 @@ class TreeRenderer:
 
         svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, render_size))
 
-        svg_document.viewbox(x0 - line_width * 2, y0 - line_width * 2,
-                             x1 + line_width * 2, y1 + line_width * 2)
+        # build viewing rect with some additional space to all sides
+        buffer = line_width * 2
+
+        svg_document.viewbox(x0 - buffer, y0 - buffer,
+                             x1 + buffer, y1 + buffer)
 
         for edge in edges:
             svg_document.add(
@@ -132,52 +137,32 @@ class TreeRenderer:
                                   stroke=self.active_color if edge.active else self.inactive_color,
                                   ))
 
-        masteries = [n for _, n in self.nodes.items() if n.is_mastery]
-        jewels = [n for _, n in self.nodes.items() if
-                  n.is_large_cluster_socket or n.is_medium_cluster_socket or n.is_small_cluster_socket]
-
         for _, node in self.nodes.items():
             is_active = int(node.node_id) in selected or node.label == ascendancy
             color = self.active_color if is_active else self.inactive_color
-            if node.is_mastery or node.is_large_cluster_socket or node.is_medium_cluster_socket or node.is_small_cluster_socket:
-                continue
-            if node.group and self._show_node(node, x_min, x_max, y_min, y_max, is_active):
-                opacity = 1 if is_active else .1
-                radius = line_width + 16 if node.is_keystone or node.is_notable else line_width + 8
-                svg_document.add(
-                    svg_document.circle(center=(node.pos_x + internal_radius, node.pos_y + internal_radius),
-                                        r=radius,
-                                        fill=color,
-                                        opacity=opacity
-                                        ))
-        for node in masteries:
-            if node.pos_x and node.pos_y:
-                is_active = int(node.node_id) in selected
-                opacity = 1 if is_active else 0
-                svg_document.add(
-                    svg_document.circle(center=(node.pos_x + internal_radius, node.pos_y + internal_radius),
-                                        r=line_width,
-                                        # stroke_width=32,
-                                        # stroke=active_color,
-                                        fill=self.mastery_color,
-                                        opacity=opacity,
-                                        # fill_opacity=0
-                                        ))
-        for node in jewels:
-            if node.pos_x and node.pos_y:
-                is_active = int(node.node_id) in selected
-                opacity = 1 if is_active else 0
+            radius = line_width + 16 if node.is_keystone or node.is_notable else line_width + 8
+
+            if node.is_keystone and is_active:
+                color = self.keystone_color
+
+            if node.is_mastery and is_active:
+                color = self.mastery_color
+                radius = 48
+
+            if node.is_large_cluster_socket or node.is_medium_cluster_socket or node.is_small_cluster_socket:
                 radius = line_width * 2
                 if node.is_medium_cluster_socket:
                     radius = line_width * 3
                 elif node.is_large_cluster_socket:
                     radius = line_width * 4
 
+            if node.group and self._show_node(node, x_min, x_max, y_min, y_max, is_active):
+                opacity = 1 if is_active else .1
                 svg_document.add(
                     svg_document.circle(center=(node.pos_x + internal_radius, node.pos_y + internal_radius),
                                         r=radius,
-                                        fill=self.active_color,
-                                        opacity=opacity,
+                                        fill=color,
+                                        opacity=opacity
                                         ))
 
         if file_name:
