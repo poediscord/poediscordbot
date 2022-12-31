@@ -1,5 +1,5 @@
 FROM python:alpine
-RUN apk add linux-headers gcc libc-dev
+RUN apk add linux-headers gcc libc-dev libffi-dev zlib-dev libjpeg-turbo-dev cairo-dev cairo cairo-tools
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
