@@ -33,7 +33,8 @@ class Skill:
         gem = None
 
         if self.main_active_skill:
-            active_gems = [gem for gem in self.gems if gem.id and "support" not in gem.id.lower()]
+            active_gems = [gem for gem in self.gems if gem.id and
+                           gem.grants_active_skill() or "support" not in gem.id.lower()]
             full_list = []
             # easier abstraction than calculating the stuff
             for gem in active_gems:

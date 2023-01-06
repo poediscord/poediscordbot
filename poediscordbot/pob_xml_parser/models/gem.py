@@ -66,6 +66,13 @@ class Gem:
         """
         return self.name and self.enabled and self.name != '' and 'jewel' not in self.name.lower()
 
+    def grants_active_skill(self):
+        """
+        special case for supports granting active skills, currently only impending doom
+        :return: true if grants active skill
+        """
+        return self.id in ['ViciousHexSupport']
+
     @staticmethod
     def translate_name(skill_id):
         special_names = {
@@ -74,7 +81,8 @@ class Gem:
             'IcestormUniqueStaff12': "Ice Storm",
             'TriggeredMoltenStrike': "Molten Burst",
             'TriggeredSummonSpider': "Raise Spiders",
-            'AvianTornado': "Tornado"
+            'AvianTornado': "Tornado",
+            'ViciousHexSupport': "Doomblast"
         }
         return special_names.get(skill_id, '')
 
