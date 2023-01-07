@@ -30,6 +30,7 @@ class Gem:
         self.base_name = translated_name if name == "" else name
         full_name = self.add_quality_prefix(self.base_name)
         self.name = full_name
+        self.added_active_skill_name = None
         if self.grants_active_skill():
             self.added_active_skill_name = translated_name if translated_name else name
 
