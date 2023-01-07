@@ -1,12 +1,12 @@
 import logging
-import logging.config
 import sys
 
+import logging.config
 from instance import config
 
 
-def init_logging(name):
-    DEFAULT_LOGGING = {
+def init_logging():
+    logging_conf = {
         'version': 1,
         'formatters': {
             'standard': {
@@ -22,23 +22,24 @@ def init_logging(name):
             'file': {
                 'formatter': "standard",
                 'level': config.debug_level,
-                'filename': config.ROOT_DIR + '/discord_pob.log',
+                'filename': config.ROOT_DIR + '/discord_pob.logger',
                 'mode': 'w',
                 'class': 'logging.FileHandler',
             }
         },
         'loggers': {
-            name: {'level': 'INFO',
+            'discord_pob': {'level': 'INFO',
                    'handlers': ['console', 'file'],
                    'propagate': False},
+            'discord': {'level': 'INFO'},
+            'discord.http': {'level': 'INFO'}
         }
     }
 
-    logging.config.dictConfig(DEFAULT_LOGGING)
-    log = logging.getLogger(name)
-    log.setLevel(config.debug_level)
-    return log
+    logging.config.dictConfig(logging_conf)
+    logger = logging.getLogger('discord_pob')
+    logger.setLevel(config.debug_level)
+    return logger
 
 
-# print(config.ROOT_DIR)
-log = init_logging("discord_pob")
+log = init_logging()

@@ -8,7 +8,7 @@ if __name__ == '__main__':
     token = config.token
     if token and token != 'supersecrettoken':
         log.info("Starting pob discord bot...")
-        bot.run(token)
+        bot.run(token, log_handler=None)
     else:
         log.warning(f"Missing token or default token in config file. Please generate a bot and the token as described: "
                     "https://www.writebots.com/discord-bot-token/")
