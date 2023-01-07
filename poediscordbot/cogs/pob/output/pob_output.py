@@ -61,6 +61,8 @@ def _fetch_displayed_skill(gem_name, main_skill):
             monster_name = pob_minions.get_monster_name(main_gem.selected_minion, main_skill)
             if monster_name:
                 display_name += f' ({monster_name})'
+        if display_name and main_gem.added_active_skill_name != main_gem.name:
+            display_name = f'{main_gem.added_active_skill_name} ({main_gem.name})'
         return display_name
     else:
         return gem_name

@@ -1,6 +1,7 @@
 class Gem:
     __slots__ = 'name', 'level', 'quality', 'id', 'skill_part', 'enabled', 'second_name', 'active_part', 'is_active', \
-                'selected_minion', 'minion_skill', 'quality_type', 'base_name', 'instance_count'
+                'selected_minion', 'minion_skill', 'quality_type', 'base_name', 'instance_count', \
+                'added_active_skill_name'
 
     def __init__(self, gem_id, name, level, quality, skill_part, enabled='', instance_count=1, selected_minion=None,
                  minion_skill=False,
@@ -20,22 +21,28 @@ class Gem:
         self.minion_skill = minion_skill
         self.is_active = self.determine_active()
         self.quality_type = self.translate_pob_quality_id(quality_id)
-        self.base_name = self.translate_name(gem_id) if name == "" else name
-        full_name = ''
-        if self.quality_type:
-            full_name += f"{self.quality_type} "
-        full_name += self.base_name
-        self.name = full_name
         try:
             self.instance_count = int(instance_count) if instance_count else 1
         except ValueError:
             self.instance_count = 1
 
+        translated_name = self.translate_name(gem_id)
+        self.base_name = translated_name if name == "" else name
+        full_name = self.add_quality_prefix(self.base_name)
+        self.name = full_name
+        if self.grants_active_skill():
+            self.added_active_skill_name = translated_name if translated_name else name
+
     def __repr__(self) -> str:
         return f"Gem [{self.build_gem_string()}]"
 
+    def add_quality_prefix(self, name):
+        if not self.quality_type:
+            return name
+        return f"{self.quality_type} {name}"
+
     def determine_active(self):
-        return False if not self.id else "Support".lower() not in self.id.lower()
+        return not self.id or "Support".lower() not in self.id.lower() or self.grants_active_skill()
 
     def get_name(self):
         return self.name if self.active_part == 0 else self.second_name

@@ -31,7 +31,7 @@ class PoBCog(commands.Cog):
         self.active_channels = active_channels
         self.allow_pming = allow_pming
         self.__root_dir, self.__enable_tree_renderer, self.__tree_renderer_deletion_threshold_minutes, \
-            self.__tree_img_dir = self.read_conf()
+        self.__tree_img_dir = self.read_conf()
         log.info("Pob cog loaded")
         if self.__enable_tree_renderer:
             self.renderer = TreeRenderer(self.__root_dir + 'resources/tree_3_20.min.json')
