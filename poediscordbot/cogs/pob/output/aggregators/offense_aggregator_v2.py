@@ -4,9 +4,12 @@ from poediscordbot.cogs.pob.poe_data.poe_consts import show_avg_dps_skills
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.skill import Skill
+from util import shorten_number_string
 
 
 class OffenseAggregatorV2(AbstractAggregator):
+    minified=True
+
 
     def __init__(self, build: Build, non_dps_skills):
         super().__init__(build)
@@ -93,9 +96,9 @@ class OffenseAggregatorV2(AbstractAggregator):
         acc = self.build.get_player_stat('HitChance')
         speed = self.build.get_player_stat('Speed')
 
-        output = f'**AVG**: {self.max_avg_dps:,.0f}\n'
+        output = f'**AVG**: {shorten_number_string(self.max_avg_dps)}\n'
         if self.ignite_dps and self.ignite_dps > self.max_avg_dps * speed:
-            output += f'**Ignite DPS**: {self.ignite_dps:,.0f}\n'
+            output += f'**Ignite DPS**: {shorten_number_string(self.ignite_dps)}\n'
         output += self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
         return output
 
@@ -128,31 +131,31 @@ class OffenseAggregatorV2(AbstractAggregator):
         acc = self.build.get_player_stat('HitChance') if not minion_stats else self.build.get_minion_stat('HitChance')
         gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
 
-        return f'**Combined DPS**: {self.full_dps:,.0f}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi,
-                                                                                              acc) \
+        return f'**Combined DPS**: {shorten_number_string(self.full_dps)}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi,
+                                                                                                                acc) \
                + f' **Sources**: {gem_breakdown}'
 
     def _generate_player_ignite_output(self):
-        return f'**Ignite DPS**: {self.ignite_dps:,.0f}'
+        return f'**Ignite DPS**: {self.ignite_dps}'
 
     @staticmethod
     def __generate_dps_string(total_dps, speed, impale_dps=None, ignite_dps=None):
         output = ''
-        output += f'**Total DPS**: {total_dps:,.0f}'
+        output += f'**Total DPS**: {shorten_number_string(total_dps)}'
         if speed and speed > 0:
             output += f' @ {round(speed, 2) if speed else 0}/s\n'
         if impale_dps and impale_dps > total_dps * OutputThresholds.IMPALE_DPS_RATIO.value:
-            output += f'**Impale DPS**: {impale_dps:,.0f}\n'
+            output += f'**Impale DPS**: {shorten_number_string(impale_dps)}\n'
         if ignite_dps and ignite_dps > total_dps:
-            output += f'**Ignite DPS**: {ignite_dps:,.0f}\n'
+            output += f'**Ignite DPS**: {shorten_number_string(ignite_dps)}\n'
         return output
 
     @staticmethod
     def __generate_crit_acc_string(crit_chance=None, crit_multi=None, accuracy=None):
         output = ''
         if crit_chance and crit_chance > OutputThresholds.CRIT_CHANCE.value:
-            output += f'**Crit**: Chance {crit_chance:,.2f}%' \
-                      f', Multiplier: {crit_multi * 100 if crit_multi else 150:,.0f}%\n'
+            output += f'**Crit**: {crit_chance:,.2f}%' \
+                      f', Multi: {crit_multi * 100 if crit_multi else 150:,.0f}%\n'
         if accuracy and accuracy < OutputThresholds.ACCURACY.value:
             output += f' **Hit Chance**: {accuracy:.2f}%'
         return output

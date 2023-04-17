@@ -3,6 +3,7 @@ from poediscordbot.util.logging import log
 
 
 class ConfigAggregator(AbstractAggregator):
+    minified=False
 
     def get_output(self) -> (str, str):
         return 'Configuration', self.get_config_string(self.build.config,

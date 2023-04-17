@@ -84,7 +84,7 @@ def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
     key, val = aggregator.get_output()
 
     if key and val:
-        embed.add_field(name=key, value=val, inline=inline)
+        embed.add_field(name=key, value=val, inline=inline or aggregator.minified)
 
 
 def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None):
@@ -124,7 +124,7 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
         [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
 
     # output
-    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data), inline=False)
 
     if minified:
         embed.add_field(name='Hint:', value='Use `/pob <link to pastebin>` for even more detailed build info!')

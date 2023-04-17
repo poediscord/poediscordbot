@@ -3,6 +3,8 @@ from poediscordbot.pob_xml_parser.models.skill import Skill
 
 
 class SkillAggregator(AbstractAggregator):
+    minified = True
+
     def get_output(self) -> (str, str):
         return 'Skill', self._get_main_skill(self.build)
 

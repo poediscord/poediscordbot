@@ -4,8 +4,7 @@ class Gem:
                 'added_active_skill_name'
 
     def __init__(self, gem_id, name, level, quality, skill_part, enabled='', instance_count=1, selected_minion=None,
-                 minion_skill=False,
-                 quality_id='Default'):
+                 minion_skill=False, quality_id='Default'):
         self.level = int(level)
         self.quality = int(quality)
         self.id = gem_id
@@ -84,11 +83,9 @@ class Gem:
     @staticmethod
     def translate_name(skill_id):
         special_names = {
-            'UniqueAnimateWeapon': 'Manifest Dancing Dervish',
             'ChaosDegenAuraUnique': "Death Aura",
             'IcestormUniqueStaff12': "Ice Storm",
             'TriggeredMoltenStrike': "Molten Burst",
-            'TriggeredSummonSpider': "Raise Spiders",
             'AvianTornado': "Tornado",
             'ViciousHexSupport': "Doomblast"
         }

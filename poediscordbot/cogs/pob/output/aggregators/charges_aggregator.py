@@ -3,6 +3,7 @@ from poediscordbot.pob_xml_parser.models.build import Build
 
 
 class ChargesAggregator(AbstractAggregator):
+    minified = True
 
     def get_output(self) -> (str, str):
         return 'Charges', self._get_charges(self.build)
