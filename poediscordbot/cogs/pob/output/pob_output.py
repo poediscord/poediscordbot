@@ -77,14 +77,15 @@ def _generate_info_text(tree, paste_data):
     if paste_data and config.enable_open_in_pob_feature:
         info_text += f"| [Click to open in POB](https://fwidm.github.io/pob-redirect/index.html?{paste_data.source_site}={paste_data.key}). "
     info_text += f"\nCreated in [Path of Building: Community Fork](https://github.com/PathOfBuildingCommunity/PathOfBuilding). "
+    info_text += f"\n[Bot Repo](https://github.com/poediscord/poediscordbot). "
     return info_text
 
 
-def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
+def expand_embed(embed: Embed, aggregator: AbstractAggregator):
     key, val = aggregator.get_output()
 
     if key and val:
-        embed.add_field(name=key, value=val, inline=inline or aggregator.minified)
+        embed.add_field(name=key, value=val, inline=aggregator.minified)
 
 
 def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None):
@@ -118,10 +119,10 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
         ConfigAggregator(build)
     ]
 
-    [expand_embed(embed, aggregator, inline=minified) for aggregator in base_aggregators]
+    [expand_embed(embed, aggregator) for aggregator in base_aggregators]
 
     if not minified:
-        [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
+        [expand_embed(embed, aggregator) for aggregator in additional_aggregators]
 
     # output
     embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data), inline=False)
