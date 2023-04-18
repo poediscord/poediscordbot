@@ -1,5 +1,6 @@
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.cogs.pob.output.aggregators.attributes_aggregator import AttributesAggregator
+from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
 from util import shorten_number_string
@@ -8,7 +9,7 @@ from util import shorten_number_string
 class SecondaryDefenseAggregator(AbstractAggregator):
     minified = True
     def get_output(self) -> (str, str):
-        return 'Secondary Defense', self.get_secondary_defense_string(self.build)
+        return 'Stats', self.get_secondary_defense_string(self.build)
 
     def _get_secondary_def(self, build: Build):
         """
@@ -34,7 +35,7 @@ class SecondaryDefenseAggregator(AbstractAggregator):
         stats.append(f"Evasion: {shorten_number_string(evasion)} ({evasion_inc}%)\n") if evasion else None
 
         suppression = build.get_player_stat('SpellSuppressionChance', OutputThresholds.DODGE.value)
-        stats.append(f"Spell Suppr.: {shorten_number_string(suppression)}%\n") if suppression else None
+        stats.append(f"Spell Supp: {shorten_number_string(suppression)}%\n") if suppression else None
 
         dodge = build.get_player_stat('AttackDodgeChance', OutputThresholds.DODGE.value)
         stats.append(f"Dodge: {shorten_number_string(dodge)}%\n") if dodge else None
@@ -55,7 +56,7 @@ class SecondaryDefenseAggregator(AbstractAggregator):
                 f"Movement Speed: {movement_speed:.0f}%\n") if movement_speed > OutputThresholds.MOVE_SPEED.value else None
 
         if len(stats) > 0:
-            output += "".join([s for s in stats if s]) + "\n"
+            output += "".join([s for s in stats if s])
         return output if output != "" else None
 
     @staticmethod
@@ -73,7 +74,12 @@ class SecondaryDefenseAggregator(AbstractAggregator):
         _, attributes = AttributesAggregator(build).get_output()
 
         if attributes:
-            output += attributes
+            output += f"{attributes}\n"
+
+        _, charges = ChargesAggregator(build).get_output()
+
+        if charges:
+            output += f"**Charges**:\n{charges}\n"
 
         if build.keystones:
             output += self._get_keystones(build.keystones)

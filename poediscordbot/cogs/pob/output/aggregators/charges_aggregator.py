@@ -21,6 +21,6 @@ class ChargesAggregator(AbstractAggregator):
 
             charge_is_active = build.config.get('use' + charge_type + "Charges")
             if charge_is_active and val and max_val:
-                output.append(f'**{charge_type}**: {val:.0f}/{max_val:.0f}')
+                output.append(f'{charge_type}: {val:.0f}/{max_val:.0f}')
 
         return ', '.join(output) if len(output) > 0 else None
