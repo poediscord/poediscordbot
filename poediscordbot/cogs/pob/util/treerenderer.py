@@ -122,7 +122,7 @@ class TreeRenderer:
         x1 = x_max + internal_radius - x0
         y1 = y_max + internal_radius - y0
 
-        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size, render_size))
+        svg_document = svgwrite.Drawing(filename=file_name, size=(render_size*2, render_size))
 
         # build viewing rect with some additional space to all sides
         buffer = line_width * 2

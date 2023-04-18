@@ -3,7 +3,6 @@ from instance import config
 
 from poediscordbot.cogs.pob.importers import PasteData
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
-from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.output.aggregators.config_aggregator import ConfigAggregator
 from poediscordbot.cogs.pob.output.aggregators.general_aggregator import GeneralAggregator
 from poediscordbot.cogs.pob.output.aggregators.offense_aggregator_v2 import OffenseAggregatorV2
@@ -24,6 +23,7 @@ def create_embed(author, level, ascendency_name, class_name, main_skill: Skill, 
     :param ascendency_name: to display
     :param class_name: to display if no ascendency has been chosen
     :param main_skill: main skill to display
+    :param is_support: if the build is classified as support say "Support"
     :return (Embed): the created Embed with the options set.
     """
     embed = Embed(title='tmp', color=config.color)
@@ -76,15 +76,16 @@ def _generate_info_text(tree, paste_data):
         info_text += f"[Web Tree]({tree}) "
     if paste_data and config.enable_open_in_pob_feature:
         info_text += f"| [Click to open in POB](https://fwidm.github.io/pob-redirect/index.html?{paste_data.source_site}={paste_data.key}). "
-    info_text += f"\nCreated in [Path of Building: Community Fork](https://github.com/PathOfBuildingCommunity/PathOfBuilding). "
+    info_text += f"\nCreated in [Path of Building Community](https://github.com/PathOfBuildingCommunity/PathOfBuilding)"
+    info_text += f" - [Bot Repo](https://github.com/poediscord/poediscordbot). "
     return info_text
 
 
-def expand_embed(embed: Embed, aggregator: AbstractAggregator, inline=False):
+def expand_embed(embed: Embed, aggregator: AbstractAggregator):
     key, val = aggregator.get_output()
 
     if key and val:
-        embed.add_field(name=key, value=val, inline=inline)
+        embed.add_field(name=key, value=val, inline=aggregator.minified)
 
 
 def generate_response(author, build: Build, minified=False, paste_data: PasteData = None, non_dps_skills=None):
@@ -111,20 +112,19 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
         GeneralAggregator(build),
         SecondaryDefenseAggregator(build),
         offense_aggregator,
-        ChargesAggregator(build),
     ]
     additional_aggregators = [
         SkillAggregator(build),
         ConfigAggregator(build)
     ]
 
-    [expand_embed(embed, aggregator, inline=minified) for aggregator in base_aggregators]
+    [expand_embed(embed, aggregator) for aggregator in base_aggregators]
 
     if not minified:
-        [expand_embed(embed, aggregator, inline=minified) for aggregator in additional_aggregators]
+        [expand_embed(embed, aggregator) for aggregator in additional_aggregators]
 
     # output
-    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data))
+    embed.add_field(name='Info:', value=_generate_info_text(build.tree, paste_data), inline=False)
 
     if minified:
         embed.add_field(name='Hint:', value='Use `/pob <link to pastebin>` for even more detailed build info!')

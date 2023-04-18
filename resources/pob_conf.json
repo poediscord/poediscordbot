@@ -1,5 +1,5 @@
 {
-    "utc-date": "2023-01-07T08:24:33.294827",
+    "utc-date": "2023-04-17T19:35:49.940289",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -837,6 +837,11 @@
                 "Dread Banner",
                 "War Banner",
                 "Defiance Banner"
+            ],
+            "ifSkill": [
+                "Dread Banner",
+                "War Banner",
+                "Defiance Banner"
             ]
         },
         "bladestormInBloodstorm": {
@@ -904,6 +909,13 @@
             "category": "playerSkill",
             "abbreviation": "Stance",
             "ifSkillList": [
+                "Blood and Sand",
+                "Flesh and Stone",
+                "Lacerate",
+                "Bladestorm",
+                "Perforate"
+            ],
+            "ifSkill": [
                 "Blood and Sand",
                 "Flesh and Stone",
                 "Lacerate",
@@ -1275,6 +1287,16 @@
             "var": "warcryMode",
             "label": "Warcry calculation mode:",
             "ifSkillList": [
+                "Infernal Cry",
+                "Ancestral Cry",
+                "Enduring Cry",
+                "General's Cry",
+                "Intimidating Cry",
+                "Rallying Cry",
+                "Seismic Cry",
+                "Battlemage's Cry"
+            ],
+            "ifSkill": [
                 "Infernal Cry",
                 "Ancestral Cry",
                 "Enduring Cry",
@@ -1871,6 +1893,118 @@
         "multiplierCurseDurationExpiredOnEnemy": {
             "var": "multiplierCurseDurationExpiredOnEnemy",
             "label": "Curse Duration Expired on enemy:"
+        },
+        "resourceGainMode": {
+            "var": "resourceGainMode",
+            "label": "Resource gain calculation mode:"
+        },
+        "repeatMode": {
+            "var": "repeatMode",
+            "label": "Repeat Mode"
+        },
+        "overrideSpiritCharges": {
+            "var": "overrideSpiritCharges",
+            "label": "# of Spirit Charges:"
+        },
+        "buffArcaneSurge": {
+            "var": "buffArcaneSurge",
+            "label": "Do you have Arcane Surge?"
+        },
+        "conditionChangedStanceLastSecond": {
+            "var": "conditionChangedStanceLastSecond",
+            "label": "Changed Stance in the last 1s?"
+        },
+        "conditionScorched": {
+            "var": "conditionScorched",
+            "label": "Are you ^xB97123Scorched?"
+        },
+        "conditionBrittle": {
+            "var": "conditionBrittle",
+            "label": "Are you ^x3F6DB3Brittle?"
+        },
+        "conditionSapped": {
+            "var": "conditionSapped",
+            "label": "Are you ^xADAA47Sapped?"
+        },
+        "conditionHitSpellRecently": {
+            "var": "conditionHitSpellRecently",
+            "label": "Have you Hit with a Spell Recently?"
+        },
+        "multiplierChannelling": {
+            "var": "multiplierChannelling",
+            "label": "Channeling for # seconds:"
+        },
+        "conditionKilledTauntedEnemyRecently": {
+            "var": "conditionKilledTauntedEnemyRecently",
+            "label": "Killed a taunted enemy recently?"
+        },
+        "conditionTotemsHitRecently": {
+            "var": "conditionTotemsHitRecently",
+            "label": "Have your Totems Hit Recently?"
+        },
+        "conditionTotemsHitSpellRecently": {
+            "var": "conditionTotemsHitSpellRecently",
+            "label": "Have your Totems Hit with a Spell Recently?"
+        },
+        "conditionStunnedRecently": {
+            "var": "conditionStunnedRecently",
+            "label": "Have you been Stunned Recently?"
+        },
+        "conditionEnergyShieldRechargePastTwoSec": {
+            "var": "conditionEnergyShieldRechargePastTwoSec",
+            "label": "^x88FFFFES ^7Recharge started past 2 seconds?"
+        },
+        "multiplierNonInstantSpellCastRecently": {
+            "var": "multiplierNonInstantSpellCastRecently",
+            "label": "# of Non-Instant Spells Cast Recently:"
+        },
+        "conditionStunnedWhileCastingRecently": {
+            "var": "conditionStunnedWhileCastingRecently",
+            "label": "Stunned while Casting Recently?"
+        },
+        "conditionSuppressedRecently": {
+            "var": "conditionSuppressedRecently",
+            "label": "Have you Suppressed Recently?"
+        },
+        "multiplierHitsSuppressedRecently": {
+            "var": "multiplierHitsSuppressedRecently",
+            "label": "# of Hits Suppressed Recently:"
+        },
+        "multiplierAffectedByWarcryBuffDuration": {
+            "var": "multiplierAffectedByWarcryBuffDuration",
+            "label": "# of seconds Affected by a Warcry Buff:"
+        },
+        "DetonatedMinesRecently": {
+            "var": "DetonatedMinesRecently",
+            "label": "Have you Detonated a Mine Recently"
+        },
+        "TriggeredTrapsRecently": {
+            "var": "TriggeredTrapsRecently",
+            "label": "Have you Triggered a Trap Recently?"
+        },
+        "conditionHaveVixensEntrapment": {
+            "var": "conditionHaveVixensEntrapment",
+            "label": "Use Vixen's Entrapment cooldown?"
+        },
+        "conditionEnemyStunned": {
+            "var": "conditionEnemyStunned",
+            "label": "Is the enemy Stunned?"
+        },
+        "multiplierChilledByYouSeconds": {
+            "var": "multiplierChilledByYouSeconds",
+            "label": "Seconds of chill on enemy?"
+        },
+        "multiplierFrozenByYouSeconds": {
+            "var": "multiplierFrozenByYouSeconds",
+            "label": "Seconds of freeze on enemy?"
+        },
+        "conditionEnemyHaveEnergyShield": {
+            "var": "conditionEnemyHaveEnergyShield",
+            "label": "Does the enemy have ^x88FFFFEnergy Shield^7?"
+        },
+        "enemyDamageRollRange": {
+            "var": "enemyDamageRollRange",
+            "label": "Enemy Skill Roll Range %:"
         }
     }
 }

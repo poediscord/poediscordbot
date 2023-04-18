@@ -109,6 +109,7 @@ def _parse_item_slot(entry, items, item_id):
             slot = ItemSlot(entry.attrib['name'], item_id, item, get_attrib_if_exists(entry, 'active'))
             return slot
 
+
 def _parse_skill(xml_skills):
     skills = []
 
@@ -119,7 +120,10 @@ def _parse_skill(xml_skills):
             skill_minion_skill = get_attrib_if_exists(gem, 'skillMinionSkill')
             is_minion_skill = True if skill_minion_skill else False
             gems.append(
-                Gem(get_attrib_if_exists(gem, 'skillId'), gem.attrib['nameSpec'], gem.attrib['level'],
+                Gem(
+                    get_attrib_if_exists(gem, 'skillId'),
+                    gem.attrib['nameSpec'],
+                    gem.attrib['level'],
                     gem.attrib['quality'],
                     get_attrib_if_exists(gem, 'skillPart'),
                     gem.attrib['enabled'],
@@ -127,7 +131,7 @@ def _parse_skill(xml_skills):
                     get_attrib_if_exists(gem, 'skillMinion'),
                     is_minion_skill,
                     get_attrib_if_exists(gem, 'qualityId'),
-                    )
+                )
             )
         slot = get_attrib_if_exists(skill, 'slot')
         if slot:
@@ -136,6 +140,7 @@ def _parse_skill(xml_skills):
                             get_attrib_if_exists(skill, 'includeInFullDPS') == 'true'))
 
     return skills
+
 
 def _parse_skillset(xml_skills):
     """

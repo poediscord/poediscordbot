@@ -3,7 +3,9 @@ from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 
 
 class AttributesAggregator(AbstractAggregator):
+    minified = True
 
+    # todo: merge with charges
     def get_output(self) -> (str, str):
         return 'Attributes', self._get_attributes(self.build.get_player_stat('Str'), self.build.get_player_stat('Int'),
                                                   self.build.get_player_stat('Dex'))
@@ -16,7 +18,7 @@ class AttributesAggregator(AbstractAggregator):
         :param dexterity: float value player dexterity
         :return: combined attributes string for embed usage
         """
-        output = "**Attributes**: "
+        output = "**Attributes**:\n"
         if not strength:
             strength = 0
         if not intelligence:
@@ -27,8 +29,8 @@ class AttributesAggregator(AbstractAggregator):
         if strength > OutputThresholds.ATTRIBUTES.value \
                 or intelligence > OutputThresholds.ATTRIBUTES.value \
                 or dexterity > OutputThresholds.ATTRIBUTES.value:
-            return output + f"Str: {self.format_attribute(strength)}" \
-                   + f" Int: {self.format_attribute(intelligence)}" \
+            return output + f"Str: {self.format_attribute(strength)}\n" \
+                   + f" Int: {self.format_attribute(intelligence)}\n" \
                    + f" Dex: {self.format_attribute(dexterity)}\n"
 
     @staticmethod

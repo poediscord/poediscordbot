@@ -7,6 +7,9 @@ Currently, there's no way to just invite an instance of the bot. You can run it 
 If you encounter issues or need more support feel free to open an issue or visit the [Reddit PoE Discord](https://discord.com/invite/pathofexile) and post in `#tooldev-general`
 
 ## Changelog
+- 2023-04-18: rework embed
+  - embed is now inlined by default and has condensed numbers 10000=>10k, 1000000=>1M
+  - add new command syncing logic / command to resync for the guild leader
 - 2022-11-13: add tree renderer
   - the bot will now embed a small preview of the tree if you enable the function in the config:
     ```python

@@ -1,5 +1,4 @@
 import random
-import traceback
 from datetime import datetime
 from pathlib import Path
 
@@ -103,6 +102,13 @@ class PoBCog(commands.Cog):
         except Exception as e:
             log.error(e)
 
+    @app_commands.command(name="deathbeams-pobs", description="Give me the spice")
+    async def deathbeams_pobs(self, interaction: discord.Interaction) -> None:
+        embed = Embed(title='What is deathbeam up to now?', url="https://pobb.in/u/thedeathbeam", color=config.color)
+        embed.set_image(
+            url="https://raw.githubusercontent.com/poediscord/poediscordbot/master/resources/img/surprise.png")
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
         log.info(f"{interaction.user} called pob with url={paste_url}")
@@ -189,8 +195,7 @@ class PoBCog(commands.Cog):
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed, file
             except Exception as e:
-                ex_msg = ''.join(traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__))
-                log.error(f"Could not parse build from {paste_data.source_url} - Exception={ex_msg}")
+                log.error(f"Could not parse build from {paste_data.source_url} - Exception={e}")
 
     def make_tmp_dir(self):
         path = Path(self.__root_dir) / "tmp/img"

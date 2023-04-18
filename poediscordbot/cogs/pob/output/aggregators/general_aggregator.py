@@ -1,9 +1,11 @@
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
+from poediscordbot.util import shorten_number_string
 
 
 class GeneralAggregator(AbstractAggregator):
+    minified = True
 
     def get_output(self) -> (str, str):
         return 'Defenses', self._get_defense_string(self.build)
@@ -32,7 +34,6 @@ class GeneralAggregator(AbstractAggregator):
         :param build: poe_data we want to output
         :return: string containing all max hits and resistances and empty string if nothing is noteworthy
         """
-        output = "**Max Hit + Resists**: "
         stats = ['Physical', 'Fire', 'Cold', 'Lightning', 'Chaos']
         emojis = [':drop_of_blood:', ':fire:', ':snowflake:', ':zap:', ':skull:']
         lines = []
@@ -40,14 +41,14 @@ class GeneralAggregator(AbstractAggregator):
         show = False
         for i, stat in enumerate(stats):
             max_hit_key = stat + 'MaximumHitTaken'
-            max_hit_val = build.get_player_stat(max_hit_key, 0, 0)
+            max_hit_val = shorten_number_string(build.get_player_stat(max_hit_key, 0, 0))
             res_key = stat + 'DamageReduction' if stat == 'Physical' else stat + 'Resist'
             res_val = build.get_player_stat(res_key)
             if res_val:
-                lines.append(f"{emojis[i]} {max_hit_val:,.0f} ({res_val:.0f}%)")
+                lines.append(f"{emojis[i]} {max_hit_val} ({res_val:.0f}%)")
             show = True
 
-        output = ' | '.join(lines)
+        output = '\n'.join(lines)
         output += "\n"
         return output if show else ""
 
@@ -56,7 +57,7 @@ class GeneralAggregator(AbstractAggregator):
 
         ehp = build.get_player_stat('TotalEHP', 0)
         if ehp:
-            output += f"**EHP**: {ehp:,.0f}\n"
+            output += f"**EHP**: {shorten_number_string(ehp)}\n"
         output += self._get_max_hits(build)
 
         life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
@@ -98,7 +99,8 @@ class GeneralAggregator(AbstractAggregator):
         if net_regen:
             output += f"**Net Regen**: {net_regen:,.0f}/s\n"
         mana_flat = build.get_player_stat('Mana')
-        mana_leech_rate = build.get_player_stat('ManaLeechGainRate', mana_flat * OutputThresholds.LEECH.value if mana_flat else 0)
+        mana_leech_rate = build.get_player_stat('ManaLeechGainRate',
+                                                mana_flat * OutputThresholds.LEECH.value if mana_flat else 0)
         mana_string = self._get_basic_line("Mana", mana_flat, build.get_player_stat('Spec:ManaInc'),
                                            stat_regen=build.get_player_stat('ManaRegen'),
                                            stat_unreserved=build.get_player_stat('ManaUnreserved'),
