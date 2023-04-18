@@ -17,7 +17,7 @@ class PobBot(commands.Bot):
 
     async def on_ready(self):
         await self.add_cog(PoBCog(bot, config.active_channels, config.allow_pming))
-        await self.add_cog(SyncCog(bot))
+        await self.add_cog(SyncCog(self))
         log.info(f'Logged in: uname={self.user.name}, id={self.user.id}')
         if config.presence_message:
             await self.change_presence(activity=discord.Activity(name=config.presence_message))

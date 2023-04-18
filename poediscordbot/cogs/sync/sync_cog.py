@@ -10,8 +10,8 @@ def setup(bot):
 
 
 class SyncCog(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, pobBot):
+        self.pobBot = pobBot
         log.info("Sync cog loaded")
 
     @app_commands.command(name="sync-cmds", description="Update the command tree")
@@ -22,7 +22,7 @@ class SyncCog(commands.Cog):
             log.info("Trying to sync command tree globally")
             await interaction.response.defer(ephemeral=True)
             await interaction.followup.send("Syncing the bot's tree...", ephemeral=True)
-            cmds = await self.bot.tree.sync()
-            command_names = self.bot.get_command_names(cmds)
+            cmds = await self.pobBot.tree.sync()
+            command_names = self.pobBot.get_command_names(cmds)
             log.info(f"commands [{command_names}] from tree synced")
             await interaction.followup.send(f"commands [{command_names}] from tree synced", ephemeral=True)
