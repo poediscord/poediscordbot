@@ -46,7 +46,11 @@ class PoBCog(commands.Cog):
         return "https://pobb.in/" in content or "https://pastebin.com/" in content or "https://poe.ninja/pob" in content
 
     def in_allowed_channel(self, channel):
-        return channel.id in self.active_channels or (channel.parent and channel.parent.id in self.active_channels)
+        parent_allowed = False
+        if hasattr(channel, 'parent'):
+            parent_allowed = (channel.parent and channel.parent.id in self.active_channels)
+
+        return channel.id in self.active_channels or parent_allowed
 
     @commands.Cog.listener(name="on_message")
     async def paste_message_parser(self, message: discord.Message):
