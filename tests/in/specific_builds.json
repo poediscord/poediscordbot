@@ -61,7 +61,7 @@
     {
       "name": "Dancing Duo Champion",
       "description": "Show 'Manifest Dancing Dervish' as skill.'",
-      "pastebin": "https://pastebin.com/kftetdrw",
+      "pastebin": "https://pastebin.com/mLT7PkyC",
       "assertions": [
         {
           "key": "ascendancy",
@@ -69,7 +69,7 @@
         },
         {
           "key": "skill",
-          "value": "Manifest Dancing Dervish"
+          "value": "Manifest Dancing Dervishes"
         },
         {
           "key": "level",
