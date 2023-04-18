@@ -8,6 +8,7 @@ from util import shorten_number_string
 
 class SecondaryDefenseAggregator(AbstractAggregator):
     minified = True
+
     def get_output(self) -> (str, str):
         return 'Stats', self.get_secondary_defense_string(self.build)
 

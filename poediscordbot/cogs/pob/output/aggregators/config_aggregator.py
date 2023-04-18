@@ -3,7 +3,7 @@ from poediscordbot.util.logging import log
 
 
 class ConfigAggregator(AbstractAggregator):
-    minified=False
+    minified = False
 
     def get_output(self) -> (str, str):
         return 'Configuration', self.get_config_string(self.build.config,
@@ -68,7 +68,7 @@ class ConfigAggregator(AbstractAggregator):
 
             # Skip conditional options that are not matching precondition in output
             if ifOption and (ifOption not in config or not
-                             bool(config.get(ifOption).get('value'))):
+            bool(config.get(ifOption).get('value'))):
                 continue
 
             if_skill = entry.get('ifSkill')

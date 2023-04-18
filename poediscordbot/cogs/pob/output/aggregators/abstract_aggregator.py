@@ -4,7 +4,7 @@ from poediscordbot.pob_xml_parser.models.build import Build
 
 
 class AbstractAggregator(ABC):
-    minified=False
+    minified = False
 
     def __init__(self, build: Build) -> None:
         self.build = build

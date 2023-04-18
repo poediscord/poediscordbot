@@ -8,8 +8,7 @@ from util import shorten_number_string
 
 
 class OffenseAggregatorV2(AbstractAggregator):
-    minified=True
-
+    minified = True
 
     def __init__(self, build: Build, non_dps_skills):
         super().__init__(build)
@@ -58,7 +57,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         if build_checker.is_support(self.build, self.get_max_dps(),
                                     self.get_avg_dps()):
             return 'Support', self._get_support_output()
-        elif self.ignite_dps and self.ignite_dps > self.max_avg_dps :
+        elif self.ignite_dps and self.ignite_dps > self.max_avg_dps:
             return 'Ignite', self._generate_player_ignite_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
@@ -126,13 +125,16 @@ class OffenseAggregatorV2(AbstractAggregator):
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
     def _generate_full_dps_output(self, minion_stats=False):
-        crit_chance = self.build.get_player_stat('CritChance') if not minion_stats else self.build.get_minion_stat('CritChance')
-        crit_multi = self.build.get_player_stat('CritMultiplier') if not minion_stats else self.build.get_minion_stat('CritMultiplier')
+        crit_chance = self.build.get_player_stat('CritChance') if not minion_stats else self.build.get_minion_stat(
+            'CritChance')
+        crit_multi = self.build.get_player_stat('CritMultiplier') if not minion_stats else self.build.get_minion_stat(
+            'CritMultiplier')
         acc = self.build.get_player_stat('HitChance') if not minion_stats else self.build.get_minion_stat('HitChance')
         gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
 
-        return f'**Combined DPS**: {shorten_number_string(self.full_dps)}\n ' + self.__generate_crit_acc_string(crit_chance, crit_multi,
-                                                                                                                acc) \
+        return f'**Combined DPS**: {shorten_number_string(self.full_dps)}\n ' + self.__generate_crit_acc_string(
+            crit_chance, crit_multi,
+            acc) \
                + f' **Sources**: {gem_breakdown}'
 
     def _generate_player_ignite_output(self):

@@ -4,6 +4,7 @@ from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 
 class AttributesAggregator(AbstractAggregator):
     minified = True
+
     # todo: merge with charges
     def get_output(self) -> (str, str):
         return 'Attributes', self._get_attributes(self.build.get_player_stat('Str'), self.build.get_player_stat('Int'),

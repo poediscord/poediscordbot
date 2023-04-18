@@ -99,7 +99,8 @@ class GeneralAggregator(AbstractAggregator):
         if net_regen:
             output += f"**Net Regen**: {net_regen:,.0f}/s\n"
         mana_flat = build.get_player_stat('Mana')
-        mana_leech_rate = build.get_player_stat('ManaLeechGainRate', mana_flat * OutputThresholds.LEECH.value if mana_flat else 0)
+        mana_leech_rate = build.get_player_stat('ManaLeechGainRate',
+                                                mana_flat * OutputThresholds.LEECH.value if mana_flat else 0)
         mana_string = self._get_basic_line("Mana", mana_flat, build.get_player_stat('Spec:ManaInc'),
                                            stat_regen=build.get_player_stat('ManaRegen'),
                                            stat_unreserved=build.get_player_stat('ManaUnreserved'),
