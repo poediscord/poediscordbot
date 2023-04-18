@@ -3,7 +3,7 @@ from poediscordbot.cogs.pob.output.aggregators.attributes_aggregator import Attr
 from poediscordbot.cogs.pob.output.aggregators.charges_aggregator import ChargesAggregator
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
-from util import shorten_number_string
+from poediscordbot.util import shorten_number_string
 
 
 class SecondaryDefenseAggregator(AbstractAggregator):

@@ -4,7 +4,7 @@ from poediscordbot.cogs.pob.poe_data.poe_consts import show_avg_dps_skills
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.skill import Skill
-from util import shorten_number_string
+from poediscordbot.util import shorten_number_string
 
 
 class OffenseAggregatorV2(AbstractAggregator):

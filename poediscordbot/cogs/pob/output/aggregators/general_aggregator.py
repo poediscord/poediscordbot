@@ -1,7 +1,7 @@
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.cogs.pob.poe_data.thresholds import OutputThresholds
 from poediscordbot.pob_xml_parser.models.build import Build
-from util import shorten_number_string
+from poediscordbot.util import shorten_number_string
 
 
 class GeneralAggregator(AbstractAggregator):

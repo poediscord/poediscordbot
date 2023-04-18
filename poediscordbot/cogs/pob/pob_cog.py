@@ -102,7 +102,7 @@ class PoBCog(commands.Cog):
         except Exception as e:
             log.error(e)
 
-    @app_commands.command(name="deathbeams-pobssss", description="Give me the spice")
+    @app_commands.command(name="deathbeams-pobs", description="Give me the spice")
     async def deathbeams_pobs(self, interaction: discord.Interaction) -> None:
         embed = Embed(title='What is deathbeam up to now?', url="https://pobb.in/u/thedeathbeam", color=config.color)
         embed.set_image(
