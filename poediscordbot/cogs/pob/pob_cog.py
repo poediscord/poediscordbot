@@ -102,6 +102,13 @@ class PoBCog(commands.Cog):
         except Exception as e:
             log.error(e)
 
+    @app_commands.command(name="deathbeams-pobssss", description="Give me the spice")
+    async def deathbeams_pobs(self, interaction: discord.Interaction) -> None:
+        embed = Embed(title='What is deathbeam up to now?', url="https://pobb.in/u/thedeathbeam", color=config.color)
+        embed.set_image(
+            url="https://raw.githubusercontent.com/poediscord/poediscordbot/master/resources/img/surprise.png")
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
     @app_commands.command(name="pob", description="Paste your pastebin, pobbin or poe.ninja pastes here")
     async def pob(self, interaction: discord.Interaction, paste_url: str) -> None:
         log.info(f"{interaction.user} called pob with url={paste_url}")

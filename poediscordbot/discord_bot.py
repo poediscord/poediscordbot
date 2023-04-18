@@ -4,6 +4,7 @@ from discord.ext.commands import bot
 from instance import config
 
 from poediscordbot.cogs.pob.pob_cog import PoBCog
+from poediscordbot.cogs.sync.sync_cog import SyncCog
 from poediscordbot.util.logging import log
 
 
@@ -16,9 +17,26 @@ class PobBot(commands.Bot):
 
     async def on_ready(self):
         await self.add_cog(PoBCog(bot, config.active_channels, config.allow_pming))
+        await self.add_cog(SyncCog(bot))
         log.info(f'Logged in: uname={self.user.name}, id={self.user.id}')
         if config.presence_message:
             await self.change_presence(activity=discord.Activity(name=config.presence_message))
-        log.info("Trying to sync command tree globally")
-        await self.tree.sync()
-        log.info("Command tree synced")
+
+        synced_commands = await self.tree.fetch_commands()
+        available_commands = self.tree.get_commands()
+
+        if self.commands_differ(available_commands, synced_commands):
+            log.info("Trying to sync command tree globally")
+            cmds = await self.tree.sync()
+            command_names = self.get_command_names(cmds)
+            log.info(f"commands [{command_names}] from tree synced")
+
+    @staticmethod
+    def commands_differ(available_commands, synced_commands):
+        local = set(PobBot.get_command_names(available_commands))
+        synced = set(PobBot.get_command_names(synced_commands))
+        return len(local.symmetric_difference(synced)) > 0
+
+    @staticmethod
+    def get_command_names(cmds):
+        return [c.name for c in cmds]
