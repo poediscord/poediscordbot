@@ -54,7 +54,7 @@ class SecondaryDefenseAggregator(AbstractAggregator):
             stats.append(
                 f"Movement Speed: {movement_speed:.0f}%\n") if movement_speed > OutputThresholds.MOVE_SPEED.value else None
         active_totem_limit = build.get_player_stat('ActiveTotemLimit', 0)
-        if active_totem_limit > 2:
+        if active_totem_limit and active_totem_limit > 2:
             stats.append(f"Totems: {active_totem_limit:.0f}\n")
 
         if len(stats) > 0:
