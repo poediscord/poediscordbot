@@ -28,12 +28,10 @@ class SecondaryDefenseAggregator(AbstractAggregator):
             effective_life = es
 
         armour = build.get_player_stat('Armour', min(OutputThresholds.ARMOUR.value, effective_life))
-        armour_inc = build.get_player_stat('Spec:ArmourInc', 0)
-        stats.append(f"Armour: {shorten_number_string(armour)} ({armour_inc}%)\n") if armour and armour else None
+        stats.append(f"Armour: {shorten_number_string(armour)}\n") if armour and armour else None
 
         evasion = build.get_player_stat('Evasion', min(OutputThresholds.EVASION.value, effective_life))
-        evasion_inc = build.get_player_stat('Spec:EvasionInc', 0)
-        stats.append(f"Evasion: {shorten_number_string(evasion)} ({evasion_inc}%)\n") if evasion else None
+        stats.append(f"Evasion: {shorten_number_string(evasion)}\n") if evasion else None
 
         suppression = build.get_player_stat('SpellSuppressionChance', OutputThresholds.DODGE.value)
         stats.append(f"Spell Supp: {shorten_number_string(suppression)}%\n") if suppression else None
@@ -55,6 +53,9 @@ class SecondaryDefenseAggregator(AbstractAggregator):
             movement_speed = (total_move_speed - 1) * 100
             stats.append(
                 f"Movement Speed: {movement_speed:.0f}%\n") if movement_speed > OutputThresholds.MOVE_SPEED.value else None
+        active_totem_limit = build.get_player_stat('ActiveTotemLimit', 0)
+        if active_totem_limit and active_totem_limit > 2:
+            stats.append(f"Totems: {active_totem_limit:.0f}\n")
 
         if len(stats) > 0:
             output += "".join([s for s in stats if s])
