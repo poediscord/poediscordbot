@@ -30,7 +30,7 @@ class OffenseAggregatorV2(AbstractAggregator):
                                build.get_player_stat('AverageHit', default_val=0),
                                build.get_player_stat('CombinedAvg', default_val=0)]
 
-        self.ignite_dps = build.get_player_stat('IgniteDPS')
+        self.total_dot_dps = build.get_player_stat('TotalDotDPS')
 
         self.max_player_dps = max(self.player_dps_list)
         self.max_minion_dps = max(self.minion_dps_list)
@@ -40,7 +40,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         self.included_skills = build.get_active_gem_from_included_skills()
 
     def get_max_dps(self):
-        return max(self.max_player_dps, self.max_minion_dps, self.ignite_dps or 0)
+        return max(self.max_player_dps, self.max_minion_dps, self.total_dot_dps or 0)
 
     def get_avg_dps(self):
         return self.max_avg_dps
@@ -57,8 +57,8 @@ class OffenseAggregatorV2(AbstractAggregator):
         if build_checker.is_support(self.build, self.get_max_dps(),
                                     self.get_avg_dps()):
             return 'Support', self._get_support_output()
-        elif self.ignite_dps and self.ignite_dps > self.max_avg_dps:
-            return 'Ignite', self._generate_player_ignite_output()
+        elif self.total_dot_dps and self.total_dot_dps > self.max_avg_dps:
+            return 'DOT', self._generate_player_dot_output()
         if avg_dps:
             return 'Average Damage', self._generate_avg_dmg_output()
         elif full_dps:
@@ -96,8 +96,8 @@ class OffenseAggregatorV2(AbstractAggregator):
         speed = self.build.get_player_stat('Speed')
 
         output = f'**AVG**: {shorten_number_string(self.max_avg_dps)}\n'
-        if self.ignite_dps and self.ignite_dps > self.max_avg_dps * speed:
-            output += f'**Ignite DPS**: {shorten_number_string(self.ignite_dps)}\n'
+        if self.total_dot_dps and self.total_dot_dps > self.max_avg_dps * speed:
+            output += f'**DoT DPS**: {shorten_number_string(self.total_dot_dps)}\n'
         output += self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
         return output
 
@@ -121,7 +121,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         crit_multi = self.build.get_player_stat('CritMultiplier')
         acc = self.build.get_player_stat('HitChance')
 
-        return self.__generate_dps_string(total_dps, speed, impale_dps, self.ignite_dps) \
+        return self.__generate_dps_string(total_dps, speed, impale_dps, self.total_dot_dps) \
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
     def _generate_full_dps_output(self, minion_stats=False):
@@ -133,12 +133,10 @@ class OffenseAggregatorV2(AbstractAggregator):
         gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
 
         return f'**Combined DPS**: {shorten_number_string(self.full_dps)}\n ' + self.__generate_crit_acc_string(
-            crit_chance, crit_multi,
-            acc) \
-               + f' **Sources**: {gem_breakdown}'
+            crit_chance, crit_multi, acc) + f' **Sources**: {gem_breakdown}'
 
-    def _generate_player_ignite_output(self):
-        return f'**Ignite DPS**: {self.ignite_dps}'
+    def _generate_player_dot_output(self):
+        return f'**Total DPS**: {shorten_number_string(self.total_dot_dps)}'
 
     @staticmethod
     def __generate_dps_string(total_dps, speed, impale_dps=None, ignite_dps=None):
