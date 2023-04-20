@@ -1,4 +1,5 @@
 import random
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -187,13 +188,14 @@ class PoBCog(commands.Cog):
                 if self.__enable_tree_renderer:
                     path = Path(self.__tree_img_dir)
                     path.mkdir(exist_ok=True, parents=True)
-                    expected_filename = f"{path}/{paste_data.source_site}_{paste_data.key}.png"
+                    fn_ending = re.sub("[^0-9a-zA-Z]+", "_", paste_data.key)
+                    expected_filename = f"{path}/{paste_data.source_site}_{fn_ending}.png"
                     if expected_filename and not Path(expected_filename).exists():
                         svg = self.renderer.parse_tree(build.tree_nodes,
-                                                       file_name=f"{path}/{paste_data.source_site}_{paste_data.key}.svg",
+                                                       file_name=f"{path}/{paste_data.source_site}_{fn_ending}.svg",
                                                        render_size=1500)
-                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{paste_data.key}.png")
-                    file = discord.File(f"{path}/{paste_data.source_site}_{paste_data.key}.png", filename="tree.png")
+                        self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{fn_ending}.png")
+                    file = discord.File(f"{path}/{paste_data.source_site}_{fn_ending}.png", filename="tree.png")
                     embed.set_image(url=f"attachment://tree.png")
 
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
