@@ -1495,7 +1495,7 @@
             "var": "conditionEnemySapped",
             "label": "Is the enemy ^xADAA47Sapped?",
             "category": "enemy",
-            "abbreviation": "sapped"
+            "abbreviation": "Sapped"
         },
         "conditionEnemyOnProfaneGround": {
             "var": "conditionEnemyOnProfaneGround",
@@ -1801,11 +1801,15 @@
         "conditionSapEffect": {
             "var": "conditionSapEffect",
             "label": "Effect of ^xADAA47Sap:",
-            "ifOption": "conditionEnemySapped"
+            "ifOption": "conditionEnemySapped",
+            "category": "enemy",
+            "abbreviation": "Sapped"
         },
         "conditionEnemyCoveredInFrost": {
             "var": "conditionEnemyCoveredInFrost",
-            "label": "Is the enemy covered in Frost?"
+            "label": "Is the enemy covered in Frost?",
+            "category": "enemy",
+            "abbreviation": "Covered in Frost"
         },
         "multiplierEnemyAffectedByGraspingVines": {
             "var": "multiplierEnemyAffectedByGraspingVines",
@@ -1839,7 +1843,9 @@
         },
         "multiplierSoulEater": {
             "var": "multiplierSoulEater",
-            "label": "# of Soul Eater Stacks:"
+            "label": "# of Soul Eater Stacks:",
+            "category": "player",
+            "abbreviation": "Souleater"
         },
         "conditionKilledPoisonedLast2Seconds": {
             "var": "conditionKilledPoisonedLast2Seconds",
@@ -1908,7 +1914,9 @@
         },
         "buffArcaneSurge": {
             "var": "buffArcaneSurge",
-            "label": "Do you have Arcane Surge?"
+            "label": "Do you have Arcane Surge?",
+            "category": "player",
+            "abbreviation": "Arcane Surge"
         },
         "conditionChangedStanceLastSecond": {
             "var": "conditionChangedStanceLastSecond",
@@ -1916,15 +1924,21 @@
         },
         "conditionScorched": {
             "var": "conditionScorched",
-            "label": "Are you ^xB97123Scorched?"
+            "label": "Are you ^xB97123Scorched?",
+            "category": "player",
+            "abbreviation": "Scorched"
         },
         "conditionBrittle": {
             "var": "conditionBrittle",
-            "label": "Are you ^x3F6DB3Brittle?"
+            "label": "Are you ^x3F6DB3Brittle?",
+            "category": "player",
+            "abbreviation": "Brittled"
         },
         "conditionSapped": {
             "var": "conditionSapped",
-            "label": "Are you ^xADAA47Sapped?"
+            "label": "Are you ^xADAA47Sapped?",
+            "category": "player",
+            "abbreviation": "Sapped"
         },
         "conditionHitSpellRecently": {
             "var": "conditionHitSpellRecently",
@@ -1976,7 +1990,9 @@
         },
         "DetonatedMinesRecently": {
             "var": "DetonatedMinesRecently",
-            "label": "Have you Detonated a Mine Recently"
+            "label": "Have you Detonated a Mine Recently",
+            "category": "playerRecently",
+            "abbreviation": "Detonated Mine"
         },
         "TriggeredTrapsRecently": {
             "var": "TriggeredTrapsRecently",
