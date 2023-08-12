@@ -9,6 +9,10 @@ from poediscordbot.util import shorten_number_string
 class SecondaryDefenseAggregator(AbstractAggregator):
     minified = True
 
+    def __init__(self, build: Build, decimals: int = 0) -> None:
+        super().__init__(build)
+        self.decimals = decimals
+
     def get_output(self) -> (str, str):
         return 'Stats', self.get_secondary_defense_string(self.build)
 
@@ -28,25 +32,25 @@ class SecondaryDefenseAggregator(AbstractAggregator):
             effective_life = es
 
         armour = build.get_player_stat('Armour', min(OutputThresholds.ARMOUR.value, effective_life))
-        stats.append(f"Armour: {shorten_number_string(armour)}\n") if armour and armour else None
+        stats.append(f"Armour: {shorten_number_string(armour, self.decimals)}\n") if armour and armour else None
 
         evasion = build.get_player_stat('Evasion', min(OutputThresholds.EVASION.value, effective_life))
-        stats.append(f"Evasion: {shorten_number_string(evasion)}\n") if evasion else None
+        stats.append(f"Evasion: {shorten_number_string(evasion, self.decimals)}\n") if evasion else None
 
         suppression = build.get_player_stat('SpellSuppressionChance', OutputThresholds.DODGE.value)
-        stats.append(f"Spell Supp: {shorten_number_string(suppression)}%\n") if suppression else None
+        stats.append(f"Spell Supp: {shorten_number_string(suppression, self.decimals)}%\n") if suppression else None
 
         dodge = build.get_player_stat('AttackDodgeChance', OutputThresholds.DODGE.value)
-        stats.append(f"Dodge: {shorten_number_string(dodge)}%\n") if dodge else None
+        stats.append(f"Dodge: {shorten_number_string(dodge, self.decimals)}%\n") if dodge else None
 
         spell_dodge = build.get_player_stat('SpellDodgeChance', OutputThresholds.SPELL_DODGE.value)
-        stats.append(f"Spell Dodge: {shorten_number_string(spell_dodge)}%\n") if spell_dodge else None
+        stats.append(f"Spell Dodge: {shorten_number_string(spell_dodge, self.decimals)}%\n") if spell_dodge else None
 
         block = build.get_player_stat('BlockChance', OutputThresholds.BLOCK.value)
-        stats.append(f"Block: {shorten_number_string(block)}%\n") if block else None
+        stats.append(f"Block: {shorten_number_string(block, self.decimals)}%\n") if block else None
 
         spell_block = build.get_player_stat('SpellBlockChance', OutputThresholds.SPELL_BLOCK.value)
-        stats.append(f"Spell Block: {shorten_number_string(spell_block)}%\n") if spell_block else None
+        stats.append(f"Spell Block: {shorten_number_string(spell_block, self.decimals)}%\n") if spell_block else None
 
         total_move_speed = build.get_player_stat('EffectiveMovementSpeedMod', 2)
         if total_move_speed:

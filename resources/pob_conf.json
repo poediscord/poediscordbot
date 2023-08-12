@@ -1,5 +1,5 @@
 {
-    "utc-date": "2023-04-17T19:35:49.940289",
+    "utc-date": "2023-08-12T17:02:28.252790",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1532,13 +1532,13 @@
         },
         "conditionSummonedGolemInPast8Sec": {
             "var": "conditionSummonedGolemInPast8Sec",
-            "label": "Summoned a Golem in the past 8 Seconds?",
+            "label": "Summoned Golem in past 8 Seconds?",
             "category": "playerRecently",
             "abbreviation": "Golem summoned (8s)"
         },
         "conditionSummonedGolemInPast10Sec": {
             "var": "conditionSummonedGolemInPast10Sec",
-            "label": "Summoned a Golem in the past 10 Seconds?",
+            "label": "Summoned Golem in past 10 Seconds?",
             "category": "playerRecently",
             "abbreviation": "Golem summoned (10s)"
         },
@@ -2021,6 +2021,56 @@
         "enemyDamageRollRange": {
             "var": "enemyDamageRollRange",
             "label": "Enemy Skill Roll Range %:"
+        },
+        "minionsConditionFullEnergyShield": {
+            "var": "minionsConditionFullEnergyShield",
+            "label": "Minion is always on Full ^x88FFFFEnergy Shield?"
+        },
+        "carrionGolemEqualsChaosGolem": {
+            "var": "carrionGolemEqualsChaosGolem",
+            "label": "# Carrion Golem = # Chaos Golem:",
+            "ifSkill": "Summon Chaos Golem"
+        },
+        "chaosGolemEqualsStoneGolem": {
+            "var": "chaosGolemEqualsStoneGolem",
+            "label": "# Chaos Golem = # Stone Golem:",
+            "ifSkill": "Summon Stone Golem"
+        },
+        "stoneGolemEqualsCarrionGolem": {
+            "var": "stoneGolemEqualsCarrionGolem",
+            "label": "# Stone Golem = # Carrion Golem:",
+            "ifSkill": "Summon Carrion Golem"
+        },
+        "conditionSummonedSpectreInPast8Sec": {
+            "var": "conditionSummonedSpectreInPast8Sec",
+            "label": "Summoned Spectre in past 8 Seconds?",
+            "ifSkill": "Raise Spectre"
+        },
+        "conditionSummonedZombieInPast8Sec": {
+            "var": "conditionSummonedZombieInPast8Sec",
+            "label": "Summoned Zombie in past 8 Seconds?",
+            "ifSkill": "Raise Zombie"
+        },
+        "multiplierWoCExpiredDuration": {
+            "var": "multiplierWoCExpiredDuration",
+            "label": "% Wave of Conviction duration expired:"
+        },
+        "TotalTotemLife": {
+            "var": "TotalTotemLife",
+            "label": "Total Totem Life:",
+            "ifOption": "conditionHaveTotem"
+        },
+        "minionsConditionLeechingEnergyShield": {
+            "var": "minionsConditionLeechingEnergyShield",
+            "label": "Minion is Leeching ^x88FFFFEnergy Shield?"
+        },
+        "enemyInRFOrScorchingRay": {
+            "var": "enemyInRFOrScorchingRay",
+            "label": "Is the enemy in RF or Scorching Ray:",
+            "ifSkill": [
+                "Righteous Fire",
+                "Scorching Ray"
+            ]
         }
     }
 }

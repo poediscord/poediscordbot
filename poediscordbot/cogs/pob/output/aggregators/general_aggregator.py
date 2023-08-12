@@ -7,6 +7,10 @@ from poediscordbot.util import shorten_number_string
 class GeneralAggregator(AbstractAggregator):
     minified = True
 
+    def __init__(self, build: Build, decimals: int = 0) -> None:
+        super().__init__(build)
+        self.decimals = decimals
+
     def get_output(self) -> (str, str):
         return 'Defenses', self._get_defense_string(self.build)
 
@@ -28,7 +32,7 @@ class GeneralAggregator(AbstractAggregator):
         return output
 
     @staticmethod
-    def _get_max_hits(build: Build) -> str:
+    def _get_max_hits(build: Build, decimals:int) -> str:
         """
         Creates the max hit + resistance string
         :param build: poe_data we want to output
@@ -41,7 +45,7 @@ class GeneralAggregator(AbstractAggregator):
         show = False
         for i, stat in enumerate(stats):
             max_hit_key = stat + 'MaximumHitTaken'
-            max_hit_val = shorten_number_string(build.get_player_stat(max_hit_key, 0, 0))
+            max_hit_val = shorten_number_string(build.get_player_stat(max_hit_key, 0, 0), decimals)
             res_key = stat + 'DamageReduction' if stat == 'Physical' else stat + 'Resist'
             res_val = build.get_player_stat(res_key)
             if res_val:
@@ -57,8 +61,8 @@ class GeneralAggregator(AbstractAggregator):
 
         ehp = build.get_player_stat('TotalEHP', 0)
         if ehp:
-            output += f"**EHP**: {shorten_number_string(ehp)}\n"
-        output += self._get_max_hits(build)
+            output += f"**EHP**: {shorten_number_string(ehp, self.decimals)}\n"
+        output += self._get_max_hits(build, self.decimals)
 
         life_percent_threshold = min(OutputThresholds.LIFE_PERCENT.value,
                                      OutputThresholds.LIFE_PERCENT_PER_LEVEL.value * build.level)
