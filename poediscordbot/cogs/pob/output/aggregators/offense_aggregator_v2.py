@@ -10,8 +10,9 @@ from poediscordbot.util import shorten_number_string
 class OffenseAggregatorV2(AbstractAggregator):
     minified = True
 
-    def __init__(self, build: Build, non_dps_skills):
+    def __init__(self, build: Build, non_dps_skills, decimals=1):
         super().__init__(build)
+        self.decimals = decimals
         self.non_dps_skills = non_dps_skills
 
         self.full_dps_list = [build.get_minion_stat('FullDPS', default_val=0),
@@ -95,9 +96,9 @@ class OffenseAggregatorV2(AbstractAggregator):
         acc = self.build.get_player_stat('HitChance')
         speed = self.build.get_player_stat('Speed')
 
-        output = f'**AVG**: {shorten_number_string(self.max_avg_dps)}\n'
+        output = f'**AVG**: {shorten_number_string(self.max_avg_dps, decimals=self.decimals)}\n'
         if self.total_dot_dps and self.total_dot_dps > self.max_avg_dps * speed:
-            output += f'**DoT DPS**: {shorten_number_string(self.total_dot_dps)}\n'
+            output += f'**DoT DPS**: {shorten_number_string(self.total_dot_dps, decimals=self.decimals)}\n'
         output += self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
         return output
 
@@ -110,7 +111,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         acc = self.build.get_minion_stat('HitChance')
         ignite_dps = self.build.get_minion_stat('IgniteDPS')
 
-        return self.__generate_dps_string(total_dps, speed, impale_dps, ignite_dps) \
+        return self.__generate_dps_string(total_dps, speed, self.decimals, impale_dps, ignite_dps) \
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
     def _generate_player_dps_output(self):
@@ -121,7 +122,7 @@ class OffenseAggregatorV2(AbstractAggregator):
         crit_multi = self.build.get_player_stat('CritMultiplier')
         acc = self.build.get_player_stat('HitChance')
 
-        return self.__generate_dps_string(total_dps, speed, impale_dps, self.total_dot_dps) \
+        return self.__generate_dps_string(total_dps, speed, self.decimals, impale_dps, self.total_dot_dps) \
                + self.__generate_crit_acc_string(crit_chance, crit_multi, acc)
 
     def _generate_full_dps_output(self, minion_stats=False):
@@ -132,22 +133,22 @@ class OffenseAggregatorV2(AbstractAggregator):
         acc = self.build.get_player_stat('HitChance') if not minion_stats else self.build.get_minion_stat('HitChance')
         gem_breakdown = ', '.join([f'{gem.get_name()} × {gem.instance_count}' for gem in self.included_skills])
 
-        return f'**Combined DPS**: {shorten_number_string(self.full_dps)}\n ' + self.__generate_crit_acc_string(
+        return f'**Combined DPS**: {shorten_number_string(self.full_dps, decimals=self.decimals)}\n ' + self.__generate_crit_acc_string(
             crit_chance, crit_multi, acc) + f' **Sources**: {gem_breakdown}'
 
     def _generate_player_dot_output(self):
-        return f'**Total DPS**: {shorten_number_string(self.total_dot_dps)}'
+        return f'**Total DPS**: {shorten_number_string(self.total_dot_dps, decimals=self.decimals)}'
 
     @staticmethod
-    def __generate_dps_string(total_dps, speed, impale_dps=None, ignite_dps=None):
+    def __generate_dps_string(total_dps, speed, decimals, impale_dps=None, ignite_dps=None):
         output = ''
-        output += f'**Total DPS**: {shorten_number_string(total_dps)}'
+        output += f'**Total DPS**: {shorten_number_string(total_dps, decimals=decimals)}'
         if speed and speed > 0:
             output += f' @ {round(speed, 2) if speed else 0}/s\n'
         if impale_dps and impale_dps > total_dps * OutputThresholds.IMPALE_DPS_RATIO.value:
-            output += f'**Impale DPS**: {shorten_number_string(impale_dps)}\n'
+            output += f'**Impale DPS**: {shorten_number_string(impale_dps, decimals=decimals)}\n'
         if ignite_dps and ignite_dps > total_dps:
-            output += f'**Ignite DPS**: {shorten_number_string(ignite_dps)}\n'
+            output += f'**Ignite DPS**: {shorten_number_string(ignite_dps, decimals=decimals)}\n'
         return output
 
     @staticmethod

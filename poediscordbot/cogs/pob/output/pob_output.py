@@ -100,7 +100,10 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
     """
 
     # Needs to be created first because of embed support check
-    offense_aggregator = OffenseAggregatorV2(build, non_dps_skills)
+    dps_decimals = 1 if not config.dps_decimals else config.dps_decimals
+    defense_decimals = 0 if not config.dps_decimals else config.defense_decimals
+
+    offense_aggregator = OffenseAggregatorV2(build, non_dps_skills, dps_decimals)
     is_support = build_checker.is_support(build,
                                           offense_aggregator.get_max_dps(),
                                           offense_aggregator.get_avg_dps())
@@ -110,7 +113,7 @@ def generate_response(author, build: Build, minified=False, paste_data: PasteDat
 
     base_aggregators = [
         GeneralAggregator(build),
-        SecondaryDefenseAggregator(build),
+        SecondaryDefenseAggregator(build, defense_decimals),
         offense_aggregator,
     ]
     additional_aggregators = [

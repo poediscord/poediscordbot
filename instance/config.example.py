@@ -57,3 +57,7 @@ renderer_active_color = 'darkgoldenrod'
 renderer_mastery_color = 'papayawhip'
 # keystone colors
 renderer_keystone_color = 'peru'
+
+# decimal output adaptions
+dps_decimals = 1
+defense_decimals = 0
