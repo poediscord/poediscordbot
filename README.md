@@ -7,6 +7,7 @@ Currently, there's no way to just invite an instance of the bot. You can run it 
 If you encounter issues or need more support feel free to open an issue or visit the [Reddit PoE Discord](https://discord.com/invite/pathofexile) and post in `#tooldev-general`
 
 ## Changelog
+- 2023-08-17: add configurable decimals for offense and defense (see config example) default is 1 and 0 respectively
 - 2023-04-18: add 3.21 tree
 - 2023-04-18: rework embed
   - embed is now inlined by default and has condensed numbers 10000=>10k, 1000000=>1M
