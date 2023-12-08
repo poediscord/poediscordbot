@@ -1,5 +1,5 @@
 {
-    "utc-date": "2023-08-12T17:02:28.252790",
+    "utc-date": "2023-12-08T17:32:22.927433",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -1220,7 +1220,7 @@
         },
         "buffNgamahuFlamesAdvance": {
             "var": "buffNgamahuFlamesAdvance",
-            "label": "Is Ngamahu, Flame's Advance active?",
+            "label": "Is Magmatic Strikes active?",
             "category": "player",
             "abbreviation": "Ngamahu Flame's Advance"
         },
@@ -1285,7 +1285,7 @@
         },
         "warcryMode": {
             "var": "warcryMode",
-            "label": "Warcry calculation mode:",
+            "label": "Exerted/Boosted calc mode:",
             "ifSkillList": [
                 "Infernal Cry",
                 "Ancestral Cry",
@@ -1297,6 +1297,7 @@
                 "Battlemage's Cry"
             ],
             "ifSkill": [
+                "Fist of War",
                 "Infernal Cry",
                 "Ancestral Cry",
                 "Enduring Cry",
@@ -2071,6 +2072,95 @@
                 "Righteous Fire",
                 "Scorching Ray"
             ]
+        },
+        "bloodSacramantReservationeHP": {
+            "var": "bloodSacramantReservationeHP",
+            "label": "Count Skill Reservation towards eHP?",
+            "ifSkill": "Blood Sacrament"
+        },
+        "traumaStacks": {
+            "var": "traumaStacks",
+            "label": "# of Trauma Stacks:"
+        },
+        "conditionCorruptingCryStages": {
+            "var": "conditionCorruptingCryStages",
+            "label": "# of Corrupting Cry stacks on enemy",
+            "ifSkill": "Corrupting Cry"
+        },
+        "curseOverlaps": {
+            "var": "curseOverlaps",
+            "label": "Curse overlaps:",
+            "ifSkill": "Doom Blast"
+        },
+        "freshMeatBuffs": {
+            "var": "freshMeatBuffs",
+            "label": "Is Fresh Meat active?",
+            "ifSkill": "Fresh Meat"
+        },
+        "linkedToMinion": {
+            "var": "linkedToMinion",
+            "label": "Linked To Minion?",
+            "ifSkill": [
+                "Destructive Link",
+                "Flame Link",
+                "Intuitive Link",
+                "Protective Link",
+                "Soul Link",
+                "Vampiric Link"
+            ]
+        },
+        "MomentumStacks": {
+            "var": "MomentumStacks",
+            "label": "# of Momentum (if not average):",
+            "ifSkill": [
+                "Momentum"
+            ]
+        },
+        "conditionOnCausticGround": {
+            "var": "conditionOnCausticGround",
+            "label": "Are you on Caustic Ground?"
+        },
+        "multiplierWitheredStackCountSelf": {
+            "var": "multiplierWitheredStackCountSelf",
+            "label": "# of Withered Stacks on you:"
+        },
+        "multiplierIgniteAppliedRecently": {
+            "var": "multiplierIgniteAppliedRecently",
+            "label": "# of ^xB97123Ignites ^7applied Recently:"
+        },
+        "conditionLinkedRecently": {
+            "var": "conditionLinkedRecently",
+            "label": "Have you Linked recently?"
+        },
+        "GamblesprintMovementSpeed": {
+            "var": "GamblesprintMovementSpeed",
+            "label": "Gamblesprint Movement Speed"
+        },
+        "overrideBleedStackPotential": {
+            "var": "overrideBleedStackPotential",
+            "label": "Bleed Stack Potential override:",
+            "ifOption": "conditionEnemyBleeding"
+        },
+        "overrideIgniteStackPotential": {
+            "var": "overrideIgniteStackPotential",
+            "label": "^xB97123Ignite^7 Stack Potential override:",
+            "ifOption": "conditionEnemyIgnited"
+        },
+        "conditionBetweenYouAndLinkedTarget": {
+            "var": "conditionBetweenYouAndLinkedTarget",
+            "label": "Is the enemy in your Link beams?"
+        },
+        "conditionEnemyFireResZero": {
+            "var": "conditionEnemyFireResZero",
+            "label": "Enemy hit you with ^xB97123Fire Damage^7?"
+        },
+        "conditionEnemyColdResZero": {
+            "var": "conditionEnemyColdResZero",
+            "label": "Enemy hit you with ^x3F6DB3Cold Damage^7?"
+        },
+        "conditionEnemyLightningResZero": {
+            "var": "conditionEnemyLightningResZero",
+            "label": "Enemy hit you with ^xADAA47Light. Damage^7?"
         }
     }
 }
