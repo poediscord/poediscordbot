@@ -4,11 +4,11 @@ import struct
 
 from instance import config
 
-from .poe_tree import PoeTree
+from pob_xml_parser.tree.poe_tree import PoeTree
 
 
 class PoeTreeCodec:
-    POE_TREE_JSON = 'resources/tree_3_21.min.json'
+    POE_TREE_JSON = 'resources/tree_3_24.min.json'
 
     def __init__(self):
         tree_data = json.load(open(config.ROOT_DIR + '/' + PoeTreeCodec.POE_TREE_JSON))
