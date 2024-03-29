@@ -34,7 +34,7 @@ class PoBCog(commands.Cog):
         self.__tree_img_dir = self.read_conf()
         log.info("Pob cog loaded")
         if self.__enable_tree_renderer:
-            self.renderer = TreeRenderer(self.__root_dir + 'resources/tree_3_23.min.json')
+            self.renderer = TreeRenderer(self.__root_dir + 'resources/tree_3_24.min.json')
             self.cleanup_imgs.start()
 
     @staticmethod

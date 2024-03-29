@@ -1,5 +1,5 @@
 {
-    "utc-date": "2023-12-08T17:32:22.927433",
+    "utc-date": "2024-03-29T05:49:18.703777",
     "conf": {
         "conditionStationary": {
             "var": "conditionStationary",
@@ -59,7 +59,7 @@
             "label": "Cast on Frostbolt?",
             "category": "playerSkill",
             "abbreviation": "Nova on FB",
-            "ifSkill": "Ice Nova"
+            "ifSkill": "Ice Nova of Frostbolts"
         },
         "innervateInnervation": {
             "var": "innervateInnervation",
@@ -73,7 +73,7 @@
             "label": "Cast on Frostbolt?",
             "category": "playerSkill",
             "abbreviation": "Vortex on FB",
-            "ifSkill": "Vortex"
+            "ifSkill": "Vortex of Projection"
         },
         "usePowerCharges": {
             "var": "usePowerCharges",
@@ -878,7 +878,7 @@
         "feedingFrenzyFeedingFrenzyActive": {
             "var": "feedingFrenzyFeedingFrenzyActive",
             "label": "Is Feeding Frenzy active?",
-            "category": "playerSkill",
+            "category": "minion",
             "abbreviation": "Feeding Frenzy",
             "ifSkill": "Feeding Frenzy"
         },
@@ -892,8 +892,8 @@
         "meatShieldEnemyNearYou": {
             "var": "meatShieldEnemyNearYou",
             "label": "Is the enemy near you?",
-            "category": "nearby",
-            "abbreviation": "Meat Shield Target",
+            "category": "minion",
+            "abbreviation": "Meat Shield Active",
             "ifSkill": "Meat Shield"
         },
         "siphoningTrapAffectedEnemies": {
@@ -920,7 +920,8 @@
                 "Flesh and Stone",
                 "Lacerate",
                 "Bladestorm",
-                "Perforate"
+                "Perforate",
+                "Perforate of Duality"
             ]
         },
         "waveOfConvictionExposureType": {
@@ -1038,7 +1039,7 @@
         "multiplierMinionsKilledRecently": {
             "var": "multiplierMinionsKilledRecently",
             "label": "# of Enemies Killed by Minions Recently:",
-            "category": "playerRecently",
+            "category": "minion",
             "abbreviation": "# Minion kills"
         },
         "conditionShatteredEnemyRecently": {
@@ -1152,7 +1153,7 @@
         },
         "conditionHaveManaStorm": {
             "var": "conditionHaveManaStorm",
-            "label": "Do you have Manastorm's ^xADAA47Lightning ^7Buff?",
+            "label": "Do you have Manastorm's Buff?",
             "category": "player",
             "abbreviation": "Manastorm Buff"
         },
@@ -1190,8 +1191,8 @@
         "multiplierSummonedMinion": {
             "var": "multiplierSummonedMinion",
             "label": "# of Summoned Minions:",
-            "category": "player",
-            "abbreviation": "Summoned Minions"
+            "category": "minion",
+            "abbreviation": "Summoned Minions #"
         },
         "conditionOnFungalGround": {
             "var": "conditionOnFungalGround",
@@ -1314,7 +1315,7 @@
         },
         "targetBrandedEnemy": {
             "var": "targetBrandedEnemy",
-            "label": "Are skills targeting the Branded enemy?",
+            "label": "Skill is targeting the Branded enemy",
             "ifSkill": "Arcanist Brand",
             "abbreviation": "Lucky (Vaal Arc)"
         },
@@ -1341,7 +1342,10 @@
         "prideEffect": {
             "var": "prideEffect",
             "label": "Pride Aura Effect:",
-            "ifSkill": "Pride"
+            "ifSkill": [
+                "Pride",
+                "AzmeriDemonPhysicalDamageAura"
+            ]
         },
         "changedStance": {
             "var": "changedStance",
@@ -1353,22 +1357,22 @@
             "var": "minionsOverridePowerCharges",
             "label": "# of Power Charges (if not maximum):",
             "ifOption": "minionsUsePowerCharges",
-            "category": "player",
-            "abbreviation": "Slipstreamed"
+            "category": "minion",
+            "abbreviation": "PC #"
         },
         "minionsOverrideFrenzyCharges": {
             "var": "minionsOverrideFrenzyCharges",
             "label": "# of Frenzy Charges (if not maximum):",
             "ifOption": "minionsUseFrenzyCharges",
-            "category": "Player",
-            "abbreviation": "Minion FC"
+            "category": "minion",
+            "abbreviation": "FC #"
         },
         "minionsOverrideEnduranceCharges": {
             "var": "minionsOverrideEnduranceCharges",
             "label": "# of Endurance Charges (if not maximum):",
             "ifOption": "minionsUseEnduranceCharges",
-            "category": "Player",
-            "abbreviation": "Minion EC"
+            "category": "minion",
+            "abbreviation": "EC #"
         },
         "buffAlchemistsGenius": {
             "var": "buffAlchemistsGenius",
@@ -1907,7 +1911,7 @@
         },
         "repeatMode": {
             "var": "repeatMode",
-            "label": "Repeat Mode"
+            "label": "Repeat Mode:"
         },
         "overrideSpiritCharges": {
             "var": "overrideSpiritCharges",
@@ -1997,7 +2001,9 @@
         },
         "TriggeredTrapsRecently": {
             "var": "TriggeredTrapsRecently",
-            "label": "Have you Triggered a Trap Recently?"
+            "label": "Have you Triggered a Trap Recently?",
+            "category": "playerRecently",
+            "abbreviation": "Triggered Trap"
         },
         "conditionHaveVixensEntrapment": {
             "var": "conditionHaveVixensEntrapment",
@@ -2017,7 +2023,9 @@
         },
         "conditionEnemyHaveEnergyShield": {
             "var": "conditionEnemyHaveEnergyShield",
-            "label": "Does the enemy have ^x88FFFFEnergy Shield^7?"
+            "label": "Does the enemy have ^x88FFFFEnergy Shield^7?",
+            "category": "enemy",
+            "abbreviation": "Has ES"
         },
         "enemyDamageRollRange": {
             "var": "enemyDamageRollRange",
@@ -2025,7 +2033,9 @@
         },
         "minionsConditionFullEnergyShield": {
             "var": "minionsConditionFullEnergyShield",
-            "label": "Minion is always on Full ^x88FFFFEnergy Shield?"
+            "label": "Minion is always on Full ^x88FFFFEnergy Shield?",
+            "category": "minion",
+            "abbreviation": "Always Full ES"
         },
         "carrionGolemEqualsChaosGolem": {
             "var": "carrionGolemEqualsChaosGolem",
@@ -2063,7 +2073,9 @@
         },
         "minionsConditionLeechingEnergyShield": {
             "var": "minionsConditionLeechingEnergyShield",
-            "label": "Minion is Leeching ^x88FFFFEnergy Shield?"
+            "label": "Minion is Leeching ^x88FFFFEnergy Shield?",
+            "category": "minion",
+            "abbreviation": "Minion leeched ES"
         },
         "enemyInRFOrScorchingRay": {
             "var": "enemyInRFOrScorchingRay",
@@ -2071,7 +2083,9 @@
             "ifSkill": [
                 "Righteous Fire",
                 "Scorching Ray"
-            ]
+            ],
+            "category": "enemy",
+            "abbreviation": "Enemy in RF/SR"
         },
         "bloodSacramantReservationeHP": {
             "var": "bloodSacramantReservationeHP",
@@ -2080,12 +2094,16 @@
         },
         "traumaStacks": {
             "var": "traumaStacks",
-            "label": "# of Trauma Stacks:"
+            "label": "# of Trauma Stacks:",
+            "category": "player",
+            "abbreviation": "Trauma #"
         },
         "conditionCorruptingCryStages": {
             "var": "conditionCorruptingCryStages",
             "label": "# of Corrupting Cry stacks on enemy",
-            "ifSkill": "Corrupting Cry"
+            "ifSkill": "Corrupting Cry",
+            "category": "player",
+            "abbreviation": "Corrupting Cry #"
         },
         "curseOverlaps": {
             "var": "curseOverlaps",
@@ -2095,7 +2113,9 @@
         "freshMeatBuffs": {
             "var": "freshMeatBuffs",
             "label": "Is Fresh Meat active?",
-            "ifSkill": "Fresh Meat"
+            "ifSkill": "Fresh Meat",
+            "category": "minion",
+            "abbreviation": "Fresh Meat"
         },
         "linkedToMinion": {
             "var": "linkedToMinion",
@@ -2107,14 +2127,16 @@
                 "Protective Link",
                 "Soul Link",
                 "Vampiric Link"
-            ]
+            ],
+            "category": "minion",
+            "abbreviation": "Linked"
         },
         "MomentumStacks": {
             "var": "MomentumStacks",
             "label": "# of Momentum (if not average):",
-            "ifSkill": [
-                "Momentum"
-            ]
+            "ifSkill": "Momentum",
+            "category": "player",
+            "abbreviation": "Momentum #"
         },
         "conditionOnCausticGround": {
             "var": "conditionOnCausticGround",
@@ -2122,15 +2144,21 @@
         },
         "multiplierWitheredStackCountSelf": {
             "var": "multiplierWitheredStackCountSelf",
-            "label": "# of Withered Stacks on you:"
+            "label": "# of Withered Stacks on you:",
+            "category": "player",
+            "abbreviation": "Player Withers #"
         },
         "multiplierIgniteAppliedRecently": {
             "var": "multiplierIgniteAppliedRecently",
-            "label": "# of ^xB97123Ignites ^7applied Recently:"
+            "label": "# of ^xB97123Ignites ^7applied Recently:",
+            "category": "enemy",
+            "abbreviation": "Ignites applied #"
         },
         "conditionLinkedRecently": {
             "var": "conditionLinkedRecently",
-            "label": "Have you Linked recently?"
+            "label": "Have you Linked recently?",
+            "category": "playerRecently",
+            "abbreviation": "Linked"
         },
         "GamblesprintMovementSpeed": {
             "var": "GamblesprintMovementSpeed",
@@ -2139,12 +2167,16 @@
         "overrideBleedStackPotential": {
             "var": "overrideBleedStackPotential",
             "label": "Bleed Stack Potential override:",
-            "ifOption": "conditionEnemyBleeding"
+            "ifOption": "conditionEnemyBleeding",
+            "category": "enemy",
+            "abbreviation": "Bleeds #"
         },
         "overrideIgniteStackPotential": {
             "var": "overrideIgniteStackPotential",
             "label": "^xB97123Ignite^7 Stack Potential override:",
-            "ifOption": "conditionEnemyIgnited"
+            "ifOption": "conditionEnemyIgnited",
+            "category": "enemy",
+            "abbreviation": "Ignites #"
         },
         "conditionBetweenYouAndLinkedTarget": {
             "var": "conditionBetweenYouAndLinkedTarget",
@@ -2161,6 +2193,51 @@
         "conditionEnemyLightningResZero": {
             "var": "conditionEnemyLightningResZero",
             "label": "Enemy hit you with ^xADAA47Light. Damage^7?"
+        },
+        "bloodSacramentReservationEHP": {
+            "var": "bloodSacramentReservationEHP",
+            "label": "Count Skill Reservation towards eHP?",
+            "ifSkill": "Blood Sacrament"
+        },
+        "buffChaoticMight": {
+            "var": "buffChaoticMight",
+            "label": "Do you have Chaotic Might?",
+            "category": "player",
+            "abbreviation": "Chaotic Might"
+        },
+        "minionbuffChaoticMight": {
+            "var": "minionbuffChaoticMight",
+            "label": "Do your minions have Chaotic Might?",
+            "category": "minion",
+            "abbreviation": "Chaotic Might"
+        },
+        "conditionChampionIntimidate": {
+            "var": "conditionChampionIntimidate",
+            "label": "Is Champion's Intimidate active?",
+            "category": "player",
+            "abbreviation": "Intimidate"
+        },
+        "conditionRavenousCorpseConsumed": {
+            "var": "conditionRavenousCorpseConsumed",
+            "label": "Has Ravenous consumed a corpse?",
+            "ifSkill": "Ravenous"
+        },
+        "EverlastingSacrifice": {
+            "var": "EverlastingSacrifice",
+            "label": "Do you have Everlasting Sacrifice?",
+            "category": "player",
+            "abbreviation": "Everlasting Sacrifice"
+        },
+        "conditionSingleBleed": {
+            "var": "conditionSingleBleed",
+            "label": "Cap to Single Bleed on enemy?"
+        },
+        "conditionEnemyPacified": {
+            "var": "conditionEnemyPacified",
+            "label": "Is the enemy Pacified?",
+            "ifSkill": "Pacify",
+            "category": "enemy",
+            "abbreviation": "Enemy Pacified"
         }
     }
 }
