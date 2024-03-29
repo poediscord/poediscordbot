@@ -4,7 +4,7 @@ import struct
 
 from instance import config
 
-from pob_xml_parser.tree.poe_tree import PoeTree
+from .poe_tree import PoeTree
 
 
 class PoeTreeCodec:
