@@ -1,6 +1,10 @@
 import json
 import os
 
+import defusedxml.ElementTree as ET
+
+from pob_xml_parser.pob_xml_parser import parse_build
+
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -14,3 +18,8 @@ def load_json_file(path):
 
 def get_test_path(file):
     return os.path.join(TEST_DIR, file)
+
+def load_test_build(path):
+    content = load_file_as_string(path)
+    xml = ET.fromstring(content)
+    return parse_build(xml)
