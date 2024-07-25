@@ -13,6 +13,10 @@ def load_file_as_string(path):
     with open(TEST_DIR + os.sep + path, "r") as file:
         return file.read()
 
+def load_file_as_byte(path):
+    with open(TEST_DIR + os.sep + path, "rb") as file:
+        return file.read()
+
 
 def load_json_file(path):
     return json.loads(load_file_as_string(path))
@@ -23,7 +27,7 @@ def get_test_path(file):
 
 
 def load_test_build(path):
-    content = load_file_as_string(path)
-    content = pob_xml_decoder.xml_byte_to_str(content)
+    content = load_file_as_byte(path)
+    content = pob_xml_decoder.xml_byte_to_str(content, 'windows-1252')
     xml = ET.fromstring(content)
     return parse_build(xml)

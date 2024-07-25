@@ -30,6 +30,8 @@ def xml_byte_to_str(xml_bytes: bytes, encoding) -> str:
         subst = f"<Input name=\"customMods\" string=\"{modified_string}\" />"
 
         return re.sub(pattern, subst, xml_str, 1, re.DOTALL)
+    else:
+        return  xml_str
 
 
 def decode_to_xml(enc, encoding='windows-1252'):
