@@ -101,8 +101,9 @@ class ConfigAggregator(AbstractAggregator):
                 out += '\n'
 
         #handle custom config and line cutting
-        if build_conf:
-            custom_lines = build_conf.get('customMods').get('value').split("\n")
+        custom_mods = build_conf.get('customMods')
+        if build_conf and custom_mods:
+            custom_lines = custom_mods.get('value').split("\n")
             custom_text = ""
             custom_line_max = 5 if config.custom_mods_lines is None else config.custom_mods_lines
 
