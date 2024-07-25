@@ -1,18 +1,9 @@
 import unittest
 
-import defusedxml.ElementTree as ET
-
 from poediscordbot.pob_xml_parser.models.build import Build
 from poediscordbot.pob_xml_parser.models.gem import Gem
 from poediscordbot.pob_xml_parser.models.skill import Skill
-from poediscordbot.pob_xml_parser.pob_xml_parser import parse_build
-from tests import load_file_as_string
-
-
-def load_test_build(path):
-    content = load_file_as_string(path)
-    xml = ET.fromstring(content)
-    return parse_build(xml)
+from tests import load_test_build
 
 
 class TestParser(unittest.TestCase):
@@ -78,6 +69,13 @@ class TestParser(unittest.TestCase):
         self.assertEqual("Herald of Purity", skill.get_selected().get_name())
         self.assertTrue(skill.get_selected().minion_skill)
         self.assertEqual("AxisEliteSoldierHeraldOfLight", skill.get_selected().selected_minion)
+
+    def test_new_config_parsing(self):
+        build = load_test_build("in/warden_config_set.xml")
+        self.assertTrue(len(build.config) > 0)
+        self.assertEqual('5', build.config.get("barkskinStacks").get('value'))
+        self.assertEqual('30', build.config.get("ShockStacks")['value'])
+        self.assertEqual('2', build.config.get("ScorchStacks")['value'])
 
 
 if __name__ == '__main__':

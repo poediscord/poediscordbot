@@ -45,13 +45,20 @@ def parse_build(xml_root) -> Build:
 
     # parse config
     config = xml_root.find('Config')
-    if not config == None:
-        for input in xml_root.find('Config'):
-            if input.tag == "Input":
-                extracted = [val for (key, val) in input.attrib.items()]
-                if len(extracted) < 1:
-                    continue
-                build.append_conf(extracted[0], extracted[1])
+    if config:
+        conf_set_id = get_attrib_if_exists(config, 'activeConfigSet')
+        # only fetch active config
+        config_set = next((c for c in config if get_attrib_if_exists(c, 'id') == conf_set_id), None)
+        if config_set:
+            for child in config_set:
+                if child.tag == "Input" or child.tag == "Placeholder":
+                    key, value = [val for (key, val) in child.attrib.items()]
+                    if not key:
+                        continue
+                    # input always are prioritized over placeholder values => only import Placeholder if not set
+                    if build.config.get(key) and child.tag == "Placeholder":
+                        continue
+                    build.append_conf(key, value)
 
     # keystones
     tree = poe_tree_codec.codec.decode_url(selected_tree)

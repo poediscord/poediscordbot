@@ -1,3 +1,5 @@
+from instance import config
+
 from poediscordbot.cogs.pob.output.aggregators.abstract_aggregator import AbstractAggregator
 from poediscordbot.util.logging import log
 
@@ -52,23 +54,23 @@ class ConfigAggregator(AbstractAggregator):
         return False
 
     @staticmethod
-    def get_config_string(config, skills):
+    def get_config_string(build_conf, skills):
         """
         Use the given config to extract one string for the output.
-        :param config: a dictionary of configs from a Build object
+        :param build_conf: a dictionary of configs from a Build object
         :param skills: list of skills from a Build object
         :return: string representation
         """
         configs = {}
-        for key, entry in config.items():
+        for key, entry in build_conf.items():
             abbrev = entry.get('abbreviation')
             value = entry.get('value')
             category = entry.get('category')
             ifOption = entry.get('ifOption')
 
             # Skip conditional options that are not matching precondition in output
-            if ifOption and (ifOption not in config or not
-            bool(config.get(ifOption).get('value'))):
+            if ifOption and (ifOption not in build_conf or not
+            bool(build_conf.get(ifOption).get('value'))):
                 continue
 
             if_skill = entry.get('ifSkill')
@@ -83,6 +85,8 @@ class ConfigAggregator(AbstractAggregator):
                         continue
 
                     configs.setdefault(category.capitalize(), []).append(config_line)
+                elif key == 'customMods':
+                    continue
                 else:
                     log.warn(
                         f"Category='{category}' or config_line='{config_line}' not set or unknown, check 'pob_conf.json'"
@@ -95,4 +99,18 @@ class ConfigAggregator(AbstractAggregator):
                 out += '**' + category + '**: '
                 out += ', '.join(configs[category])
                 out += '\n'
+
+        #handle custom config and line cutting
+        if build_conf:
+            custom_lines = build_conf.get('customMods').get('value').split("\n")
+            custom_text = ""
+            custom_line_max = 5 if config.custom_mods_lines is None else config.custom_mods_lines
+
+            if custom_line_max > 0:
+                if len(custom_lines) > custom_line_max:
+                    custom_text += f"only showing the first {custom_line_max} of {len(custom_lines)} lines"
+                for line in custom_lines[:custom_line_max]:
+                    custom_text += f"\n-# {line}"
+
+                out += f'**Custom**: {custom_text}'
         return out if out != '' else None
