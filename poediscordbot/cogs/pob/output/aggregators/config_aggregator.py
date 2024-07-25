@@ -100,15 +100,17 @@ class ConfigAggregator(AbstractAggregator):
                 out += ', '.join(configs[category])
                 out += '\n'
 
-        custom_lines = build_conf.get('customMods').get('value').split("\n")
-        custom_text = ""
-        custom_line_max = 5 if config.custom_mods_lines is None else config.custom_mods_lines
+        #handle custom config and line cutting
+        if build_conf:
+            custom_lines = build_conf.get('customMods').get('value').split("\n")
+            custom_text = ""
+            custom_line_max = 5 if config.custom_mods_lines is None else config.custom_mods_lines
 
-        if custom_line_max > 0:
-            if len(custom_lines) > custom_line_max:
-                custom_text += f"only showing the first {custom_line_max} of {len(custom_lines)} lines"
-            for line in custom_lines[:custom_line_max]:
-                custom_text += f"\n-# {line}"
+            if custom_line_max > 0:
+                if len(custom_lines) > custom_line_max:
+                    custom_text += f"only showing the first {custom_line_max} of {len(custom_lines)} lines"
+                for line in custom_lines[:custom_line_max]:
+                    custom_text += f"\n-# {line}"
 
-            out += f'**Custom**: {custom_text}'
+                out += f'**Custom**: {custom_text}'
         return out if out != '' else None
