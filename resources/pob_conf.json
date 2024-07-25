@@ -246,173 +246,173 @@
     "conditionHitRecently": {
       "var": "conditionHitRecently",
       "label": "Have you Hit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Got hit"
     },
     "conditionCritRecently": {
       "var": "conditionCritRecently",
       "label": "Have you Crit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionHitRecently",
       "abbreviation": "Got Crit"
     },
     "conditionCritWithHeraldSkillRecently": {
       "var": "conditionCritWithHeraldSkillRecently",
       "label": "Have your Herald Skills Crit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Herald Crit"
     },
     "LostNonVaalBuffRecently": {
       "var": "LostNonVaalBuffRecently",
       "label": "Lost a Non-Vaal Guard Skill buff recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Lost Guard Skill"
     },
     "conditionNonCritRecently": {
       "var": "conditionNonCritRecently",
       "label": "Have you dealt a Non-Crit Recently?",
       "suppress": "conditionHitRecently",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "dealt Non-Crit"
     },
     "conditionKilledRecently": {
       "var": "conditionKilledRecently",
       "label": "Have you Killed Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Killed"
     },
     "conditionTotemsNotSummonedInPastTwoSeconds": {
       "var": "conditionTotemsNotSummonedInPastTwoSeconds",
       "label": "No summoned Totems in the past 2 seconds?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Totem not summoned"
     },
     "conditionTotemsKilledRecently": {
       "var": "conditionTotemsKilledRecently",
       "label": "Have your Totems Killed Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Totems Killed"
     },
     "conditionUsedBrandRecently": {
       "var": "conditionUsedBrandRecently",
       "label": "Have you used a Brand Skill recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Brand"
     },
     "conditionMinionsKilledRecently": {
       "var": "conditionMinionsKilledRecently",
       "label": "Have your Minions Killed Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Minions Killed"
     },
     "conditionMinionsDiedRecently": {
       "var": "conditionMinionsDiedRecently",
       "label": "Has a Minion Died Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Minion died"
     },
     "conditionKilledAffectedByDoT": {
       "var": "conditionKilledAffectedByDoT",
       "label": "Killed enemy affected by your DoT Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionKilledRecently",
       "abbreviation": "Killed DoT Affected"
     },
     "multiplierShockedEnemyKilledRecently": {
       "var": "multiplierShockedEnemyKilledRecently",
       "label": "# of ^xADAA47Shocked ^7Enemies Killed Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionKilledRecently",
       "abbreviation": "Killed Shocked Enemies"
     },
     "conditionFrozenEnemyRecently": {
       "var": "conditionFrozenEnemyRecently",
       "label": "Have you ^x3F6DB3Frozen ^7an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Frozen Enemy"
     },
     "conditionChilledEnemyRecently": {
       "var": "conditionChilledEnemyRecently",
       "label": "Have you ^x3F6DB3Chilled ^7an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Chilled"
     },
     "conditionIgnitedEnemyRecently": {
       "var": "conditionIgnitedEnemyRecently",
       "label": "Have you ^xB97123Ignited ^7an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Ignited Enemy"
     },
     "conditionShockedEnemyRecently": {
       "var": "conditionShockedEnemyRecently",
       "label": "Have you ^xADAA47Shocked ^7an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Shocked Enemy"
     },
     "conditionStunnedEnemyRecently": {
       "var": "conditionStunnedEnemyRecently",
       "label": "Have you Stunned an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Stunned"
     },
     "multiplierPoisonAppliedRecently": {
       "var": "multiplierPoisonAppliedRecently",
       "label": "# of Poisons applied Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Applied Poisons"
     },
     "multiplierManaSpentRecently": {
       "var": "multiplierManaSpentRecently",
       "label": "# of ^x7070FFMana ^7spent Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Mana Spent"
     },
     "conditionBeenHitRecently": {
       "var": "conditionBeenHitRecently",
       "label": "Have you been Hit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Been Hit"
     },
     "conditionBeenCritRecently": {
       "var": "conditionBeenCritRecently",
       "label": "Have you been Crit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Been Crit"
     },
     "conditionBeenSavageHitRecently": {
       "var": "conditionBeenSavageHitRecently",
       "label": "Have you taken a Savage Hit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Been Savage Hit"
     },
     "conditionHitByFireDamageRecently": {
       "var": "conditionHitByFireDamageRecently",
       "label": "Have you been hit by ^xB97123Fire ^7Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hit by Fire"
     },
     "conditionHitByColdDamageRecently": {
       "var": "conditionHitByColdDamageRecently",
       "label": "Have you been hit by ^x3F6DB3Cold ^7Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hit by Cold"
     },
     "conditionHitByLightningDamageRecently": {
       "var": "conditionHitByLightningDamageRecently",
       "label": "Have you been hit by ^xADAA47Light. ^7Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hit by Lightning"
     },
     "conditionBlockedAttackRecently": {
       "var": "conditionBlockedAttackRecently",
       "label": "Have you Blocked an Attack Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Blocked Attack"
     },
     "conditionBlockedSpellRecently": {
       "var": "conditionBlockedSpellRecently",
       "label": "Have you Blocked a Spell Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Blocked Spell"
     },
     "buffPendulum": {
@@ -442,129 +442,129 @@
     "conditionAttackedRecently": {
       "var": "conditionAttackedRecently",
       "label": "Have you Attacked Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Attacked"
     },
     "conditionCastSpellRecently": {
       "var": "conditionCastSpellRecently",
       "label": "Have you Cast a Spell Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Cast"
     },
     "conditionUsedSkillRecently": {
       "var": "conditionUsedSkillRecently",
       "label": "Have you used a Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Skill"
     },
     "multiplierSkillUsedRecently": {
       "var": "multiplierSkillUsedRecently",
       "label": "# of Skills Used Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Skills used"
     },
     "conditionUsedWarcryRecently": {
       "var": "conditionUsedWarcryRecently",
       "label": "Have you used a Warcry Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Warcry"
     },
     "multiplierMineDetonatedRecently": {
       "var": "multiplierMineDetonatedRecently",
       "label": "# of Mines Detonated Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Mines Detonated"
     },
     "multiplierTrapTriggeredRecently": {
       "var": "multiplierTrapTriggeredRecently",
       "label": "# of Traps Triggered Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Traps Triggered"
     },
     "conditionThrownTrapOrMineRecently": {
       "var": "conditionThrownTrapOrMineRecently",
       "label": "Have you thrown a Trap or Mine Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Trap/Mine Thrown"
     },
     "conditionCursedEnemyRecently": {
       "var": "conditionCursedEnemyRecently",
       "label": "Have you Cursed an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Cursed"
     },
     "conditionConsumedCorpseRecently": {
       "var": "conditionConsumedCorpseRecently",
       "label": "Consumed a corpse Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Consumed Corpse"
     },
     "multiplierCorpseConsumedRecently": {
       "var": "multiplierCorpseConsumedRecently",
       "label": "# of Corpses Consumed Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Corpses Consumed"
     },
     "conditionTauntedEnemyRecently": {
       "var": "conditionTauntedEnemyRecently",
       "label": "Taunted an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Taunted Enemy"
     },
     "conditionUsedFireSkillRecently": {
       "var": "conditionUsedFireSkillRecently",
       "label": "Have you used a ^xB97123Fire ^7Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Fire Skill"
     },
     "conditionUsedColdSkillRecently": {
       "var": "conditionUsedColdSkillRecently",
       "label": "Have you used a ^x3F6DB3Cold ^7Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Cold Skill"
     },
     "conditionUsedMinionSkillRecently": {
       "var": "conditionUsedMinionSkillRecently",
       "label": "Have you used a Minion Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Minion Skill"
     },
     "conditionUsedMovementSkillRecently": {
       "var": "conditionUsedMovementSkillRecently",
       "label": "Have you used a Movement Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Movement Skill"
     },
     "conditionUsedFireSkillInPast10Sec": {
       "var": "conditionUsedFireSkillInPast10Sec",
       "label": "Have you used a Fire Skill in the past 10s?",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionUsedColdSkillRecently",
       "abbreviation": "Used Fire Skill (10s)"
     },
     "conditionUsedColdSkillInPast10Sec": {
       "var": "conditionUsedColdSkillInPast10Sec",
       "label": "Have you used a Cold Skill in the past 10s?",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionUsedColdSkillRecently",
       "abbreviation": "Used Cold Skill (10s)"
     },
     "conditionUsedLightningSkillInPast10Sec": {
       "var": "conditionUsedLightningSkillInPast10Sec",
       "label": "Have you used a Light. Skill in the past 10s?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Used Light. Skill (10s)"
     },
     "conditionBlockedHitFromUniqueEnemyRecently": {
       "var": "conditionBlockedHitFromUniqueEnemyRecently",
       "label": "Blocked a Hit from a Unique enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Blocked hit from a Unique"
     },
     "conditionBlockedHitFromUniqueEnemyInPast10Sec": {
       "var": "conditionBlockedHitFromUniqueEnemyInPast10Sec",
       "label": "Blocked a Hit from a Unique enemy in the past 10s?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Blocked hit from a Unique (10s)"
     },
     "critChanceLucky": {
@@ -813,13 +813,13 @@
     "conditionBlockedRecently": {
       "var": "conditionBlockedRecently",
       "label": "Have you Blocked Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Blocked Recently"
     },
     "conditionEnergyShieldRechargeRecently": {
       "var": "conditionEnergyShieldRechargeRecently",
       "label": "^x88FFFFEnergy Shield ^7Recharge started Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "ES Recharged recently"
     },
     "projectileDistance": {
@@ -1021,19 +1021,19 @@
     "conditionSkillCritRecently": {
       "var": "conditionSkillCritRecently",
       "label": "Have your Skills Crit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Spell Crit"
     },
     "multiplierKilledRecently": {
       "var": "multiplierKilledRecently",
       "label": "# of Enemies Killed Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "# Kills"
     },
     "multiplierTotemsKilledRecently": {
       "var": "multiplierTotemsKilledRecently",
       "label": "# of Enemies Killed by Totems Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "# Totem kills"
     },
     "multiplierMinionsKilledRecently": {
@@ -1045,13 +1045,13 @@
     "conditionShatteredEnemyRecently": {
       "var": "conditionShatteredEnemyRecently",
       "label": "Have you ^x3F6DB3Shattered ^7an enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Enemy shattered"
     },
     "conditionUsedVaalSkillRecently": {
       "var": "conditionUsedVaalSkillRecently",
       "label": "Have you used a Vaal Skill Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Vaal Skill used"
     },
     "conditionSoulGainPrevention": {
@@ -1081,13 +1081,13 @@
     "multiplierBeenHitRecently": {
       "var": "multiplierBeenHitRecently",
       "label": "# of times you have been Hit Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hits taken"
     },
     "conditionImpaledRecently": {
       "var": "conditionImpaledRecently",
       "label": "Impaled an enemy recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Impaled"
     },
     "multiplierImpalesOnEnemy": {
@@ -1118,7 +1118,7 @@
     "conditionHitBySpellDamageRecently": {
       "var": "conditionHitBySpellDamageRecently",
       "label": "Have you taken Spell Damage Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Taken Spell Damage"
     },
     "multiplierRampage": {
@@ -1130,7 +1130,7 @@
     "conditionKilledUniqueEnemy": {
       "var": "conditionKilledUniqueEnemy",
       "label": "Killed a Rare or Unique enemy Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Killed Rare/Unique"
     },
     "conditionHaveArborix": {
@@ -1209,14 +1209,14 @@
     "conditionTakenFireDamageFromEnemyHitRecently": {
       "var": "conditionTakenFireDamageFromEnemyHitRecently",
       "label": "Taken ^xB97123Fire ^7Damage from enemy Hit Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "suppress": "conditionHitByFireDamageRecently",
       "abbreviation": "Hit by Fire"
     },
     "conditionStoppedTakingDamageOverTimeRecently": {
       "var": "conditionStoppedTakingDamageOverTimeRecently",
       "label": "Have you stopped taking DoT recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Stopped taking DoT"
     },
     "buffNgamahuFlamesAdvance": {
@@ -1228,7 +1228,7 @@
     "multiplierEnduranceChargesLostRecently": {
       "var": "multiplierEnduranceChargesLostRecently",
       "label": "# of Endurance Charges lost Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Lost EC"
     },
     "multiplierBleedsOnEnemy": {
@@ -1281,7 +1281,7 @@
     "BlockedPast10Sec": {
       "var": "BlockedPast10Sec",
       "label": "Number of times you've Blocked in the past 10s",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "# Blocks (10s)"
     },
     "warcryMode": {
@@ -1413,43 +1413,43 @@
     "conditionKilledLast3Seconds": {
       "var": "conditionKilledLast3Seconds",
       "label": "Have you Killed in the last 3 Seconds?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "killed recently (3s)"
     },
     "conditionKilledPosionedLast2Seconds": {
       "var": "conditionKilledPosionedLast2Seconds",
       "label": "Killed a poisoned enemy in the last 2 Seconds?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "poisoned recently (2s)"
     },
     "conditionCastLast1Seconds": {
       "var": "conditionCastLast1Seconds",
       "label": "Have you Cast a Spell in the last second?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "cast recently (1s)"
     },
     "conditionSpawnedCorpseRecently": {
       "var": "conditionSpawnedCorpseRecently",
       "label": "Spawned a corpse Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "corpses recently"
     },
     "conditionConsumedCorpseInPast2Sec": {
       "var": "conditionConsumedCorpseInPast2Sec",
       "label": "Consumed a corpse in the past 2s?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "corpse consumed recently (2s)"
     },
     "multiplierWarcryUsedRecently": {
       "var": "multiplierWarcryUsedRecently",
       "label": "# of Warcries Used Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "# warcries recently"
     },
     "conditionLostEnduranceChargeInPast8Sec": {
       "var": "conditionLostEnduranceChargeInPast8Sec",
       "label": "Lost an Endurance Charge in the past 8s?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Lost ECs recently (8s)"
     },
     "multiplierFragileRegrowth": {
@@ -1538,25 +1538,25 @@
     "conditionSummonedGolemInPast8Sec": {
       "var": "conditionSummonedGolemInPast8Sec",
       "label": "Summoned Golem in past 8 Seconds?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Golem summoned (8s)"
     },
     "conditionSummonedGolemInPast10Sec": {
       "var": "conditionSummonedGolemInPast10Sec",
       "label": "Summoned Golem in past 10 Seconds?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Golem summoned (10s)"
     },
     "conditionHitRecentlyWithWeapon": {
       "var": "conditionHitRecentlyWithWeapon",
       "label": "Have you Hit Recently with Your Weapon?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hit with weapon recently"
     },
     "conditionGainedPowerChargeRecently": {
       "var": "conditionGainedPowerChargeRecently",
       "label": "Gained a Power Charge Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Gained PC"
     },
     "conditionEnemyFireExposure": {
@@ -1622,7 +1622,7 @@
     "conditionGainedFrenzyChargeRecently": {
       "var": "conditionGainedFrenzyChargeRecently",
       "label": "Gained a Frenzy Charge Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Gained FC"
     },
     "skillPierceCount": {
@@ -1679,7 +1679,7 @@
     "multiplierLifeSpentRecently": {
       "var": "multiplierLifeSpentRecently",
       "label": "# of ^xE05030Life ^7spent Recently:",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Life Spent"
     },
     "conditionConsumed12SteelShardsRecently": {
@@ -1689,7 +1689,7 @@
     "conditionUsedDashRecently": {
       "var": "conditionUsedDashRecently",
       "label": "Have you cast Dash Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Dashed"
     },
     "conditionLowMana": {
@@ -1740,13 +1740,13 @@
     "conditionBeenHitByAttackRecently": {
       "var": "conditionBeenHitByAttackRecently",
       "label": "Have you been Hit by an Attack Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Hit by attack"
     },
     "conditionCastMarkRecently": {
       "var": "conditionCastMarkRecently",
       "label": "Have you cast a Mark Spell Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Cast mark"
     },
     "overrideBuffBlinded": {
@@ -1996,13 +1996,13 @@
     "DetonatedMinesRecently": {
       "var": "DetonatedMinesRecently",
       "label": "Have you Detonated a Mine Recently",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Detonated Mine"
     },
     "TriggeredTrapsRecently": {
       "var": "TriggeredTrapsRecently",
       "label": "Have you Triggered a Trap Recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Triggered Trap"
     },
     "conditionHaveVixensEntrapment": {
@@ -2157,7 +2157,7 @@
     "conditionLinkedRecently": {
       "var": "conditionLinkedRecently",
       "label": "Have you Linked recently?",
-      "category": "playerRecently",
+      "category": "recently",
       "abbreviation": "Linked"
     },
     "GamblesprintMovementSpeed": {

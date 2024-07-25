@@ -74,11 +74,13 @@ class Build:
         conf_entry = pob_conf.fetch_config_entry(key)
         # ignore unknown settings.
         if conf_entry:
-            self.config[key] = {'value': val}
+            self.config[key] = {"value": val}
             self.config[key].update(conf_entry)
         else:
-            log.info(f"ignoring unknown key: {key} -> {val}")
-
+            if key == "customMods":
+                self.config[key] = {"value": val}
+            else:
+                log.info(f"ignoring unknown key: {key} -> {val}")
 
     def __repr__(self) -> str:
         return f"{self.__dict__}"

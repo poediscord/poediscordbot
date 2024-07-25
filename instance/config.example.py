@@ -61,3 +61,6 @@ renderer_keystone_color = 'peru'
 # decimal output adaptions
 dps_decimals = 1
 defense_decimals = 0
+
+# custom mods
+custom_mods_lines = 5
