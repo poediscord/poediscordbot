@@ -29,7 +29,7 @@ def xml_byte_to_str(xml_bytes: bytes, encoding) -> str:
         modified_string = modified_string.strip().replace('\n', '&#10;')
         subst = f"<Input name=\"customMods\" string=\"{modified_string}\" />"
 
-        return re.sub(pattern, subst, xml_str, 1, re.DOTALL)
+        return re.sub(pattern, subst, xml_str, count=1, flags= re.DOTALL)
     else:
         return  xml_str
 

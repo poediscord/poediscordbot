@@ -52,6 +52,6 @@ class Item:
                 # if either no variant exists, or our variant matches the current supports variant
                 if 'variant' not in support[0] or self.variant in support[0]:
                     add_supports.append({"name": support[3], "level": support[2]})
-        except AttributeError as err:
+        except AttributeError:
             return
         return add_supports

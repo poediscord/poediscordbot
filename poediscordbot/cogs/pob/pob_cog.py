@@ -119,7 +119,7 @@ class PoBCog(commands.Cog):
         log.info(f"{interaction.user} called pob with url={paste_url}")
         await interaction.response.defer(ephemeral=True)
         # first followup ignores ephemeral, still set to true if this changes -> further followups can change it
-        await interaction.followup.send(f"Parsing your pob paste now...", ephemeral=True)
+        await interaction.followup.send("Parsing your pob paste now...", ephemeral=True)
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
@@ -175,7 +175,7 @@ class PoBCog(commands.Cog):
                 return None, None
             return xml, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
-            log.error(f"No Paste key found")
+            log.error("No Paste key found")
             return None, None
 
     def _generate_embed(self, paste_data: PasteData, xml, author, minify=False) -> (Embed, discord.File):
@@ -196,7 +196,7 @@ class PoBCog(commands.Cog):
                                                        render_size=1500)
                         self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{fn_ending}.png")
                     file = discord.File(f"{path}/{paste_data.source_site}_{fn_ending}.png", filename="tree.png")
-                    embed.set_image(url=f"attachment://tree.png")
+                    embed.set_image(url="attachment://tree.png")
 
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed, file

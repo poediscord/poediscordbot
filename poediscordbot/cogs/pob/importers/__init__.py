@@ -1,4 +1,4 @@
-from poediscordbot.cogs.pob.importers.abstract_importer import AbstractImporter
+from poediscordbot.cogs.pob.importers.abstract_importer import AbstractImporter as AbstractImporter
 
 
 class PasteData:
