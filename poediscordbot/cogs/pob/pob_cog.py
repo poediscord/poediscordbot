@@ -119,7 +119,7 @@ class PoBCog(commands.Cog):
         log.info(f"{interaction.user} called pob with url={paste_url}")
         await interaction.response.defer(ephemeral=True)
         # first followup ignores ephemeral, still set to true if this changes -> further followups can change it
-        await interaction.followup.send(f"Parsing your pob paste now...", ephemeral=True)
+        await interaction.followup.send("Parsing your pob paste now...", ephemeral=True)
 
         if not self.allow_pming and interaction.message.channel.is_private:
             return
@@ -141,7 +141,7 @@ class PoBCog(commands.Cog):
             await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
 
     @staticmethod
-    def _fetch_xml(author, content) -> (str, str, PasteData):
+    def _fetch_xml(author, content) -> (str, PasteData):
         """
         Trigger the parsing of the pastebin link, pass it to the output creating object and send a message back
         :param minify: show minified version of the embed
@@ -167,16 +167,16 @@ class PoBCog(commands.Cog):
             raw_data = importer.fetch_data(paste_key)
             if not raw_data:
                 log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
-                return None, None, None
+                return None, None
 
             xml = pob_xml_decoder.decode_to_xml(raw_data)
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
-                return None, None, None
+                return None, None
             return xml, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
-            log.error(f"No Paste key found")
-            return None, None, None
+            log.error("No Paste key found")
+            return None, None
 
     def _generate_embed(self, paste_data: PasteData, xml, author, minify=False) -> (Embed, discord.File):
         if xml:
@@ -196,7 +196,7 @@ class PoBCog(commands.Cog):
                                                        render_size=1500)
                         self.renderer.to_png(svg, f"{path}/{paste_data.source_site}_{fn_ending}.png")
                     file = discord.File(f"{path}/{paste_data.source_site}_{fn_ending}.png", filename="tree.png")
-                    embed.set_image(url=f"attachment://tree.png")
+                    embed.set_image(url="attachment://tree.png")
 
                 log.debug(f"embed={embed}; thumbnail={embed.thumbnail}")
                 return embed, file

@@ -76,8 +76,8 @@ def _generate_info_text(tree, paste_data):
         info_text += f"[Web Tree]({tree}) "
     if paste_data and config.enable_open_in_pob_feature:
         info_text += f"| [Click to open in POB](https://fwidm.github.io/pob-redirect/index.html?{paste_data.source_site}={paste_data.key}). "
-    info_text += f"\nCreated in [Path of Building Community](https://github.com/PathOfBuildingCommunity/PathOfBuilding)"
-    info_text += f" - [Bot Repo](https://github.com/poediscord/poediscordbot). "
+    info_text += "\nCreated in [Path of Building Community](https://github.com/PathOfBuildingCommunity/PathOfBuilding)"
+    info_text += " - [Bot Repo](https://github.com/poediscord/poediscordbot). "
     return info_text
 
 

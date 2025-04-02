@@ -63,7 +63,7 @@ class Build:
     def append_stat(self, key, val, stat_owner):
         # remove "Stat" from the string
         stat_owner = StatOwner.from_string(stat_owner)
-        if not stat_owner in self.stats:
+        if stat_owner not in self.stats:
             self.stats[stat_owner] = {}
         try:
             self.stats[stat_owner][key] = float(val)

@@ -45,15 +45,15 @@ def parse_build(xml_root) -> Build:
 
     # parse config
     config = xml_root.find('Config')
-    if config:
+    if config is not None:
         conf_set_id = get_attrib_if_exists(config, 'activeConfigSet')
         # only fetch active config
         config_set = next((c for c in config if get_attrib_if_exists(c, 'id') == conf_set_id), None)
-        if config_set:
+        if config_set is not None:
             for child in config_set:
                 if child.tag == "Input" or child.tag == "Placeholder":
                     key, value = [val for (key, val) in child.attrib.items()]
-                    if not key:
+                    if key is None:
                         continue
                     # input always are prioritized over placeholder values => only import Placeholder if not set
                     if build.config.get(key) and child.tag == "Placeholder":

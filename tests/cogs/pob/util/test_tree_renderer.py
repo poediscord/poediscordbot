@@ -27,9 +27,9 @@ class TestTreeRenderer(unittest.TestCase):
 
         renderer = TreeRenderer(TEST_DIR + "/../resources/tree_3_20.min.json")
         svg = renderer.parse_tree(chosen_nodes=chosen_nodes,
-                                  file_name=f"test_tree.svg",
+                                  file_name="test_tree.svg",
                                   render_size=500)
-        renderer.to_png(svg, f"test_tree.png")
+        renderer.to_png(svg, "test_tree.png")
 
     def test_scion(self):
         # bleed veq glad bottom right
@@ -44,6 +44,6 @@ class TestTreeRenderer(unittest.TestCase):
 
         renderer = TreeRenderer(TEST_DIR + "/../resources/tree_3_20.min.json")
         svg = renderer.parse_tree(chosen_nodes=chosen_nodes,
-                                  file_name=f"test_scion_tree.svg",
+                                  file_name="test_scion_tree.svg",
                                   render_size=500)
-        renderer.to_png(svg, f"test_scion_tree.png")
+        renderer.to_png(svg, "test_scion_tree.png")
