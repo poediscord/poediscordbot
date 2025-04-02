@@ -1,5 +1,5 @@
 # poediscordbot [![Discord POB](https://github.com/poediscord/poediscordbot/actions/workflows/python-app.yml/badge.svg)](https://github.com/poediscord/poediscordbot/actions/workflows/python-app.yml)
-built with discordpy rewrite / python 3.7; supports pypy 3.6
+built with discordpy rewrite / python 3.13; supports pypy 3.9
 
 ## Running the bot
 Currently, there's no way to just invite an instance of the bot. You can run it on your own machine or in the cloud though and do so. Follow the [wiki installation guide](https://github.com/poediscord/poediscordbot/wiki/Installation) if you need directions.
