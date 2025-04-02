@@ -141,7 +141,7 @@ class PoBCog(commands.Cog):
             await interaction.followup.send(f"Unable to parse pob from url: {paste_url}", ephemeral=True)
 
     @staticmethod
-    def _fetch_xml(author, content) -> (str, str, PasteData):
+    def _fetch_xml(author, content) -> (str, PasteData):
         """
         Trigger the parsing of the pastebin link, pass it to the output creating object and send a message back
         :param minify: show minified version of the embed
@@ -167,16 +167,16 @@ class PoBCog(commands.Cog):
             raw_data = importer.fetch_data(paste_key)
             if not raw_data:
                 log.error(f"Unable to obtain raw data for pastebin with key {paste_key}")
-                return None, None, None
+                return None, None
 
             xml = pob_xml_decoder.decode_to_xml(raw_data)
             if not xml:
                 log.error(f"Unable to obtain xml data for pastebin with key {paste_key}")
-                return None, None, None
+                return None, None
             return xml, PasteData(paste_key, importer.get_source_url(paste_key), source_site)
         else:
             log.error(f"No Paste key found")
-            return None, None, None
+            return None, None
 
     def _generate_embed(self, paste_data: PasteData, xml, author, minify=False) -> (Embed, discord.File):
         if xml:

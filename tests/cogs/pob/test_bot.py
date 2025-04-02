@@ -79,7 +79,7 @@ class TestBot(unittest.TestCase):
         Empty names or values should not be carried into the embed. The pastebin has no secondary defense value
         :return:
         """
-        demo_profile_link = 'https://pastebin.com/X8XNW4EU'
+        demo_profile_link = 'https://pobb.in/HDxCt6Koi_yJ'
         demo_author = None
         xml, data = PoBCog._fetch_xml(demo_author, demo_profile_link)
         build_embed, _ = PoBCog(None, [], True)._generate_embed(data, xml, demo_author, minify=True)
